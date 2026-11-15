@@ -95,7 +95,7 @@
 \renewcommand{\headrule}{{\color{rule}\hrule width\headwidth height\headrulewidth}}
 \fancyhead[L]{\footnotesize\color{muted}Clara · Technical documentation}
 \fancyhead[R]{\footnotesize\color{muted}Version 1.0 · 15 November 2026}
-\fancyfoot[L]{\footnotesize\color{muted}DoH Future Health Challenge · Statement 03 · Team parallelparadox}
+\fancyfoot[L]{\footnotesize\color{muted}Future Health Digital Innovation Challenge · Problem Statement 03 · Team parallelparadox}
 \fancyfoot[R]{\footnotesize\color{muted}Page \thepage\ of \pageref*{LastPage}}
 \fancypagestyle{plain}{}
 
@@ -104,7 +104,7 @@
 \hypersetup{
   pdftitle={Clara: Technical Documentation},
   pdfauthor={Team parallelparadox},
-  pdfsubject={DoH Future Health Challenge, Statement 03},
+  pdfsubject={Future Health Digital Innovation Challenge, Problem Statement 03: Understanding and Reducing Inherited Disease Risk},
   pdfkeywords={Clara, genetic counselling, consanguinity, privacy, premarital screening, Abu Dhabi},
 }
 \newcommand{\link}[2]{\href{#1}{\color{teal}#2}}
@@ -145,9 +145,9 @@
 {\large\color{muted}\parbox{12cm}{\raggedright A private explanation of a premarital genetic result for each spouse, in Arabic or English, with a traceable route to care.}\par}
 
 \vspace{14mm}
-\begin{tabular}{@{}l@{\hspace{10mm}}l@{}}
-\color{muted}Challenge & Department of Health Abu Dhabi, Future Health Challenge 2026\\
-\color{muted}Statement & 03: inherited disease risk and consanguinity\\
+\begin{tabular}{@{}l@{\hspace{8mm}}P{11.2cm}@{}}
+\color{muted}Challenge & Future Health Digital Innovation Challenge 2026, Department of Health Abu Dhabi\\
+\color{muted}Problem statement & 03 · Understanding and Reducing Inherited Disease Risk\\
 \color{muted}Team & parallelparadox\\
 \color{muted}Version & 1.0, 15 November 2026\\
 \color{muted}Source & branch \code{v1-production-on-main}, commit \code{20608c0}\\
@@ -271,14 +271,22 @@ to referral in about a minute. \link{\proto/en/live}{\code{/en/live}} runs one c
 \end{note}
 
 % =====================================================================
+\needspace{16\baselineskip}
 \section{The problem and the requirement}\label{sec:req}
 % =====================================================================
 
 \subsection{The problem}
 
-Statement 03 asks: \emph{How might we help individuals, families and health systems identify, understand and reduce
-inherited disease risks associated with consanguinity through innovative, culturally appropriate and
-privacy-preserving technologies?}
+Problem Statement 03, \textbf{Understanding and Reducing Inherited Disease Risk}, asks, in the organisers' words:
+
+\begin{note}[colback=sand,colframe=sand]
+\emph{How might we help individuals, families and health systems identify, understand and reduce inherited disease
+risks associated with consanguinity through innovative, culturally appropriate and privacy, preserving technologies?}
+
+\smallskip
+\textbf{Objective:} \emph{Help individuals, families and health services understand inherited disease risk earlier
+and act on it, in a way that respects cultural values and keeps personal and genetic information private.}
+\end{note}
 
 Premarital and preconception screening already exists in Abu Dhabi. The hard part comes after the lab:
 
@@ -316,21 +324,21 @@ Genome Programme, the lab and the health-information exchange), not beside them.
 
 {\small
 \begin{xltabular}{\textwidth}{@{}P{3.4cm}LP{2.9cm}@{}}
-\caption{Statement 03 clauses and where Clara answers them}\\
+\caption{The six things a solution should do (clause names as published) and where Clara answers them}\\
 \toprl
 \thead{Clause} & \thead{What Clara does} & \thead{Where to see it}\\
 \midrule
-1. Explain risk & Each spouse's result in plain Gulf Arabic or English; every chance written in words and drawn as a picture; carrier is not ill; a chance is not a diagnosis. & Phone app, \code{/en/phone}\\
+1. Risk explanation & Each spouse's result in plain Gulf Arabic or English; every chance written in words and drawn as a picture; carrier is not ill; a chance is not a diagnosis. & Phone app, \code{/en/phone}\\
 \midrule
 2. Informed, values-sensitive choices & Options lawful in the UAE, shuffled per spouse with equal weight; declining is a full option; booking a counsellor. & Phone app, options\\
 \midrule
-3. Qualified human counselling & Every non-routine result is held until a genetics specialist releases it after a session; uncertain results always go to a genetics professional. & Specialist console, \code{/en/console}\\
+3. Qualified human counseling & Every non-routine result is held until a genetics specialist releases it after a session; uncertain results always go to a genetics professional. & Specialist console, \code{/en/console}\\
 \midrule
-4. Private family workflows & Explicit consent, one projection per role, a hash-chained audit ledger, item-by-item sharing with the partner and relatives. & \code{/en/safeguards}\\
+4. Privacy-preserving family workflows & Explicit consent, one projection per role, a hash-chained audit ledger, item-by-item sharing with the partner and relatives. & \code{/en/safeguards}\\
 \midrule
-5. Safe links to services & Referrals as minimised FHIR \code{ServiceRequest}s, tracked from sent to closed, with the pregnancy 48-hour check. & Console, referrals\\
+5. Safe linkage to services & Referrals as minimised FHIR \code{ServiceRequest}s, tracked from sent to closed, with the pregnancy 48-hour check. & Console, referrals\\
 \midrule
-6. Measure comprehension and access & Programme measures for understanding, booking, time to session and referral, split by language and sex; never a choice. & \code{/en/programme}\\
+6. Measurable comprehension and access & Programme measures for understanding, booking, time to session and referral, split by language and sex; never a choice. & \code{/en/programme}\\
 \bottomrule
 \end{xltabular}}
 
@@ -903,7 +911,7 @@ NVIDIA RTX 5000 Ada GPUs. There are no results yet. It ships only with 0 unsafe 
 unseen questions. A 32B model runs on GPUs we control, so a pilot could keep every question inside the UAE.
 
 % =====================================================================
-\needspace{12\baselineskip}
+% (needspace removed)
 \section{Privacy, security and data governance}
 % =====================================================================
 
@@ -1211,7 +1219,7 @@ student in India.
   \item Almeleh et al., 2026: survey of clinic attendees on inherited blood disorders.
   \item Galesic M., Garcia-Retamero R. and Gigerenzer G. Using icon arrays to communicate medical risks. \emph{Health Psychology}, 2009.
   \item Glaser E. et al. Interventions to improve patient comprehension in informed consent. \emph{Medical Decision Making}, 2020 (52 controlled studies).
-  \item Department of Health Abu Dhabi. Future Health Challenge, Statement 03, 2026.
+  \item Department of Health Abu Dhabi and Hack2skill. Future Health Digital Innovation Challenge, Challenge 03: Understanding and Reducing Inherited Disease Risk, 2026.
 \end{enumerate}}
 
 % =====================================================================
