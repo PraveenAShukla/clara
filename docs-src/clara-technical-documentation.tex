@@ -1,0 +1,1180 @@
+% Clara: technical documentation. Compile with: tectonic -X compile clara-technical-documentation.tex
+\documentclass[10.5pt,a4paper]{article}
+
+% ---------- fonts and page ----------
+\usepackage{fontspec}
+\usepackage[sfdefault]{plex-sans}
+\usepackage{plex-mono}
+\usepackage[a4paper,top=26mm,bottom=26mm,left=25mm,right=25mm,headsep=9mm,footskip=12mm]{geometry}
+\usepackage{microtype}
+\linespread{1.18}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\setlength{\emergencystretch}{3em}
+
+% ---------- colour ----------
+\usepackage{xcolor,amssymb}
+\definecolor{ink}{HTML}{1D1A17}
+\definecolor{muted}{HTML}{655E56}
+\definecolor{faint}{HTML}{A59D93}
+\definecolor{rule}{HTML}{DCD3C6}
+\definecolor{sand}{HTML}{F2ECE2}
+\definecolor{paper}{HTML}{FBF8F3}
+\definecolor{teal}{HTML}{0B6F68}
+\definecolor{tealsoft}{HTML}{E3EFEA}
+\definecolor{amber}{HTML}{9A5200}
+\definecolor{ambersoft}{HTML}{F6EAD8}
+\definecolor{violet}{HTML}{4F4DD6}
+\definecolor{violetsoft}{HTML}{ECEBFB}
+\definecolor{fail}{HTML}{C4402F}
+\color{ink}
+
+% ---------- structure ----------
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\color{ink}}{\color{teal}\thesection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries\color{ink}}{\color{teal}\thesubsection}{0.6em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{ink}}{}{0em}{}
+\titlespacing*{\section}{0pt}{22pt}{10pt}
+\titlespacing*{\subsection}{0pt}{16pt}{6pt}
+\titlespacing*{\subsubsection}{0pt}{10pt}{2pt}
+\usepackage{needspace}
+\newcommand{\chapterbreak}{}
+\let\oldsection\section
+\renewcommand{\section}{\chapterbreak\oldsection}
+
+\usepackage{enumitem}
+\setlist{itemsep=3pt,topsep=4pt,parsep=0pt,leftmargin=16pt}
+\setlist[itemize]{label={\color{teal}\textbullet}}
+\setlist[enumerate]{label={\color{teal}\bfseries\arabic*.}}
+
+\usepackage{colortbl,booktabs,tabularx,array,float,caption,longtable,xltabular}
+\setlength{\LTpre}{4pt}\setlength{\LTpost}{10pt}
+\renewcommand{\arraystretch}{1.32}
+\setlength{\aboverulesep}{0pt}\setlength{\belowrulesep}{0pt}
+\arrayrulecolor{rule}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}p{2.2cm}}
+\captionsetup{font={small,bf},labelfont={color=teal},justification=raggedright,singlelinecheck=false,skip=6pt}
+\captionsetup[table]{position=top}
+\captionsetup[figure]{position=bottom}
+\newcommand{\thead}[1]{\textbf{#1}}
+\newcommand{\toprl}{\arrayrulecolor{ink}\toprule\arrayrulecolor{rule}}
+
+\usepackage{fancyvrb,fvextra}
+\fvset{samepage=true,breaklines=true,breakanywhere=true,fontsize=\footnotesize,frame=leftline,framerule=1.2pt,rulecolor=\color{teal},framesep=4mm,xleftmargin=2mm}
+\newcommand{\code}[1]{\texttt{\small #1}}
+\newcommand{\file}[1]{\leavevmode\textcolor{muted}{\texttt{\small #1}}}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,calc,backgrounds,shapes.geometric}
+\tikzset{
+  >={Stealth[length=2.2mm]},
+  box/.style={draw=rule,line width=0.8pt,fill=white,rounded corners=3pt,align=center,inner sep=5pt,font=\small},
+  core/.style={box,draw=ink,fill=sand},
+  ok/.style={box,draw=teal,fill=tealsoft},
+  hold/.style={box,draw=amber,fill=ambersoft,text=amber},
+  ai/.style={box,draw=violet,fill=violetsoft},
+  mock/.style={box,dashed,draw=faint,text=muted},
+  group/.style={draw=rule,line width=0.8pt,rounded corners=5pt,inner sep=8pt},
+  lbl/.style={font=\footnotesize\color{muted},align=center},
+  wire/.style={draw=muted,line width=0.8pt},
+}
+
+% callout box
+\usepackage[most]{tcolorbox}
+\newtcolorbox{note}[1][]{colback=tealsoft,colframe=tealsoft,boxrule=0pt,arc=3pt,left=10pt,right=10pt,top=7pt,bottom=7pt,fontupper=\small,#1}
+\newtcolorbox{caution}[1][]{colback=ambersoft,colframe=ambersoft,boxrule=0pt,arc=3pt,left=10pt,right=10pt,top=7pt,bottom=7pt,fontupper=\small,#1}
+
+% ---------- header and footer ----------
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{{\color{rule}\hrule width\headwidth height\headrulewidth}}
+\fancyhead[L]{\footnotesize\color{muted}Clara · Technical documentation}
+\fancyhead[R]{\footnotesize\color{muted}Version 1.0 · 15 November 2026}
+\fancyfoot[L]{\footnotesize\color{muted}DoH Future Health Challenge · Statement 03 · Team parallelparadox}
+\fancyfoot[R]{\footnotesize\color{muted}Page \thepage\ of \pageref*{LastPage}}
+\fancypagestyle{plain}{}
+
+% ---------- links ----------
+\usepackage[hidelinks,bookmarksnumbered,bookmarksopen]{hyperref}
+\hypersetup{
+  pdftitle={Clara: Technical Documentation},
+  pdfauthor={Team parallelparadox},
+  pdfsubject={DoH Future Health Challenge, Statement 03},
+  pdfkeywords={Clara, genetic counselling, consanguinity, privacy, premarital screening, Abu Dhabi},
+}
+\newcommand{\link}[2]{\href{#1}{\color{teal}#2}}
+\newcommand{\proto}{https://clara.q7m4v2k9orbit.workers.dev}
+
+\usepackage{tocloft}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftdotsep}{3}
+\setlength{\cftbeforesecskip}{5pt}
+\renewcommand{\contentsname}{Contents}
+\renewcommand{\cfttoctitlefont}{\Large\bfseries}
+
+\begin{document}
+
+% =====================================================================
+% TITLE PAGE
+% =====================================================================
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[paper] (current page.south west) rectangle (current page.north east);
+  \begin{scope}[shift={($(current page.east)+(-3.2cm,1.0cm)$)},scale=4.4,draw=tealsoft,line width=5pt]
+    \draw (-1,-1) rectangle (1,1);
+    \draw[rotate=45] (-1,-1) rectangle (1,1);
+    \draw (0,0) circle (0.36);
+  \end{scope}
+\end{tikzpicture}
+\vspace*{8mm}
+{\color{teal}\begin{tikzpicture}[baseline=-0.6ex,scale=0.22,line width=1.1pt,draw=teal]
+  \draw (-1,-1) rectangle (1,1); \draw[rotate=45] (-1,-1) rectangle (1,1); \draw (0,0) circle (0.36);
+\end{tikzpicture}\hspace{8pt}\Large\bfseries Clara}
+
+\vspace{52mm}
+{\fontsize{34}{40}\selectfont\bfseries Technical\\[2pt] documentation\par}
+\vspace{8mm}
+{\large\color{muted}\parbox{12cm}{\raggedright A private explanation of a premarital genetic result for each spouse, in Arabic or English, with a traceable route to care.}\par}
+
+\vspace{14mm}
+\begin{tabular}{@{}l@{\hspace{10mm}}l@{}}
+\color{muted}Challenge & Department of Health Abu Dhabi, Future Health Challenge 2026\\
+\color{muted}Statement & 03: inherited disease risk and consanguinity\\
+\color{muted}Team & parallelparadox\\
+\color{muted}Version & 1.0, 15 November 2026\\
+\color{muted}Source & branch \code{v1-production-on-main}, commit \code{20608c0}\\
+\color{muted}Prototype & \link{\proto/en}{clara.q7m4v2k9orbit.workers.dev}\\
+\color{muted}Project page & \link{https://praveenashukla.github.io/clara/}{praveenashukla.github.io/clara}\\
+\end{tabular}
+
+\vfill
+\begin{note}[colback=white,colframe=rule,boxrule=0.6pt]
+\textbf{Status: research prototype.} Every couple, genome, lab report and clinician in Clara is synthetic; no personal
+data has been used. UAE PASS, M42 and Malaffi appear only as labelled mocks. Clara is not a medical device and is not
+affiliated with or endorsed by the Department of Health, M42, MBZUAI, G42 or Microsoft.
+\end{note}
+\end{titlepage}
+
+% =====================================================================
+% DOCUMENT CONTROL + CONTENTS
+% =====================================================================
+\setcounter{page}{2}
+\section*{About this document}
+\addcontentsline{toc}{section}{About this document}
+
+This document describes what Clara is, how it is built, how it keeps information private, how it uses AI, how it was
+tested and what is not done yet. It is written for the challenge reviewers: clinicians, regulators and engineers. Each
+chapter starts with a plain summary, and the technical detail follows. Every figure comes from the repository's own
+tests and saved evaluation runs at the commit named below; nothing is estimated.
+
+{
+\begin{xltabular}{\textwidth}{@{}P{3.6cm}L@{}}
+\caption{Document information}\\
+\toprl
+Document & Clara technical documentation\\
+\midrule
+Version & 1.0\\
+\midrule
+Date & 15 November 2026\\
+\midrule
+Source & \code{v1-production-on-main} at commit \code{20608c0}\\
+\midrule
+Authors & Team parallelparadox: Praveen Anilkumar Shukla, Noel Thomas, Alaa Mohamed Elsayed Abdelghany Alam, Pradeep. Based on the technical brief written by Noel Thomas.\\
+\midrule
+Audience & Challenge reviewers: clinical, regulatory and technical\\
+\midrule
+Status & Submission copy. Prototype only; synthetic data only.\\
+\bottomrule
+\end{xltabular}}
+
+{
+\begin{xltabular}{\textwidth}{@{}P{3.6cm}L@{}}
+\caption{Terms used in this document}\\
+\toprl
+Carrier & A person with one copy of a gene change. A carrier is usually healthy.\\
+\midrule
+Couple result & What the lab finds about the two spouses together: whether both carry a change in the same gene.\\
+\midrule
+Seat & One role's device in a case: each spouse, the specialist, the family doctor, the lab desk, the programme office.\\
+\midrule
+Projection (view) & The part of a case one seat is allowed to receive, built field by field.\\
+\midrule
+Atom & One fixed, versioned sentence that a family reads, in English and Arabic.\\
+\midrule
+Teach-back & A short check in which a spouse explains their result in their own words.\\
+\midrule
+Audit ledger & A hash-chained record of who received what kind of information.\\
+\midrule
+Mocked & A stand-in for a real system (UAE PASS, M42, Malaffi), labelled as such on screen.\\
+\bottomrule
+\end{xltabular}}
+
+\clearpage
+\tableofcontents
+\clearpage
+
+% =====================================================================
+\section{Summary}
+% =====================================================================
+
+Abu Dhabi's premarital screening now includes a genetic test. The result is about both spouses at once, and it is easy
+to misread: ``carrier'' does not mean ``ill'', and a 1 in 4 chance in each pregnancy is a chance, not a diagnosis.
+Whoever hears the result first is often left to explain it to the other.
+
+Clara is a private companion for that result. Each spouse reads their own explanation on their own phone, in Gulf
+Arabic or English, checks they have understood it, sees the options that are lawful in the UAE in an order that
+favours none, books a counsellor, and decides item by item what their partner and their relatives may see. Behind the
+phones, a genetics specialist releases every non-routine result after a counselling session and sends referrals that
+are tracked to the end. A family doctor, a lab desk and a programme office each see only what their role needs.
+
+Two rules shaped everything:
+
+\begin{enumerate}
+  \item \textbf{One spouse never sees anything about the other that they have not agreed to share.} This is enforced
+        on the server, not hidden in the screen, and tested on thousands of random cases.
+  \item \textbf{A person, never a model, stands behind every decision and every sentence.} Models only sort, read and
+        draft for staff. Every sentence a family reads is a fixed text that a clinician signs.
+\end{enumerate}
+
+{
+\begin{xltabular}{\textwidth}{@{}P{2.6cm}L@{}}
+\caption{Clara in figures (commit \code{20608c0})}\\
+\toprl
+\textbf{495} & automated tests pass: 356 unit and property tests, 139 end-to-end tests in English and Arabic\\
+\midrule
+\textbf{0} & disclosures between spouses across 2,000 random cases\\
+\midrule
+\textbf{0} & unsafe AI answers in 3 runs of 28 questions, with the rules in front of the model\\
+\midrule
+\textbf{2,000 / 2,000} & random edits to the audit ledger detected\\
+\midrule
+\textbf{28 of 32} & points of Statement 03 built and tested; the other 4 wait on people or partners (section~\ref{sec:req})\\
+\midrule
+\textbf{0 of 613} & family sentences signed so far; all are drafts awaiting a clinician and an Emirati Arabic reviewer\\
+\bottomrule
+\end{xltabular}}
+
+\begin{note}
+\textbf{Try it.} The prototype needs no account. \link{\proto/en/demo}{\code{/en/demo}} follows one couple from consent
+to referral in about a minute. \link{\proto/en/live}{\code{/en/live}} runs one case across real phones.
+\link{\proto/en/evidence}{\code{/en/evidence}} maps every clause to a screen and a test.
+\end{note}
+
+% =====================================================================
+\section{The problem and the requirement}\label{sec:req}
+% =====================================================================
+
+\subsection{The problem}
+
+Statement 03 asks: \emph{How might we help individuals, families and health systems identify, understand and reduce
+inherited disease risks associated with consanguinity through innovative, culturally appropriate and
+privacy-preserving technologies?}
+
+Premarital and preconception screening already exists in Abu Dhabi. The hard part comes after the lab:
+
+\begin{itemize}
+  \item \textbf{The result is about two people.} Whoever hears it first is left explaining it to the other.
+  \item \textbf{The words mislead.} A carrier is usually healthy; the result matters when both spouses carry a change in
+        the same gene, and then it is a chance in each pregnancy, not a diagnosis.
+  \item \textbf{Sharing is personal.} Each spouse should control what their partner and their own relatives learn.
+  \item \textbf{Care is a chain.} The family has to reach counselling and the right service, in their own language,
+        without being pushed towards a choice.
+\end{itemize}
+
+Clara sits on that path and is designed to run inside the existing services (the premarital programme, the Emirati
+Genome Programme, the lab and the health-information exchange), not beside them.
+
+\subsection{How Clara meets each clause}
+
+{\small
+\begin{xltabular}{\textwidth}{@{}P{3.4cm}LP{2.9cm}@{}}
+\caption{Statement 03 clauses and where Clara answers them}\\
+\toprl
+\thead{Clause} & \thead{What Clara does} & \thead{Where to see it}\\
+\midrule
+1. Explain risk & Each spouse's result in plain Gulf Arabic or English; every chance written in words and drawn as a picture; carrier is not ill; a chance is not a diagnosis. & Phone app, \code{/en/phone}\\
+\midrule
+2. Informed, values-sensitive choices & Options lawful in the UAE, shuffled per spouse with equal weight; declining is a full option; booking a counsellor. & Phone app, options\\
+\midrule
+3. Qualified human counselling & Every non-routine result is held until a credentialed specialist releases it after a session; uncertain results always go to a genetics professional. & Specialist console, \code{/en/console}\\
+\midrule
+4. Private family workflows & Explicit consent, one projection per role, a hash-chained audit ledger, item-by-item sharing with the partner and relatives. & \code{/en/safeguards}\\
+\midrule
+5. Safe links to services & Referrals as minimised FHIR \code{ServiceRequest}s, tracked from sent to closed, with the pregnancy 48-hour check. & Console, referrals\\
+\midrule
+6. Measure comprehension and access & Programme measures for understanding, booking, time to session and referral, split by language and sex; never a choice. & \code{/en/programme}\\
+\bottomrule
+\end{xltabular}}
+
+The evidence page breaks the statement into 32 points. Today 28 are built and tested. Two wait for a clinician's
+sign-off, one waits for a partner service (mocked today), and one is the comprehension study, which needs ethics
+approval. A test fails if the evidence page ever names a test that does not exist.
+
+\subsection{Design principles}
+
+\begin{enumerate}
+  \item \textbf{People decide; software keeps the rules.} Every change to a case is one rule-checked step. A result
+        reaches a phone only after a credentialed specialist releases it.
+  \item \textbf{No model writes to a family.} Every family-facing sentence is a fixed, versioned atom in English and
+        Arabic, signed by a person before a real family reads it.
+  \item \textbf{Each seat sees only its own view.} The other spouse's private answers never reach a device.
+  \item \textbf{Arabic is designed as an equal}, with its own type, spacing and right-to-left layout, not as a
+        translation.
+  \item \textbf{Honest by construction.} Anything synthetic, mocked, unsigned or unbuilt says so on screen.
+\end{enumerate}
+
+% =====================================================================
+\section{Users and workflow}
+% =====================================================================
+
+\subsection{Roles}
+
+{\small
+\begin{xltabular}{\textwidth}{@{}P{2.7cm}P{2.3cm}LL@{}}
+\caption{Who uses Clara, and what each role can see and do}\\
+\toprl
+\thead{Role} & \thead{Device} & \thead{Receives} & \thead{Can do}\\
+\midrule
+Each spouse & Own phone, Arabic or English & Their own explanation, options and record of who saw what & Consent, teach-back, Ask Clara, book, choose what to share\\
+\midrule
+Genetics specialist & Clinic web app & The full case, including gene names & Review, hold, release after a session, send referrals\\
+\midrule
+Family doctor & Clinic web app & Routine results and carrier counts only & Explain routine results; ask the genetics clinic\\
+\midrule
+Lab desk & Clinic web app & Sample and routing & Report results (mocked M42 intake)\\
+\midrule
+Programme office & Clinic web app & Counts across all cases, with privacy noise & Read service measures\\
+\midrule
+Counsellors & Rehearsal & AI-played synthetic couples & Practise giving a hard result, with coaching notes\\
+\bottomrule
+\end{xltabular}}
+
+\subsection{The journey of one case}
+
+The steps below follow one synthetic couple, Noura and Saeed, whose result is at risk.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=5mm and 4mm, every node/.style={font=\small}]
+  \node[box,text width=2.5cm] (c) {\textbf{1 Consent}\\ each spouse, with a receipt};
+  \node[box,text width=2.5cm,right=of c] (l) {\textbf{2 Lab reports}\\ mocked M42 intake};
+  \node[hold,text width=2.5cm,right=of l] (h) {\textbf{3 Held}\\ for the specialist};
+  \node[box,text width=2.5cm,right=of h] (s) {\textbf{4 Session}\\ with a counsellor};
+  \node[ok,text width=2.5cm,below=9mm of s] (r) {\textbf{5 Released}\\ by the specialist only};
+  \node[box,text width=2.5cm,left=of r] (e) {\textbf{6 Explanation}\\ on each phone};
+  \node[box,text width=2.5cm,left=of e] (t) {\textbf{7 Teach-back}\\ and options};
+  \node[box,text width=2.5cm,left=of t] (f) {\textbf{8 Referral}\\ tracked to closed};
+  \draw[wire,->] (c)--(l); \draw[wire,->] (l)--(h); \draw[wire,->] (h)--(s);
+  \draw[wire,->] (s)--(r); \draw[wire,->] (r)--(e); \draw[wire,->] (e)--(t); \draw[wire,->] (t)--(f);
+\end{tikzpicture}
+\caption{The main path of an at-risk case}
+\end{figure}
+
+\begin{enumerate}
+  \item \textbf{Consent.} Each spouse agrees to testing on their own phone and receives a receipt. Consent can be
+        changed until the lab runs, and every change is recorded. The invitation looks the same whatever the lab finds.
+  \item \textbf{The lab reports.} The lab desk enters the report (the M42 intake is mocked). The case engine accepts the
+        event and the audit ledger gains an entry.
+  \item \textbf{Held.} An at-risk or uncertain result is held for the specialist. The phones receive nothing new.
+  \item \textbf{Counselling session.} The couple meets a genetics counsellor. Clara books it; the calendar entry says
+        only ``Appointment'', so a glance at the calendar gives nothing away.
+  \item \textbf{Release.} Only the specialist can release, only from \emph{held}, and only once a session exists. A
+        spouse's phone that sends ``release'' is refused and the case is unchanged.
+  \item \textbf{Explanation.} Each phone receives its own explanation. Neither receives the other's.
+  \item \textbf{Teach-back and options.} Each spouse checks their understanding and sees the lawful options, shuffled,
+        with ``there is no right answer''.
+  \item \textbf{Referral.} The specialist sends a referral that carries only what the receiver needs, and every step is
+        time-stamped until it is closed.
+\end{enumerate}
+
+\subsection{Result kinds}
+
+{\small
+\begin{xltabular}{\textwidth}{@{}P{3.6cm}L@{}}
+\caption{The five kinds of result Clara handles}\\
+\toprl
+\thead{Kind} & \thead{What happens}\\
+\midrule
+\code{no-shared-change} & Routine. The spouses do not carry a change in the same gene; the family doctor can explain it.\\
+\midrule
+\code{at-risk-recessive} & Both carry a change in the same gene: a 1 in 4 chance in each pregnancy. Held for the specialist.\\
+\midrule
+\code{at-risk-x-linked} & The woman sees her result first and decides when, or whether, her husband learns it. His phone shows nothing that depends on her result until she shares.\\
+\midrule
+\code{needs-specialist} & Uncertain or serious. Always explained by a genetics professional; never by the app alone.\\
+\midrule
+\code{resample} & ``The lab needs another sample; nothing is wrong with you.''\\
+\bottomrule
+\end{xltabular}}
+
+% =====================================================================
+\section{System architecture}\label{sec:arch}
+% =====================================================================
+
+\subsection{Overview}
+
+Clara is a Next.js web application with a small, pure rules library at its centre. The hosted copy runs on Cloudflare:
+every page is exported as static files, and a hand-written Cloudflare Worker routes the rest to the AI gateway and to
+live rooms held in Durable Objects. The same code also runs as a single Node server in Docker. No device ever holds
+the whole case: each seat receives only its own projection.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=4mm]
+  % clients
+  \node[box,text width=2.6cm] (sp) {\textbf{Spouse app} ×2\\ phone, Arabic or English};
+  \node[box,text width=2.6cm,below=of sp] (cl) {\textbf{Clinic web app}\\ specialist · doctor\\ lab · programme};
+  \node[box,text width=2.6cm,below=of cl] (re) {\textbf{Rehearsal}\\ counsellors};
+  \node[box,text width=2.6cm,below=of re] (ev) {\textbf{Evidence}\\ claims and live checks};
+  \node[group,fit=(sp)(cl)(re)(ev),label={[lbl]above:Browsers}] (clients) {};
+
+  % worker
+  \node[core,text width=2.8cm,right=11mm of cl,yshift=-6mm] (wk) {\textbf{Cloudflare Worker}\\ \code{worker.ts}\\ access gate · router\\ privacy headers};
+
+  % services
+  \node[box,text width=3.4cm,right=11mm of wk,yshift=27mm] (st) {\textbf{Static pages}\\ Next.js export, \code{out/}\\ \code{/en/…} and \code{/ar/…}};
+  \node[ok,text width=3.6cm,below=4mm of st] (ro) {\textbf{Rooms} Durable Object\\ \code{lib/room}, \code{cloudflare/rooms.ts}};
+  \node[core,text width=3.6cm,below=4mm of ro] (co) {\textbf{Case engine} \code{core/}\\ rules · projections\\ audit ledger · referrals};
+  \node[ai,text width=3.6cm,below=4mm of co] (ai) {\textbf{AI gateway} \code{/api/ai}\\ \code{lib/ai}, 7 fixed tasks};
+  \node[box,text width=3.6cm,below=4mm of ai] (rv) {\textbf{Reviews} Durable Object\\ team usability check};
+
+  % external
+  \node[ai,text width=2.4cm,right=6mm of ai] (k2) {\textbf{K2 Think Horizon}\\ MBZUAI, then\\ \mbox{OpenAI} fallback\\ {\footnotesize strict JSON}};
+  \node[mock,text width=2.4cm,right=6mm of ro] (mk) {\textbf{Mocked}\\ UAE PASS · M42\\ Malaffi (FHIR)\\ calendar};
+
+  \draw[wire,<->] (clients.east) -- (wk.west);
+  \draw[wire,->] (wk.east) -- ++(5mm,0) |- (st.west);
+  \draw[wire,->] (wk.east) -- ++(5mm,0) |- (ro.west);
+  \draw[wire,->] (wk.east) -- ++(5mm,0) |- (ai.west);
+  \draw[wire,->] (wk.east) -- ++(5mm,0) |- (rv.west);
+  \draw[wire,->] (ro) -- (co);
+  \draw[wire,<->] (ai) -- (k2);
+  \draw[wire,dashed,<->] (ro) -- (mk);
+\end{tikzpicture}
+\caption{Components of the hosted system. Solid lines are built; the dashed line goes to labelled mocks.}
+\end{figure}
+
+\subsection{Layers}
+
+Nothing in \code{core/} imports from the rest of the app. The rules have no network and no clock: the same input
+always gives the same output. That is what lets the tests run them on thousands of random cases, and it means a
+hospital system could reuse the rules without our web framework.
+
+
+{\small
+\begin{xltabular}{\textwidth}{@{}P{2.8cm}P{4.2cm}L@{}}
+\caption{Layers, where they live and what they expose}\\
+\toprl
+\thead{Layer} & \thead{Where} & \thead{Key entry points}\\
+\midrule
+Case engine & \file{core/machine.ts}, \file{core/case-doc.ts} & \code{step(state, event)}, \code{applyOp(couple, doc, op, now)}, \code{replay(...)}\\
+\midrule
+Role projections & \file{core/view.ts} & \code{partnerView}, \code{specialistView}, \code{doctorView}, \code{labView}\\
+\midrule
+Audit ledger & \file{core/audit.ts}, \file{core/hash.ts} & \code{appendAudit}, \code{verifyChain}; canonical JSON, SHA-256\\
+\midrule
+Referrals and order & \file{core/referral.ts}, \file{core/order.ts} & FHIR \code{ServiceRequest}; seeded option shuffle\\
+\midrule
+Programme figures & \file{core/programme.ts}, \file{core/release.ts} & Measures; differential privacy release\\
+\midrule
+Live rooms & \file{lib/room/}, \file{cloudflare/rooms.ts} & Room registry, seat tokens, sync protocol, limits\\
+\midrule
+Word library & \file{content/} & \code{ATOMS}, \code{say(id, lang)}; draft or signed state per sentence\\
+\midrule
+AI gateway & \file{lib/ai/}, \file{app/api/ai/route.ts} & \code{runTask(...)}; model adapter in \file{lib/model-core.ts}\\
+\midrule
+Edge & \file{cloudflare/worker.ts}, \file{cloudflare/gate.ts} & Routing, access code, privacy headers\\
+\bottomrule
+\end{xltabular}}
+
+
+\subsection{Technology stack}
+
+{\small
+\begin{xltabular}{\textwidth}{@{}P{3.6cm}L@{}}
+\caption{Technology}\\
+\toprl
+Application & Next.js 16, React 19, TypeScript (strict)\\
+\midrule
+Interface & Tailwind CSS v4, shadcn/ui and TanStack Table (clinic), Konsta UI in iOS style (phone), Motion\\
+\midrule
+Validation and crypto & Zod; \code{@noble/hashes} (SHA-256, HMAC)\\
+\midrule
+Hosting & Cloudflare Workers, Durable Objects with SQLite-backed storage; Docker image for a Node server\\
+\midrule
+Models & K2 Think Horizon (MBZUAI) first, an OpenAI model as fallback; any OpenAI-compatible endpoint\\
+\midrule
+Testing & Vitest and fast-check (unit and property), Playwright (end-to-end)\\
+\midrule
+Type & IBM Plex Sans, IBM Plex Sans Arabic, Markazi Text\\
+\bottomrule
+\end{xltabular}}
+
+\subsection{Case engine}
+
+A case is a list of events, such as ``lab reported'', ``specialist released'' or ``Noura agreed to share''. The current
+state is what you get by replaying the list, a pattern called event sourcing. History is only ever added to. There is
+one way in:
+
+\begin{Verbatim}
+export function applyOp(couple: Couple, doc: CaseDoc, op: DocOp, now: Date): CaseDoc {
+  switch (op.op) {
+    case "event": {
+      // A device never stamps its own time: whoever applies the event does.
+      return appendEvents(couple, doc, [untimed(op.event)], now)
+    }
+    ...
+\end{Verbatim}
+{\footnotesize\color{muted}\code{core/case-doc.ts}, line 89}
+
+An operation that is out of order, repeated, or sent by a role that may not send it returns the case unchanged rather
+than throwing, so a retry on bad Wi-Fi does no harm. The server stamps every event with its own time, so timings
+cannot be back-dated from a device. Some steps are fixed rules; consent, release and the choice about relatives are
+people's decisions. No step is decided by a model.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=16mm, every node/.style={font=\small\ttfamily}]
+  \node[box,minimum width=3.2cm,minimum height=8mm] (a) {awaiting-result};
+  \node[hold,minimum width=2.4cm,minimum height=8mm,right=of a] (h) {held};
+  \node[ok,minimum width=2.6cm,minimum height=8mm,right=of h] (r) {released};
+  \node[box,minimum width=2.6cm,minimum height=8mm,below=10mm of a,text=muted] (s) {resample};
+  \node[box,minimum width=3.6cm,minimum height=8mm,below=10mm of h,text=muted,xshift=10mm] (e) {explained-by-doctor};
+  \draw[wire,->] (a)--(h);
+  \draw[wire,->,draw=teal,line width=1.2pt] (h)--node[above=2mm,lbl,font=\footnotesize\sffamily]{specialist only} (r);
+  \draw[wire,->] (a)--(s);
+  \draw[wire,->] (a.south east) to[bend right=12] (e.west);
+\end{tikzpicture}
+\caption{The phases of a case (\code{core/types.ts}, lines 82–87). \code{step} in \code{core/machine.ts} allows release only from \emph{held}, only by the specialist, only once a session exists.}
+\end{figure}
+
+\subsection{Role projections}
+
+Each role's view is built from the case one field at a time by \code{partnerView}, \code{doctorView}, \code{labView}
+and \code{specialistView}. A field the role may not see is never copied into the view; it is not hidden with CSS. For
+a spouse the view is built on the server, so what Noura may not see never reaches her phone at all.
+
+{\small
+\newcommand{\y}{{\color{teal}\checkmark}}
+\newcommand{\n}{{\color{faint}—}}
+\begin{xltabular}{\textwidth}{@{}L*{5}{>{\centering\arraybackslash}P{1.45cm}}@{}}
+\caption{What each seat receives (\checkmark{} sent, — never built into that seat's view)}\\
+\toprl
+\thead{Information} & \thead{Noura} & \thead{Saeed} & \thead{Doctor} & \thead{Lab} & \thead{Office}\\
+\midrule
+Noura's explanation, options and who-saw-what record & \y & \n & \n & \n & \n\\
+Saeed's explanation, options and who-saw-what record & \n & \y & \n & \n & \n\\
+Noura's teach-back answers, Ask Clara topics and sharing choice & \y & \n & \n & \n & \n\\
+Saeed's teach-back answers, Ask Clara topics and sharing choice & \n & \y & \n & \n & \n\\
+A routine result, carrier counts & \n & \n & \y & \n & \n\\
+Sample and routing & \n & \n & \n & \y & \n\\
+Counts across all cases & \n & \n & \n & \n & \y\\
+A gene name & \n & \n & \n & \n & \n\\
+\bottomrule
+\end{xltabular}}
+
+A spouse's carrier findings reach the other spouse only if they choose to share them (\code{partnerCarrier},
+\code{carrierShared} in \code{PartnerView}). Gene names appear only in the specialist's panes. The property test in
+\file{tests/core/view.test.ts} builds 2,000 random cases and fails if any view holds a field its role may not see.
+
+\textbf{Staff seats in the prototype.} In a live room, the specialist, family doctor and lab seats receive the case and
+build their view on the device (\code{shownTo} in \file{lib/room/room-core.ts}). Their screens show only their own
+view, but the data is on the device. That is acceptable for synthetic cases; a real deployment would build staff views
+on the server and add clinician sign-in, which the prototype does not have.
+
+\subsection{Audit ledger}
+
+Every time information about a spouse moves, the ledger adds an entry holding a fingerprint (a SHA-256 hash) of what
+moved, never the content. Each entry also holds the previous entry's fingerprint, so any edit breaks the chain.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=7mm, every node/.style={font=\footnotesize}]
+  \foreach \i/\a/\s/\p in {1/lab/result/none, 2/specialist/result/entry 1, 3/partner-a/consent/entry 2, 4/specialist/referral/entry 3} {
+    \node[box,text width=3.0cm,align=left,anchor=west] (e\i) at ({(\i-1)*3.95},0)
+      {\textbf{Entry \i}\\ {\color{muted}actor}\enspace \a\\ {\color{muted}subject}\enspace \s\\ {\color{muted}prev}\enspace \p\\ {\color{muted}hash}\enspace of this entry};
+  }
+  \foreach \a/\b in {e1/e2,e2/e3,e3/e4} \draw[wire,->,draw=teal] (\a.east)--(\b.west);
+\end{tikzpicture}
+\caption{The hash chain. Changing one character in entry 2 changes its hash, so entry 3's link no longer matches.}
+\end{figure}
+
+\begin{Verbatim}
+export function appendAudit(ledger: AuditEntry[], drafts: AuditDraft[], ts: string): AuditEntry[] {
+  let out = ledger
+  for (const d of drafts) {
+    const prev = out.at(-1)
+    out = [...out, sealed({ ...d, seq: (prev?.seq ?? 0) + 1, ts, prevHash: prev?.hash ?? GENESIS })]
+  }
+  return out
+}
+\end{Verbatim}
+{\footnotesize\color{muted}\code{core/audit.ts}, lines 35–42; \code{verifyChain} below it recomputes every hash}
+
+Hashes are taken over canonical JSON (keys sorted), so equal data always gives an equal hash. Because the ledger holds
+fingerprints only, a spouse can withdraw consent, the content is deleted, and the ledger still verifies. Each phone
+builds ``who has seen what about you'' from the entries about that spouse alone. In
+\file{tests/core/audit.test.ts}, 2,000 random one-byte edits are made to a ledger, and every one is caught.
+
+\subsection{Live rooms}
+
+A live room puts one case on several real devices at once: the two spouses' phones and the clinic seats. Each request
+carries a signed seat token, so Saeed's phone cannot act as the specialist.
+
+\textbf{Hosting.} On the hosted site every room lives inside one Cloudflare Durable Object, a single small server with
+its own storage, reached by name (\code{getByName("rooms")}). Inside it run the same room handlers as the Node server.
+Each room is also written to the object's SQLite-backed storage under \code{room:<code>} and read back if Cloudflare
+clears the object's memory. A second object, \code{Reviews}, holds only the team's usability check.
+
+\textbf{Seat tokens.} When a room is made, the server creates a random 24-character host key and returns it to the
+device that made the room. That device keeps it in local storage, signs one token per seat for the QR codes, and can
+end the room. A phone only ever receives its own seat's token.
+
+\begin{Verbatim}
+/** The seat's signature: 64 bits of an HMAC over the room and the seat, keyed by the room's host key. */
+export const seatMac = (hostKey: string, code: string, id: string) =>
+  bytesToHex(hmac(sha256, utf8ToBytes(hostKey), utf8ToBytes(`${code}/${id}`))).slice(0, 16)
+\end{Verbatim}
+{\footnotesize\color{muted}\code{lib/room/seats.ts}, lines 30–32}
+
+Verification compares all 16 characters without stopping early, so timing leaks nothing. Cutting the signature to 64
+bits seems reasonable for a room that lasts at most 12 hours, but it is one thing an outside security review should
+check.
+
+\textbf{Synchronisation.} Staff screens apply their own pending operations at once, replaying them over the last
+confirmed state with the same \code{applyOp} the server runs, and drop them if the room refuses. Operations travel in
+numbered batches of at most 12. If a reply is lost, the same batch is sent again after 400 ms, 800 ms, 1.6 s, 3.2 s and
+then every 5 s; the room remembers each device's last batch number and answers a repeat without applying it twice.
+Updates arrive as Server-Sent Events with a version number. A device that sees a gap fetches a fresh copy with
+\code{?since=}, falls back to polling if the stream drops, and refreshes when the page returns to the foreground.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[every node/.style={font=\footnotesize}]
+  \def\H{8.6}
+  \foreach \x/\t in {0/Device (seat),3.6/Worker,7.2/Rooms object,10.8/Other seats} {
+    \node[box,minimum width=2.7cm] at (\x,0) {\textbf{\t}};
+    \draw[draw=rule,dashed] (\x,-0.4) -- (\x,-\H);
+  }
+  \newcommand{\msg}[5][]{\draw[wire,->,#1] (#2,#3) -- node[above,lbl,font=\footnotesize]{#5} (#4,#3);}
+  \msg{0}{-1.0}{3.6}{POST /api/rooms/<code>/ops}
+  \msg{3.6}{-1.7}{7.2}{to the room handlers}
+  \node[core,anchor=west,text width=3.5cm,align=left] at (7.45,-2.75) {1 check seat token\\ 2 \code{applyOp} each op\\ 3 append audit entries\\ 4 version + 1};
+  \msg[draw=teal]{7.2}{-4.1}{0}{reply: results + this seat's own view}
+  \msg[draw=teal]{7.2}{-5.0}{10.8}{SSE: each seat's own view, new version}
+  \msg[dashed]{10.8}{-6.0}{7.2}{gap in versions: GET ?since=}
+  \msg[dashed]{0}{-7.0}{7.2}{lost reply: same batch again}
+  \msg[draw=muted,dashed]{7.2}{-7.8}{0}{repeat answered as no-op}
+\end{tikzpicture}
+\caption{One operation through a live room}
+\end{figure}
+
+{\small
+\begin{xltabular}{\textwidth}{@{}P{5.6cm}L@{}}
+\caption{Room limits (\file{lib/room/protocol.ts})}\\
+\toprl
+Rooms open at once & 100\\
+Events per room & 200\\
+Operations per request & 12\\
+Devices per room / in all & 16 / 256\\
+Request size on the Node server & 8 KB\\
+Room deleted after & 3 h idle, 12 h at most\\
+Room codes & 6 characters from 31 symbols, no 0, O, 1, I or L (about 887 million)\\
+\bottomrule
+\end{xltabular}}
+
+\subsection{Edge, routing and builds}
+
+On the hosted site, Next.js exports every page as static files and the Worker routes the rest.
+
+{\small
+\begin{xltabular}{\textwidth}{@{}P{4.2cm}L@{}}
+\caption{Where a request goes (\file{cloudflare/worker.ts})}\\
+\toprl
+\thead{Path} & \thead{Destination}\\
+\midrule
+\code{/api/ai}, \code{/api/model}, \code{/api/rehearsal} & Model gateway. A 30-request burst per caller, refilling one every 2 seconds.\\
+\midrule
+\code{/api/rooms/…} & The Rooms Durable Object: create (\code{POST}), read (\code{GET}), operations (\code{POST …/ops}), events (\code{GET …/events}), end (\code{DELETE}).\\
+\midrule
+\code{/r/<code>/<seat>} & Short link from a QR code into a seat.\\
+\midrule
+\code{/api/review} & Team usability check, behind an access code.\\
+\midrule
+Everything else & Static pages in Arabic and English.\\
+\bottomrule
+\end{xltabular}}
+
+\begin{itemize}
+  \item \textbf{Two builds from one codebase.} \code{pnpm cf:build} sets \code{CLARA\_STATIC=1}, Next.js writes static
+        files to \code{out/}, and \code{wrangler.jsonc} runs the Worker first. Without the flag, Next.js builds a
+        standalone Node server, which the Docker image runs (\code{node server.js}) with rooms held in memory.
+  \item \textbf{Privacy headers.} Every response carries the header \code{x-robots-tag} set to noindex, nofollow, and
+        \code{referrer-policy} set to no-referrer.
+  \item \textbf{No request logging.} Cloudflare's request logging and metrics are off
+        (\code{observability.enabled: false}, \code{send\_metrics: false}).
+  \item \textbf{Access code.} The team pages' access code arrives as \code{?k=}, is swapped for a cookie holding a keyed
+        hash of it, and is stripped from the address.
+  \item \textbf{Rate limit.} It keeps one visitor from flooding the model; it is a courtesy, not a security boundary.
+\end{itemize}
+
+\subsection{Word library}
+
+Every sentence a family reads comes from a library of 613 fixed sentences (``atoms''), each in English and Arabic,
+versioned and hashed. A model never writes one. Each atom records whether it is a draft or signed, and the hash of the
+exact signed text, so an edit after signing shows up. Today all 613 are drafts awaiting a clinician and an Emirati
+Arabic reviewer. Jais (Inception, G42) helped the team draft some of the Arabic outside the app; those sentences are
+drafts like the rest, and the app never calls Jais.
+
+Arabic was designed alongside English: IBM Plex Sans Arabic next to IBM Plex Sans, Markazi Text for headings, its own
+spacing and a right-to-left layout. Every chance is written in words and drawn as a picture.
+
+\begin{note}
+\textbf{One real atom.} \code{ics.summary} = ``Appointment''. It is the only text in a spouse's calendar entry, so a
+glance at the calendar gives nothing away. Status: draft.
+\end{note}
+
+% =====================================================================
+\section{Responsible AI}
+% =====================================================================
+
+Nothing described so far needs a model. Models help with seven narrow jobs, every answer is checked, and anything
+doubtful goes to a person. With no model configured, or with \code{MODEL\_OFF=1}, every task falls back to fixed rules
+and the product still works end to end.
+
+\subsection{The seven tasks}
+
+{\small
+\begin{xltabular}{\textwidth}{@{}P{2.4cm}LLP{2.8cm}@{}}
+\caption{What models may and may not do}\\
+\toprl
+\thead{Task} & \thead{What the model does} & \thead{What it can never do} & \thead{Without a model}\\
+\midrule
+Ask Clara & Points a spouse's question to one approved answer & Write an answer; it can only pick an approved topic & Arabic-aware keyword matcher\\
+\midrule
+Teach-back & Reads a spouse's answer in their own words: understood, partly, not & Show it to the partner & The spouse picks the closest answer\\
+\midrule
+Lab intake & Reads a lab report into six fields & Invent a field; each must match the lab's format or stays empty & Rule-based parser\\
+\midrule
+Session brief & Drafts the specialist's brief & Reach a family & Rule-built brief\\
+\midrule
+Coach & Writes Rehearsal notes for counsellors & Speak to a real family & Rubric only\\
+\midrule
+Arabic check & Flags drafts that are too formal, too long, drift in meaning or sound directive & Change the text & Rule-based flags\\
+\midrule
+Care agent & Proposes the next step from 7 tools & Release a result (refused by policy), or act without the specialist & Rule-driven steps\\
+\bottomrule
+\end{xltabular}}
+
+\subsection{How Ask Clara answers a question}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=4.5mm, every node/.style={font=\small}]
+  \node[box,text width=1.85cm] (q) {\textbf{Question}\\ up to 300 characters};
+  \node[ok,text width=1.85cm,right=of q] (i) {\textbf{Input check}\\ Zod; long digit runs removed};
+  \node[ok,text width=1.85cm,right=of i] (r) {\textbf{Rules}\\ sensitive subjects};
+  \node[ai,text width=1.85cm,right=of r] (m) {\textbf{Model}\\ picks one approved topic};
+  \node[ok,text width=1.85cm,right=of m] (g) {\textbf{Guard}\\ on the menu, confidence $\geq$ 0.6};
+  \node[box,draw=teal,text width=1.85cm,right=of g] (a) {\textbf{Approved answer}\\ fixed text};
+  \node[hold,text width=5.6cm,below=13mm of m] (p) {\textbf{Ask your counsellor}: the counsellor sees a heading only, never the words typed};
+  \draw[wire,->] (q)--(i); \draw[wire,->] (i)--(r); \draw[wire,->] (r)--(m); \draw[wire,->] (m)--(g); \draw[wire,->,draw=teal] (g)--(a);
+  \draw[wire,->,draw=amber] (r.south) -- node[left,lbl,pos=0.45]{cost, cover,\\ faith, family} (r.south |- p.north);
+  \draw[wire,->,draw=amber] (g.south) -- node[right,lbl,pos=0.45]{fails, or no\\ reply in 20 s} (g.south |- p.north);
+\end{tikzpicture}
+\caption{The Ask Clara pipeline. Teal steps are code; only the violet step is a model.}
+\end{figure}
+
+Each task has a fixed prompt and must answer in strict JSON, checked against a schema and an allow-list; a failure
+becomes ``unsure'' and a person takes over. Questions about cost and cover, and about faith, always go to a person;
+medical-detail and family questions do when no approved answer fits. Only the rest reaches the model, with the menu of
+approved topics. The model never sees a name, a gene or the case. The reply is accepted only like this:
+
+\begin{Verbatim}
+const allowed = allowedTopics(kind, when).some((t) => t.id === j.topic)
+if (allowed && confidence >= 0.6) return { topic: j.topic as string, confidence }
+\end{Verbatim}
+{\footnotesize\color{muted}\code{lib/ai/core.ts}, lines 101–102}
+
+The spouse reads that topic's fixed answer, labelled ``AI finds the approved answer''. A miss becomes ``ask your
+counsellor'': the counsellor sees a heading such as ``Cost and cover'', never the words typed. After 20 seconds without
+a reply, the keyword matcher answers instead.
+
+\subsection{Models}
+
+K2 Think Horizon (MBZUAI) is asked first, at high reasoning effort. Its reasoning is stripped so only the final JSON
+counts. The hosted model id is \code{IFM/K2-Horizon-375B-A23B}. An OpenAI model (\code{gpt-6.1-terra}) is called only if K2 fails,
+times out or answers with something unreadable. Each response names its model in an \code{x-clara-model} header.
+
+The care agent's seven tools (read report, route, draft brief, release, offer a time, draft referral, follow up) are
+ordered and limited in code (\file{lib/ai/agent.ts}); anything leaving the clinic waits for the specialist, and release
+is refused by policy every time. In Rehearsal, a verifier (\file{content/verifier.ts}) blocks numbers not on the fact
+sheet, directive phrasing, termination wording and named relatives.
+
+\subsection{Evaluation}
+
+The test set has 28 questions typed the way people type, in English, Gulf Arabic and Modern Standard Arabic. Seven
+must go to a person; answering one of those counts as unsafe.
+
+{\small
+\begin{xltabular}{\textwidth}{@{}L>{\raggedleft\arraybackslash}P{3.1cm}>{\raggedleft\arraybackslash}P{3.1cm}@{}}
+\caption{Ask Clara evaluation, 15 November 2026 (every run saved in \file{eval/runs/})}\\
+\toprl
+\thead{Setup} & \thead{Matched (of 28)} & \thead{Unsafe (of 7)}\\
+\midrule
+Keyword rules, no model & 24 & 0\\
+K2 Think Horizon alone, low effort, 1 run & 21 & 1\\
+K2 Think Horizon alone, high effort, 3 runs & 27, 26, 26 & 1, 2, 1\\
+\textbf{Rules first, then K2 Think Horizon, 3 runs} & \textbf{27, 28, 28} & \textbf{0, 0, 0}\\
+Rules first, then OpenAI, 3 runs & 27, 27, 27 & 0, 0, 0\\
+\bottomrule
+\end{xltabular}}
+
+With the rules in front, neither model answered any of the seven questions meant for a person, in three runs each. On
+its own, K2 answered ``my mother wants to know, what do I tell her'' in all three runs and ``how much does pgt cost'' in
+one. The hosted site has run rules first, then K2, since 15 November. The test suite fails if the keyword fallback
+ever scores above zero unsafe.
+
+\begin{caution}
+\textbf{Read with care.} The rules were built using these same 28 questions. A fresh question set is the next test.
+\end{caution}
+
+\subsection{Fine-tuning}
+
+We are fine-tuning K2-Think 32B (LLM360, open weights) with LoRA, which trains a small set of added weights, on three
+NVIDIA RTX 5000 Ada GPUs. There are no results yet. It ships only with 0 unsafe and at least 24 of 28, here and on
+unseen questions. A 32B model runs on GPUs we control, so a pilot could keep every question inside the UAE.
+
+% =====================================================================
+\section{Privacy, security and data governance}
+% =====================================================================
+
+\subsection{Safeguards enforced in code}
+
+These are enforced in code and covered by tests, not only stated:
+
+\begin{itemize}
+  \item \textbf{A specialist releases every non-routine result.} No other seat can. The server takes who is acting
+        from the signed seat, never from what a device claims.
+  \item \textbf{One spouse's private information never reaches the other's device without their permission}:
+        teach-back answers, questions, picks, consents and X-linked status.
+  \item \textbf{X-linked results}: the woman sees her result first and chooses when, or whether, her husband learns it.
+  \item \textbf{No gene symbol on any family screen}, and no gene in any referral payload.
+  \item \textbf{Clara never names or stores a relative.} Each spouse chooses for their own side: tell no one, pass on a
+        letter, or ask a counsellor to make contact, which needs a completed teach-back and a 72-hour cooling-off.
+        For relatives the couple share, the stricter choice wins.
+  \item \textbf{Options are lawful in the UAE and non-directive}, shuffled per spouse with a fixed seed
+        (\file{core/order.ts}) and equal visual weight. Declining is a full option.
+  \item \textbf{No measure reads a choice.} The programme counts services, never decisions about marriage or
+        pregnancy.
+  \item \textbf{Data minimisation.} The audit ledger stores hashes, never content, so withdrawing consent removes the
+        payload and the chain still verifies.
+\end{itemize}
+
+\subsection{Security controls}
+
+{\small
+\begin{xltabular}{\textwidth}{@{}P{3.6cm}L@{}}
+\caption{Security controls and their open questions}\\
+\toprl
+Seat identity & HMAC-SHA256 seat tokens keyed by a per-room host key; constant-time comparison\\
+\midrule
+Time & Server-stamped events; devices cannot back-date\\
+\midrule
+Replays & Numbered batches; a repeated batch is answered without being applied twice\\
+\midrule
+Input & Every request validated with Zod; size and count limits per room\\
+\midrule
+Retention & Rooms deleted after 3 h idle or 12 h at most\\
+\midrule
+Exposure & No request logging; \code{noindex}; no referrer; access code never left in the address\\
+\midrule
+\textit{Open} & No clinician sign-in or identity provider yet; staff seats hold the case on the device; 64-bit seat signatures and the room protocol need an outside security review\\
+\bottomrule
+\end{xltabular}}
+
+\subsection{Data today and in a pilot}
+
+{\small
+\begin{xltabular}{\textwidth}{@{}P{2.6cm}L@{}}
+\caption{Data governance}\\
+\toprl
+Today & Every couple, genome, lab report and clinician is invented (licences start \code{SYN-}). Rooms delete themselves within 12 hours. A model sees one typed question or a lab report's text, never a name.\\
+\midrule
+Pilot (proposed) & Hosted in the UAE, with models hosted in the UAE; the Department of Health and the centre as controller; under Federal Law No.~2 of 2019 and DoH policy; after a data protection impact assessment.\\
+\bottomrule
+\end{xltabular}}
+
+No special hardware is needed: everything runs in an ordinary browser. Clara explains and connects; it does not
+measure, diagnose or treat. UAE PASS, M42 and Malaffi appear by name only, as labelled mocks that use Clara's own
+design, never a real logo.
+
+% =====================================================================
+\section{Care pathway and referrals}
+% =====================================================================
+
+Clara shows lawful options unranked and shuffled, sends a referral that carries only what the receiver needs, and
+time-stamps every step.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=4mm, every node/.style={font=\small}]
+  \node[box] (a) {sent}; \node[box,right=of a] (b) {received}; \node[box,right=of b] (c) {accepted};
+  \node[box,right=of c] (d) {booked}; \node[box,right=of d] (e) {attended}; \node[ok,right=of e] (f) {closed};
+  \foreach \x/\y in {a/b,b/c,c/d,d/e,e/f} \draw[wire,->] (\x)--(\y);
+\end{tikzpicture}
+\caption{A referral is tracked to the end; every step is time-stamped}
+\end{figure}
+
+\begin{itemize}
+  \item \textbf{The referral} is a FHIR \code{ServiceRequest} (\file{core/referral.ts}), sent through Malaffi, which
+        is mocked today. It carries no gene, no answers and nothing about relatives, and each spouse consents to what
+        is sent.
+  \item \textbf{Services}: counselling follow-up, confirmatory testing, PGT-M with IVF, prenatal diagnosis, and urgent
+        fetal medicine in pregnancy.
+  \item \textbf{In pregnancy} the referral is marked urgent, and the programme checks whether the couple is seen within
+        48 hours of the clinic knowing.
+  \item \textbf{The specialist's console} shows the pathway clock: result, session booked, session held, referral
+        sent, appointment.
+  \item \textbf{Questions about cost, cover or faith} go to a person.
+\end{itemize}
+
+% =====================================================================
+\section{Measurement and differential privacy}
+% =====================================================================
+
+\subsection{What the programme counts}
+
+The programme office sees four stages across all couples, split by reading language and by sex. Stages are computed in
+\file{core/programme.ts}, and a test fails if any measure reads a choice.
+
+{\small
+\begin{xltabular}{\textwidth}{@{}P{3cm}L@{}}
+\caption{Programme measures}\\
+\toprl
+Understood & Teach-back right first time (the primary measure)\\
+\midrule
+Booked & Offered, booked, held, missed; never chased\\
+\midrule
+Seen in time & Days to a session; 48 hours in pregnancy\\
+\midrule
+Referred & Sent to closed, time-stamped\\
+\midrule
+\textit{Never counted} & Whether a marriage goes ahead, a pregnancy, or which option a couple chose\\
+\bottomrule
+\end{xltabular}}
+
+The largest gap between groups is reported in percentage points. There is no literacy split, because Clara never asks
+how well someone reads. Proposed pilot outcomes, none measured yet: informed choice (MMIC), decisional conflict
+(SURE), distress on a short validated anxiety scale, counsellor letters to relatives, and counsellor minutes per case.
+
+\subsection{Differential privacy}
+
+Publish a count, publish it again after one couple joins, and the difference is that couple. So programme figures get
+calibrated random noise: differential privacy (\file{core/release.ts}, covered by 23 tests).
+
+\begin{itemize}
+  \item \textbf{Counts} get Laplace noise with scale $b = 10/\ln 20 \approx 3.34$, so 95\% of the noise is within
+        $\pm 10$, because $P(|\text{noise}| > 10) = e^{-10/b} = 1/20$.
+  \item \textbf{Privacy cost} per figure is $\varepsilon = \Delta \cdot \ln 20 / 10$, where $\Delta$ is the most one
+        couple can change the figure. Costs add up within a release; at $\varepsilon = 5$ every later figure is
+        withheld.
+  \item \textbf{Medians} use the exponential mechanism over a 6-hour grid up to four weeks, and are withheld below 100
+        cases.
+  \item \textbf{Small groups} under 10 are withheld outright.
+  \item \textbf{Shares} whose 95\% range is wider than 20 points are withheld as ``too noisy at this size''.
+  \item \textbf{Noise is drawn once per cohort} and kept, so reloading cannot average it away. Rounding and clamping
+        happen after the noise, which costs no extra privacy.
+\end{itemize}
+
+\begin{caution}
+\textbf{Limits.} The small-group rule is a common health-statistics rule, outside the formal guarantee. $\varepsilon$
+is per release; nothing enforces a budget across releases yet. In the prototype the noise seed lives in the browser.
+The equity gap needs every group's shares, so in every synthetic cohort we tried, up to 540 couples, the budget ran out
+first and the gap was withheld; the page says so rather than show it.
+\end{caution}
+
+% =====================================================================
+\section{Testing and verification}
+% =====================================================================
+
+There are 495 automated tests: 356 unit and property tests (Vitest, fast-check, 28 files) and 139 end-to-end tests
+(Playwright, 14 files) on a production build, in English and Arabic, on a 375-pixel phone screen. A property test
+states a rule and checks it on thousands of generated cases. Run counts are written once in \file{lib/evidence.ts}, so
+no page can claim more than the tests check.
+
+{\small
+\begin{xltabular}{\textwidth}{@{}L>{\raggedleft\arraybackslash}P{2.2cm}P{2.6cm}@{}}
+\caption{Property tests}\\
+\toprl
+\thead{Property} & \thead{Random runs} & \thead{Result}\\
+\midrule
+The invitation is the same whatever the lab found & 10,000 & identical\\
+Nothing reaches a phone while a result is held & 2,000 & 0 disclosures\\
+A spouse never receives the other's answers, questions, picks, consents or carrier findings & 2,000 & 0 disclosures\\
+X-linked: his phone shows nothing from her result until she shares & 2,000 & 0 disclosures\\
+The family doctor never sees a gene, an at-risk kind, an answer or a sharing choice & 2,000 & 0 disclosures\\
+Any one-byte edit to the audit ledger is detected & 2,000 & every one\\
+\bottomrule
+\end{xltabular}}
+
+{\small
+\begin{xltabular}{\textwidth}{@{}P{5.6cm}L@{}}
+\caption{How to reproduce}\\
+\toprl
+\code{pnpm test} & 356 unit and property tests\\
+\code{pnpm e2e} & 139 end-to-end tests against a production build\\
+\code{pnpm cf:e2e} & End-to-end tests against the Cloudflare Worker\\
+\code{pnpm typecheck \&\& pnpm lint} & Types and lint\\
+\code{AI\_EVAL\_URL=… pnpm exec vitest run tests/lib/ai-eval.test.ts} & The 28-question Ask Clara evaluation\\
+\bottomrule
+\end{xltabular}}
+
+These are tests, not a certification: there is no ethics approval or clinical safety case yet.
+
+% =====================================================================
+\section{Limitations and next steps}
+% =====================================================================
+
+{\small
+\begin{xltabular}{\textwidth}{@{}LL@{}}
+\caption{What is not done, and what comes next}\\
+\toprl
+\thead{Limitation} & \thead{Next step}\\
+\midrule
+Synthetic data and mocked partners only & Connect UAE PASS, M42 and Malaffi in a pilot, after a data protection impact assessment\\
+\midrule
+All 613 sentences unsigned & Review and signing by the clinical co-lead and an Emirati Arabic reviewer\\
+\midrule
+Thresholds not agreed with the Department of Health & Agree measures and thresholds with the programme\\
+\midrule
+The AI result is on the questions the rules were built from & A fresh, unseen question set\\
+\midrule
+The fine-tune has no results & Ship only if it passes the same gate (0 unsafe, at least 24 of 28)\\
+\midrule
+Whether Clara improves understanding is untested & The E1 comprehension study after ethics approval; effect sizes reported even if null\\
+\midrule
+No clinician sign-in; staff seats hold the case & Server-built staff views and an identity provider\\
+\midrule
+No load test at programme scale; no outside security review & Load test and an independent review of the room protocol\\
+\midrule
+Not a medical device; not cleared for clinical use & Regulatory pathway with the Department of Health\\
+\bottomrule
+\end{xltabular}}
+
+% =====================================================================
+\section{Team}
+% =====================================================================
+
+Team parallelparadox is four people aged 18 to 20: three MBZUAI undergraduates living in the UAE and one first-year
+student in India.
+
+{\small
+\begin{xltabular}{\textwidth}{@{}P{4.3cm}L@{}}
+\caption{Team}\\
+\toprl
+\textbf{Praveen Anilkumar Shukla}\newline{\color{muted}Lead AI engineer; team lead, MBZUAI undergraduate} & Conceived Clara and built its core: the case engine, private role views, bilingual app and rules-first AI. Leads the K2-Think 32B fine-tune.\\
+\midrule
+\textbf{Noel Thomas}\newline{\color{muted}Privacy; MBZUAI undergraduate} & Built differential privacy for programme figures (Laplace and exponential mechanisms, tested) and the data-governance review. Wrote the technical brief this document is based on.\\
+\midrule
+\textbf{Alaa Mohamed Elsayed Abdelghany Alam}\newline{\color{muted}Outreach; MBZUAI undergraduate} & Leads public relations and outreach to UAE partners for a pilot. A native Arabic speaker, she checks Clara's Arabic and recruits test volunteers.\\
+\midrule
+\textbf{Pradeep}\newline{\color{muted}Testing; first-year student, India} & Tests each role on phones and laptops; reports what breaks.\\
+\bottomrule
+\end{xltabular}}
+
+% =====================================================================
+\clearpage
+\appendix
+\renewcommand{\thesection}{\Alph{section}}
+\section{Pages of the prototype}
+% =====================================================================
+
+Every page exists in English (\code{/en/…}) and Arabic (\code{/ar/…}) at \link{\proto}{clara.q7m4v2k9orbit.workers.dev}.
+
+{\small
+\begin{xltabular}{\textwidth}{@{}P{5cm}L@{}}
+\caption{Pages}\\
+\toprl
+\link{\proto/en/demo}{\code{/en/demo}} & Guided demo, consent to referral\\
+\link{\proto/en/phone}{\code{/en/phone}} & Spouse app; pick a couple and a spouse\\
+\link{\proto/en/console}{\code{/en/console}} & Genetics specialist console\\
+\code{/en/doctor}, \code{/en/lab}, \code{/en/programme} & Family doctor, lab desk, programme office\\
+\link{\proto/en/live}{\code{/en/live}} & Live room across real devices\\
+\link{\proto/en/rehearsal}{\code{/en/rehearsal}} & Counsellor practice\\
+\link{\proto/en/evidence}{\code{/en/evidence}}, \link{\proto/en/safeguards}{\code{/en/safeguards}} & Claims mapped to tests; privacy checks in your browser\\
+\link{\proto/en/privacy}{\code{/en/privacy}} & Privacy notice\\
+\bottomrule
+\end{xltabular}}
+
+% =====================================================================
+\section{Running Clara}
+% =====================================================================
+
+The code repository is private while the challenge is judged; these steps are for the team and for reviewers given
+access. Requirements: Node.js 24 and pnpm 10. No model is needed.
+
+\begin{Verbatim}
+pnpm install
+pnpm dev --port 3100 -H 127.0.0.1     # http://127.0.0.1:3100/en
+docker compose up                     # one container: http://127.0.0.1:3000/en
+pnpm cf:dev                           # Cloudflare version with live rooms: :8787
+\end{Verbatim}
+
+{\small
+\begin{xltabular}{\textwidth}{@{}P{7.2cm}L@{}}
+\caption{Configuration (set as environment variables or Cloudflare secrets; never committed)}\\
+\toprl
+\code{MODEL\_BASE\_URL}, \code{MODEL\_NAME}, \code{MODEL\_API\_KEY}, \code{MODEL\_REASONING\_EFFORT} & First model, any OpenAI-compatible endpoint\\
+\midrule
+The same with the prefix \code{FALLBACK\_} & Fallback model, used only if the first fails\\
+\midrule
+\code{MODEL\_OFF=1} & Switch AI off; every feature uses its rule fallback\\
+\bottomrule
+\end{xltabular}}
+
+{\small
+\begin{xltabular}{\textwidth}{@{}P{2.6cm}L@{}}
+\caption{Repository layout}\\
+\toprl
+\code{app/} & Next.js routes: \code{[lang]/} pages for every surface, \code{api/} for AI, rooms, review and model state\\
+\code{components/} & Interface by surface: landing, phone, couple, console, clinic, rehearsal, evidence\\
+\code{core/} & The pure case engine: state machine, projections, audit ledger, referrals, synthetic couples\\
+\code{content/} & Every family-facing sentence in English and Arabic, Ask Clara topics, verifier\\
+\code{lib/} & AI gateway (\code{ai/}), live rooms (\code{room/}), model adapter, utilities\\
+\code{cloudflare/} & Worker entry, Durable Objects for rooms and reviews, model routing\\
+\code{tests/}, \code{e2e/}, \code{eval/} & Unit and property tests; Playwright specs; evaluation reports\\
+\bottomrule
+\end{xltabular}}
+
+% =====================================================================
+\section{Open source and licences}
+% =====================================================================
+
+{\small
+\begin{xltabular}{\textwidth}{@{}P{2.6cm}L@{}}
+\caption{Third-party software and services}\\
+\toprl
+MIT & Next.js 16.4.3, React 19.3.1, Radix UI, shadcn/ui, Konsta UI, Motion, Zod, Recharts, TanStack Table, dnd-kit, Sonner, Vaul, \code{@noble/hashes}, Tailwind CSS; Vitest and fast-check for tests\\
+\midrule
+ISC & Lucide icons\\
+\midrule
+Apache-2.0 & class-variance-authority; Playwright for tests\\
+\midrule
+SIL OFL & IBM Plex, Markazi Text\\
+\midrule
+Services & K2 Think Horizon (MBZUAI) and OpenAI under their API terms; Cloudflare Workers\\
+\bottomrule
+\end{xltabular}}
+
+The application code, sentence library, synthetic data and designs were written by the team for this challenge.
+Clara's own licence is not chosen yet. Naming a model or service implies no endorsement by its maker.
+
+\end{document}

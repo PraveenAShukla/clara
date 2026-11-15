@@ -1,0 +1,4 @@
+docs-src/*.log
+docs-src/*.aux
+docs-src/*.out
+docs-src/*.toc
