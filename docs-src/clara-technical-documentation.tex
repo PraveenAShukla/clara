@@ -66,6 +66,7 @@
 \newcommand{\code}[1]{\texttt{\small #1}}
 \newcommand{\file}[1]{\leavevmode\textcolor{muted}{\texttt{\small #1}}}
 
+\usepackage[section]{placeins}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,fit,calc,backgrounds,shapes.geometric}
 \tikzset{
@@ -240,7 +241,8 @@ Two rules shaped everything:
   \item \textbf{One spouse never sees anything about the other that they have not agreed to share.} This is enforced
         on the server, not hidden in the screen, and tested on thousands of random cases.
   \item \textbf{A person, never a model, stands behind every decision and every sentence.} Models only sort, read and
-        draft for staff. Every sentence a family reads is a fixed text that a clinician signs.
+        draft for staff. Every sentence a family reads is a fixed text, which a clinician must sign before a real
+        family reads it.
 \end{enumerate}
 
 {
@@ -360,14 +362,14 @@ Counsellors & Rehearsal & AI-played synthetic couples & Practise giving a hard r
 
 The steps below follow one synthetic couple, Noura and Saeed, whose result is at risk.
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 \centering
 \begin{tikzpicture}[node distance=5mm and 4mm, every node/.style={font=\small}]
   \node[box,text width=2.5cm] (c) {\textbf{1 Consent}\\ each spouse, with a receipt};
   \node[box,text width=2.5cm,right=of c] (l) {\textbf{2 Lab reports}\\ mocked M42 intake};
   \node[hold,text width=2.5cm,right=of l] (h) {\textbf{3 Held}\\ for the specialist};
   \node[box,text width=2.5cm,right=of h] (s) {\textbf{4 Session}\\ with a counsellor};
-  \node[ok,text width=2.5cm,below=9mm of s] (r) {\textbf{5 Released}\\ by the specialist only};
+  \node[ok,text width=2.5cm,below=9mm of s] (r) {\textbf{5 Released}\\ specialist only};
   \node[box,text width=2.5cm,left=of r] (e) {\textbf{6 Explanation}\\ on each phone};
   \node[box,text width=2.5cm,left=of e] (t) {\textbf{7 Teach-back}\\ and options};
   \node[box,text width=2.5cm,left=of t] (f) {\textbf{8 Referral}\\ tracked to closed};
@@ -379,7 +381,7 @@ The steps below follow one synthetic couple, Noura and Saeed, whose result is at
 
 \begin{enumerate}
   \item \textbf{Consent.} Each spouse agrees to testing on their own phone and receives a receipt. Consent can be
-        changed until the lab runs, and every change is recorded. The invitation looks the same whatever the lab finds.
+        changed until the lab reports, and every change is recorded. The invitation looks the same whatever the lab finds.
   \item \textbf{The lab reports.} The lab desk enters the report (the M42 intake is mocked). The case engine accepts the
         event and the audit ledger gains an entry.
   \item \textbf{Held.} An at-risk or uncertain result is held for the specialist. The phones receive nothing new.
@@ -425,7 +427,7 @@ every page is exported as static files, and a hand-written Cloudflare Worker rou
 live rooms held in Durable Objects. The same code also runs as a single Node server in Docker. No device ever holds
 the whole case: each seat receives only its own projection.
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 \centering
 \begin{tikzpicture}[node distance=4mm]
   % clients
@@ -539,7 +541,7 @@ than throwing, so a retry on bad Wi-Fi does no harm. The server stamps every eve
 cannot be back-dated from a device. Some steps are fixed rules; consent, release and the choice about relatives are
 people's decisions. No step is decided by a model.
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 \centering
 \begin{tikzpicture}[node distance=16mm, every node/.style={font=\small\ttfamily}]
   \node[box,minimum width=3.2cm,minimum height=8mm] (a) {awaiting-result};
@@ -548,7 +550,7 @@ people's decisions. No step is decided by a model.
   \node[box,minimum width=2.6cm,minimum height=8mm,below=10mm of a,text=muted] (s) {resample};
   \node[box,minimum width=3.6cm,minimum height=8mm,below=10mm of h,text=muted,xshift=10mm] (e) {explained-by-doctor};
   \draw[wire,->] (a)--(h);
-  \draw[wire,->,draw=teal,line width=1.2pt] (h)--node[above=2mm,lbl,font=\footnotesize\sffamily]{specialist only} (r);
+  \draw[wire,->,draw=teal,line width=1.2pt] (h)--node[below=1mm,lbl,font=\footnotesize\sffamily]{specialist only} (r);
   \draw[wire,->] (a)--(s);
   \draw[wire,->] (a.south east) to[bend right=12] (e.west);
 \end{tikzpicture}
@@ -594,7 +596,7 @@ on the server and add clinician sign-in, which the prototype does not have.
 Every time information about a spouse moves, the ledger adds an entry holding a fingerprint (a SHA-256 hash) of what
 moved, never the content. Each entry also holds the previous entry's fingerprint, so any edit breaks the chain.
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 \centering
 \begin{tikzpicture}[node distance=7mm, every node/.style={font=\footnotesize}]
   \foreach \i/\a/\s/\p in {1/lab/result/none, 2/specialist/result/entry 1, 3/partner-a/consent/entry 2, 4/specialist/referral/entry 3} {
@@ -655,7 +657,7 @@ then every 5 s; the room remembers each device's last batch number and answers a
 Updates arrive as Server-Sent Events with a version number. A device that sees a gap fetches a fresh copy with
 \code{?since=}, falls back to polling if the stream drops, and refreshes when the page returns to the foreground.
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 \centering
 \begin{tikzpicture}[every node/.style={font=\footnotesize}]
   \def\H{8.6}
@@ -775,7 +777,7 @@ Care agent & Proposes the next step from 7 tools & Release a result (refused by 
 
 \subsection{How Ask Clara answers a question}
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 \centering
 \begin{tikzpicture}[node distance=4.5mm, every node/.style={font=\small}]
   \node[box,text width=1.85cm] (q) {\textbf{Question}\\ up to 300 characters};
@@ -923,7 +925,7 @@ design, never a real logo.
 Clara shows lawful options unranked and shuffled, sends a referral that carries only what the receiver needs, and
 time-stamps every step.
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 \centering
 \begin{tikzpicture}[node distance=4mm, every node/.style={font=\small}]
   \node[box] (a) {sent}; \node[box,right=of a] (b) {received}; \node[box,right=of b] (c) {accepted};
@@ -1026,14 +1028,14 @@ Any one-byte edit to the audit ledger is detected & 2,000 & every one\\
 \end{xltabular}}
 
 {\small
-\begin{xltabular}{\textwidth}{@{}P{5.6cm}L@{}}
+\begin{xltabular}{\textwidth}{@{}P{7.4cm}L@{}}
 \caption{How to reproduce}\\
 \toprl
 \code{pnpm test} & 356 unit and property tests\\
 \code{pnpm e2e} & 139 end-to-end tests against a production build\\
 \code{pnpm cf:e2e} & End-to-end tests against the Cloudflare Worker\\
 \code{pnpm typecheck \&\& pnpm lint} & Types and lint\\
-\code{AI\_EVAL\_URL=… pnpm exec vitest run tests/lib/ai-eval.test.ts} & The 28-question Ask Clara evaluation\\
+\code{pnpm exec vitest run tests/lib/ai-eval.test.ts} & The 28-question Ask Clara evaluation, with \code{AI\_EVAL\_URL} set to a running server\\
 \bottomrule
 \end{xltabular}}
 
