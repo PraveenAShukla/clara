@@ -521,7 +521,7 @@ if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
   <div class="ask-out" id="ask-out" aria-live="polite"></div>
 </div>
 <details class="deep"><summary>Engineering detail <span>· the guard, models, agent, verifier</span></summary><div>
-<p>Each task has a fixed prompt and must answer in strict JSON, checked against a schema and an allow-list; a failure becomes “unsure” and a person takes over. For Ask Clara, the question (up to 300 characters) is checked with Zod and any run of six or more digits is removed. Questions about cost and cover, faith, family and relatives, and pregnancy decisions go to a person. Only the rest reaches the model, with the menu of approved topics; it never sees a name or the case. Each topic it picks is accepted only like this:</p>
+<p>Each task has a fixed prompt and must answer in strict JSON, checked against a schema and an allow-list; a failure becomes “unsure” and a person takes over. For Ask Clara, the question (up to 300 characters) is checked with Zod and any run of six or more digits is removed. Cost-and-cover and faith questions always go to a person; family and relatives questions do when no approved answer fits; none of these, nor a pregnancy decision, ever gets a model-written answer. Only the rest reaches the model, with the menu of approved topics; it never sees a name or the case. Each topic it picks is accepted only like this:</p>
 <pre><code>if (typeof t.id === "string" &amp;&amp; allowed.has(t.id) &amp;&amp; confidence &gt;= 0.6 &amp;&amp; !picked.some((p) =&gt; p.id === t.id))
   picked.push({ id: t.id, confidence })</code></pre>
 <p class="file">lib/ai/core.ts, lines 133–134</p>
