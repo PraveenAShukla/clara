@@ -501,7 +501,7 @@ if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
 <section class="s" id="ai" style="--c:var(--violet); --cs:var(--violetsoft)">
 <span class="tag"><b>10</b>The AI</span>
 <h2>Models point to approved answers, and write only short, checked, labelled ones</h2>
-<p class="lede">Nothing so far needs a model. Models help with nine narrow jobs, every answer is checked, and anything doubtful goes to a person. What a family types goes only to K2, MBZUAI’s model, never to the US-hosted fallback.</p>
+<p class="lede">Nothing so far needs a model. Models help with nine narrow jobs, every answer is checked, and anything doubtful goes to a person. Every task goes to K2, MBZUAI’s model, first, and to an OpenAI model in the US only if K2 fails; every answer names its model.</p>
 <div class="cards" style="--n:4">
   <div class="card"><b>Ask Clara</b><p>picks approved answers · writes a short, checked one only when none fits a general or medical question</p></div>
   <div class="card"><b>Comprehension</b><p>reads a spouse’s own words · never shows the partner</p></div>
@@ -526,7 +526,7 @@ if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
   picked.push({ id: t.id, confidence })</code></pre>
 <p class="file">lib/ai/core.ts, lines 133–134</p>
 <p>The spouse reads that topic’s fixed answer, labelled “AI finds the approved answer”. When no approved answer fits a general or medical question, a second task may write one to three short sentences only from the approved facts this spouse may see and the couple’s condition card, citing them. The verifier (<code>content/verifier.ts</code>) drops advice and orders, termination wording, blame, promised outcomes, diagnoses, links, numbers off the fact sheet, named relatives, invented names, uncited facts and the wrong language. An adversarial review (44 live probes) found 16 holes in these guards; all 16 are fixed, with 111 tests, and the open items are listed in <code>eval/guard/REPORT.md</code>. Each spouse can also switch the AI off on their own Ask screen (“Answer without AI”). What passes is labelled “Written by AI from your clinic’s approved words. Checked by Clara, not yet signed by a clinician.” with a “Based on” line. The result explanation itself is never model-written. Any other miss becomes “ask your counsellor”: the counsellor sees a heading such as “Cost and cover”, never the words typed. After 20 seconds without a reply, the keyword matcher answers instead.</p>
-<p>K2 Think Horizon (MBZUAI) is asked first at high reasoning effort (hosted id <code>IFM/K2-Horizon-375B-A23B</code>); its reasoning is stripped so only the final JSON counts. Text a family types (Ask Clara, teach-back) goes to K2 only, never to the fallback, because the UAE’s ICT Health Law (Federal Law No. 2 of 2019, Art. 13) limits health data leaving the country; if K2 fails, Clara answers from approved words by its rules (<code>tests/lib/residency.test.ts</code>). Where K2 is hosted is not yet confirmed. Rehearsal and the clinician tools, on synthetic cases, call OpenAI (<code>gpt-6.1-terra</code>, United States) only if K2 fails. Each response names its model in an <code>x-clara-model</code> header; <code>MODEL_OFF=1</code> turns AI off for everyone.</p>
+<p>K2 Think Horizon (MBZUAI) is asked first at high reasoning effort (hosted id <code>IFM/K2-Horizon-375B-A23B</code>); its reasoning is stripped so only the final JSON counts. Every task, text a family types included, goes to K2 first and to OpenAI (<code>gpt-6.1-terra</code>, United States) only if K2 fails (<code>tests/lib/fallback.test.ts</code>). K2’s public API is reached through Amazon Web Services in Singapore (checked by DNS on 18 Nov 2026), so neither model is UAE-hosted; the UAE’s ICT Health Law (Federal Law No. 2 of 2019, Art. 13) limits health data leaving the country, and Clara marks that clause a gap until both run on UAE-hosted models, before any real family. The Ask screen and the privacy page say so. Each response names its model in an <code>x-clara-model</code> header; <code>MODEL_OFF=1</code> turns AI off for everyone.</p>
 <p>The care agent’s seven tools (read report, route, draft brief, release, offer time, draft referral, follow up) are ordered and limited in code (<code>lib/ai/agent.ts</code>); anything leaving the clinic waits for the specialist, and release is refused by policy every time. In Rehearsal, the same verifier blocks numbers not on the fact sheet, directive phrasing, termination wording and named relatives.</p>
 </div></details>
 </section>
@@ -609,7 +609,7 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 <span class="tag"><b>14</b>Data</span>
 <h2>Synthetic today, UAE-hosted before anything real</h2>
 <div class="cards" style="--n:2">
-  <div class="card"><b>Today</b><p>Every couple, genome, lab report and clinician is invented (licences start <code>SYN-</code>). Rooms delete themselves within 12 hours. A model sees one typed question or a lab report’s text, never a name.</p></div>
+  <div class="card"><b>Today</b><p>Every couple, genome, lab report and clinician is invented (licences start <code>SYN-</code>). Rooms delete themselves within 12 hours. A model sees one typed question or a lab report’s text, never a name: K2 first, reached through AWS in Singapore, and OpenAI in the US if K2 fails.</p></div>
   <div class="card"><b>Pilot (proposed)</b><p>Hosted in the UAE, models hosted in the UAE, the Department of Health and the centre as controller, under Federal Law No. 2 of 2019 and DoH policy, after a data protection impact assessment.</p></div>
 </div>
 <p style="margin-top:14px">No hardware: everything runs in an ordinary browser. Clara explains and connects; it does not measure, diagnose or treat. UAE PASS, M42 and Malaffi appear by name only, as labelled mocks.</p>
@@ -637,7 +637,7 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 <h2>What a reviewer should weigh</h2>
 <ul>
 <li>Synthetic data and mocked partners only; all 700 fixed sentences, the condition cards and every AI-written answer unsigned; no clinical co-lead confirmed; thresholds not agreed with the Department of Health.</li>
-<li>Family text goes to K2 only, but where K2 is hosted is not yet confirmed.</li>
+<li>Neither model is UAE-hosted: K2 is reached through AWS in Singapore and the fallback is OpenAI in the US, so ICT Law Art. 13 is a gap until both are moved.</li>
 <li>The held-out questions were written by an AI agent, not real people, and no real user has tried Clara; 4 of 22 questions that need a person still get approved words only; the fine-tune has no results.</li>
 <li>Whether Clara improves understanding is untested until the study runs after ethics approval; effect sizes will be reported even if null. No usability session has been run yet.</li>
 <li>No Malaffi conformance test, patient record, identity provider or clinician sign-in; staff seats in a room hold the case.</li>
@@ -683,7 +683,7 @@ pnpm test                             <span class="c"># 552 unit and property te
 pnpm e2e                              <span class="c"># 152 end-to-end tests</span>
 pnpm typecheck &amp;&amp; pnpm lint
 AI_EVAL_URL=http://127.0.0.1:3100 pnpm exec vitest run tests/lib/ai-eval.test.ts   <span class="c"># the 28 questions</span></code></pre>
-<p>To connect a model, set <code>MODEL_BASE_URL</code>, <code>MODEL_NAME</code>, <code>MODEL_API_KEY</code>, <code>MODEL_REASONING_EFFORT</code> (and the same with <code>FALLBACK_</code>, never used for text a family types) in <code>.env.local</code> or as Cloudflare secrets. Any OpenAI-compatible endpoint works. <code>MODEL_OFF=1</code> switches AI off.</p>
+<p>To connect a model, set <code>MODEL_BASE_URL</code>, <code>MODEL_NAME</code>, <code>MODEL_API_KEY</code>, <code>MODEL_REASONING_EFFORT</code> (and the same with <code>FALLBACK_</code>, used for any task only if the first model fails) in <code>.env.local</code> or as Cloudflare secrets. Any OpenAI-compatible endpoint works. <code>MODEL_OFF=1</code> switches AI off.</p>
 </div></details>
 <details class="deep"><summary>Open source and licences <span>· all permissive</span></summary><div>
 <dl class="ref">

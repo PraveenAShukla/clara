@@ -355,7 +355,7 @@ each document's own words (\file{content/doh-standard.ts}): 26 clauses from seve
 Premarital Screening Standard (DoH/STD/PSS/V3, 16 clauses), the standard for family physician-led care of Emirati
 Genome Program variants (3), Preconception Care (1) and Responsible AI (2). From other UAE authorities: Dubai's
 premarital screening standard (1), Federal Decree-Law No.~49 of 2023 on the human genome (2) and Federal Law No.~2 of
-2019 on ICT in health (1). Of the 26, 14 are built, 11 are partly met and 1 is a gap, and the page shows the gaps. The four DoH standards alone hold 22 of these clauses: 13 built, 8 in part, 1 gap, which is what the landing page counts.
+2019 on ICT in health (1). Of the 26, 14 are built, 10 are partly met and 2 are gaps (ICT Law Art.~13, since K2 is reached through Singapore), and the page shows the gaps. The four DoH standards alone hold 22 of these clauses: 13 built, 8 in part, 1 gap, which is what the landing page counts.
 
 \subsection{Design principles}
 
@@ -490,7 +490,7 @@ staff seats do hold the case on the device; see section 4.5.)
   \node[box,text width=3.6cm,below=4mm of ai] (rv) {\textbf{Reviews} Durable Object\\ team usability check};
 
   % external
-  \node[ai,text width=2.4cm,right=6mm of ai] (k2) {\textbf{K2 Think Horizon}\\ MBZUAI; \mbox{OpenAI}\\ fallback for staff\\ tasks only\\ {\footnotesize strict JSON}};
+  \node[ai,text width=2.4cm,right=6mm of ai] (k2) {\textbf{K2 Think Horizon}\\ MBZUAI, first;\\ \mbox{OpenAI} (US)\\ if K2 fails\\ {\footnotesize strict JSON}};
   \node[mock,text width=2.4cm,right=6mm of ro] (mk) {\textbf{Mocked}\\ UAE PASS · M42\\ Malaffi (FHIR)\\ calendar};
 
   \draw[wire,<->] (clients.east) -- (wk.west);
@@ -553,7 +553,7 @@ Validation and crypto & Zod; \code{@noble/hashes} (SHA-256, HMAC)\\
 \midrule
 Hosting & Cloudflare Workers, Durable Objects with SQLite-backed storage; Docker image for a Node server\\
 \midrule
-Models & K2 Think Horizon (MBZUAI) first; an OpenAI model as fallback for Rehearsal and clinician tools only, never for text a family types; any OpenAI-compatible endpoint\\
+Models & K2 Think Horizon (MBZUAI) first for every task; an OpenAI model (US) as fallback if K2 fails; every answer names its model; any OpenAI-compatible endpoint\\
 \midrule
 Testing & Vitest and fast-check (unit and property), Playwright (end-to-end)\\
 \midrule
@@ -887,14 +887,18 @@ K2 Think Horizon (MBZUAI) is asked first, at high reasoning effort. Its reasonin
 counts. The hosted model id is \code{IFM/K2-Horizon-375B-A23B}. Each response names its model in an
 \code{x-clara-model} header.
 
-\textbf{Text a family types goes to K2 only.} Ask Clara questions and teach-back answers are sent only to K2, never to
-the fallback (\code{firstOnly} in \file{lib/model-core.ts}), because the fallback is OpenAI, a US provider, and the
-UAE's ICT Health Law (Federal Law No.~2 of 2019, Art.~13) limits health data leaving the country. Phone numbers, Emirates IDs, emails and other runs of
-six or more digits are removed before sending; personal names are not. If K2 fails, the screen answers from approved words by its rules. A unit test
-(\file{tests/lib/residency.test.ts}) takes K2 down with the fallback up and checks that these requests still go only to
-K2. Where K2 is hosted is not yet confirmed, so Clara does not claim UAE hosting. Rehearsal and the clinician tools,
-which work on synthetic cases, call an OpenAI model (\code{gpt-6.1-terra}) only if K2 fails, times out or answers with
-something unreadable. Synthetic data only today; a pilot would use models hosted in the UAE.
+\textbf{K2 first, OpenAI only if K2 fails, for every task.} Ask Clara questions, teach-back answers, Rehearsal and
+the clinician tools all go to K2 first, and to an OpenAI model in the United States (\code{gpt-6.1-terra}) only if K2
+fails, times out or answers with something unreadable (\file{lib/model-core.ts}). Every answer names the model that
+wrote it. A unit test (\file{tests/lib/fallback.test.ts}) checks that K2 is asked first and named, and that the
+fallback is used and named when K2 fails. Phone numbers, Emirates IDs, emails and other runs of six or more digits are
+removed before sending; personal names are not.
+
+\textbf{Neither model is hosted in the UAE.} K2's public API (\code{api.ifm.ai}) resolves to Amazon Web Services in
+Singapore (checked by DNS on 18 November 2026), and the fallback is in the United States. The UAE's ICT Health Law
+(Federal Law No.~2 of 2019, Art.~13) limits health data leaving the country, so Clara marks that clause a gap. The
+Ask screen and the privacy page say where text goes. Synthetic data only today; before any real family uses Clara,
+both endpoints (one setting each) must point to models hosted in the UAE.
 
 The care agent's seven tools (read report, route, draft brief, release, offer a time, draft referral, follow up) are
 ordered and limited in code (\file{lib/ai/agent.ts}); anything leaving the clinic waits for the specialist, and release
@@ -1046,7 +1050,7 @@ Exposure & No request logging; \code{noindex}; no referrer; access code never le
 \begin{xltabular}{\textwidth}{@{}P{2.6cm}L@{}}
 \caption{Data governance}\\
 \toprl
-Today & Every couple, genome, lab report and clinician is invented (licences start \code{SYN-}). Rooms delete themselves within 12 hours. A model sees one typed question or a lab report's text, never a name; what a family types goes to K2 only.\\
+Today & Every couple, genome, lab report and clinician is invented (licences start \code{SYN-}). Rooms delete themselves within 12 hours. A model sees one typed question or a lab report's text, never a name; it goes to K2 first, reached through AWS in Singapore, and to OpenAI in the US if K2 fails.\\
 \midrule
 Pilot (proposed) & Hosted in the UAE, with models hosted in the UAE; the Department of Health and the centre as controller; under Federal Law No.~2 of 2019 and DoH policy; after a data protection impact assessment.\\
 \bottomrule
@@ -1213,7 +1217,7 @@ Synthetic data and mocked partners only & Connect UAE PASS, M42 and Malaffi in a
 \midrule
 All 700 sentences and the condition cards unsigned; AI-written Ask answers unreviewed & Review and signing by a licensed clinical lead (not yet confirmed) and an Emirati Arabic reviewer\\
 \midrule
-Where K2 is hosted is not confirmed & Confirm K2's hosting, or run the K2-Think 32B fine-tune on GPUs in the UAE\\
+Neither model is UAE-hosted (K2 via AWS Singapore; OpenAI in the US), so ICT Law Art.~13 is a gap & A UAE-hosted K2 endpoint and a UAE-hosted fallback or none (one setting each), or the K2-Think 32B fine-tune on GPUs in the UAE\\
 \midrule
 No usability session has been run (a kit exists) & Usability sessions once an ethics determination allows them\\
 \midrule
@@ -1355,7 +1359,7 @@ pnpm cf:dev                           # Cloudflare version with live rooms: :878
 \toprl
 \code{MODEL\_BASE\_URL}, \code{MODEL\_NAME}, \code{MODEL\_API\_KEY}, \code{MODEL\_REASONING\_EFFORT} & First model, any OpenAI-compatible endpoint\\
 \midrule
-The same with the prefix \code{FALLBACK\_} & Fallback model, used only if the first fails, and never for text a family types\\
+The same with the prefix \code{FALLBACK\_} & Fallback model, used for any task only if the first fails\\
 \midrule
 \code{MODEL\_OFF=1} & Switch AI off; every feature uses its rule fallback\\
 \bottomrule
