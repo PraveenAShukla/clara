@@ -94,7 +94,7 @@
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\headrule}{{\color{rule}\hrule width\headwidth height\headrulewidth}}
 \fancyhead[L]{\footnotesize\color{muted}Clara · Technical documentation}
-\fancyhead[R]{\footnotesize\color{muted}Version 1.0 · 15 November 2026}
+\fancyhead[R]{\footnotesize\color{muted}Version 1.2 · 18 November 2026}
 \fancyfoot[L]{\footnotesize\color{muted}Future Health Digital Innovation Challenge · Problem Statement 03 · Team parallelparadox}
 \fancyfoot[R]{\footnotesize\color{muted}Page \thepage\ of \pageref*{LastPage}}
 \fancypagestyle{plain}{}
@@ -149,8 +149,8 @@
 \color{muted}Challenge & Future Health Digital Innovation Challenge 2026, Department of Health Abu Dhabi\\
 \color{muted}Problem statement & 03 · Understanding and Reducing Inherited Disease Risk\\
 \color{muted}Team & parallelparadox\\
-\color{muted}Version & 1.1, 18 November 2026\\
-\color{muted}Source & branch \code{v1-production-on-main}, commit \code{20608c0}; the AI, sentence and test figures updated to commit \code{ef96613}\\
+\color{muted}Version & 1.2, 18 November 2026\\
+\color{muted}Source & branch \code{v1-production-on-main}, commit \code{ad2c699} (the deployed build)\\
 \color{muted}Prototype & \link{\proto/en}{clara.q7m4v2k9orbit.workers.dev}\\
 \color{muted}Project page & \link{https://praveenashukla.github.io/clara/}{praveenashukla.github.io/clara}\\
 \end{tabular}
@@ -182,11 +182,11 @@ sources listed under References.
 \toprl
 Document & Clara technical documentation\\
 \midrule
-Version & 1.1\\
+Version & 1.2\\
 \midrule
-Date & 18 November 2026 (1.0: 15 November 2026)\\
+Date & 18 November 2026, 21:40 GST (1.1: earlier on 18 November; 1.0: 15 November 2026)\\
 \midrule
-Source & \code{v1-production-on-main} at commit \code{20608c0}; what the AI may write and the sentence count updated to commit \code{ef96613}; family text going to K2 only, condition cards, the UAE standards map and the test count updated to commit \code{8499322} (tests counted 18 November, 20:57 GST)\\
+Source & \code{v1-production-on-main} at commit \code{ad2c699}, the build deployed at \code{clara.q7m4v2k9orbit.workers.dev}. Tests, sentence count, held-out evaluation, guardrail review, privacy audit and UAE standards map all checked at this commit; sections not touched since 1.0 describe behaviour unchanged since commit \code{20608c0}\\
 \midrule
 Authors & Team parallelparadox: Praveen Anilkumar Shukla, Noel Thomas, Alaa Mohamed Elsayed Abdelghany Alam, Pradeep. Based on the technical brief written by Noel Thomas.\\
 \midrule
@@ -244,25 +244,27 @@ Two rules shaped everything:
   \item \textbf{A person, never a model, stands behind every decision.} Models sort, read and draft for staff. The
         result explanation a family reads is fixed text, which a clinician must sign before a real family reads it.
         In Ask Clara, when no approved answer fits a general or medical question, a model may write a short answer
-        from approved words; Clara checks it and labels it as written by AI. Cost, faith, family and pregnancy
-        decisions always go to a person.
+        from approved words; Clara checks it and labels it as written by AI. Cost, faith and pregnancy
+        decisions always go to a person; family questions do unless an approved answer fits.
 \end{enumerate}
 
 {
 \begin{xltabular}{\textwidth}{@{}P{2.6cm}L@{}}
-\caption{Clara in figures (commit \code{8499322}, 18 November 2026)}\\
+\caption{Clara in figures (commit \code{ad2c699}, 18 November 2026)}\\
 \toprl
-\textbf{551} & automated checks: 408 unit and property tests (passing on 18 November), 143 end-to-end tests in English and Arabic (listed, not re-run for this count)\\
+\textbf{18 of 22} & held-out questions that need a person reached one (12 of 22 before the 18 November fixes), on 60 new questions written by a separate AI agent before it saw Clara's rules, run live on K2; not real people (section~\ref{sec:heldout})\\
+\midrule
+\textbf{704} & automated tests, all run and passing on 18 November: 552 unit and property (1 skipped), 152 end-to-end in English and Arabic\\
 \midrule
 \textbf{0} & disclosures between spouses across 2,000 random cases\\
 \midrule
-\textbf{0} & unsafe AI answers in 3 runs of 28 questions, with the rules in front of the model\\
+\textbf{16} & guardrail holes found by 44 live adversarial probes, fixed with 111 tests; open items listed in \file{eval/guard/REPORT.md}\\
 \midrule
 \textbf{2,000 / 2,000} & random edits to the audit ledger detected\\
 \midrule
 \textbf{28 of 32} & points of Statement 03 built and tested; the other 4 wait on people or partners (section~\ref{sec:req})\\
 \midrule
-\textbf{0 of 698} & fixed sentences signed so far; all are drafts awaiting a clinician and an Emirati Arabic reviewer\\
+\textbf{0 of 700} & fixed sentences signed so far; all are drafts awaiting a clinician and an Emirati Arabic reviewer\\
 \bottomrule
 \end{xltabular}}
 
@@ -353,7 +355,7 @@ each document's own words (\file{content/doh-standard.ts}): 26 clauses from seve
 Premarital Screening Standard (DoH/STD/PSS/V3, 16 clauses), the standard for family physician-led care of Emirati
 Genome Program variants (3), Preconception Care (1) and Responsible AI (2). From other UAE authorities: Dubai's
 premarital screening standard (1), Federal Decree-Law No.~49 of 2023 on the human genome (2) and Federal Law No.~2 of
-2019 on ICT in health (1). Of the 26, 13 are built, 12 are partly met and 1 is a gap, and the page shows the gaps.
+2019 on ICT in health (1). Of the 26, 14 are built, 11 are partly met and 1 is a gap, and the page shows the gaps. The four DoH standards alone hold 22 of these clauses: 13 built, 8 in part, 1 gap, which is what the landing page counts.
 
 \subsection{Design principles}
 
@@ -773,10 +775,10 @@ Everything else & Static pages in Arabic and English.\\
 
 \subsection{Word library}
 
-Every fixed sentence a family reads comes from a library of 698 sentences (``atoms''), each in English and formal
+Every fixed sentence a family reads comes from a library of 700 sentences (``atoms''; 583 family-facing, 117 for the E1 study and its forms), each in English and formal
 Arabic, versioned and hashed. A model never writes or changes an atom; Ask Clara's written answers (section on Ask
 below) are composed from atoms and labelled as AI-written. Each atom records whether it is a draft or signed, and the
-hash of the exact signed text, so an edit after signing shows up. Today all 698 are drafts awaiting a clinician and an Emirati
+hash of the exact signed text, so an edit after signing shows up. Today all 700 are drafts awaiting a clinician and an Emirati
 Arabic reviewer. Jais (Inception, G42) helped the team draft some of the Arabic outside the app; those sentences are
 drafts like the rest, and the app never calls Jais.
 
@@ -830,14 +832,14 @@ Shadow test & Writes freely on the 28 fixed eval questions, for the Evidence pag
 \centering
 \begin{tikzpicture}[node distance=4.5mm, every node/.style={font=\small}]
   \node[box,text width=1.85cm] (q) {\textbf{Question}\\ up to 300 characters};
-  \node[ok,text width=1.85cm,right=of q] (i) {\textbf{Input check}\\ Zod; long digit runs removed};
+  \node[ok,text width=1.85cm,right=of q] (i) {\textbf{Input check}\\ Zod; phones, IDs, emails removed};
   \node[ok,text width=1.85cm,right=of i] (r) {\textbf{Rules}\\ sensitive subjects};
   \node[ai,text width=1.85cm,right=of r] (m) {\textbf{Model}\\ picks up to three approved topics};
   \node[ok,text width=1.85cm,right=of m] (g) {\textbf{Guard}\\ on the menu, confidence $\geq$ 0.6};
   \node[box,draw=teal,text width=1.85cm,right=of g] (a) {\textbf{Approved answer}\\ fixed text};
   \node[hold,text width=5.6cm,below=13mm of m] (p) {\textbf{Ask your counsellor}: the counsellor sees a heading only, never the words typed};
   \draw[wire,->] (q)--(i); \draw[wire,->] (i)--(r); \draw[wire,->] (r)--(m); \draw[wire,->] (m)--(g); \draw[wire,->,draw=teal] (g)--(a);
-  \draw[wire,->,draw=amber] (r.south) -- node[left,lbl,pos=0.45]{cost, cover,\\ faith, family} (r.south |- p.north);
+  \draw[wire,->,draw=amber] (r.south) -- node[left,lbl,pos=0.45]{cost, faith, family,\\ ending a pregnancy} (r.south |- p.north);
   \draw[wire,->,draw=amber] (g.south) -- node[right,lbl,pos=0.45]{fails, or no\\ reply in 20 s} (g.south |- p.north);
 \end{tikzpicture}
 \caption{The Ask Clara pipeline. Teal steps are code; only the violet step is a model.}
@@ -846,7 +848,11 @@ Shadow test & Writes freely on the 28 fixed eval questions, for the Evidence pag
 Each task has a fixed prompt and must answer in strict JSON, checked against a schema and an allow-list; a failure
 becomes ``unsure'' and a person takes over. Questions about cost and cover, and about faith, always go to a person;
 a family or relatives question does when no approved answer fits. Only the rest reaches the model, with the menu of
-approved topics. The model never sees a name or the case. Each topic it picks is accepted only like this:
+approved topics. The model never sees the case. Since 18 November, hidden characters, diacritics and look-alike letters
+are folded away before any rule reads the question; termination wording, in English, Arabic or Arabizi, goes to a
+person by rule before the model is asked; a question about one's own symptoms goes to a clinician; and a request to
+decide keeps a person beside any approved answer. Each spouse can switch the AI off on their own Ask screen (``Answer
+without AI''; DoH Responsible AI 3.1.6.1.3). Each topic the model picks is accepted only like this:
 
 \begin{Verbatim}
 if (typeof t.id === "string" && allowed.has(t.id) && confidence >= 0.6 && !picked.some((p) => p.id === t.id))
@@ -862,8 +868,8 @@ Since 18 November, a general or medical question that no approved answer fits ge
 person (\code{lib/ai/core.ts}, task \code{answer}). The model may write one to three short sentences, in English or
 formal Modern Standard Arabic, using only the approved facts this spouse may see and the couple's condition card
 (below), and must cite them. The guard drops
-any answer with advice, termination wording, a number not on the fact sheet, a named relative, an uncited fact or the
-wrong language, and a dropped answer goes to the counsellor like no answer. What passes is shown with the label
+any answer with advice or an order, termination wording, blame, a promised outcome, a diagnosis, a link, a number not
+on the fact sheet, a named relative, an invented name, an uncited fact or the wrong language, and a dropped answer goes to the counsellor like no answer. What passes is shown with the label
 ``Written by AI from your clinic's approved words. Checked by Clara, not yet signed by a clinician.'' and a ``Based
 on'' line naming the facts used. Cost and cover, faith, family (including siblings and cousins) and any question about
 ending a pregnancy never reach this step. The result explanation itself is never model-written. No clinician has
@@ -884,8 +890,8 @@ counts. The hosted model id is \code{IFM/K2-Horizon-375B-A23B}. Each response na
 
 \textbf{Text a family types goes to K2 only.} Ask Clara questions and teach-back answers are sent only to K2, never to
 the fallback (\code{firstOnly} in \file{lib/model-core.ts}), because the fallback is OpenAI, a US provider, and the
-UAE's ICT Health Law (Federal Law No.~2 of 2019, Art.~13) limits health data leaving the country. Only runs of six or
-more digits are removed before sending. If K2 fails, the screen answers from approved words by its rules. A unit test
+UAE's ICT Health Law (Federal Law No.~2 of 2019, Art.~13) limits health data leaving the country. Phone numbers, Emirates IDs, emails and other runs of
+six or more digits are removed before sending; personal names are not. If K2 fails, the screen answers from approved words by its rules. A unit test
 (\file{tests/lib/residency.test.ts}) takes K2 down with the fallback up and checks that these requests still go only to
 K2. Where K2 is hosted is not yet confirmed, so Clara does not claim UAE hosting. Rehearsal and the clinician tools,
 which work on synthetic cases, call an OpenAI model (\code{gpt-6.1-terra}) only if K2 fails, times out or answers with
@@ -896,9 +902,41 @@ ordered and limited in code (\file{lib/ai/agent.ts}); anything leaving the clini
 is refused by policy every time. In Rehearsal, a verifier (\file{content/verifier.ts}) blocks numbers not on the fact
 sheet, directive phrasing, termination wording and named relatives.
 
-\subsection{Evaluation}
+\subsection{Evaluation on held-out questions}
+\label{sec:heldout}
 
-The test set has 28 questions typed the way people type, in English, Gulf Arabic and Modern Standard Arabic. Seven
+To test Ask Clara on questions it was not built from, a separate AI agent wrote 60 new questions (25 English, 20
+Arabic in formal and Gulf forms, 15 code-switched or Arabizi) and labelled each one's expected route before it opened
+Clara's matching rules, approved answers or AI tests; the questions were committed alone, before the runner and the
+results (\file{eval/heldout/}). They were run live on K2 through the same calls the landing page makes, before and
+after the 18 November guardrail fixes, with the question file unchanged.
+
+{\small
+\begin{xltabular}{\textwidth}{@{}L>{\raggedleft\arraybackslash}P{3.1cm}>{\raggedleft\arraybackslash}P{3.1cm}@{}}
+\caption{Ask Clara on 60 held-out questions, live on K2, 18 November 2026 (\file{eval/heldout/summary.json})}\\
+\toprl
+\thead{Measure} & \thead{Before the fixes} & \thead{After}\\
+\midrule
+\textbf{Need a person, and reached one} & \textbf{12 of 22} & \textbf{18 of 22}\\
+Other questions given approved or checked words & 32 of 38 & 35 of 38\\
+Answers written by the AI from approved facts & 2 & 5\\
+\bottomrule
+\end{xltabular}}
+
+Every question about ending a pregnancy now goes to a person by rule, without asking the model. The 4 still answered
+without a person ask about telling family (1) or being related (3); they get approved, no-fault words, and whether those
+should also offer a person is the clinical lead's decision. Relevance was judged by the same agent on the first run
+only.
+
+\begin{caution}
+\textbf{Read with care.} The questions were written by an AI agent, not by real people, and its Gulf dialect and typos
+are an imitation. No real user has tried Clara yet. The next test is 60 questions typed by Emirati people outside the
+team, run the same way.
+\end{caution}
+
+\subsection{Evaluation on the in-house set}
+
+The in-house set has 28 questions typed the way people type, in English, Gulf Arabic and Modern Standard Arabic. Seven
 must go to a person; answering one of those counts as unsafe.
 
 {\small
@@ -944,7 +982,8 @@ one. The hosted site has run rules first, then K2, since 15 November. The test s
 ever scores above zero unsafe.
 
 \begin{caution}
-\textbf{Read with care.} The rules were built using these same 28 questions. A fresh question set is the next test.
+\textbf{Read with care.} The rules were built using these same 28 questions, which is why the held-out result above
+comes first.
 \end{caution}
 
 \subsection{Fine-tuning}
@@ -1080,19 +1119,22 @@ how well someone reads. Proposed pilot outcomes, none measured yet: informed cho
 \subsection{Differential privacy}
 
 Publish a count, publish it again after one couple joins, and the difference is that couple. So programme figures get
-calibrated random noise: differential privacy (\file{core/release.ts}, covered by 23 tests).
+calibrated random noise: differential privacy (\file{core/release.ts}, covered by 45 release tests and 5 key-store tests, and audited on 18 November in \file{eval/dp/AUDIT.md}).
 
 \begin{itemize}
-  \item \textbf{Counts} get Laplace noise with scale $b = 10/\ln 20 \approx 3.34$, so 95\% of the noise is within
-        $\pm 10$, because $P(|\text{noise}| > 10) = e^{-10/b} = 1/20$.
+  \item \textbf{Counts} get discrete Laplace noise (integer in, integer out), calibrated like a Laplace of scale
+        $b = 10/\ln 20 \approx 3.34$, so 95\% of the noise is within $\pm 10$ ($P(|\text{noise}| > 10) \approx 4.3\%$).
+  \item \textbf{The unit of privacy} is one couple joining or leaving the cohort; $\delta = 0$. A person screened in
+        $k$ couples is protected at $k\varepsilon$.
   \item \textbf{Privacy cost} per figure is $\varepsilon = \Delta \cdot \ln 20 / 10$, where $\Delta$ is the most one
         couple can change the figure. Costs add up within a release; at $\varepsilon = 5$ every later figure is
         withheld.
   \item \textbf{Medians} use the exponential mechanism over a 6-hour grid up to four weeks, and are withheld below 100
         cases.
-  \item \textbf{Small groups} under 10 are withheld outright.
+  \item \textbf{Small groups} under 10 are withheld outright, each share judged on its own denominator.
   \item \textbf{Shares} whose 95\% range is wider than 20 points are withheld as ``too noisy at this size''.
-  \item \textbf{Noise is drawn once per cohort} and kept, so reloading cannot average it away. Rounding and clamping
+  \item \textbf{Noise is drawn once per cohort} from a 256-bit key of crypto randomness and kept, so reloading cannot
+        average it away. (The 18 November audit replaced a 32-bit seed, which could be brute-forced in minutes.) Rounding and clamping
         happen after the noise, which costs no extra privacy.
 \end{itemize}
 
@@ -1106,12 +1148,13 @@ calibrated random noise: differential privacy (\file{core/release.ts}, covered b
   \draw[dashed,ink] (37,0) -- (37,0.165) node[above,font=\footnotesize\bfseries] {true count 37};
   \node[font=\footnotesize,text=teal,anchor=east] at (29,0.06) {95\% within $\pm 10$};
 \end{tikzpicture}
-\caption{The Laplace noise Clara adds to a count (scale $b \approx 3.34$). A published count of 37 lands within $\pm 10$ of the truth 95\% of the time, so no single couple can be read off it.}
+\caption{The noise Clara adds to a count (discrete Laplace, calibrated like scale $b \approx 3.34$). A published count of 37 lands within $\pm 10$ of the truth 95\% of the time, so no single couple can be read off it.}
 \end{figure}
 
 \begin{caution}
 \textbf{Limits.} The small-group rule is a common health-statistics rule, outside the formal guarantee. $\varepsilon$
-is per release; nothing enforces a budget across releases yet. In the prototype the noise seed lives in the browser.
+is per release; nothing enforces a lifetime budget across releases yet. In the prototype the noise key lives in the
+browser, so a second browser redraws it.
 The equity gap needs every group's shares, so in every synthetic cohort we tried the budget ran out
 first and the gap was withheld; the page says so rather than show it.
 \end{caution}
@@ -1120,9 +1163,8 @@ first and the gap was withheld; the page says so rather than show it.
 \section{Testing and verification}
 % =====================================================================
 
-There are 551 automated checks: 408 unit and property tests (Vitest, fast-check, 36 files; 408 passed and 1 skipped
-when run on 18 November at 20:57 GST) and 143 end-to-end tests (Playwright, 14 files; listed then, not re-run for this
-count) on a production build, in English and Arabic, on a 375-pixel phone screen. A property test
+There are 704 automated tests, all run and passing on 18 November at commit \code{ad2c699}: 552 unit and property
+tests (Vitest, fast-check; 1 skipped) and 152 end-to-end tests (Playwright, 152 of 152) on a production build, in English and Arabic, on a 375-pixel phone screen. A property test
 states a rule and checks it on thousands of generated cases. Run counts are written once in \file{lib/evidence.ts}, so
 no page can claim more than the tests check.
 
@@ -1145,8 +1187,8 @@ Any one-byte edit to the audit ledger is detected & 2,000 & every one\\
 \begin{xltabular}{\textwidth}{@{}P{7.4cm}L@{}}
 \caption{How to reproduce}\\
 \toprl
-\code{pnpm test} & 408 unit and property tests\\
-\code{pnpm e2e} & 143 end-to-end tests against a production build\\
+\code{pnpm test} & 552 unit and property tests\\
+\code{pnpm e2e} & 152 end-to-end tests against a production build\\
 \code{pnpm cf:e2e} & End-to-end tests against the Cloudflare Worker\\
 \code{pnpm typecheck \&\& pnpm lint} & Types and lint\\
 \code{pnpm exec vitest run tests/lib/ai-eval.test.ts} & The 28-question Ask Clara evaluation, with \code{AI\_EVAL\_URL} set to a running server\\
@@ -1170,7 +1212,7 @@ What a reviewer should weigh: everything below is known and stated on screen in 
 \midrule
 Synthetic data and mocked partners only & Connect UAE PASS, M42 and Malaffi in a pilot, after a data protection impact assessment\\
 \midrule
-All 698 sentences and the condition cards unsigned; AI-written Ask answers unreviewed & Review and signing by a licensed clinical lead (not yet confirmed) and an Emirati Arabic reviewer\\
+All 700 sentences and the condition cards unsigned; AI-written Ask answers unreviewed & Review and signing by a licensed clinical lead (not yet confirmed) and an Emirati Arabic reviewer\\
 \midrule
 Where K2 is hosted is not confirmed & Confirm K2's hosting, or run the K2-Think 32B fine-tune on GPUs in the UAE\\
 \midrule
@@ -1178,7 +1220,7 @@ No usability session has been run (a kit exists) & Usability sessions once an et
 \midrule
 Thresholds not agreed with the Department of Health & Agree measures and thresholds with the programme\\
 \midrule
-The AI result is on the questions the rules were built from & A fresh, unseen question set\\
+The held-out questions were written by an AI agent, not real people; no real user has tried Clara; 4 of 22 questions that need a person still get approved words only & 60 questions from Emirati people outside the team; the clinical lead decides the family and related-couple answers\\
 \midrule
 The fine-tune has no results & Ship only if it passes the same gate (0 unsafe, at least 24 of 28)\\
 \midrule
