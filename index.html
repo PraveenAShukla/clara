@@ -279,11 +279,11 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
   </div>
 </div>
 <div class="stats">
-  <div class="stat"><b>704</b><span>automated tests, all run and passing on 18 Nov (552 unit and property, 152 end-to-end)</span></div>
+  <div class="stat"><b>953</b><span>automated tests, all run and passing on 19 Nov (733 unit and property, 220 end-to-end)</span></div>
   <div class="stat"><b>0</b><span>leaks between spouses in 2,000 random cases</span></div>
-  <div class="stat"><b>18/22</b><span>held-out questions that need a person reached one, live on K2 (AI-written questions, not real people)</span></div>
+  <div class="stat"><b>18/22</b><span>AI-written questions that need a person reached one, live on K2, after fixes made for them (12/22 when new)</span></div>
   <div class="stat"><b>2,000</b><span>random edits to the audit record, every one caught</span></div>
-  <div class="stat"><b>0/700</b><span>fixed sentences signed so far; all are drafts</span></div>
+  <div class="stat"><b>0/898</b><span>fixed sentences signed so far; all are drafts</span></div>
   <div class="stat"><b>28/32</b><span>points of Statement 03 built and tested</span></div>
 </div>
 </div>
@@ -319,7 +319,7 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
   <div class="card"><b>Check the claims</b><p>Every clause mapped to a screen and a test; the privacy checks run in your browser. <code>/en/evidence</code> · <code>/en/safeguards</code></p></div>
 </div>
 <details class="deep"><summary>What the evidence page counts <span>· 32 points</span></summary><div>
-<p>The map covers 32 points of Statement 03: 28 built and tested, 2 waiting for a clinician’s sign-off, 1 waiting for a partner service (mocked today), and 1 for the comprehension study, which needs ethics approval. A test fails if the page ever names a test that does not exist. Appendix A lists every page.</p>
+<p>The map covers 32 points of Statement 03: 28 built and tested, 2 waiting for a clinician’s sign-off, 1 waiting for a partner service (simulated today), and 1 for the comprehension study, which needs ethics approval. A test fails if the page ever names a test that does not exist. Appendix A lists every page.</p>
 </div></details>
 </section>
 
@@ -367,7 +367,7 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
 <tr><td>Audit record</td><td><code>core/audit.ts</code>, <code>core/hash.ts</code></td><td>Hash chain of who saw what kind of thing</td></tr>
 <tr><td>Programme figures</td><td><code>core/programme.ts</code>, <code>core/release.ts</code></td><td>Measures, released with differential privacy</td></tr>
 <tr><td>Live rooms</td><td><code>lib/room/</code>, <code>cloudflare/rooms.ts</code></td><td>One case on several devices</td></tr>
-<tr><td>Word library</td><td><code>content/</code></td><td>700 fixed sentences, English and formal Arabic (583 family-facing, 117 study and form texts)</td></tr>
+<tr><td>Word library</td><td><code>content/</code></td><td>898 fixed sentences, English and formal Arabic (781 that families read in the app, 117 study texts)</td></tr>
 <tr><td>AI gateway</td><td><code>lib/ai/</code></td><td>Nine narrow tasks, checked answers</td></tr>
 </tbody></table></div>
 </div></details>
@@ -382,7 +382,7 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
   <div class="fig-sub">It cycles through the seats on its own; pick one to stop. Struck-through rows are never built into that seat’s view.</div>
   <div class="controls"><span id="seat-pills" role="group" aria-label="Seat" style="display:contents"></span><span class="auto" id="seat-auto">autoplay</span></div>
   <div class="view" id="view-list" aria-live="polite"></div>
-  <div class="cap">These are the views each screen shows. In a live room, only the spouse seats receive nothing but their view; staff seats hold the case and build theirs on the device. A spouse’s carrier findings reach the other spouse only if they choose to share them (<code>partnerCarrier</code>, <code>carrierShared</code> in <code>PartnerView</code>). Gene names appear only in the specialist’s panes, which are not shown here. For an X-linked result the woman sees her result first and decides when, or whether, her husband learns it. The property test in <code>tests/core/view.test.ts</code> builds 2,000 random cases and fails if any view holds a field its role may not see.</div>
+  <div class="cap">These are the views each screen shows. In a live room, only the spouse seats receive nothing but their view; staff seats hold the case and build theirs on the device. A spouse’s carrier findings reach the other spouse only if they choose to share them (<code>partnerCarrier</code>, <code>carrierShared</code> in <code>PartnerView</code>). Gene names appear only in the specialist’s panes, which are not shown here. For an X-linked result the result is the woman’s own: she sees it first, with a line on her own health and a metabolic referral, and decides when, or whether, her partner learns it; until then he sees a neutral line. The property test in <code>tests/core/view.test.ts</code> builds 2,000 random cases and fails if any view holds a field its role may not see.</div>
 </div>
 <details class="deep"><summary>Engineering detail <span>· where views are built, staff seats</span></summary><div>
 <p>The functions are <code>partnerView</code>, <code>doctorView</code>, <code>labView</code> and <code>specialistView</code> in <code>core/view.ts</code>. A field the role may not see is never copied into the view; it is not hidden with CSS.</p>
@@ -473,7 +473,7 @@ if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
 <section class="s" id="words" style="--c:var(--amber); --cs:var(--ambersoft)">
 <span class="tag"><b>08</b>Words</span>
 <h2>Every fixed sentence a family reads is written by people, to be signed by clinicians</h2>
-<p class="lede">700 fixed sentences, each in English and formal Arabic, versioned and hashed. A model never writes one of these; the only model-written words a family can see are Ask Clara’s short, checked answers, labelled as such. Today all 700 are drafts awaiting a clinician and an Emirati Arabic reviewer.</p>
+<p class="lede">898 fixed sentences, each in English and formal Arabic, versioned and hashed: 781 that families read in the app (77 of them the feminine forms used when the specialist is a woman) and 117 study texts. A model never writes one of these; the only model-written words a family can see are Ask Clara’s short, checked answers, labelled as such. Today all 898 are drafts awaiting a clinician and an Emirati Arabic reviewer.</p>
 <div class="fig">
   <div class="fig-title">One real sentence from the library</div>
   <div class="atom" style="margin-top:10px"><div class="en">Appointment</div><div class="arw">موعد</div><small><span>id ics.summary</span><span class="pill">draft</span><span>the only text in a spouse’s calendar entry, so a glance at the calendar gives nothing away</span></small></div>
@@ -493,7 +493,7 @@ if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
   <div class="cap">In pregnancy the referral is marked urgent, and the programme checks whether the couple is seen within 48 hours of the clinic knowing.</div>
 </div>
 <details class="deep"><summary>Engineering detail <span>· FHIR, shuffle, relatives</span></summary><div>
-<p>The referral is a FHIR <code>ServiceRequest</code> (<code>core/referral.ts</code>), sent through Malaffi, which is mocked today: no gene, no answers, nothing about relatives, and each spouse consents to what is sent. Options are shuffled per spouse with a fixed seed (<code>core/order.ts</code>), so no option is always first and the order shown can be reconstructed. Declining is a full option; questions about cost, cover or faith go to a person. The specialist’s console shows the pathway clock: result, session booked, session held, referral sent, appointment.</p>
+<p>The referral is a FHIR <code>ServiceRequest</code> (<code>core/referral.ts</code>), sent through Malaffi, which is simulated today: no gene, no answers, nothing about relatives, and each spouse consents to what is sent. Options are shuffled per spouse with a fixed seed (<code>core/order.ts</code>), so no option is always first and the order shown can be reconstructed. Declining is a full option; questions about cost, cover or faith go to a person. The specialist’s console shows the pathway clock: result, session booked, session held, referral sent, appointment.</p>
 <p>Clara never names or stores a relative. Each spouse chooses for their own side: tell no one, pass on a letter, or ask a counsellor to make contact, which needs a completed comprehension check and a 72-hour cooling-off. For relatives the couple share, the stricter choice wins.</p>
 </div></details>
 </section>
@@ -501,7 +501,7 @@ if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
 <section class="s" id="ai" style="--c:var(--violet); --cs:var(--violetsoft)">
 <span class="tag"><b>10</b>The AI</span>
 <h2>Models point to approved answers, and write only short, checked, labelled ones</h2>
-<p class="lede">Nothing so far needs a model. Models help with nine narrow jobs, every answer is checked, and anything doubtful goes to a person. Every task goes to K2, MBZUAI’s model, first, and to an OpenAI model in the US only if K2 fails; every answer names its model.</p>
+<p class="lede">Nothing so far needs a model. Models help with nine narrow jobs, every answer is checked, and anything doubtful goes to a person. Every task goes to K2, MBZUAI’s model, first, and to an OpenAI model in the US only as backup. Under each answer, “How this answer was made” shows the route and names the role (“the main AI model”, “the backup AI model”); the privacy page names the models.</p>
 <div class="cards" style="--n:4">
   <div class="card"><b>Ask Clara</b><p>picks approved answers · writes a short, checked one only when none fits a general or medical question</p></div>
   <div class="card"><b>Comprehension</b><p>reads a spouse’s own words · never shows the partner</p></div>
@@ -521,27 +521,28 @@ if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
   <div class="ask-out" id="ask-out" aria-live="polite"></div>
 </div>
 <details class="deep"><summary>Engineering detail <span>· the guard, models, agent, verifier</span></summary><div>
-<p>Each task has a fixed prompt and must answer in strict JSON, checked against a schema and an allow-list; a failure becomes “unsure” and a person takes over. For Ask Clara, the question (up to 300 characters) is checked with Zod and phone numbers, Emirates IDs, emails and other runs of six or more digits are removed (names are not). Hidden characters, diacritics and look-alike letters are folded away before any rule reads it. Termination wording, in English, Arabic or Arabizi, goes to a person by rule before the model is asked; a question about one’s own symptoms goes to a clinician; a request to decide keeps a person beside any approved answer. Cost-and-cover and faith questions always go to a person; family and relatives questions do when no approved answer fits; none of these, nor a pregnancy decision, ever gets a model-written answer. Only the rest reaches the model, with the menu of approved topics; it never sees a name or the case. Each topic it picks is accepted only like this:</p>
+<p>Each task has a fixed prompt and must answer in strict JSON, checked against a schema and an allow-list; a failure becomes “unsure” and a person takes over. For Ask Clara, the question (up to 300 characters) is checked with Zod and phone numbers, Emirates IDs, emails and other runs of six or more digits are removed (names are not). Hidden characters, diacritics and look-alike letters are folded away before any rule reads it. Termination wording, in English, Arabic or Arabizi, goes to a person by rule before the model is asked; a question about one’s own symptoms goes to a clinician; a request to decide keeps a person beside any approved answer. Cost-and-cover and faith questions go to a person; on family, pregnancy or a decision the model never writes its own words: approved words answer, or a person does. No approved answer opens with a bare yes or no; doubt about the marriage keeps a person beside the approved words; any answer about a reproductive choice offers a person; asking whether to go on with a pregnancy, in any words, goes to a person by rule; and pregnancy content shows only for married couples. Only the rest reaches the model, with the menu of approved topics; it never sees a name or the case. Each topic it picks is accepted only like this:</p>
 <pre><code>if (typeof t.id === "string" &amp;&amp; allowed.has(t.id) &amp;&amp; confidence &gt;= 0.6 &amp;&amp; !picked.some((p) =&gt; p.id === t.id))
   picked.push({ id: t.id, confidence })</code></pre>
 <p class="file">lib/ai/core.ts, lines 133–134</p>
-<p>The spouse reads that topic’s fixed answer, labelled “AI finds the approved answer”. When no approved answer fits a general or medical question, a second task may write one to three short sentences only from the approved facts this spouse may see and the couple’s condition card, citing them. The verifier (<code>content/verifier.ts</code>) drops advice and orders, termination wording, blame, promised outcomes, diagnoses, links, numbers off the fact sheet, named relatives, invented names, uncited facts and the wrong language. An adversarial review (44 live probes) found 16 holes in these guards; all 16 are fixed, with 111 tests, and the open items are listed in <code>eval/guard/REPORT.md</code>. Each spouse can also switch the AI off on their own Ask screen (“Answer without AI”). What passes is labelled “Written by AI from your clinic’s approved words. Checked by Clara, not yet signed by a clinician.” with a “Based on” line. The result explanation itself is never model-written. Any other miss becomes “ask your counsellor”: the counsellor sees a heading such as “Cost and cover”, never the words typed. After 20 seconds without a reply, the keyword matcher answers instead.</p>
-<p>K2 Think Horizon (MBZUAI) is asked first at high reasoning effort (hosted id <code>IFM/K2-Horizon-375B-A23B</code>); its reasoning is stripped so only the final JSON counts. Every task, text a family types included, goes to K2 first and to OpenAI (<code>gpt-6.1-terra</code>, United States) only if K2 fails (<code>tests/lib/fallback.test.ts</code>). K2’s public API is reached through Amazon Web Services in Singapore (checked by DNS on 18 Nov 2026), so neither model is UAE-hosted; the UAE’s ICT Health Law (Federal Law No. 2 of 2019, Art. 13) limits health data leaving the country, and Clara marks that clause a gap until both run on UAE-hosted models, before any real family. The Ask screen and the privacy page say so. Each response names its model in an <code>x-clara-model</code> header; <code>MODEL_OFF=1</code> turns AI off for everyone.</p>
+<p>The spouse reads that topic’s fixed answer, labelled “AI finds the approved answer”. When no approved answer fits a general or medical question, a second task may write one to three short sentences only from the approved facts this spouse may see and the couple’s condition card, citing them. The verifier (<code>content/verifier.ts</code>) drops advice and orders, termination wording, blame, promised outcomes, diagnoses, links, numbers off the fact sheet, named relatives, invented names, uncited facts and the wrong language. An adversarial review (44 live probes) found 16 holes in these guards; all 16 are fixed, with 111 tests, and the open items are listed in <code>eval/guard/REPORT.md</code>. Each spouse can also switch the AI off on their own Ask screen (“Answer without AI”); it stays off in that browser until switched back on. What passes is labelled “Written by AI from your clinic’s approved words. Checked by Clara, not yet signed by a clinician.” with a “Based on” line. The result explanation itself is never model-written. Any other miss becomes “ask your counsellor”: the counsellor sees a heading such as “Cost and cover”, never the words typed. After 20 seconds without a reply, the keyword matcher answers instead.</p>
+<p>K2 Think Horizon (MBZUAI) is asked first at high reasoning effort (hosted id <code>IFM/K2-Horizon-375B-A23B</code>); its reasoning is stripped so only the final JSON counts. Every task, text a family types included, goes to K2 first and to OpenAI (<code>gpt-6.1-terra</code>, United States) only when K2 fails or its reply fails Clara’s checks (<code>tests/lib/fallback.test.ts</code>). The lab report reaches the model without names or sample codes, and the session brief holds no names. K2’s public API is reached through Amazon Web Services in Singapore (checked by DNS on 18 Nov 2026), so neither model is UAE-hosted; the UAE’s ICT Health Law (Federal Law No. 2 of 2019, Art. 13) limits health data leaving the country, and Clara marks that clause, and DoH Responsible AI 3.1.4.5.1, a gap until both run on UAE-hosted models, before any real family. The Ask screen links to the privacy page, which says so. The API response carries the model’s name in an <code>x-clara-model</code> header; <code>MODEL_OFF=1</code> turns AI off for everyone.</p>
 <p>The care agent’s seven tools (read report, route, draft brief, release, offer time, draft referral, follow up) are ordered and limited in code (<code>lib/ai/agent.ts</code>); anything leaving the clinic waits for the specialist, and release is refused by policy every time. In Rehearsal, the same verifier blocks numbers not on the fact sheet, directive phrasing, termination wording and named relatives.</p>
 </div></details>
 </section>
 
 <section class="s" id="eval" style="--c:var(--violet); --cs:var(--violetsoft)">
 <span class="tag"><b>11</b>Testing the AI</span>
-<h2>On 60 questions it never saw, 18 of 22 that need a person reached one</h2>
+<h2>On 60 AI-written questions, 18 of 22 that need a person reached one after fixes (12 when new)</h2>
 <p class="lede">A separate AI agent wrote 60 new questions (25 English, 20 Arabic, 15 code-switched) and labelled each one’s expected route before it saw Clara’s rules or approved answers. We ran them live on K2, before and after the 18 November guardrail fixes, without changing the questions.</p>
 <div class="tablewrap"><table>
-<thead><tr><th>Held-out questions, live on K2, 18 November</th><th class="r">Before the fixes</th><th class="r">After</th></tr></thead>
+<thead><tr><th>Held-out questions, live on K2, 18 November</th><th class="r">When new</th><th class="r">After fixes made for them</th></tr></thead>
 <tbody>
 <tr class="ours"><td>Need a person, and reached one</td><td class="r">12 of 22</td><td class="r">18 of 22</td></tr>
+<tr><td>Of those, strictly no answer at all</td><td class="r">11 of 22</td><td class="r">15 of 22</td></tr>
 <tr><td>Other questions given approved or checked words</td><td class="r">32 of 38</td><td class="r">35 of 38</td></tr>
 </tbody></table></div>
-<div class="callout"><b>Read with care:</b> the questions were written by an AI agent, not by real people, and no real user has tried Clara yet. Every termination question now goes to a person. The 4 still answered without one ask about telling family or being related; they get approved words, and whether those should also offer a person is the clinical lead’s decision. The report is in <code>eval/heldout/REPORT.md</code>; questions from Emirati people outside the team are next.</div>
+<div class="callout"><b>Read with care:</b> the after figures are after fixes made for these very questions, so only the “when new” column is truly held out (Wilson 95% range for 18 of 22: about 61–93%). The questions were written by an AI agent, not by real people, and no real user has tried Clara yet. Every termination question now goes to a person. The 4 still answered without one ask about telling family or being related; they get approved words, and whether those should also offer a person is the clinical lead’s decision. The report is in <code>eval/heldout/REPORT.md</code>; questions from Emirati people outside the team are next.</div>
 <p style="margin-top:14px">Before that, on our own 28 questions typed the way people type, in English, Gulf Arabic and MSA, seven must go to a person; answering one of those counts as unsafe.</p>
 <div class="fig">
   <div class="fig-title">Unsafe answers in each run, out of 7 questions that must go to a person</div>
@@ -582,7 +583,7 @@ if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
 <section class="s" id="dp" style="--c:var(--teal)">
 <span class="tag"><b>13</b>Privacy in numbers</span>
 <h2>Noise that hides any one couple</h2>
-<p class="lede">Publish a count, publish it again after one couple joins, and the difference is that couple. So programme figures get calibrated random noise: differential privacy, merged on 15 November and now covered by 23 tests.</p>
+<p class="lede">Publish a count, publish it again after one couple joins, and the difference is that couple. So programme figures get calibrated random noise: differential privacy, merged on 15 November, audited on 18 November and now covered by 45 release tests and 5 key-store tests.</p>
 <div class="fig">
   <div class="fig-title">Releasing one count many times</div>
   <div class="fig-sub">The true count is 37. Values keep dropping on their own; each is the true count plus the Laplace noise Clara uses.</div>
@@ -612,12 +613,12 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
   <div class="card"><b>Today</b><p>Every couple, genome, lab report and clinician is invented (licences start <code>SYN-</code>). Rooms delete themselves within 12 hours. A model sees one typed question or a lab report’s text, never a name: K2 first, reached through AWS in Singapore, and OpenAI in the US if K2 fails.</p></div>
   <div class="card"><b>Pilot (proposed)</b><p>Hosted in the UAE, models hosted in the UAE, the Department of Health and the centre as controller, under Federal Law No. 2 of 2019 and DoH policy, after a data protection impact assessment.</p></div>
 </div>
-<p style="margin-top:14px">No hardware: everything runs in an ordinary browser. Clara explains and connects; it does not measure, diagnose or treat. UAE PASS, M42 and Malaffi appear by name only, as labelled mocks.</p>
+<p style="margin-top:14px">No hardware: everything runs in an ordinary browser. Clara explains and connects; it does not measure, diagnose or treat. UAE PASS, M42 and Malaffi appear by name only, each labelled “Simulated”.</p>
 </section>
 
 <section class="s" id="tests" style="--c:var(--teal)">
 <span class="tag"><b>15</b>Tests</span>
-<h2>704 automated tests, most of them on random cases</h2>
+<h2>953 automated tests, most of them on random cases</h2>
 <p class="lede">A property test states a rule and checks it on thousands of generated cases. Run counts are written once in <code>lib/evidence.ts</code>, so no page can claim more than the tests check.</p>
 <div class="tablewrap"><table>
 <thead><tr><th>Property</th><th class="r">Random runs</th><th>Result</th></tr></thead>
@@ -629,15 +630,15 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 <tr><td>The family doctor never sees a gene, an at-risk kind, an answer or a sharing choice</td><td class="r">2,000</td><td>0 disclosures</td></tr>
 <tr><td>Any one-byte edit to the audit record is detected</td><td class="r">2,000</td><td>every one</td></tr>
 </tbody></table></div>
-<p>552 unit and property tests (Vitest, fast-check; 552 passed and 1 skipped) and 152 end-to-end tests (Playwright; 152 of 152 passed), all run on 18 November at the deployed build, on a production build, in English and Arabic, on a 375-pixel phone screen. These are tests, not a certification: there is no ethics approval or clinical safety case yet.</p>
+<p>733 unit and property tests (Vitest, fast-check; 733 passed and 1 skipped, 53 files) and 220 end-to-end tests (Playwright, full suite; 220 passed), all run on 19 November at the deployed build, on a production build, in English and Arabic, on a 375-pixel phone screen. These are tests, not a certification: there is no ethics approval or clinical safety case yet.</p>
 </section>
 
 <section class="s" id="limits" style="--c:var(--fail); --cs:var(--failsoft)">
 <span class="tag"><b>16</b>Not done</span>
 <h2>What a reviewer should weigh</h2>
 <ul>
-<li>Synthetic data and mocked partners only; all 700 fixed sentences, the condition cards and every AI-written answer unsigned; no clinical co-lead confirmed; thresholds not agreed with the Department of Health.</li>
-<li>Neither model is UAE-hosted: K2 is reached through AWS in Singapore and the fallback is OpenAI in the US, so ICT Law Art. 13 is a gap until both are moved.</li>
+<li>Synthetic data and simulated partners only; all 898 fixed sentences, the condition cards and every AI-written answer unsigned; no clinical co-lead confirmed; thresholds not agreed with the Department of Health.</li>
+<li>Neither model is UAE-hosted: K2 is reached through AWS in Singapore and the backup is OpenAI in the US, so ICT Law Art. 13 and Responsible AI 3.1.4.5.1 are gaps until both are moved.</li>
 <li>The held-out questions were written by an AI agent, not real people, and no real user has tried Clara; 4 of 22 questions that need a person still get approved words only; the fine-tune has no results.</li>
 <li>Whether Clara improves understanding is untested until the study runs after ethics approval; effect sizes will be reported even if null. No usability session has been run yet.</li>
 <li>No Malaffi conformance test, patient record, identity provider or clinician sign-in; staff seats in a room hold the case.</li>
@@ -679,11 +680,11 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 pnpm dev --port 3100 -H 127.0.0.1     <span class="c"># http://127.0.0.1:3100/en</span>
 docker compose up                     <span class="c"># one container: http://127.0.0.1:3000/en</span>
 pnpm cf:dev                           <span class="c"># Cloudflare version with live rooms: :8787</span>
-pnpm test                             <span class="c"># 552 unit and property tests</span>
-pnpm e2e                              <span class="c"># 152 end-to-end tests</span>
+pnpm test                             <span class="c"># 733 unit and property tests</span>
+pnpm e2e                              <span class="c"># 220 end-to-end tests</span>
 pnpm typecheck &amp;&amp; pnpm lint
 AI_EVAL_URL=http://127.0.0.1:3100 pnpm exec vitest run tests/lib/ai-eval.test.ts   <span class="c"># the 28 questions</span></code></pre>
-<p>To connect a model, set <code>MODEL_BASE_URL</code>, <code>MODEL_NAME</code>, <code>MODEL_API_KEY</code>, <code>MODEL_REASONING_EFFORT</code> (and the same with <code>FALLBACK_</code>, used for any task only if the first model fails) in <code>.env.local</code> or as Cloudflare secrets. Any OpenAI-compatible endpoint works. <code>MODEL_OFF=1</code> switches AI off.</p>
+<p>To connect a model, set <code>MODEL_BASE_URL</code>, <code>MODEL_NAME</code>, <code>MODEL_API_KEY</code>, <code>MODEL_REASONING_EFFORT</code> (and the same with <code>FALLBACK_</code>, used for any task only if the first model fails or its reply fails the checks) in <code>.env.local</code> or as Cloudflare secrets. Any OpenAI-compatible endpoint works. <code>MODEL_OFF=1</code> switches AI off.</p>
 </div></details>
 <details class="deep"><summary>Open source and licences <span>· all permissive</span></summary><div>
 <dl class="ref">
@@ -706,7 +707,7 @@ AI_EVAL_URL=http://127.0.0.1:3100 pnpm exec vitest run tests/lib/ai-eval.test.ts
 </nav>
 </div>
 
-<footer class="gut">Clara · team parallelparadox · Future Health Digital Innovation Challenge, Problem Statement 03 · brief by Noel Thomas. <a href="Clara-Technical-Documentation.pdf">PDF version</a>. Figures come from the repository’s README, tests and saved eval runs at commit ad2c699, 18 November 2026 (the deployed build). The request animation and the noise simulator are sketches of the logic; the hash chain, the four questions and the test chart use real code behaviour and saved results.</footer>
+<footer class="gut">Clara · team parallelparadox · Future Health Digital Innovation Challenge, Problem Statement 03 · brief by Noel Thomas. <a href="Clara-Technical-Documentation.pdf">PDF version</a>. Figures come from the repository’s README, tests and saved eval runs at commit a167cc4, 19 November 2026 (the deployed build). The request animation and the noise simulator are sketches of the logic; the hash chain, the four questions and the test chart use real code behaviour and saved results.</footer>
 
 <script>
 (function(){
