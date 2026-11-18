@@ -279,11 +279,11 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
   </div>
 </div>
 <div class="stats">
-  <div class="stat"><b>495</b><span>tests pass (356 unit and property, 139 end-to-end)</span></div>
+  <div class="stat"><b>551</b><span>automated checks (408 unit and property, run and passing on 18 Nov; 143 end-to-end)</span></div>
   <div class="stat"><b>0</b><span>leaks between spouses in 2,000 random cases</span></div>
   <div class="stat"><b>0</b><span>unsafe AI answers, 3 runs of 28 questions, rules first</span></div>
   <div class="stat"><b>2,000</b><span>random edits to the audit record, every one caught</span></div>
-  <div class="stat"><b>0/613</b><span>family sentences signed so far; all are drafts</span></div>
+  <div class="stat"><b>0/698</b><span>fixed sentences signed so far; all are drafts</span></div>
   <div class="stat"><b>28/32</b><span>points of Statement 03 built and tested</span></div>
 </div>
 </div>
@@ -306,7 +306,7 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
   <div class="card"><b>“Carrier” is not “ill”</b><p>A carrier is usually healthy. It matters when both carry a change in the same gene.</p></div>
   <div class="card"><b>1 in 4, each pregnancy</b><p>A chance, not a diagnosis.</p><div class="dots"><i class="on"></i><i></i><i></i><i></i></div></div>
 </div>
-<p>So we set two rules for ourselves: the software never shows one spouse something about the other that they have not agreed to share, and a person, never a model, stands behind every decision and every sentence. The rest of this page follows one synthetic couple, <b style="color:var(--noura)">Noura</b> and <b style="color:var(--saeed)">Saeed</b>, through the system.</p>
+<p>So we set two rules for ourselves: the software never shows one spouse something about the other that they have not agreed to share, and a person, never a model, makes every decision. A model writes words a family reads only in one place, a short, checked and labelled Ask Clara answer. The rest of this page follows one synthetic couple, <b style="color:var(--noura)">Noura</b> and <b style="color:var(--saeed)">Saeed</b>, through the system.</p>
 </section>
 
 <section class="s" id="try" style="--c:var(--teal); --cs:var(--tealsoft)">
@@ -367,8 +367,8 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
 <tr><td>Audit record</td><td><code>core/audit.ts</code>, <code>core/hash.ts</code></td><td>Hash chain of who saw what kind of thing</td></tr>
 <tr><td>Programme figures</td><td><code>core/programme.ts</code>, <code>core/release.ts</code></td><td>Measures, released with differential privacy</td></tr>
 <tr><td>Live rooms</td><td><code>lib/room/</code>, <code>cloudflare/rooms.ts</code></td><td>One case on several devices</td></tr>
-<tr><td>Word library</td><td><code>content/</code></td><td>613 fixed sentences, English and Arabic</td></tr>
-<tr><td>AI gateway</td><td><code>lib/ai/</code></td><td>Seven narrow tasks, checked answers</td></tr>
+<tr><td>Word library</td><td><code>content/</code></td><td>698 fixed sentences, English and formal Arabic</td></tr>
+<tr><td>AI gateway</td><td><code>lib/ai/</code></td><td>Nine narrow tasks, checked answers</td></tr>
 </tbody></table></div>
 </div></details>
 </section>
@@ -472,8 +472,8 @@ if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
 
 <section class="s" id="words" style="--c:var(--amber); --cs:var(--ambersoft)">
 <span class="tag"><b>08</b>Words</span>
-<h2>Every sentence a family reads is written and signed by people</h2>
-<p class="lede">613 fixed sentences, each in English and Arabic, versioned and hashed. A model never writes one. Today all 613 are drafts awaiting a clinician and an Emirati Arabic reviewer.</p>
+<h2>Every fixed sentence a family reads is written by people, to be signed by clinicians</h2>
+<p class="lede">698 fixed sentences, each in English and formal Arabic, versioned and hashed. A model never writes one of these; the only model-written words a family can see are Ask Clara’s short, checked answers, labelled as such. Today all 698 are drafts awaiting a clinician and an Emirati Arabic reviewer.</p>
 <div class="fig">
   <div class="fig-title">One real sentence from the library</div>
   <div class="atom" style="margin-top:10px"><div class="en">Appointment</div><div class="arw">موعد</div><small><span>id ics.summary</span><span class="pill">draft</span><span>the only text in a spouse’s calendar entry, so a glance at the calendar gives nothing away</span></small></div>
@@ -500,10 +500,10 @@ if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
 
 <section class="s" id="ai" style="--c:var(--violet); --cs:var(--violetsoft)">
 <span class="tag"><b>10</b>The AI</span>
-<h2>Models point to approved answers; they never write them</h2>
-<p class="lede">Nothing so far needs a model. Models help with seven narrow jobs, every answer is checked, and anything doubtful goes to a person.</p>
+<h2>Models point to approved answers, and write only short, checked, labelled ones</h2>
+<p class="lede">Nothing so far needs a model. Models help with nine narrow jobs, every answer is checked, and anything doubtful goes to a person. What a family types goes only to K2, MBZUAI’s model, never to the US-hosted fallback.</p>
 <div class="cards" style="--n:4">
-  <div class="card"><b>Ask Clara</b><p>picks one approved answer · never writes one</p></div>
+  <div class="card"><b>Ask Clara</b><p>picks approved answers · writes a short, checked one only when none fits a general or medical question</p></div>
   <div class="card"><b>Comprehension</b><p>reads a spouse’s own words · never shows the partner</p></div>
   <div class="card"><b>Lab intake</b><p>copies six fields · never invents one</p></div>
   <div class="card"><b>Care agent</b><p>proposes the next step · never releases a result</p></div>
@@ -521,13 +521,13 @@ if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
   <div class="ask-out" id="ask-out" aria-live="polite"></div>
 </div>
 <details class="deep"><summary>Engineering detail <span>· the guard, models, agent, verifier</span></summary><div>
-<p>Each task has a fixed prompt and must answer in strict JSON, checked against a schema and an allow-list; a failure becomes “unsure” and a person takes over. For Ask Clara, the question (up to 300 characters) is checked with Zod and any run of six or more digits is removed. Cost-and-cover and faith questions always go to a person; medical-detail and family questions do when no approved answer fits. Only the rest reaches the model, with the menu of approved topics; it never sees a name, a gene or the case. The reply is accepted only like this:</p>
-<pre><code>const allowed = allowedTopics(kind, when).some((t) =&gt; t.id === j.topic)
-if (allowed &amp;&amp; confidence &gt;= 0.6) return { topic: j.topic as string, confidence }</code></pre>
-<p class="file">lib/ai/core.ts, lines 101–102</p>
-<p>The spouse reads that topic’s fixed answer, labelled “AI finds the approved answer”. A miss becomes “ask your counsellor”: the counsellor sees a heading such as “Cost and cover”, never the words typed. After 20 seconds without a reply, the keyword matcher answers instead.</p>
-<p>K2 Think Horizon (MBZUAI) is asked first at high reasoning effort (hosted id <code>IFM/K2-Horizon-375B-A23B</code>); its reasoning is stripped so only the final JSON counts. OpenAI (<code>gpt-6.1-terra</code>) is called only if K2 fails. Each response names its model in an <code>x-clara-model</code> header; <code>MODEL_OFF=1</code> turns AI off for everyone. The app never calls Jais.</p>
-<p>The care agent’s seven tools (read report, route, draft brief, release, offer time, draft referral, follow up) are ordered and limited in code (<code>lib/ai/agent.ts</code>); anything leaving the clinic waits for the specialist, and release is refused by policy every time. In Rehearsal, a verifier (<code>content/verifier.ts</code>) blocks numbers not on the fact sheet, directive phrasing, termination wording and named relatives.</p>
+<p>Each task has a fixed prompt and must answer in strict JSON, checked against a schema and an allow-list; a failure becomes “unsure” and a person takes over. For Ask Clara, the question (up to 300 characters) is checked with Zod and any run of six or more digits is removed. Questions about cost and cover, faith, family and relatives, and pregnancy decisions go to a person. Only the rest reaches the model, with the menu of approved topics; it never sees a name or the case. Each topic it picks is accepted only like this:</p>
+<pre><code>if (typeof t.id === "string" &amp;&amp; allowed.has(t.id) &amp;&amp; confidence &gt;= 0.6 &amp;&amp; !picked.some((p) =&gt; p.id === t.id))
+  picked.push({ id: t.id, confidence })</code></pre>
+<p class="file">lib/ai/core.ts, lines 133–134</p>
+<p>The spouse reads that topic’s fixed answer, labelled “AI finds the approved answer”. When no approved answer fits a general or medical question, a second task may write one to three short sentences only from the approved facts this spouse may see and the couple’s condition card, citing them. The verifier (<code>content/verifier.ts</code>) drops advice, termination wording, numbers off the fact sheet, named relatives, uncited facts and the wrong language. What passes is labelled “Written by AI from your clinic’s approved words. Checked by Clara, not yet signed by a clinician.” with a “Based on” line. The result explanation itself is never model-written. Any other miss becomes “ask your counsellor”: the counsellor sees a heading such as “Cost and cover”, never the words typed. After 20 seconds without a reply, the keyword matcher answers instead.</p>
+<p>K2 Think Horizon (MBZUAI) is asked first at high reasoning effort (hosted id <code>IFM/K2-Horizon-375B-A23B</code>); its reasoning is stripped so only the final JSON counts. Text a family types (Ask Clara, teach-back) goes to K2 only, never to the fallback, because the UAE’s ICT Health Law (Federal Law No. 2 of 2019, Art. 13) limits health data leaving the country; if K2 fails, Clara answers from approved words by its rules (<code>tests/lib/residency.test.ts</code>). Where K2 is hosted is not yet confirmed. Rehearsal and the clinician tools, on synthetic cases, call OpenAI (<code>gpt-6.1-terra</code>, United States) only if K2 fails. Each response names its model in an <code>x-clara-model</code> header; <code>MODEL_OFF=1</code> turns AI off for everyone. The app never calls Jais.</p>
+<p>The care agent’s seven tools (read report, route, draft brief, release, offer time, draft referral, follow up) are ordered and limited in code (<code>lib/ai/agent.ts</code>); anything leaving the clinic waits for the specialist, and release is refused by policy every time. In Rehearsal, the same verifier blocks numbers not on the fact sheet, directive phrasing, termination wording and named relatives.</p>
 </div></details>
 </section>
 
@@ -609,7 +609,7 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 
 <section class="s" id="tests" style="--c:var(--teal)">
 <span class="tag"><b>15</b>Tests</span>
-<h2>495 tests, most of them on random cases</h2>
+<h2>551 automated checks, most of them on random cases</h2>
 <p class="lede">A property test states a rule and checks it on thousands of generated cases. Run counts are written once in <code>lib/evidence.ts</code>, so no page can claim more than the tests check.</p>
 <div class="tablewrap"><table>
 <thead><tr><th>Property</th><th class="r">Random runs</th><th>Result</th></tr></thead>
@@ -621,16 +621,17 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 <tr><td>The family doctor never sees a gene, an at-risk kind, an answer or a sharing choice</td><td class="r">2,000</td><td>0 disclosures</td></tr>
 <tr><td>Any one-byte edit to the audit record is detected</td><td class="r">2,000</td><td>every one</td></tr>
 </tbody></table></div>
-<p>356 unit and property tests (Vitest, fast-check) and 139 end-to-end tests (Playwright) on a production build, in English and Arabic, on a 375-pixel phone screen. These are tests, not a certification: there is no ethics approval or clinical safety case yet.</p>
+<p>408 unit and property tests (Vitest, fast-check; 408 passed and 1 skipped when run on 18 Nov) and 143 end-to-end tests (Playwright, counted on 18 Nov, not re-run for this count) on a production build, in English and Arabic, on a 375-pixel phone screen. These are tests, not a certification: there is no ethics approval or clinical safety case yet.</p>
 </section>
 
 <section class="s" id="limits" style="--c:var(--fail); --cs:var(--failsoft)">
 <span class="tag"><b>16</b>Not done</span>
 <h2>What a reviewer should weigh</h2>
 <ul>
-<li>Synthetic data and mocked partners only; all 613 sentences unsigned; thresholds not agreed with the Department of Health.</li>
+<li>Synthetic data and mocked partners only; all 698 fixed sentences, the condition cards and every AI-written answer unsigned; no clinical co-lead confirmed; thresholds not agreed with the Department of Health.</li>
+<li>Family text goes to K2 only, but where K2 is hosted is not yet confirmed.</li>
 <li>The AI result is on the questions the rules were built from; the fine-tune has no results.</li>
-<li>Whether Clara improves understanding is untested until the study runs after ethics approval; effect sizes will be reported even if null.</li>
+<li>Whether Clara improves understanding is untested until the study runs after ethics approval; effect sizes will be reported even if null. No usability session has been run yet.</li>
 <li>No Malaffi conformance test, patient record, identity provider or clinician sign-in; staff seats in a room hold the case.</li>
 <li>No load test at programme scale and no outside security review of the room protocol.</li>
 <li>Not a medical device; not cleared for clinical use.</li>
@@ -670,15 +671,15 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 pnpm dev --port 3100 -H 127.0.0.1     <span class="c"># http://127.0.0.1:3100/en</span>
 docker compose up                     <span class="c"># one container: http://127.0.0.1:3000/en</span>
 pnpm cf:dev                           <span class="c"># Cloudflare version with live rooms: :8787</span>
-pnpm test                             <span class="c"># 356 unit and property tests</span>
-pnpm e2e                              <span class="c"># 139 end-to-end tests</span>
+pnpm test                             <span class="c"># 408 unit and property tests</span>
+pnpm e2e                              <span class="c"># 143 end-to-end tests</span>
 pnpm typecheck &amp;&amp; pnpm lint
 AI_EVAL_URL=http://127.0.0.1:3100 pnpm exec vitest run tests/lib/ai-eval.test.ts   <span class="c"># the 28 questions</span></code></pre>
-<p>To connect a model, set <code>MODEL_BASE_URL</code>, <code>MODEL_NAME</code>, <code>MODEL_API_KEY</code>, <code>MODEL_REASONING_EFFORT</code> (and the same with <code>FALLBACK_</code>) in <code>.env.local</code> or as Cloudflare secrets. Any OpenAI-compatible endpoint works. <code>MODEL_OFF=1</code> switches AI off.</p>
+<p>To connect a model, set <code>MODEL_BASE_URL</code>, <code>MODEL_NAME</code>, <code>MODEL_API_KEY</code>, <code>MODEL_REASONING_EFFORT</code> (and the same with <code>FALLBACK_</code>, never used for text a family types) in <code>.env.local</code> or as Cloudflare secrets. Any OpenAI-compatible endpoint works. <code>MODEL_OFF=1</code> switches AI off.</p>
 </div></details>
 <details class="deep"><summary>Open source and licences <span>· all permissive</span></summary><div>
 <dl class="ref">
-<dt>MIT</dt><dd>Next.js 16.4.3, React 19.3.1, Radix UI, shadcn/ui, Konsta UI, Motion, Zod, Recharts, TanStack Table, dnd-kit, Sonner, Vaul, @noble/hashes, Tailwind CSS; Vitest and fast-check for tests</dd>
+<dt>MIT</dt><dd>Next.js 16.4.6, React 19.3.1, Radix UI, shadcn/ui, Konsta UI, Motion, Zod, Recharts, TanStack Table, dnd-kit, Sonner, Vaul, @noble/hashes, Tailwind CSS; Vitest and fast-check for tests</dd>
 <dt>ISC</dt><dd>Lucide icons</dd>
 <dt>Apache-2.0</dt><dd>class-variance-authority; Playwright for tests</dd>
 <dt>SIL OFL</dt><dd>IBM Plex, Markazi Text</dd>
