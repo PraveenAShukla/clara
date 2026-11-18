@@ -149,8 +149,8 @@
 \color{muted}Challenge & Future Health Digital Innovation Challenge 2026, Department of Health Abu Dhabi\\
 \color{muted}Problem statement & 03 · Understanding and Reducing Inherited Disease Risk\\
 \color{muted}Team & parallelparadox\\
-\color{muted}Version & 1.0, 15 November 2026\\
-\color{muted}Source & branch \code{v1-production-on-main}, commit \code{20608c0}\\
+\color{muted}Version & 1.1, 18 November 2026\\
+\color{muted}Source & branch \code{v1-production-on-main}, commit \code{20608c0}; the AI, sentence and test figures updated to commit \code{ef96613}\\
 \color{muted}Prototype & \link{\proto/en}{clara.q7m4v2k9orbit.workers.dev}\\
 \color{muted}Project page & \link{https://praveenashukla.github.io/clara/}{praveenashukla.github.io/clara}\\
 \end{tabular}
@@ -182,11 +182,11 @@ sources listed under References.
 \toprl
 Document & Clara technical documentation\\
 \midrule
-Version & 1.0\\
+Version & 1.1\\
 \midrule
-Date & 15 November 2026\\
+Date & 18 November 2026 (1.0: 15 November 2026)\\
 \midrule
-Source & \code{v1-production-on-main} at commit \code{20608c0}\\
+Source & \code{v1-production-on-main} at commit \code{20608c0}; what the AI may write and the sentence count updated to commit \code{ef96613}; family text going to K2 only, condition cards, the UAE standards map and the test count updated to commit \code{8499322} (tests counted 18 November, 20:57 GST)\\
 \midrule
 Authors & Team parallelparadox: Praveen Anilkumar Shukla, Noel Thomas, Alaa Mohamed Elsayed Abdelghany Alam, Pradeep. Based on the technical brief written by Noel Thomas.\\
 \midrule
@@ -230,7 +230,7 @@ Abu Dhabi's premarital screening now includes a genetic test. The result is abou
 to misread: ``carrier'' does not mean ``ill'', and a 1 in 4 chance in each pregnancy is a chance, not a diagnosis.
 Whoever hears the result first is often left to explain it to the other.
 
-Clara is a private companion for that result. Each spouse reads their own explanation on their own phone, in Gulf
+Clara is a private companion for that result. Each spouse reads their own explanation on their own phone, in formal
 Arabic or English, checks they have understood it, sees the options that are lawful in the UAE in an order that
 favours none, books a counsellor, and decides item by item what their partner and their relatives may see. Behind the
 phones, a genetics specialist releases every non-routine result after a counselling session and sends referrals that
@@ -241,16 +241,18 @@ Two rules shaped everything:
 \begin{enumerate}
   \item \textbf{One spouse never sees anything about the other that they have not agreed to share.} This is enforced
         on the server, not hidden in the screen, and tested on thousands of random cases.
-  \item \textbf{A person, never a model, stands behind every decision and every sentence.} Models only sort, read and
-        draft for staff. Every sentence a family reads is a fixed text, which a clinician must sign before a real
-        family reads it.
+  \item \textbf{A person, never a model, stands behind every decision.} Models sort, read and draft for staff. The
+        result explanation a family reads is fixed text, which a clinician must sign before a real family reads it.
+        In Ask Clara, when no approved answer fits a general or medical question, a model may write a short answer
+        from approved words; Clara checks it and labels it as written by AI. Cost, faith, family and pregnancy
+        decisions always go to a person.
 \end{enumerate}
 
 {
 \begin{xltabular}{\textwidth}{@{}P{2.6cm}L@{}}
-\caption{Clara in figures (commit \code{20608c0})}\\
+\caption{Clara in figures (commit \code{8499322}, 18 November 2026)}\\
 \toprl
-\textbf{495} & automated tests pass: 356 unit and property tests, 139 end-to-end tests in English and Arabic\\
+\textbf{551} & automated checks: 408 unit and property tests (passing on 18 November), 143 end-to-end tests in English and Arabic (listed, not re-run for this count)\\
 \midrule
 \textbf{0} & disclosures between spouses across 2,000 random cases\\
 \midrule
@@ -260,7 +262,7 @@ Two rules shaped everything:
 \midrule
 \textbf{28 of 32} & points of Statement 03 built and tested; the other 4 wait on people or partners (section~\ref{sec:req})\\
 \midrule
-\textbf{0 of 613} & family sentences signed so far; all are drafts awaiting a clinician and an Emirati Arabic reviewer\\
+\textbf{0 of 698} & fixed sentences signed so far; all are drafts awaiting a clinician and an Emirati Arabic reviewer\\
 \bottomrule
 \end{xltabular}}
 
@@ -328,7 +330,7 @@ Genome Programme, the lab and the health-information exchange), not beside them.
 \toprl
 \thead{Clause} & \thead{What Clara does} & \thead{Where to see it}\\
 \midrule
-1. Risk explanation & Each spouse's result in plain Gulf Arabic or English; every chance written in words and drawn as a picture; carrier is not ill; a chance is not a diagnosis. & Phone app, \code{/en/phone}\\
+1. Risk explanation & Each spouse's result in plain formal Arabic or English; every chance written in words and drawn as a picture; carrier is not ill; a chance is not a diagnosis. & Phone app, \code{/en/phone}\\
 \midrule
 2. Informed, values-sensitive choices & Options lawful in the UAE, shuffled per spouse with equal weight; declining is a full option; booking a counsellor. & Phone app, options\\
 \midrule
@@ -346,14 +348,23 @@ The evidence page breaks the statement into 32 points. Today 28 are built and te
 sign-off, one waits for a partner service (mocked today), and one is the comprehension study, which needs ethics
 approval. A test fails if the evidence page ever names a test that does not exist.
 
+Since 18 November the Evidence page also maps Clara against the UAE's own standards and laws, clause by clause, quoting
+each document's own words (\file{content/doh-standard.ts}): 26 clauses from seven documents. From DoH Abu Dhabi: the
+Premarital Screening Standard (DoH/STD/PSS/V3, 16 clauses), the standard for family physician-led care of Emirati
+Genome Program variants (3), Preconception Care (1) and Responsible AI (2). From other UAE authorities: Dubai's
+premarital screening standard (1), Federal Decree-Law No.~49 of 2023 on the human genome (2) and Federal Law No.~2 of
+2019 on ICT in health (1). Of the 26, 13 are built, 12 are partly met and 1 is a gap, and the page shows the gaps.
+
 \subsection{Design principles}
 
 \begin{enumerate}
   \item \textbf{People decide; software keeps the rules.} Every change to a case is one rule-checked step. An at-risk
         or uncertain result reaches a phone only after a genetics specialist releases it; a routine result is explained
         by the family doctor.
-  \item \textbf{No model writes to a family.} Every family-facing sentence is a fixed, versioned atom in English and
-        Arabic, signed by a person before a real family reads it.
+  \item \textbf{No model writes the result.} The result explanation and every other screen a family reads are fixed,
+        versioned atoms in English and Arabic, signed by a person before a real family reads them. The one exception
+        is Ask Clara: when no approved answer fits a general or medical question, a model may write a short answer from
+        approved atoms, checked and labelled as written by AI and not yet clinician-signed.
   \item \textbf{Each seat sees only its own view.} The other spouse's private answers never reach a device.
   \item \textbf{Arabic is designed as an equal}, with its own type, spacing and right-to-left layout, not as a
         translation.
@@ -473,11 +484,11 @@ staff seats do hold the case on the device; see section 4.5.)
   \node[box,text width=3.4cm,right=11mm of wk,yshift=27mm] (st) {\textbf{Static pages}\\ Next.js export, \code{out/}\\ \code{/en/…} and \code{/ar/…}};
   \node[ok,text width=3.6cm,below=4mm of st] (ro) {\textbf{Rooms} Durable Object\\ \code{lib/room}, \code{cloudflare/rooms.ts}};
   \node[core,text width=3.6cm,below=4mm of ro] (co) {\textbf{Case engine} \code{core/}\\ rules · projections\\ audit ledger · referrals};
-  \node[ai,text width=3.6cm,below=4mm of co] (ai) {\textbf{AI gateway} \code{/api/ai}\\ \code{lib/ai}, 7 fixed tasks};
+  \node[ai,text width=3.6cm,below=4mm of co] (ai) {\textbf{AI gateway} \code{/api/ai}\\ \code{lib/ai}, 9 fixed tasks};
   \node[box,text width=3.6cm,below=4mm of ai] (rv) {\textbf{Reviews} Durable Object\\ team usability check};
 
   % external
-  \node[ai,text width=2.4cm,right=6mm of ai] (k2) {\textbf{K2 Think Horizon}\\ MBZUAI, then\\ \mbox{OpenAI} fallback\\ {\footnotesize strict JSON}};
+  \node[ai,text width=2.4cm,right=6mm of ai] (k2) {\textbf{K2 Think Horizon}\\ MBZUAI; \mbox{OpenAI}\\ fallback for staff\\ tasks only\\ {\footnotesize strict JSON}};
   \node[mock,text width=2.4cm,right=6mm of ro] (mk) {\textbf{Mocked}\\ UAE PASS · M42\\ Malaffi (FHIR)\\ calendar};
 
   \draw[wire,<->] (clients.east) -- (wk.west);
@@ -540,7 +551,7 @@ Validation and crypto & Zod; \code{@noble/hashes} (SHA-256, HMAC)\\
 \midrule
 Hosting & Cloudflare Workers, Durable Objects with SQLite-backed storage; Docker image for a Node server\\
 \midrule
-Models & K2 Think Horizon (MBZUAI) first, an OpenAI model as fallback; any OpenAI-compatible endpoint\\
+Models & K2 Think Horizon (MBZUAI) first; an OpenAI model as fallback for Rehearsal and clinician tools only, never for text a family types; any OpenAI-compatible endpoint\\
 \midrule
 Testing & Vitest and fast-check (unit and property), Playwright (end-to-end)\\
 \midrule
@@ -762,9 +773,10 @@ Everything else & Static pages in Arabic and English.\\
 
 \subsection{Word library}
 
-Every sentence a family reads comes from a library of 613 fixed sentences (``atoms''), each in English and Arabic,
-versioned and hashed. A model never writes one. Each atom records whether it is a draft or signed, and the hash of the
-exact signed text, so an edit after signing shows up. Today all 613 are drafts awaiting a clinician and an Emirati
+Every fixed sentence a family reads comes from a library of 698 sentences (``atoms''), each in English and formal
+Arabic, versioned and hashed. A model never writes or changes an atom; Ask Clara's written answers (section on Ask
+below) are composed from atoms and labelled as AI-written. Each atom records whether it is a draft or signed, and the
+hash of the exact signed text, so an edit after signing shows up. Today all 698 are drafts awaiting a clinician and an Emirati
 Arabic reviewer. Jais (Inception, G42) helped the team draft some of the Arabic outside the app; those sentences are
 drafts like the rest, and the app never calls Jais.
 
@@ -780,11 +792,11 @@ glance at the calendar gives nothing away. Status: draft.
 \section{Responsible AI}
 % =====================================================================
 
-Nothing described so far needs a model. Models help with seven narrow jobs, every answer is checked, and anything
+Nothing described so far needs a model. Models help with nine narrow jobs, every answer is checked, and anything
 doubtful goes to a person. With no model configured, or with \code{MODEL\_OFF=1}, every task falls back to fixed rules
 and the product still works end to end.
 
-\subsection{The seven tasks}
+\subsection{The tasks}
 
 {\small
 \begin{xltabular}{\textwidth}{@{}P{2.4cm}LLP{2.8cm}@{}}
@@ -792,7 +804,9 @@ and the product still works end to end.
 \toprl
 \thead{Task} & \thead{What the model does} & \thead{What it can never do} & \thead{Without a model}\\
 \midrule
-Ask Clara & Points a spouse's question to one approved answer & Write an answer; it can only pick an approved topic & Arabic-aware keyword matcher\\
+Ask Clara & Points a spouse's message to up to three approved answers & Pick a topic this spouse may not see & Arabic-aware keyword matcher\\
+\midrule
+Ask Clara, written answer & When no approved answer fits a general or medical question, writes 1--3 short sentences from the approved facts this spouse may see, citing them & Answer cost, faith, family or pregnancy-decision questions; give advice, termination wording, numbers off the fact sheet, named relatives or uncited facts & Goes to the counsellor\\
 \midrule
 Teach-back & Reads a spouse's answer in their own words: understood, partly, not & Show it to the partner & The spouse picks the closest answer\\
 \midrule
@@ -804,7 +818,9 @@ Coach & Writes Rehearsal notes for counsellors & Speak to a real family & Rubric
 \midrule
 Arabic check & Flags drafts that are too formal, too long, drift in meaning or sound directive & Change the text & Rule-based flags\\
 \midrule
-Care agent & Proposes the next step from 7 tools & Release a result (refused by policy), or act without the specialist & Rule-driven steps\\
+Care agent & Proposes the next step from 7 tools (its free-text reason is not shown) & Release a result (refused by policy), or act without the specialist & Rule-driven steps\\
+\midrule
+Shadow test & Writes freely on the 28 fixed eval questions, for the Evidence page only & Reach a family & Not run\\
 \bottomrule
 \end{xltabular}}
 
@@ -816,7 +832,7 @@ Care agent & Proposes the next step from 7 tools & Release a result (refused by 
   \node[box,text width=1.85cm] (q) {\textbf{Question}\\ up to 300 characters};
   \node[ok,text width=1.85cm,right=of q] (i) {\textbf{Input check}\\ Zod; long digit runs removed};
   \node[ok,text width=1.85cm,right=of i] (r) {\textbf{Rules}\\ sensitive subjects};
-  \node[ai,text width=1.85cm,right=of r] (m) {\textbf{Model}\\ picks one approved topic};
+  \node[ai,text width=1.85cm,right=of r] (m) {\textbf{Model}\\ picks up to three approved topics};
   \node[ok,text width=1.85cm,right=of m] (g) {\textbf{Guard}\\ on the menu, confidence $\geq$ 0.6};
   \node[box,draw=teal,text width=1.85cm,right=of g] (a) {\textbf{Approved answer}\\ fixed text};
   \node[hold,text width=5.6cm,below=13mm of m] (p) {\textbf{Ask your counsellor}: the counsellor sees a heading only, never the words typed};
@@ -829,24 +845,51 @@ Care agent & Proposes the next step from 7 tools & Release a result (refused by 
 
 Each task has a fixed prompt and must answer in strict JSON, checked against a schema and an allow-list; a failure
 becomes ``unsure'' and a person takes over. Questions about cost and cover, and about faith, always go to a person;
-medical-detail and family questions do when no approved answer fits. Only the rest reaches the model, with the menu of
-approved topics. The model never sees a name, a gene or the case. The reply is accepted only like this:
+a family or relatives question does when no approved answer fits. Only the rest reaches the model, with the menu of
+approved topics. The model never sees a name or the case. Each topic it picks is accepted only like this:
 
 \begin{Verbatim}
-const allowed = allowedTopics(kind, when).some((t) => t.id === j.topic)
-if (allowed && confidence >= 0.6) return { topic: j.topic as string, confidence }
+if (typeof t.id === "string" && allowed.has(t.id) && confidence >= 0.6 && !picked.some((p) => p.id === t.id))
+  picked.push({ id: t.id, confidence })
 \end{Verbatim}
-{\footnotesize\color{muted}\code{lib/ai/core.ts}, lines 101–102}
+{\footnotesize\color{muted}\code{lib/ai/core.ts}, lines 133–134}
 
-The spouse reads that topic's fixed answer, labelled ``AI finds the approved answer''. A miss becomes ``ask your
-counsellor'': the counsellor sees a heading such as ``Cost and cover'', never the words typed. After 20 seconds without
+The spouse reads that topic's fixed answer, labelled ``AI finds the approved answer''. A general or medical question
+with no fitting topic gets one more step (below); any other miss becomes ``ask your counsellor'': the counsellor sees a heading such as ``Cost and cover'', never the words typed. After 20 seconds without
 a reply, the keyword matcher answers instead.
+
+Since 18 November, a general or medical question that no approved answer fits gets one more step before it goes to a
+person (\code{lib/ai/core.ts}, task \code{answer}). The model may write one to three short sentences, in English or
+formal Modern Standard Arabic, using only the approved facts this spouse may see and the couple's condition card
+(below), and must cite them. The guard drops
+any answer with advice, termination wording, a number not on the fact sheet, a named relative, an uncited fact or the
+wrong language, and a dropped answer goes to the counsellor like no answer. What passes is shown with the label
+``Written by AI from your clinic's approved words. Checked by Clara, not yet signed by a clinician.'' and a ``Based
+on'' line naming the facts used. Cost and cover, faith, family (including siblings and cousins) and any question about
+ending a pregnancy never reach this step. The result explanation itself is never model-written. No clinician has
+reviewed these written answers yet.
+
+\textbf{Condition cards.} Since 18 November the result screen names each couple's condition with a card
+(\file{content/condition-cards.ts}): what it is, how it can affect a child and how much that varies, care and
+treatment, what being a carrier means, and who to talk to, in English and formal Arabic, full and short. Each field
+lists its sources (MedlinePlus Genetics, GeneReviews, FDA, EMA, MOHAP and DoH), and the Evidence page lists every
+card's sources with their full titles (\code{/en/evidence\#conditions}). The cards are drafts and have not been checked
+by a clinician.
 
 \subsection{Models}
 
 K2 Think Horizon (MBZUAI) is asked first, at high reasoning effort. Its reasoning is stripped so only the final JSON
-counts. The hosted model id is \code{IFM/K2-Horizon-375B-A23B}. An OpenAI model (\code{gpt-6.1-terra}) is called only if K2 fails,
-times out or answers with something unreadable. Each response names its model in an \code{x-clara-model} header.
+counts. The hosted model id is \code{IFM/K2-Horizon-375B-A23B}. Each response names its model in an
+\code{x-clara-model} header.
+
+\textbf{Text a family types goes to K2 only.} Ask Clara questions and teach-back answers are sent only to K2, never to
+the fallback (\code{firstOnly} in \file{lib/model-core.ts}), because the fallback is OpenAI, a US provider, and the
+UAE's ICT Health Law (Federal Law No.~2 of 2019, Art.~13) limits health data leaving the country. Only runs of six or
+more digits are removed before sending. If K2 fails, the screen answers from approved words by its rules. A unit test
+(\file{tests/lib/residency.test.ts}) takes K2 down with the fallback up and checks that these requests still go only to
+K2. Where K2 is hosted is not yet confirmed, so Clara does not claim UAE hosting. Rehearsal and the clinician tools,
+which work on synthetic cases, call an OpenAI model (\code{gpt-6.1-terra}) only if K2 fails, times out or answers with
+something unreadable. Synthetic data only today; a pilot would use models hosted in the UAE.
 
 The care agent's seven tools (read report, route, draft brief, release, offer a time, draft referral, follow up) are
 ordered and limited in code (\file{lib/ai/agent.ts}); anything leaving the clinic waits for the specialist, and release
@@ -965,7 +1008,7 @@ Exposure & No request logging; \code{noindex}; no referrer; access code never le
 \begin{xltabular}{\textwidth}{@{}P{2.6cm}L@{}}
 \caption{Data governance}\\
 \toprl
-Today & Every couple, genome, lab report and clinician is invented (licences start \code{SYN-}). Rooms delete themselves within 12 hours. A model sees one typed question or a lab report's text, never a name.\\
+Today & Every couple, genome, lab report and clinician is invented (licences start \code{SYN-}). Rooms delete themselves within 12 hours. A model sees one typed question or a lab report's text, never a name; what a family types goes to K2 only.\\
 \midrule
 Pilot (proposed) & Hosted in the UAE, with models hosted in the UAE; the Department of Health and the centre as controller; under Federal Law No.~2 of 2019 and DoH policy; after a data protection impact assessment.\\
 \bottomrule
@@ -1077,8 +1120,9 @@ first and the gap was withheld; the page says so rather than show it.
 \section{Testing and verification}
 % =====================================================================
 
-There are 495 automated tests: 356 unit and property tests (Vitest, fast-check, 28 files) and 139 end-to-end tests
-(Playwright, 14 files) on a production build, in English and Arabic, on a 375-pixel phone screen. A property test
+There are 551 automated checks: 408 unit and property tests (Vitest, fast-check, 36 files; 408 passed and 1 skipped
+when run on 18 November at 20:57 GST) and 143 end-to-end tests (Playwright, 14 files; listed then, not re-run for this
+count) on a production build, in English and Arabic, on a 375-pixel phone screen. A property test
 states a rule and checks it on thousands of generated cases. Run counts are written once in \file{lib/evidence.ts}, so
 no page can claim more than the tests check.
 
@@ -1101,8 +1145,8 @@ Any one-byte edit to the audit ledger is detected & 2,000 & every one\\
 \begin{xltabular}{\textwidth}{@{}P{7.4cm}L@{}}
 \caption{How to reproduce}\\
 \toprl
-\code{pnpm test} & 356 unit and property tests\\
-\code{pnpm e2e} & 139 end-to-end tests against a production build\\
+\code{pnpm test} & 408 unit and property tests\\
+\code{pnpm e2e} & 143 end-to-end tests against a production build\\
 \code{pnpm cf:e2e} & End-to-end tests against the Cloudflare Worker\\
 \code{pnpm typecheck \&\& pnpm lint} & Types and lint\\
 \code{pnpm exec vitest run tests/lib/ai-eval.test.ts} & The 28-question Ask Clara evaluation, with \code{AI\_EVAL\_URL} set to a running server\\
@@ -1126,7 +1170,11 @@ What a reviewer should weigh: everything below is known and stated on screen in 
 \midrule
 Synthetic data and mocked partners only & Connect UAE PASS, M42 and Malaffi in a pilot, after a data protection impact assessment\\
 \midrule
-All 613 sentences unsigned & Review and signing by the clinical co-lead and an Emirati Arabic reviewer\\
+All 698 sentences and the condition cards unsigned; AI-written Ask answers unreviewed & Review and signing by a licensed clinical lead (not yet confirmed) and an Emirati Arabic reviewer\\
+\midrule
+Where K2 is hosted is not confirmed & Confirm K2's hosting, or run the K2-Think 32B fine-tune on GPUs in the UAE\\
+\midrule
+No usability session has been run (a kit exists) & Usability sessions once an ethics determination allows them\\
 \midrule
 Thresholds not agreed with the Department of Health & Agree measures and thresholds with the programme\\
 \midrule
@@ -1157,7 +1205,7 @@ ranges are planning assumptions; the pilot starts only after ethics approval.
 \toprl
 \textbf{Today} & Working prototype: every role, Arabic and English, tested on every build.\\
 \midrule
-\textbf{Days 1–30} & Sign and submit: the clinical co-lead signs the words; Arabic review; ethics filed.\\
+\textbf{Days 1–30} & Sign and submit: a licensed clinical lead signs the words; Arabic review; ethics filed.\\
 \midrule
 \textbf{Days 31–60} & Connect in test: Malaffi and M42 test links; UAE hosting; live model test.\\
 \midrule
@@ -1266,7 +1314,7 @@ pnpm cf:dev                           # Cloudflare version with live rooms: :878
 \toprl
 \code{MODEL\_BASE\_URL}, \code{MODEL\_NAME}, \code{MODEL\_API\_KEY}, \code{MODEL\_REASONING\_EFFORT} & First model, any OpenAI-compatible endpoint\\
 \midrule
-The same with the prefix \code{FALLBACK\_} & Fallback model, used only if the first fails\\
+The same with the prefix \code{FALLBACK\_} & Fallback model, used only if the first fails, and never for text a family types\\
 \midrule
 \code{MODEL\_OFF=1} & Switch AI off; every feature uses its rule fallback\\
 \bottomrule
@@ -1294,7 +1342,7 @@ The same with the prefix \code{FALLBACK\_} & Fallback model, used only if the fi
 \begin{xltabular}{\textwidth}{@{}P{2.6cm}L@{}}
 \caption{Third-party software and services}\\
 \toprl
-MIT & Next.js 16.4.3, React 19.3.1, Radix UI, shadcn/ui, Konsta UI, Motion, Zod, Recharts, TanStack Table, dnd-kit, Sonner, Vaul, \code{@noble/hashes}, Tailwind CSS; Vitest and fast-check for tests\\
+MIT & Next.js 16.4.6, React 19.3.1, Radix UI, shadcn/ui, Konsta UI, Motion, Zod, Recharts, TanStack Table, dnd-kit, Sonner, Vaul, \code{@noble/hashes}, Tailwind CSS; Vitest and fast-check for tests\\
 \midrule
 ISC & Lucide icons\\
 \midrule
