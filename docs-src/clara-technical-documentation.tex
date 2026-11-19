@@ -94,7 +94,7 @@
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\headrule}{{\color{rule}\hrule width\headwidth height\headrulewidth}}
 \fancyhead[L]{\footnotesize\color{muted}Clara · Technical documentation}
-\fancyhead[R]{\footnotesize\color{muted}Version 1.3 · 19 November 2026}
+\fancyhead[R]{\footnotesize\color{muted}Version 1.4 · 19 November 2026}
 \fancyfoot[L]{\footnotesize\color{muted}Future Health Digital Innovation Challenge · Problem Statement 03 · Team parallelparadox}
 \fancyfoot[R]{\footnotesize\color{muted}Page \thepage\ of \pageref*{LastPage}}
 \fancypagestyle{plain}{}
@@ -149,8 +149,8 @@
 \color{muted}Challenge & Future Health Digital Innovation Challenge 2026, Department of Health Abu Dhabi\\
 \color{muted}Problem statement & 03 · Understanding and Reducing Inherited Disease Risk\\
 \color{muted}Team & parallelparadox\\
-\color{muted}Version & 1.3, 19 November 2026\\
-\color{muted}Source & branch \code{v1-production-on-main}, commit \code{a167cc4} (the deployed build)\\
+\color{muted}Version & 1.4, 19 November 2026\\
+\color{muted}Source & branch \code{v1-production-on-main}, commit \code{8b2bb18} (the deployed build)\\
 \color{muted}Prototype & \link{\proto/en}{clara.q7m4v2k9orbit.workers.dev}\\
 \color{muted}Project page & \link{https://praveenashukla.github.io/clara/}{praveenashukla.github.io/clara}\\
 \end{tabular}
@@ -182,11 +182,11 @@ sources listed under References.
 \toprl
 Document & Clara technical documentation\\
 \midrule
-Version & 1.3\\
+Version & 1.4\\
 \midrule
-Date & 19 November 2026 (1.2 and 1.1: 18 November; 1.0: 15 November 2026)\\
+Date & 19 November 2026 (1.3: earlier on 19 November; 1.2 and 1.1: 18 November; 1.0: 15 November 2026)\\
 \midrule
-Source & \code{v1-production-on-main} at commit \code{a167cc4}, the build deployed at \code{clara.q7m4v2k9orbit.workers.dev}. Tests, sentence count, held-out evaluation, UAE standards map, model roles and the 19 November changes all checked at this commit; sections not touched since 1.0 describe behaviour unchanged since commit \code{20608c0}\\
+Source & \code{v1-production-on-main} at commit \code{8b2bb18}, the build deployed at \code{clara.q7m4v2k9orbit.workers.dev}. Tests, sentence count, held-out evaluation, UAE standards map, model roles and the 19 November changes all checked at this commit; sections not touched since 1.0 describe behaviour unchanged since commit \code{20608c0}\\
 \midrule
 Authors & Team parallelparadox: Praveen Anilkumar Shukla, Noel Thomas, Alaa Mohamed Elsayed Abdelghany Alam, Pradeep. Based on the technical brief written by Noel Thomas.\\
 \midrule
@@ -252,11 +252,11 @@ Two rules shaped everything:
 
 {
 \begin{xltabular}{\textwidth}{@{}P{2.6cm}L@{}}
-\caption{Clara in figures (commit \code{a167cc4}, 19 November 2026)}\\
+\caption{Clara in figures (commit \code{8b2bb18}, 19 November 2026)}\\
 \toprl
 \textbf{18 of 22} & questions that need a person reached one after fixes made for those questions (12 of 22 when the questions were new), on 60 questions written by a separate AI agent before it saw Clara's rules, run live on K2; not real people (section~\ref{sec:heldout})\\
 \midrule
-\textbf{953} & automated tests, all run and passing on 19 November: 733 unit and property (1 skipped), 220 end-to-end in English and Arabic\\
+\textbf{1,053} & automated tests, all run and passing on 19 November: 805 unit and property (1 skipped), 248 end-to-end in English and Arabic\\
 \midrule
 \textbf{0} & disclosures between spouses across 2,000 random cases\\
 \midrule
@@ -266,9 +266,9 @@ Two rules shaped everything:
 \midrule
 \textbf{28 of 32} & points of Statement 03 built and tested; the other 4 wait on people or partners (section~\ref{sec:req})\\
 \midrule
-\textbf{0 of 898} & fixed sentences signed so far (781 that families read in the app, 117 study texts); all are drafts awaiting a clinician and an Emirati Arabic reviewer\\
+\textbf{0 of 940} & fixed sentences signed so far (823 that families read in the app, 117 study texts); all are drafts awaiting a clinician and an Emirati Arabic reviewer\\
 \midrule
-\textbf{9 of 28} & clauses of DoH Abu Dhabi's own standards built today; 15 partly, 4 not yet (32 UAE clauses in all: 10 built, 17 partly, 5 not yet)\\
+\textbf{9 of 28} & clauses of DoH Abu Dhabi's own standards built today; 17 partly, 2 not yet (32 UAE clauses in all: 10 built, 19 partly, 3 not yet)\\
 \bottomrule
 \end{xltabular}}
 
@@ -360,13 +360,16 @@ Premarital Screening Standard (DoH/STD/PSS/V3, 16 clauses), the Standard for the
 Individuals with Genetic Variants Detected through the Emirati Genome Program (4), the Standard for the Provision of
 Preconception Care (1) and the Responsible Artificial Intelligence (AI) Standard (7). From other UAE authorities: the
 Dubai Health Authority's Standards for Premarital Screening Services (1), Federal Decree-Law No.~49 of 2023 on the human
-genome (2) and Federal Law No.~2 of 2019 on ICT in health (1). Of the 32, 10 are built, 17 are partly met and 5 are not
-yet met, each with its reason. DoH Abu Dhabi's own four standards hold 28 of these clauses: 9 built, 15 partly, 4 not
+genome (2) and Federal Law No.~2 of 2019 on ICT in health (1). Of the 32, 10 are built, 19 are partly met and 3 are not
+yet met, each with its reason. DoH Abu Dhabi's own four standards hold 28 of these clauses: 9 built, 17 partly, 2 not
 yet, which is what the landing page counts. On 19 November four Premarital Screening Standard clauses moved from built
 to partly, because Clara covers only part of each, and five Responsible AI clauses Clara does not yet meet were added:
 monitoring the live AI after deployment, validation on real questions, AI compute in the UAE, traceability logs of
-what Ask was asked and answered, and clinical validation of the AI's data. ICT Law Art.~13 is a gap because K2 is
-reached through Singapore.
+what Ask was asked and answered, and clinical validation of the AI's data. Later that day two clauses moved from not yet
+to partly: the signed declaration that each spouse was told their result (Premarital Screening Standard 3.3.12.3) and
+live monitoring of the AI after deployment (Responsible AI 3.1.2.1.4). The two DoH clauses still not met are AI compute
+in the UAE (3.1.4.5.1) and data clinically validated by experts (3.2.3.1.1); neither can be closed in code. ICT Law
+Art.~13 is a gap because K2 is reached through Singapore.
 
 \subsection{Design principles}
 
@@ -497,7 +500,7 @@ staff seats do hold the case on the device; see section 4.5.)
   \node[box,text width=3.4cm,right=11mm of wk,yshift=27mm] (st) {\textbf{Static pages}\\ Next.js export, \code{out/}\\ \code{/en/…} and \code{/ar/…}};
   \node[ok,text width=3.6cm,below=4mm of st] (ro) {\textbf{Rooms} Durable Object\\ \code{lib/room}, \code{cloudflare/rooms.ts}};
   \node[core,text width=3.6cm,below=4mm of ro] (co) {\textbf{Case engine} \code{core/}\\ rules · projections\\ audit ledger · referrals};
-  \node[ai,text width=3.6cm,below=4mm of co] (ai) {\textbf{AI gateway} \code{/api/ai}\\ \code{lib/ai}, 9 fixed tasks};
+  \node[ai,text width=3.6cm,below=4mm of co] (ai) {\textbf{AI gateway} \code{/api/ai}\\ \code{lib/ai}, 10 fixed tasks};
   \node[box,text width=3.6cm,below=4mm of ai] (rv) {\textbf{Reviews} Durable Object\\ team usability check};
 
   % external
@@ -564,7 +567,7 @@ Validation and crypto & Zod; \code{@noble/hashes} (SHA-256, HMAC)\\
 \midrule
 Hosting & Cloudflare Workers, Durable Objects with SQLite-backed storage; Docker image for a Node server\\
 \midrule
-Models & K2 Think Horizon (MBZUAI) first for every task; an OpenAI model (US) as backup when K2 fails or its reply fails Clara's checks; the phone names the model's role, the privacy page the model; any OpenAI-compatible endpoint\\
+Models & K2 Think Horizon (MBZUAI) first for every task; an OpenAI model (US) as backup only when K2 does not answer or its reply cannot be read; the phone names the model's role, the privacy page the model; any OpenAI-compatible endpoint\\
 \midrule
 Testing & Vitest and fast-check (unit and property), Playwright (end-to-end)\\
 \midrule
@@ -786,10 +789,10 @@ Everything else & Static pages in Arabic and English.\\
 
 \subsection{Word library}
 
-Every fixed sentence a family reads comes from a library of 898 sentences (``atoms''; 781 that families read in the app, including 77 feminine Arabic forms used when the specialist is a woman, and 117 for the E1 study: 99 session texts and 18 form texts), each in English and formal
+Every fixed sentence a family reads comes from a library of 940 sentences (``atoms''; 823 that families read in the app, including the feminine Arabic forms used when the specialist is a woman, and 117 for the E1 study: 99 session texts and 18 form texts), each in English and formal
 Arabic, versioned and hashed. A model never writes or changes an atom; Ask Clara's written answers (section on Ask
 below) are composed from atoms and labelled as AI-written. Each atom records whether it is a draft or signed, and the
-hash of the exact signed text, so an edit after signing shows up. Today all 898 are drafts awaiting a clinician and an Emirati
+hash of the exact signed text, so an edit after signing shows up. Today all 940 are drafts awaiting a clinician and an Emirati
 Arabic reviewer.
 
 Arabic was designed alongside English: IBM Plex Sans Arabic next to IBM Plex Sans, Markazi Text for headings, its own
@@ -814,7 +817,7 @@ glance at the calendar gives nothing away. Status: draft.
 \section{Responsible AI}
 % =====================================================================
 
-Nothing described so far needs a model. Models help with nine narrow jobs, every answer is checked, and anything
+Nothing described so far needs a model. Models help with ten narrow jobs, every answer is checked, and anything
 doubtful goes to a person. With no model configured, or with \code{MODEL\_OFF=1}, every task falls back to fixed rules
 and the product still works end to end.
 
@@ -843,6 +846,8 @@ Arabic check & Flags drafts that are too formal, too long, drift in meaning or s
 Care agent & Proposes the next step from 7 tools (its free-text reason is not shown) & Release a result (refused by policy), or act without the specialist & Rule-driven steps\\
 \midrule
 Shadow test & Writes freely on the 28 fixed eval questions, for the Evidence page only & Reach a family & Not run\\
+\midrule
+Meaning check & Checks a written answer against the facts it cites: does it follow them, keep each claim's qualifier, and answer the question & Pass an answer on a no, an error or an unreadable reply (it fails closed) & The written answer is not shown; goes to the counsellor\\
 \bottomrule
 \end{xltabular}}
 
@@ -924,11 +929,30 @@ counts. The hosted model id is \code{IFM/K2-Horizon-375B-A23B}. The API response
 
 \textbf{K2 first, OpenAI as backup, for every task.} Ask Clara questions, teach-back answers, Rehearsal and
 the clinician tools all go to K2 first, and to an OpenAI model in the United States (\code{gpt-6.1-terra}) only if K2
-fails, times out, or its reply is unreadable or fails Clara's checks (\file{lib/model-core.ts}). A unit test (\file{tests/lib/fallback.test.ts}) checks that K2 is asked first and named, and that the
+fails, times out, or sends an unreadable reply (\file{lib/model-core.ts}). A K2 written answer that fails Clara's checks
+goes to a person, not to the backup (\file{tests/lib/written.test.ts}). A unit test (\file{tests/lib/fallback.test.ts}) checks that K2 is asked first and named, and that the
 fallback is used and named when K2 fails. Phone numbers, Emirates IDs, emails and other runs of six or more digits are
 removed before sending; personal names are not. The lab report reaches the model without names or sample codes, and
 the session brief holds no names. Each spouse can switch the AI off (``Answer without AI''); it stays off in that
 browser until switched back on, and \code{MODEL\_OFF=1} switches it off for a whole deployment.
+
+\textbf{After the word checks, a meaning check.} A written answer that passes the word checks goes to one more model
+call (task \code{meaning}), which sees only the question, the answer and the facts it cites, and says whether the answer
+follows those facts, keeps each claim's qualifier (``usually'', ``in each pregnancy'') and answers the question. Any no,
+error or unreadable reply sends the question to a person; a second model is never asked to say yes. Checked live on K2
+on 19 November: a correct short answer passed; one that dropped ``usually'' and one that added an iron-tablets claim were
+refused.
+
+\textbf{Held for a clinician, if the clinic wants.} The specialist console can switch written answers to ``hold'': the
+family is told a person will reply, and the console queues the topic, the cited facts and the text, never the words the
+family typed. Once a specialist signs an answer, Clara serves it by rule to a later question on the same topic, with no
+model call (\file{lib/ai/library.ts}). A pilot build always holds.
+
+\textbf{Live monitoring and operations.} Every Ask reply is counted by its route only (rules, main model, backup, refused
+by the checks, failed), never the text or who asked, for 30 days, with five review triggers, on the Evidence page
+(\file{lib/monitor/}). Counts so far are demo and test traffic. The programme can switch the AI off for everyone behind
+the team code; rate limits persist; a daily cap of 2,000 model calls applies, after which Ask answers by rules only; and
+stored data is deleted on a schedule (review answers on 31 December 2026).
 
 \textbf{Neither model is hosted in the UAE.} K2's public API (\code{api.ifm.ai}) resolves to Amazon Web Services in
 Singapore (checked by DNS on 18 November 2026), and the backup is in the United States. The UAE's ICT Health Law
@@ -1210,8 +1234,8 @@ first and the gap was withheld; the page says so rather than show it.
 \section{Testing and verification}
 % =====================================================================
 
-There are 953 automated tests, all run and passing on 19 November at commit \code{a167cc4}: 733 unit and property
-tests (Vitest, fast-check; 1 skipped; 53 files) and 220 end-to-end tests (Playwright, full suite) on a production build, in English and Arabic, on a 375-pixel phone screen. A property test
+There are 1,053 automated tests, all run and passing on 19 November at commit \code{8b2bb18}, the deployed one: 805 unit and property
+tests (Vitest, fast-check; 1 skipped; 59 files) and 248 end-to-end tests (Playwright, full suite) on a production build, in English and Arabic, on a 375-pixel phone screen. A property test
 states a rule and checks it on thousands of generated cases. Run counts are written once in \file{lib/evidence.ts}, so
 no page can claim more than the tests check.
 
@@ -1234,8 +1258,8 @@ Any one-byte edit to the audit ledger is detected & 2,000 & every one\\
 \begin{xltabular}{\textwidth}{@{}P{7.4cm}L@{}}
 \caption{How to reproduce}\\
 \toprl
-\code{pnpm test} & 733 unit and property tests\\
-\code{pnpm e2e} & 220 end-to-end tests against a production build\\
+\code{pnpm test} & 805 unit and property tests\\
+\code{pnpm e2e} & 248 end-to-end tests against a production build\\
 \code{pnpm cf:e2e} & End-to-end tests against the Cloudflare Worker\\
 \code{pnpm typecheck \&\& pnpm lint} & Types and lint\\
 \code{pnpm exec vitest run tests/lib/ai-eval.test.ts} & The 28-question Ask Clara evaluation, with \code{AI\_EVAL\_URL} set to a running server\\
@@ -1259,7 +1283,7 @@ What a reviewer should weigh: everything below is known and stated on screen in 
 \midrule
 Synthetic data and simulated partners only & Connect UAE PASS, M42 and Malaffi in a pilot, after a data protection impact assessment\\
 \midrule
-All 898 sentences and the condition cards unsigned; AI-written Ask answers unreviewed & Review and signing by a licensed clinical lead (not yet confirmed) and an Emirati Arabic reviewer\\
+All 940 sentences and the condition cards unsigned; AI-written Ask answers unreviewed & Review and signing by a licensed clinical lead (not yet confirmed) and an Emirati Arabic reviewer\\
 \midrule
 Neither model is UAE-hosted (K2 via AWS Singapore; OpenAI in the US), so ICT Law Art.~13 and Responsible AI 3.1.4.5.1 are gaps & A UAE-hosted K2 endpoint and a UAE-hosted backup or none (one setting each), or the K2-Think 32B fine-tune on GPUs in the UAE\\
 \midrule
