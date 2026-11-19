@@ -678,6 +678,26 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
   <div class="card"><b>Then</b><p>Grow centre by centre. One reviewed word library serves every centre.</p></div>
 </div>
 
+<h3 id="residency">Keeping it in the UAE: today, and in the pilot</h3>
+<p>Clara runs on synthetic data only, and today typed text leaves the UAE. A pilot moves every part to a UAE host, with no model outside the UAE. Nothing below is agreed, contracted or measured. The host is the operator&rsquo;s choice, for example a UAE cloud region; Clara&rsquo;s own plan lists Azure UAE North.</p>
+<div class="tablewrap"><table class="res">
+<thead><tr><th>Today</th><th>In the pilot (proposed)</th></tr></thead>
+<tbody>
+<tr><td><b>Pages and server.</b> Cloudflare&rsquo;s network, free plan (<code>wrangler.jsonc</code>). Rooms, review answers, AI counts and the programme switch sit in Durable Objects with a Middle East placement hint, not a UAE guarantee.</td><td>The same server as one container (<code>Dockerfile</code>, no database) on the UAE host. The case rules do not change.</td></tr>
+<tr><td><b>Main model.</b> K2 Think Horizon at <code>api.ifm.ai</code>, which resolves to AWS in Singapore (DNS, 18 Nov 2026).</td><td>K2 served from the UAE: a UAE-hosted K2 endpoint, or our K2-Think 32B fine-tune on GPUs in the UAE once it passes its gate. One setting: <code>MODEL_BASE_URL</code>.</td></tr>
+<tr><td><b>Backup model.</b> OpenAI in the US, only when K2 does not answer.</td><td>Another UAE-hosted endpoint, or none. With <code>FALLBACK_MODEL_BASE_URL</code> unset, no backup is asked; Ask uses its rules or a person.</td></tr>
+<tr><td><b>Kill switch.</b> The programme switch (team code), <code>MODEL_OFF=1</code> for a deployment, and each spouse&rsquo;s &ldquo;Answer without AI&rdquo;. Off means no model is asked.</td><td>The same switches. Proposed, not built: a review trigger past its limit turns the programme switch off by itself and tells the clinical lead; the switch needs a named person&rsquo;s sign-in.</td></tr>
+<tr><td><b>Monitoring.</b> Hourly counts by route only, 30 days, five review triggers read on request. Nothing is sent anywhere.</td><td>The same counts, kept on the UAE host. They hold no text and no caller. The container keeps counts in memory, so it needs storage on that host.</td></tr>
+<tr><td><b>Stores and deletion.</b> Rooms deleted after 3 hours idle, 12 hours at most; usability answers on 31 December 2026; held written answers stored per browser.</td><td>The same deletion rules on the UAE host. Held answers move to a shared store there with a clinician sign-in. Retention for real data is set with the operator.</td></tr>
+<tr><td><b>Outbound calls.</b> The model endpoints, and UAE PASS staging for the test sign-in.</td><td>Only the UAE-hosted model and the national services the programme uses. A blocking allow-list is not built.</td></tr>
+</tbody>
+</table></div>
+<p><b>Not done yet.</b> No UAE host is chosen. No UAE-hosted K2 endpoint is in place. The fine-tune has no results yet; it ships only with 0 unsafe answers and at least 24 of 28, on the in-house and unseen questions. Nothing has run or been load-tested on a UAE host. Until then, ICT Health Law Art.&nbsp;13 and Responsible AI 3.1.4.5.1 stay marked as gaps.</p>
+<style>
+#pilot table.res{min-width:0; table-layout:fixed}
+#pilot table.res td:first-child,#pilot table.res th:first-child{padding-right:14px}
+</style>
+
 <h3>The 90 days</h3>
 <p><b>Cohort.</b> Every tested couple at one SEHA centre, plus the genetics clinic that receives its at-risk couples. One centre may see only a handful of at-risk couples in 90 days, so we ask DoH for real monthly volumes per centre before the cohort is fixed.</p>
 <dl class="ref">

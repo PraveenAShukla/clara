@@ -1052,7 +1052,7 @@ ever scores above zero unsafe.
 comes first.
 \end{caution}
 
-\subsection{Fine-tuning}
+\subsection{Fine-tuning}\label{sec:finetune}
 
 We are fine-tuning K2-Think 32B (LLM360, open weights) with LoRA, which trains a small set of added weights, on three
 NVIDIA RTX 5000 Ada GPUs. There are no results yet. It ships only with 0 unsafe and at least 24 of 28, here and on
@@ -1342,6 +1342,41 @@ ranges are planning assumptions; the pilot starts only after ethics approval.
         centre, uses the programme's existing rails, and grows centre by centre.
   \item \textbf{Never measured.} Marriages, pregnancies or options chosen.
 \end{itemize}
+
+\subsection{UAE data residency: today and in the pilot (proposed)}\label{sec:residency}
+
+Clara runs on synthetic data only, and today typed text leaves the UAE. A pilot moves every part to a UAE host, with no
+model outside the UAE. Nothing here is agreed, contracted or measured. The host is the operator's choice, for example a
+UAE cloud region; Clara's own plan lists Azure UAE North (\file{lib/sandbox-copy.ts}, planned).
+
+{\small
+\begin{xltabular}{\textwidth}{@{}P{2.4cm}LL@{}}
+\caption{Hosting today and in a pilot}\\
+\toprl
+\thead{Part} & \thead{Today} & \thead{In the pilot (proposed)}\\
+\midrule
+Pages and server & Cloudflare's network, free plan (\file{wrangler.jsonc}). Rooms, review answers, AI counts and the programme switch sit in Durable Objects with a Middle East placement hint (\code{locationHint: "me"}), not a UAE guarantee & The same server as one container (\file{Dockerfile}, no database) on the UAE host. \file{wrangler.containers.jsonc} runs that image on Cloudflare; on a UAE host it runs as it is. The case rules do not change\\
+\midrule
+Main model & K2 Think Horizon at \code{api.ifm.ai}, which resolves to AWS in Singapore (DNS, 18 November 2026) & K2 served from the UAE: a UAE-hosted K2 endpoint, or the K2-Think 32B fine-tune (Section~\ref{sec:finetune}) on GPUs in the UAE once it passes its gate. One setting: \code{MODEL\_BASE\_URL}, with \code{MODEL\_NAME} and the \code{MODEL\_API\_KEY} secret\\
+\midrule
+Backup model & OpenAI in the US (\code{gpt-6.1-terra}), only when K2 does not answer, is too slow or sends an unreadable reply & Another UAE-hosted endpoint, or none. With \code{FALLBACK\_MODEL\_BASE\_URL} unset, no backup is asked (\file{lib/model-core.ts}); Ask uses its rules or a person\\
+\midrule
+Kill switch & The programme switch on \code{/en/programme}, behind the team code; \code{MODEL\_OFF=1} for a whole deployment; each spouse's ``Answer without AI''. Off means no model is asked, and Ask answers from approved words & The same switches; \code{MODEL\_OFF=1} until the UAE endpoint is checked. Proposed, not built: a review trigger past its limit turns the programme switch off by itself and tells the clinical lead; the switch needs a named person's sign-in\\
+\midrule
+Monitoring & Hourly counts by route only, 30 days, five review triggers read on request (\file{lib/monitor/core.ts}). Nothing is sent anywhere & The same counts, kept on the UAE host. They hold no text and no caller. The container keeps counts in memory (\file{lib/monitor/memory.ts}), so it needs storage on that host\\
+\midrule
+Stores and deletion & Rooms deleted after 3 hours idle, 12 hours at most; usability answers on 31 December 2026; per-caller counts within 30 minutes; held written answers stored per browser & The same deletion rules on the UAE host. Held answers move to a shared store there, with a clinician sign-in. Retention for real data is set with the operator and the data protection impact assessment\\
+\midrule
+Outbound calls & The two model endpoints, and UAE PASS staging for the test sign-in & Only the UAE-hosted model and the national services the programme uses. A blocking allow-list for outbound calls is not built\\
+\midrule
+Daily cap & \code{MODEL\_DAILY\_CAP}, 2,000 model calls a day; past it, Ask answers by rules & Set with the operator for the pilot's volume\\
+\bottomrule
+\end{xltabular}}
+
+\textbf{Not done yet.} No UAE host is chosen. No UAE-hosted K2 endpoint is in place. The fine-tune has no results yet.
+Nothing has run or been load-tested on a UAE host. Until then, ICT Health Law Art.~13 and Responsible AI 3.1.4.5.1 stay
+marked as gaps in the standards map (\file{content/doh-standard.ts}), and ADHICS V2 CS~1.2(2) asks for UAE cloud
+hosting too.
 
 \subsection{Cohort, volume, thresholds and stop rule (proposed)}
 
