@@ -284,7 +284,7 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
   <div class="stat"><b>0</b><span>leaks between spouses in 2,000 random cases</span></div>
   <div class="stat"><b>18/22</b><span>AI-written questions that need a person reached one, live on K2, after fixes made for them (12/22 when new)</span></div>
   <div class="stat"><b>2,000</b><span>random edits to the audit record, every one caught</span></div>
-  <div class="stat"><b>0/940</b><span>fixed sentences signed so far; all are drafts</span></div>
+  <div class="stat"><b>0/1,000</b><span>fixed sentences signed so far; all are drafts</span></div>
   <div class="stat"><b>28/32</b><span>points of Statement 03 built and tested</span></div>
 </div>
 </div>
@@ -368,7 +368,7 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
 <tr><td>Audit record</td><td><code>core/audit.ts</code>, <code>core/hash.ts</code></td><td>Hash chain of who saw what kind of thing</td></tr>
 <tr><td>Programme figures</td><td><code>core/programme.ts</code>, <code>core/release.ts</code></td><td>Measures, released with differential privacy</td></tr>
 <tr><td>Live rooms</td><td><code>lib/room/</code>, <code>cloudflare/rooms.ts</code></td><td>One case on several devices</td></tr>
-<tr><td>Word library</td><td><code>content/</code></td><td>940 fixed sentences, English and formal Arabic (823 that families read in the app, 117 study texts)</td></tr>
+<tr><td>Word library</td><td><code>content/</code></td><td>1,000 fixed sentences, English and formal Arabic (883 that families read in the app, 117 study texts)</td></tr>
 <tr><td>AI gateway</td><td><code>lib/ai/</code></td><td>Ten narrow tasks, checked answers</td></tr>
 </tbody></table></div>
 </div></details>
@@ -475,12 +475,12 @@ if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
 <section class="s" id="words" style="--c:var(--amber); --cs:var(--ambersoft)">
 <span class="tag"><b>08</b>Words</span>
 <h2>Every fixed sentence a family reads is written by people, to be signed by clinicians</h2>
-<p class="lede">940 fixed sentences, each in English and formal Arabic, versioned and hashed: 823 that families read in the app (including the feminine forms used when the specialist is a woman) and 117 study texts. A model never writes one of these; the only model-written words a family can see are Ask Clara’s short, checked answers, labelled as such. Today all 940 are drafts awaiting a clinician and an Emirati Arabic reviewer.</p>
+<p class="lede">1,000 fixed sentences, each in English and formal Arabic, versioned and hashed: 883 that families read in the app (including the feminine forms used when the specialist is a woman) and 117 study texts. A model never writes one of these; the only model-written words a family can see are Ask Clara’s short, checked answers, labelled as such. Today all 1,000 are drafts awaiting a clinician and an Emirati Arabic reviewer.</p>
 <div class="fig">
   <div class="fig-title">One real sentence from the library</div>
   <div class="atom" style="margin-top:10px"><div class="en">Appointment</div><div class="arw">موعد</div><small><span>id ics.summary</span><span class="pill">draft</span><span>the only text in a spouse’s calendar entry, so a glance at the calendar gives nothing away</span></small></div>
 </div>
-<p><b>See how signing will work.</b> The <a href="https://clara.q7m4v2k9orbit.workers.dev/en/console#signoff">sign-off workbench</a> on the specialist console is a demo with two reviewer roles: a clinical geneticist and an Emirati Arabic reviewer. Each approval binds the SHA-256 hash of the exact English and Arabic text. Change one character and the sentence reads “changed since signing” and needs both reviewers again. The demo works on copies in your browser tab; the real library stays at 0 of 940 signed. A real signature needs a named, licensed clinician’s sign-in, which the prototype does not have yet.</p>
+<p><b>See how signing will work.</b> The <a href="https://clara.q7m4v2k9orbit.workers.dev/en/console#signoff">sign-off workbench</a> on the specialist console is a demo with two reviewer roles: a clinical geneticist and an Emirati Arabic reviewer. Each approval binds the SHA-256 hash of the exact English and Arabic text. Change one character and the sentence reads “changed since signing” and needs both reviewers again. The demo works on copies in your browser tab; the real library stays at 0 of 1,000 signed. A real signature needs a named, licensed clinician’s sign-in, which the prototype does not have yet.</p>
 <details class="deep"><summary>Engineering detail <span>· signing, Arabic design</span></summary><div>
 <p>Each sentence (“atom”) records whether it is a draft or signed, and the hash of the exact signed text, so an edit after signing shows up. Arabic was designed alongside English: IBM Plex Sans Arabic next to IBM Plex Sans, Markazi Text for headings, its own spacing and a right-to-left layout. Every chance is written in words and drawn as a picture.</p>
 </div></details>
@@ -642,7 +642,7 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 <span class="tag"><b>16</b>Not done</span>
 <h2>What a reviewer should weigh</h2>
 <ul>
-<li>Synthetic data and simulated partners only; all 940 fixed sentences, the condition cards and every AI-written answer unsigned; no clinical co-lead confirmed; thresholds not agreed with the Department of Health.</li>
+<li>Synthetic data and simulated partners only; all 1,000 fixed sentences, the condition cards and every AI-written answer unsigned; no clinical co-lead confirmed; thresholds not agreed with the Department of Health.</li>
 <li>Neither model is UAE-hosted: K2 is reached through AWS in Singapore and the backup is OpenAI in the US, so ICT Law Art. 13 and Responsible AI 3.1.4.5.1 are gaps until both are moved.</li>
 <li>The held-out questions were written by an AI agent, not real people, and no real user has tried Clara; 4 of 22 questions that need a person still get approved words only; the fine-tune has no results.</li>
 <li>Whether Clara improves understanding is untested until the study runs after ethics approval; effect sizes will be reported even if null. No usability session has been run yet.</li>
@@ -670,7 +670,7 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 
 <h3>Before the first couple</h3>
 <ol>
-<li><b>A licensed clinical lead signs the words.</b> Today 0 of 940 fixed sentences and none of the four condition cards are signed. An Emirati reviewer checks the Arabic.</li>
+<li><b>A licensed clinical lead signs the words.</b> Today 0 of 1,000 fixed sentences and none of the four condition cards are signed. An Emirati reviewer checks the Arabic.</li>
 <li><b>Ethics approval</b> for the comprehension study, with a data protection impact assessment.</li>
 <li><b>UAE hosting</b> for the model and for Clara’s pages, as DoH requires (Responsible AI Standard 3.1.4.5.1; ADHICS V2 CS 1.2(2)). Each model endpoint is one setting.</li>
 <li><b>A licensed operator and DoH app approval</b> (Digital Products Governance 3.2.4.1).</li>
@@ -771,6 +771,7 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
   <div class="card"><b>Not yet</b><p>No partner, clinical lead, signed sentence, ethics approval or real user. Models are outside the UAE. The switch has no named sign-in.</p></div>
 </div>
 <div class="callout"><b>Our ask.</b> One premarital centre, the genetics clinic it refers to and a clinical lead, for a 90-day pilot measuring understanding, time to counselling and the questions that need a person.</div>
+<div class="callout"><b>The one thing we need on day 1.</b> A named, licensed clinical geneticist who reviews and signs the core result sentences (what each result means, the chance per pregnancy, the options), with an Emirati Arabic reviewer. Everything else waits behind that signature, and nothing reaches a real family before it. Second, from M42 and Malaffi: their test environments, so the simulated lab report and referral become real messages; the referral is already valid FHIR R4.</div>
 </section>
 
 <section class="s" id="team" style="--c:var(--teal)">

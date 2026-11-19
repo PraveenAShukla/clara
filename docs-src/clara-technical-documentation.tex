@@ -150,7 +150,7 @@
 \color{muted}Problem statement & 03 · Understanding and Reducing Inherited Disease Risk\\
 \color{muted}Team & parallelparadox\\
 \color{muted}Version & 1.5, 19 November 2026\\
-\color{muted}Source & branch \code{v1-production-on-main}, commit \code{96a0581}\\
+\color{muted}Source & branch \code{v1-production-on-main}, commit \code{ffb0636}\\
 \color{muted}Prototype & \link{\proto/en}{clara.q7m4v2k9orbit.workers.dev}\\
 \color{muted}Project page & \link{https://praveenashukla.github.io/clara/}{praveenashukla.github.io/clara}\\
 \end{tabular}
@@ -214,7 +214,7 @@ Teach-back & A short check in which a spouse explains their result in their own 
 \midrule
 Audit ledger & A hash-chained record of who received what kind of information.\\
 \midrule
-Simulated & A stand-in for a real system (the M42 lab report, the Malaffi connection, the counsellor calendar, UAE PASS signing and the phones' UAE PASS), labelled ``Simulated'' on screen in every build.\\
+Simulated & A stand-in for a real system (the M42 lab report, the Malaffi connection, the counsellor calendar, UAE PASS signing and the phones' UAE PASS; the \code{/uaepass} sign-in itself is real, on UAE PASS staging), labelled ``Simulated'' on screen in every build.\\
 \bottomrule
 \end{xltabular}}
 
@@ -254,11 +254,11 @@ Two rules shaped everything:
 \begin{xltabular}{\textwidth}{@{}P{2.6cm}L@{}}
 \caption{Clara in figures (19 November 2026)}\\
 \toprl
-\textbf{18 of 22} & questions that need a person reached one after fixes made for those questions (12 of 22 when the questions were new), on 60 questions written by a separate AI agent before it saw Clara's rules, run live on K2; not real people (section~\ref{sec:heldout})\\
+\textbf{18 of 22} & questions that need a person reached one after fixes made for those questions (12 of 22 when the questions were new), on 60 questions written by a separate AI agent before it saw Clara's rules, run live on K2; not real people \mbox{(section~\ref{sec:heldout})}\\
 \midrule
 \textbf{1,138} & automated tests, all run and passing on 19 November: 870 unit and property, 268 end-to-end in English and Arabic\\
 \midrule
-\textbf{5 of 5} & referral kinds sent as FHIR R4 \code{ServiceRequest}s to a public FHIR server: 0 validation errors, stored, read back unchanged and deleted (section~\ref{sec:connect})\\
+\textbf{5 of 5} & referral kinds sent as FHIR R4 \code{ServiceRequest}s to a public FHIR server: 0 validation errors, stored, read back unchanged and deleted \mbox{(section~\ref{sec:connect})}\\
 \midrule
 \textbf{0} & disclosures between spouses across 2,000 random cases\\
 \midrule
@@ -266,9 +266,9 @@ Two rules shaped everything:
 \midrule
 \textbf{2,000 / 2,000} & random edits to the audit ledger detected\\
 \midrule
-\textbf{28 of 32} & points of Statement 03 built and tested; the other 4 wait on people or partners (section~\ref{sec:req})\\
+\textbf{28 of 32} & points of Statement 03 built and tested; the other 4 wait on people or partners \mbox{(section~\ref{sec:req})}\\
 \midrule
-\textbf{0 of 940} & fixed sentences signed so far (823 that families read in the app, 117 study texts); all are drafts awaiting a clinician and an Emirati Arabic reviewer\\
+\textbf{0 of 1,000} & fixed sentences signed so far (883 that families read in the app, 117 study texts); all are drafts awaiting a clinician and an Emirati Arabic reviewer\\
 \midrule
 \textbf{9 of 28} & clauses of DoH Abu Dhabi's own standards built today; 17 partly, 2 not yet (32 UAE clauses in all: 10 built, 19 partly, 3 not yet)\\
 \bottomrule
@@ -508,6 +508,7 @@ staff seats do hold the case on the device; see section 4.5.)
   % external
   \node[ai,text width=2.4cm,right=6mm of ai] (k2) {\textbf{K2 Think Horizon}\\ MBZUAI, first;\\ \mbox{OpenAI} (US)\\ if K2 fails\\ {\footnotesize strict JSON}};
   \node[mock,text width=2.4cm,right=6mm of ro] (mk) {\textbf{Simulated}\\ M42 · calendar\\ Malaffi link\\ UAE PASS signing};
+  \node[ok,text width=2.4cm,right=6mm of st] (up) {\textbf{Real, on staging}\\ UAE PASS sign-in\\ \code{/api/uaepass}};
 
   \draw[wire,<->] (clients.east) -- (wk.west);
   \draw[wire,->] (wk.east) -- ++(5mm,0) |- (st.west);
@@ -518,7 +519,7 @@ staff seats do hold the case on the device; see section 4.5.)
   \draw[wire,<->] (ai) -- (k2);
   \draw[wire,dashed,<->] (ro) -- (mk);
 \end{tikzpicture}
-\caption{Components of the hosted system. Solid lines are built; the dashed line goes to services labelled ``Simulated''. Not drawn: the \code{/uaepass} test page, which calls UAE PASS's real staging environment.}
+\caption{Components of the hosted system. Solid lines are built; the dashed line goes to services labelled ``Simulated''. The green box at top right is real: the Worker's \code{/api/uaepass} routes sign in with UAE PASS's real staging environment (tested end to end). UAE PASS \emph{signing} of the declaration is still simulated.}
 \end{figure}
 
 \subsection{Layers}
@@ -791,17 +792,17 @@ Everything else & Static pages in Arabic and English.\\
 
 \subsection{Word library}
 
-Every fixed sentence a family reads comes from a library of 940 sentences (``atoms''; 823 that families read in the app, including the feminine Arabic forms used when the specialist is a woman, and 117 for the E1 study: 99 session texts and 18 form texts), each in English and formal
-Arabic, versioned and hashed. A model never writes or changes an atom; Ask Clara's written answers (section on Ask
+Every fixed sentence a family reads comes from a library of 1,000 sentences (``atoms''; 883 that families read in the app, including the feminine Arabic forms used when the specialist is a woman, and 117 for the E1 study: 99 session texts and 18 form texts), each in English and formal
+Arabic, versioned and hashed. A model never writes or changes an atom; Ask Clara's written answers (see the section on Ask Clara
 below) are composed from atoms and labelled as AI-written. Each atom records whether it is a draft or signed, and the
-hash of the exact signed text, so an edit after signing shows up. Today all 940 are drafts awaiting a clinician and an Emirati
+hash of the exact signed text, so an edit after signing shows up. Today all 1,000 are drafts awaiting a clinician and an Emirati
 Arabic reviewer.
 
 \textbf{Sign-off workbench (demo, 19 November).} The console shows how signing will work
 (\code{/en/console\#signoff}, \file{lib/signoff-demo.ts}). Two reviewer roles approve a draft sentence. Each approval
 binds the SHA-256 of the exact English and Arabic text, and a one-character edit flips it to ``changed since signing''
 through the same \code{atomState} the library uses. It is a demonstration held in the browser tab only: the library
-stays 0 of 940 signed.
+stays 0 of 1,000 signed.
 
 Arabic was designed alongside English: IBM Plex Sans Arabic next to IBM Plex Sans, Markazi Text for headings, its own
 spacing and a right-to-left layout. Every chance is written in words and drawn as a picture. When a spouse's
@@ -1153,7 +1154,7 @@ Pilot (proposed) & Hosted in the UAE, with models hosted in the UAE; the Departm
 No special hardware is needed: everything runs in an ordinary browser. Clara explains and connects; it does not
 measure, diagnose or treat. M42, Malaffi and UAE PASS signing appear by name only, each labelled ``Simulated'', in
 Clara's own design, never a real logo. The one real connection is the \code{/uaepass} test page, on UAE PASS staging
-(section~\ref{sec:connect}).
+\mbox{(section~\ref{sec:connect})}.
 
 % =====================================================================
 \section{Care pathway and referrals}
@@ -1329,7 +1330,7 @@ What a reviewer should weigh: everything below is known and stated on screen in 
 \midrule
 Synthetic data only; M42, the Malaffi connection and UAE PASS signing simulated; the UAE PASS sign-in runs on staging only & Connect M42 and Malaffi, and the operator's own UAE PASS onboarding, in a pilot, after a data protection impact assessment\\
 \midrule
-All 940 sentences and the condition cards unsigned; AI-written Ask answers unreviewed & Review and signing by a licensed clinical lead (not yet confirmed) and an Emirati Arabic reviewer\\
+All 1,000 sentences and the condition cards unsigned; AI-written Ask answers unreviewed & Review and signing by a licensed clinical lead (not yet confirmed) and an Emirati Arabic reviewer\\
 \midrule
 Neither model is UAE-hosted (K2 via AWS Singapore; OpenAI in the US), so ICT Law Art.~13 and Responsible AI 3.1.4.5.1 are gaps & A UAE-hosted K2 endpoint and a UAE-hosted backup or none (one setting each), or the K2-Think 32B fine-tune on GPUs in the UAE\\
 \midrule
@@ -1450,6 +1451,10 @@ hosting too.
 \textbf{Our ask.} One premarital centre, the genetics clinic it refers to and a clinical lead, for a 90-day pilot
 measuring understanding, time to counselling and the questions that need a person.
 \end{note}
+
+\textbf{The one thing we need on day 1.} A named, licensed clinical geneticist who reviews and signs the core result sentences (what each kind of result means, the chance per pregnancy, the options), with an Emirati Arabic reviewer. Everything else in the pilot plan waits behind that signature, and nothing reaches a real family before it. Second, from M42 and Malaffi: access to their test environments, so the simulated lab report and referral become real messages; the referral is already valid FHIR R4.
+
+\textbf{Measuring the at-risk path.} One centre sees only a handful of at-risk couples in 90 days. The routine and carrier paths carry the comprehension measure; the at-risk path is measured across the genetics clinic that receives the centre's couples, or a second centre, set with the clinical lead before day 1.
 
 % =====================================================================
 \section{Team}
