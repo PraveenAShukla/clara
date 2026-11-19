@@ -280,7 +280,7 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
   </div>
 </div>
 <div class="stats">
-  <div class="stat"><b>1,138</b><span>automated tests, all run and passing on 19 Nov (870 unit and property, 268 end-to-end)</span></div>
+  <div class="stat"><b>1,249</b><span>automated tests, all run and passing on 19 Nov (974 unit and property, 275 end-to-end)</span></div>
   <div class="stat"><b>0</b><span>leaks between spouses in 2,000 random cases</span></div>
   <div class="stat"><b>18/22</b><span>AI-written questions that need a person reached one, live on K2, after fixes made for them (12/22 when new)</span></div>
   <div class="stat"><b>2,000</b><span>random edits to the audit record, every one caught</span></div>
@@ -320,7 +320,7 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
   <div class="card"><b>Check the claims</b><p>Every clause mapped to a screen and a test; the privacy checks run in your browser. <code>/en/evidence</code> · <code>/en/safeguards</code></p></div>
 </div>
 <details class="deep"><summary>What the evidence page counts <span>· 32 points</span></summary><div>
-<p>The map covers 32 points of Statement 03: 28 built and tested, 2 waiting for a clinician’s sign-off, 1 waiting for a partner service (simulated today), and 1 for the comprehension study, which needs ethics approval. A test fails if the page ever names a test that does not exist. Appendix A lists every page.</p>
+<p>The map covers 32 points of Statement 03: 28 built and tested, 2 waiting for a clinician’s sign-off, 1 waiting for a partner service (a prototype stand-in today), and 1 for the comprehension study, which needs ethics approval. A test fails if the page ever names a test that does not exist. Appendix A lists every page.</p>
 </div></details>
 </section>
 
@@ -468,7 +468,7 @@ if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
   </div>
 </div>
 <details class="deep"><summary>Engineering detail <span>· two builds, logging, access code</span></summary><div>
-<p><code>pnpm cf:build</code> sets <code>CLARA_STATIC=1</code> and Next.js writes static files to <code>out/</code>; <code>wrangler.jsonc</code> runs the Worker first. Without the flag Next builds a standalone Node server, which the Docker image runs (<code>node server.js</code>) with rooms held in memory. Cloudflare’s request logging and metrics are off (<code>observability.enabled: false</code>, <code>send_metrics: false</code>). The team pages’ access code arrives as <code>?k=</code>, is swapped for a cookie holding a keyed hash of it, and is stripped from the address; those pages are also marked not to be indexed. The rate limit keeps one visitor from flooding the model; it is a courtesy, not a security boundary.</p>
+<p><code>pnpm cf:build</code> sets <code>CLARA_STATIC=1</code> and Next.js writes static files to <code>out/</code>; <code>wrangler.jsonc</code> runs the Worker first. Without the flag Next builds a standalone Node server, which the Docker image runs (<code>node server.js</code>) with rooms held in memory. Cloudflare’s request logging and metrics are off (<code>observability.enabled: false</code>, <code>send_metrics: false</code>). The team pages’ access code arrives as <code>?k=</code>, is swapped for a cookie holding a keyed hash of it, and is stripped from the address; those pages are also marked not to be indexed. The rate limit keeps one visitor from flooding the model; it is a courtesy, not a security boundary. The self-hosted container enforces the same access gate when <code>CLARA_GATE=1</code> is set, and uses <code>PUBLIC_ORIGIN</code> as its address for the UAE PASS return (<code>deploy/CONTAINER.md</code>).</p>
 </div></details>
 </section>
 
@@ -497,7 +497,7 @@ if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
 </div>
 <p><b>A doctor-ready summary, one per reader.</b> The <a href="https://clara.q7m4v2k9orbit.workers.dev/en/summary/noura-saeed">summary page</a> opens on a finished synthetic case: the family doctor’s pre-test brief, then the session summary. The clinician’s copy holds the finding and what to go over again. Each spouse’s copy holds only what their own phone shows, in their language and at their own reading choice (full text, short lines or pictures first).</p>
 <details class="deep"><summary>Engineering detail <span>· FHIR, shuffle, relatives</span></summary><div>
-<p>The referral is a valid FHIR R4 <code>ServiceRequest</code> (<code>core/fhir.ts</code>). All five kinds pass a public FHIR server&rsquo;s own validator with no errors, and are stored, read back unchanged and deleted (<code>eval/fhir/roundtrip.run.ts</code>; shown on Evidence). It goes through Malaffi, which is simulated today because Malaffi has no public test environment: no gene, no answers, nothing about relatives, and each spouse consents to what is sent. Options are shuffled per spouse with a fixed seed (<code>core/order.ts</code>), so no option is always first and the order shown can be reconstructed. Declining is a full option; questions about cost, cover or faith go to a person. The specialist’s console shows the pathway clock: result, session booked, session held, referral sent, appointment.</p>
+<p>The referral is a valid FHIR R4 <code>ServiceRequest</code> (<code>core/fhir.ts</code>). All five kinds pass a public FHIR server&rsquo;s own validator with no errors, and are stored, read back unchanged and deleted (<code>eval/fhir/roundtrip.run.ts</code>; shown on Evidence). It goes through Malaffi; that connection is a prototype stand-in today because Malaffi has no public test environment. What it carries: no gene, no answers, nothing about relatives, and each spouse consents to what is sent. Options are shuffled per spouse with a fixed seed (<code>core/order.ts</code>), so no option is always first and the order shown can be reconstructed. Declining is a full option; questions about cost, cover or faith go to a person. The specialist’s console shows the pathway clock: result, session booked, session held, referral sent, appointment.</p>
 <p>Clara never names or stores a relative. Each spouse chooses for their own side: tell no one, pass on a letter, or ask a counsellor to make contact, which needs a completed comprehension check and a 72-hour cooling-off. For relatives the couple share, the stricter choice wins.</p>
 </div></details>
 </section>
@@ -516,7 +516,7 @@ if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
   <div class="card"><b>Arabic check</b><p>flags drafts for a reviewer</p></div>
   <div class="card"><b>Model off?</b><p>every task has a rule fallback</p></div>
 </div>
-<p><b>Try a hard question yourself.</b> <a href="https://clara.q7m4v2k9orbit.workers.dev/en#ask">Ask Clara</a>, on the landing page, has seven one-tap hard questions: worry in Gulf Arabic, Arabic in Latin letters mixed with English, cost, faith, a choice about having children, a medical detail and an attempt to steer the AI. Each runs through the same path as a typed question. Every reply shows five layers (input cleaning, Clara’s rules, the AI topic sorter, the word and meaning checks, and a person) and which one stopped it. A question with several parts keeps every part. A part that is for a person ends with the counsellor’s offer: “Add it to your questions for the session?” Nothing is sent from that page; it is a demo for a synthetic couple (<code>components/landing/try-ask.tsx</code>, <code>layer-path.tsx</code>, <code>lib/ai/trace.ts</code>).</p>
+<p><b>Try a hard question yourself.</b> <a href="https://clara.q7m4v2k9orbit.workers.dev/en#ask">Ask Clara</a>, on the landing page, has seven one-tap hard questions: worry in Gulf Arabic, Arabic in Latin letters mixed with English, cost, faith, a choice about having children, a medical detail and an attempt to steer the AI. Each runs through the same path as a typed question. The question and the seven cards sit on one side and the reply on the other. The five layers (input cleaning, Clara’s rules, the AI topic sorter, the word and meaning checks, and a person) show as one pipeline, lit as far as the question went, with “Stopped here” on the layer that stopped it. A question with several parts keeps every part. A part that is for a person ends with the counsellor’s offer: “Add it to your questions for the session?” Nothing is sent from that page; it is a demo for a synthetic couple (<code>components/landing/try-ask.tsx</code>, <code>layer-path.tsx</code>, <code>lib/ai/trace.ts</code>).</p>
 <div class="fig">
   <div class="fig-title">Four real questions from the test set</div>
   <div class="fig-sub">Outcomes are taken from the saved runs of 15 November (rules first, then K2 Think Horizon).</div>
@@ -618,12 +618,12 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
   <div class="card"><b>Today</b><p>Every couple, genome, lab report and clinician is invented (licences start <code>SYN-</code>). Rooms delete themselves within 12 hours. A model sees one typed question or a lab report’s text, never a name: K2 first, reached through AWS in Singapore, and OpenAI in the US if K2 fails.</p></div>
   <div class="card"><b>Pilot (proposed)</b><p>Hosted in the UAE, models hosted in the UAE, the Department of Health and the centre as controller, under Federal Law No. 2 of 2019 and DoH policy, after a data protection impact assessment.</p></div>
 </div>
-<p style="margin-top:14px">No hardware: everything runs in an ordinary browser. Clara explains and connects; it does not measure, diagnose or treat. M42 and Malaffi appear by name only, each labelled “Simulated”. UAE PASS is simulated on the phones too, and a real sign-in with UAE PASS&rsquo;s own staging environment works at <a href="https://clara.q7m4v2k9orbit.workers.dev/en/uaepass">/uaepass</a>, tested end to end on 19 November 2026 with a staging account; Clara keeps only the account level.</p>
+<p style="margin-top:14px">No hardware: everything runs in an ordinary browser. Clara explains and connects; it does not measure, diagnose or treat. Some parts are prototype stand-ins: the M42 lab report, the Malaffi connection (the FHIR R4 message itself is real and validated), the counsellor calendar, and UAE PASS on the demo phones and for signing the declaration. No screen labels them; the <a href="https://clara.q7m4v2k9orbit.workers.dev/en/privacy">Privacy page</a> lists them all in one place. A real sign-in with UAE PASS&rsquo;s own staging environment works at <a href="https://clara.q7m4v2k9orbit.workers.dev/en/uaepass">/uaepass</a>, tested end to end on 19 November 2026 with a staging account; Clara keeps only the account level.</p>
 </section>
 
 <section class="s" id="tests" style="--c:var(--teal)">
 <span class="tag"><b>15</b>Tests</span>
-<h2>1,138 automated tests, most of them on random cases</h2>
+<h2>1,249 automated tests, most of them on random cases</h2>
 <p class="lede">A property test states a rule and checks it on thousands of generated cases. Run counts are written once in <code>lib/evidence.ts</code>, so no page can claim more than the tests check.</p>
 <div class="tablewrap"><table>
 <thead><tr><th>Property</th><th class="r">Random runs</th><th>Result</th></tr></thead>
@@ -635,19 +635,19 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 <tr><td>The family doctor never sees a gene, an at-risk kind, an answer or a sharing choice</td><td class="r">2,000</td><td>0 disclosures</td></tr>
 <tr><td>Any one-byte edit to the audit record is detected</td><td class="r">2,000</td><td>every one</td></tr>
 </tbody></table></div>
-<p>870 unit and property tests (Vitest, fast-check; 870 passed and 1 skipped, 63 files) and 268 end-to-end tests (Playwright, full suite; 268 passed), all run on 19 November at the deployed build, on a production build, in English and Arabic, on a 375-pixel phone screen. These are tests, not a certification: there is no ethics approval or clinical safety case yet.</p>
+<p>974 unit and property tests (Vitest, fast-check; 974 passed and 1 skipped, 69 files) and 275 end-to-end tests (Playwright, full suite; 275 passed), all run on 19 November, on a production build, in English and Arabic, on a 375-pixel phone screen. These are tests, not a certification: there is no ethics approval or clinical safety case yet.</p>
 </section>
 
 <section class="s" id="limits" style="--c:var(--fail); --cs:var(--failsoft)">
 <span class="tag"><b>16</b>Not done</span>
 <h2>What a reviewer should weigh</h2>
 <ul>
-<li>Synthetic data and simulated partners only; all 1,000 fixed sentences, the condition cards and every AI-written answer unsigned; no clinical co-lead confirmed; thresholds not agreed with the Department of Health.</li>
+<li>Synthetic data and prototype stand-ins for partner services only; all 1,000 fixed sentences, the condition cards and every AI-written answer unsigned; no clinical co-lead confirmed; thresholds not agreed with the Department of Health.</li>
 <li>Neither model is UAE-hosted: K2 is reached through AWS in Singapore and the backup is OpenAI in the US, so ICT Law Art. 13 and Responsible AI 3.1.4.5.1 are gaps until both are moved.</li>
 <li>The held-out questions were written by an AI agent, not real people, and no real user has tried Clara; 4 of 22 questions that need a person still get approved words only; the fine-tune has no results.</li>
 <li>Whether Clara improves understanding is untested until the study runs after ethics approval; effect sizes will be reported even if null. No usability session has been run yet.</li>
 <li>No Malaffi conformance test, patient record, identity provider or clinician sign-in; staff seats in a room hold the case.</li>
-<li>No load test at programme scale and no outside security review of the room protocol.</li>
+<li>One load test, on a laptop and not a UAE host: one server process served pages at about 1,000 requests a second and live rooms at about 1,550 operations a second with 0 lost, 13–84 times the headroom over an estimated programme peak. None on a UAE host, and no outside security review of the room protocol.</li>
 <li>Not a medical device; not cleared for clinical use.</li>
 </ul>
 </section>
@@ -662,7 +662,7 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 <dl class="ref">
   <dt>Programme owner</dt><dd>DoH Abu Dhabi, with the premarital monitoring team at the Abu Dhabi Public Health Centre (ADPHC), as Circular USO/178/2024 sets out.</dd>
   <dt>Where couples are seen</dt><dd>One SEHA premarital screening centre, plus the genetics clinic that receives its at-risk couples.</dd>
-  <dt>Results</dt><dd>M42 labs’ results to providers, and referrals through Malaffi. Both are simulated in Clara today.</dd>
+  <dt>Results</dt><dd>M42 labs’ results to providers, and referrals through Malaffi. Both are prototype stand-ins in Clara today.</dd>
   <dt>Clinical lead</dt><dd>A licensed clinician who signs the words and owns them during the pilot. None is confirmed.</dd>
   <dt>Family doctors</dt><dd>Upskilled family physicians in the same centre, for routine and carrier results.</dd>
   <dt>Operator</dt><dd>The licensed entity that hosts Clara. Clara is never a stand-alone app (Federal Decree-Law 49 of 2023, Art. 28(1)).</dd>
@@ -674,7 +674,7 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 <li><b>Ethics approval</b> for the comprehension study, with a data protection impact assessment.</li>
 <li><b>UAE hosting</b> for the model and for Clara’s pages, as DoH requires (Responsible AI Standard 3.1.4.5.1; ADHICS V2 CS 1.2(2)). Each model endpoint is one setting.</li>
 <li><b>A licensed operator and DoH app approval</b> (Digital Products Governance 3.2.4.1).</li>
-<li><b>Test links replace the simulated ones:</b> M42 results and Malaffi referrals (the referral is already valid FHIR R4), then UAE PASS sign-in with the operator&rsquo;s own client (it already works end to end against UAE PASS staging, tested 19 November 2026).</li>
+<li><b>Test links replace the prototype stand-ins:</b> M42 results and Malaffi referrals (the referral is already valid FHIR R4), then UAE PASS sign-in with the operator&rsquo;s own client (it already works end to end against UAE PASS staging, tested 19 November 2026).</li>
 </ol>
 <div class="cards">
   <div class="card"><b>Set-up, about 60 days</b><p>Sign the words, file ethics, connect in test, move hosting to the UAE. A planning assumption.</p></div>
@@ -690,7 +690,7 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 <tr><td><b>Pages and server.</b> Cloudflare&rsquo;s network, free plan (<code>wrangler.jsonc</code>). Rooms, review answers, AI counts and the programme switch sit in Durable Objects with a Middle East placement hint, not a UAE guarantee.</td><td>The same server as one container (<code>Dockerfile</code>, no database) on the UAE host. The case rules do not change.</td></tr>
 <tr><td><b>Main model.</b> K2 Think Horizon at <code>api.ifm.ai</code>, which resolves to AWS in Singapore (DNS, 18 Nov 2026).</td><td>K2 served from the UAE: a UAE-hosted K2 endpoint, or our K2-Think 32B fine-tune on GPUs in the UAE once it passes its gate. One setting: <code>MODEL_BASE_URL</code>.</td></tr>
 <tr><td><b>Backup model.</b> OpenAI in the US, only when K2 does not answer.</td><td>Another UAE-hosted endpoint, or none. With <code>FALLBACK_MODEL_BASE_URL</code> unset, no backup is asked; Ask uses its rules or a person.</td></tr>
-<tr><td><b>Kill switch.</b> The programme switch (team code), <code>MODEL_OFF=1</code> for a deployment, and each spouse&rsquo;s &ldquo;Answer without AI&rdquo;. Off means no model is asked.</td><td>The same switches. Proposed, not built: a review trigger past its limit turns the programme switch off by itself and tells the clinical lead; the switch needs a named person&rsquo;s sign-in.</td></tr>
+<tr><td><b>Kill switch.</b> The programme switch (the team code, or a UAE PASS staff sign-in, on staging, whose identity hash is on the operator&rsquo;s allow-list), <code>MODEL_OFF=1</code> for a deployment, and each spouse&rsquo;s &ldquo;Answer without AI&rdquo;. Off means no model is asked.</td><td>The same switches. Proposed, not built: a review trigger past its limit turns the programme switch off by itself and tells the clinical lead; the staff sign-in moves to UAE PASS production.</td></tr>
 <tr><td><b>Monitoring.</b> Hourly counts by route only, 30 days, five review triggers read on request. Nothing is sent anywhere.</td><td>The same counts, kept on the UAE host. They hold no text and no caller. The container keeps counts in memory, so it needs storage on that host.</td></tr>
 <tr><td><b>Stores and deletion.</b> Rooms deleted after 3 hours idle, 12 hours at most; usability answers on 31 December 2026; held written answers stored per browser.</td><td>The same deletion rules on the UAE host. Held answers move to a shared store there with a clinician sign-in. Retention for real data is set with the operator.</td></tr>
 <tr><td><b>Outbound calls.</b> The model endpoints, and UAE PASS staging for the test sign-in.</td><td>Only the UAE-hosted model and the national services the programme uses. A blocking allow-list is not built.</td></tr>
@@ -768,10 +768,10 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 <h3>Built today, and not yet</h3>
 <div class="cards" style="--n:2">
   <div class="card"><b>Built (synthetic cases only)</b><p>The programme-wide AI switch, the hold-for-review queue, and counts for teach-back, time to a session and Ask routes. Referrals in valid FHIR R4, checked on a public FHIR server. A real UAE PASS staging sign-in, tested end to end with a staging account.</p></div>
-  <div class="card"><b>Not yet</b><p>No partner, clinical lead, signed sentence, ethics approval or real user. Models are outside the UAE. The switch has no named sign-in.</p></div>
+  <div class="card"><b>Not yet</b><p>No partner, clinical lead, signed sentence, ethics approval or real user. Models are outside the UAE. The switch&rsquo;s staff sign-in works on UAE PASS staging only.</p></div>
 </div>
 <div class="callout"><b>Our ask.</b> One premarital centre, the genetics clinic it refers to and a clinical lead, for a 90-day pilot measuring understanding, time to counselling and the questions that need a person.</div>
-<div class="callout"><b>The one thing we need on day 1.</b> A named, licensed clinical geneticist who reviews and signs the core result sentences (what each result means, the chance per pregnancy, the options), with an Emirati Arabic reviewer. Everything else waits behind that signature, and nothing reaches a real family before it. Second, from M42 and Malaffi: their test environments, so the simulated lab report and referral become real messages; the referral is already valid FHIR R4.</div>
+<div class="callout"><b>The one thing we need on day 1.</b> A named, licensed clinical geneticist who reviews and signs the core result sentences (what each result means, the chance per pregnancy, the options), with an Emirati Arabic reviewer. Everything else waits behind that signature, and nothing reaches a real family before it. Second, from M42 and Malaffi: their test environments, so the prototype lab report and referral connection become real messages; the referral is already valid FHIR R4.</div>
 </section>
 
 <section class="s" id="team" style="--c:var(--teal)">
@@ -808,8 +808,8 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 pnpm dev --port 3100 -H 127.0.0.1     <span class="c"># http://127.0.0.1:3100/en</span>
 docker compose up                     <span class="c"># one container: http://127.0.0.1:3000/en</span>
 pnpm cf:dev                           <span class="c"># Cloudflare version with live rooms: :8787</span>
-pnpm test                             <span class="c"># 870 unit and property tests</span>
-pnpm e2e                              <span class="c"># 268 end-to-end tests</span>
+pnpm test                             <span class="c"># 974 unit and property tests</span>
+pnpm e2e                              <span class="c"># 275 end-to-end tests</span>
 pnpm typecheck &amp;&amp; pnpm lint
 AI_EVAL_URL=http://127.0.0.1:3100 pnpm exec vitest run tests/lib/ai-eval.test.ts   <span class="c"># the 28 questions</span></code></pre>
 <p>To connect a model, set <code>MODEL_BASE_URL</code>, <code>MODEL_NAME</code>, <code>MODEL_API_KEY</code>, <code>MODEL_REASONING_EFFORT</code> (and the same with <code>FALLBACK_</code>, used for any task only if the first model fails or its reply fails the checks) in <code>.env.local</code> or as Cloudflare secrets. Any OpenAI-compatible endpoint works. <code>MODEL_OFF=1</code> switches AI off.</p>
@@ -835,7 +835,7 @@ AI_EVAL_URL=http://127.0.0.1:3100 pnpm exec vitest run tests/lib/ai-eval.test.ts
 </nav>
 </div>
 
-<footer class="gut">Clara · team parallelparadox · Future Health Digital Innovation Challenge, Problem Statement 03 · brief by Noel Thomas. <a href="Clara-Technical-Documentation.pdf">PDF version</a>. Figures come from the repository’s README, tests and saved eval runs at commit ffb0636, 19 November 2026 (the deployed build). The request animation and the noise simulator are sketches of the logic; the hash chain, the four questions and the test chart use real code behaviour and saved results.</footer>
+<footer class="gut">Clara · team parallelparadox · Future Health Digital Innovation Challenge, Problem Statement 03 · brief by Noel Thomas. <a href="Clara-Technical-Documentation.pdf">PDF version</a>. Figures come from the repository’s README, tests and saved eval runs of 19 November 2026 (README at app commit 36f1f01). The request animation and the noise simulator are sketches of the logic; the hash chain, the four questions and the test chart use real code behaviour and saved results.</footer>
 
 <script>
 (function(){
