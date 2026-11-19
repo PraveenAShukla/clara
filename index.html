@@ -244,6 +244,7 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
   <nav aria-label="Site">
     <a href="https://clara.q7m4v2k9orbit.workers.dev/en">Prototype</a>
     <a href="https://clara.q7m4v2k9orbit.workers.dev/en/evidence">Evidence</a>
+    <a href="#pilot">Pilot</a>
     <a href="Clara-Technical-Documentation.pdf">PDF</a>
     <button class="btn" id="theme" type="button">Dark</button>
   </nav>
@@ -292,7 +293,7 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
   <div class="tg"><span>The product</span><a href="#problem">The problem</a><a href="#try">Try it</a></div>
   <div class="tg"><span>How it works</span><a href="#core">The rules</a><a href="#views">Privacy</a><a href="#audit">The record</a><a href="#rooms">Live rooms</a><a href="#edge">The front door</a><a href="#words">Words</a><a href="#care">Care</a></div>
   <div class="tg"><span>The AI</span><a href="#ai">What it does</a><a href="#eval">How we tested it</a></div>
-  <div class="tg"><span>Evidence and limits</span><a href="#measures">Measuring</a><a href="#dp">Privacy in numbers</a><a href="#data">Data</a><a href="#tests">Tests</a><a href="#limits">Not done</a><a href="#team">Team</a><a href="#ref">Reference</a></div>
+  <div class="tg"><span>Evidence and limits</span><a href="#measures">Measuring</a><a href="#dp">Privacy in numbers</a><a href="#data">Data</a><a href="#tests">Tests</a><a href="#limits">Not done</a><a href="#pilot">Path to a pilot</a><a href="#team">Team</a><a href="#ref">Reference</a></div>
 </nav></div>
 <div class="wrap gut">
 <article>
@@ -493,7 +494,7 @@ if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
   <div class="cap">In pregnancy the referral is marked urgent, and the programme checks whether the couple is seen within 48 hours of the clinic knowing.</div>
 </div>
 <details class="deep"><summary>Engineering detail <span>· FHIR, shuffle, relatives</span></summary><div>
-<p>The referral is a FHIR <code>ServiceRequest</code> (<code>core/referral.ts</code>), sent through Malaffi, which is simulated today: no gene, no answers, nothing about relatives, and each spouse consents to what is sent. Options are shuffled per spouse with a fixed seed (<code>core/order.ts</code>), so no option is always first and the order shown can be reconstructed. Declining is a full option; questions about cost, cover or faith go to a person. The specialist’s console shows the pathway clock: result, session booked, session held, referral sent, appointment.</p>
+<p>The referral is a valid FHIR R4 <code>ServiceRequest</code> (<code>core/fhir.ts</code>). All five kinds pass a public FHIR server&rsquo;s own validator with no errors, and are stored, read back unchanged and deleted (<code>eval/fhir/roundtrip.run.ts</code>; shown on Evidence). It goes through Malaffi, which is simulated today because Malaffi has no public test environment: no gene, no answers, nothing about relatives, and each spouse consents to what is sent. Options are shuffled per spouse with a fixed seed (<code>core/order.ts</code>), so no option is always first and the order shown can be reconstructed. Declining is a full option; questions about cost, cover or faith go to a person. The specialist’s console shows the pathway clock: result, session booked, session held, referral sent, appointment.</p>
 <p>Clara never names or stores a relative. Each spouse chooses for their own side: tell no one, pass on a letter, or ask a counsellor to make contact, which needs a completed comprehension check and a 72-hour cooling-off. For relatives the couple share, the stricter choice wins.</p>
 </div></details>
 </section>
@@ -613,7 +614,7 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
   <div class="card"><b>Today</b><p>Every couple, genome, lab report and clinician is invented (licences start <code>SYN-</code>). Rooms delete themselves within 12 hours. A model sees one typed question or a lab report’s text, never a name: K2 first, reached through AWS in Singapore, and OpenAI in the US if K2 fails.</p></div>
   <div class="card"><b>Pilot (proposed)</b><p>Hosted in the UAE, models hosted in the UAE, the Department of Health and the centre as controller, under Federal Law No. 2 of 2019 and DoH policy, after a data protection impact assessment.</p></div>
 </div>
-<p style="margin-top:14px">No hardware: everything runs in an ordinary browser. Clara explains and connects; it does not measure, diagnose or treat. UAE PASS, M42 and Malaffi appear by name only, each labelled “Simulated”.</p>
+<p style="margin-top:14px">No hardware: everything runs in an ordinary browser. Clara explains and connects; it does not measure, diagnose or treat. M42 and Malaffi appear by name only, each labelled “Simulated”. UAE PASS is simulated on the phones too, and a real sign-in with UAE PASS&rsquo;s own staging environment works at <a href="https://clara.q7m4v2k9orbit.workers.dev/en/uaepass">/uaepass</a>; Clara keeps nothing from it.</p>
 </section>
 
 <section class="s" id="tests" style="--c:var(--teal)">
@@ -647,8 +648,109 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 </ul>
 </section>
 
+<section class="s" id="pilot" style="--c:var(--amber); --cs:var(--ambersoft)">
+<span class="tag"><b>17</b>Path to a pilot</span>
+<h2>One centre, 90 days, inside the programme Abu Dhabi already runs</h2>
+<p class="lede">Every Emirati couple has needed a premarital genetic test since 1 October 2024, and the UAE had 10 genetic counsellors in 2023. Clara would run inside that programme, at one screening centre first. This plan is proposed: nothing here is agreed with any organisation.</p>
+
+<h3>Who we would ask (proposed, not agreed)</h3>
+<p>Each name is a candidate taken from DoH’s own documents. None has been approached for this pilot or has said yes.</p>
+<dl class="ref">
+  <dt>Programme owner</dt><dd>DoH Abu Dhabi, with the premarital monitoring team at the Abu Dhabi Public Health Centre (ADPHC), as Circular USO/178/2024 sets out.</dd>
+  <dt>Where couples are seen</dt><dd>One SEHA premarital screening centre, plus the genetics clinic that receives its at-risk couples.</dd>
+  <dt>Results</dt><dd>M42 labs’ results to providers, and referrals through Malaffi. Both are simulated in Clara today.</dd>
+  <dt>Clinical lead</dt><dd>A licensed clinician who signs the words and owns them during the pilot. None is confirmed.</dd>
+  <dt>Family doctors</dt><dd>Upskilled family physicians in the same centre, for routine and carrier results.</dd>
+  <dt>Operator</dt><dd>The licensed entity that hosts Clara. Clara is never a stand-alone app (Federal Decree-Law 49 of 2023, Art. 28(1)).</dd>
+</dl>
+
+<h3>Before the first couple</h3>
+<ol>
+<li><b>A licensed clinical lead signs the words.</b> Today 0 of 940 fixed sentences and none of the four condition cards are signed. An Emirati reviewer checks the Arabic.</li>
+<li><b>Ethics approval</b> for the comprehension study, with a data protection impact assessment.</li>
+<li><b>UAE hosting</b> for the model and for Clara’s pages, as DoH requires (Responsible AI Standard 3.1.4.5.1; ADHICS V2 CS 1.2(2)). Each model endpoint is one setting.</li>
+<li><b>A licensed operator and DoH app approval</b> (Digital Products Governance 3.2.4.1).</li>
+<li><b>Test links replace the simulated ones:</b> M42 results and Malaffi referrals (the referral is already valid FHIR R4), then UAE PASS sign-in with the operator&rsquo;s own client (it already works against UAE PASS staging).</li>
+</ol>
+<div class="cards">
+  <div class="card"><b>Set-up, about 60 days</b><p>Sign the words, file ethics, connect in test, move hosting to the UAE. A planning assumption.</p></div>
+  <div class="card"><b>90 days at one centre</b><p>Starts when the first consenting couple joins, and only after ethics approval.</p></div>
+  <div class="card"><b>Then</b><p>Grow centre by centre. One reviewed word library serves every centre.</p></div>
+</div>
+
+<h3>The 90 days</h3>
+<p><b>Cohort.</b> Every tested couple at one SEHA centre, plus the genetics clinic that receives its at-risk couples. One centre may see only a handful of at-risk couples in 90 days, so we ask DoH for real monthly volumes per centre before the cohort is fixed.</p>
+<dl class="ref">
+  <dt>Comprehension</dt><dd>Teach-back items each spouse gets right first time, split by language and by sex.</dd>
+  <dt>Time to counselling</dt><dd>Median time from result to a booked session and to the session held; at-risk pregnancies seen within 48 hours.</dd>
+  <dt>Questions needing a person</dt><dd>Each Ask question counted only by its route, never its text.</dd>
+  <dt>Safety of written answers</dt><dd>The share of written answers the clinical lead flags on review.</dd>
+</dl>
+<div class="never"><span>whether a marriage goes ahead</span><span>a pregnancy</span><span>which option a couple chose</span></div>
+<p style="margin-top:14px"><b>Thresholds</b> for each measure are set with the clinical lead and written down before the first couple joins. None is set yet. <b>Stop rule (proposed):</b> any directive answer, or any disclosure between spouses, that reaches a family stops written answers for every family until the clinical lead has reviewed it. The programme office’s AI switch already does this: when it is off, no model is asked and Ask answers from approved words alone. <b>Written answers are held for review</b> in a pilot build: each waits for a specialist to approve or reject it.</p>
+
+<h3>How many couples would a pilot see?</h3>
+<p>Planning arithmetic for ethics and DoH, not a statistician&rsquo;s power calculation. Change the numbers; replace the examples with DoH&rsquo;s real volumes per centre.</p>
+<form class="calc" id="calc" onsubmit="return false">
+  <label>Couples tested a month at the centre <span>example, not a DoH figure</span><input type="number" id="c-vol" min="1" max="2000" value="40" inputmode="numeric"></label>
+  <label>At-risk results, % of couples <span>565 of 11,748 tested 2022&ndash;July 2026 = 4.8%</span><input type="number" id="c-rate" min="0.1" max="50" step="0.1" value="4.8" inputmode="decimal"></label>
+  <label>Couples who agree to take part, % <span>example</span><input type="number" id="c-up" min="1" max="100" value="70" inputmode="numeric"></label>
+  <label>Months <span>the pilot is 3</span><input type="number" id="c-mo" min="1" max="24" value="3" inputmode="numeric"></label>
+</form>
+<div class="cards calc-out" style="--n:3" aria-live="polite">
+  <div class="card"><b id="o-couples">&ndash;</b><p id="o-couples-p">couples in the pilot</p></div>
+  <div class="card"><b id="o-risk">&ndash;</b><p id="o-risk-p">at-risk couples expected</p></div>
+  <div class="card"><b id="o-moe">&ndash;</b><p id="o-moe-p">precision of the main measure</p></div>
+</div>
+<p class="calc-note" id="o-note"></p>
+<style>
+.calc{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px 18px; margin:14px 0}
+.calc label{display:flex; flex-direction:column; gap:4px; font:600 14.5px/1.35 var(--sans)}
+.calc label span{font-weight:400; font-size:13px; color:var(--muted)}
+.calc input{font:500 16px var(--sans); color:var(--ink); background:var(--card); border:1px solid var(--sand2); border-radius:10px; padding:9px 11px; min-height:44px; box-sizing:border-box; width:100%}
+.calc input:focus-visible{outline:2px solid var(--teal); outline-offset:1px}
+.calc-out .card b{font-size:26px; font-variant-numeric:tabular-nums}
+.calc-note{font-size:14.5px; color:var(--muted)}
+</style>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const num = (id, lo, hi) => Math.min(hi, Math.max(lo, Number($(id).value) || lo));
+  /* The smallest k with P(X <= k) >= q, for X ~ Poisson(mean). */
+  const poissonQ = (mean, q) => { let k = 0, p = Math.exp(-mean), c = p; while (c < q && k < 5000) { k++; p *= mean / k; c += p; } return k; };
+  function update(){
+    const vol = num('c-vol', 1, 2000), rate = num('c-rate', 0.1, 50) / 100, up = num('c-up', 1, 100) / 100, mo = num('c-mo', 1, 24);
+    const couples = Math.round(vol * mo * up), spouses = 2 * couples, risk = couples * rate;
+    const lo = poissonQ(risk, 0.025), hi = poissonQ(risk, 0.975);
+    // Share of teach-back items right first time, at its widest (50%), per spouse; spouses in a couple are not independent, so this is a best case.
+    const moe = spouses ? 1.96 * Math.sqrt(0.25 / spouses) * 100 : 0;
+    // Smallest gap between women and men a test at 5% significance and 80% power could detect (equal groups, 50% base).
+    const gap = couples ? 2.8 * Math.sqrt(0.25 * 2 / couples) * 100 : 0;
+    $('o-couples').textContent = couples.toLocaleString('en');
+    $('o-couples-p').textContent = `couples in the pilot (${spouses.toLocaleString('en')} spouses), routine and carrier results mostly`;
+    $('o-risk').textContent = risk < 10 ? risk.toFixed(1) : Math.round(risk).toLocaleString('en');
+    $('o-risk-p').textContent = `at-risk couples expected (95% range ${lo}\u2013${hi})`;
+    $('o-moe').textContent = `\u00b1${moe.toFixed(1)} pts`;
+    $('o-moe-p').textContent = `margin on the share right first time; a women\u2013men gap of about ${gap.toFixed(0)} points is the smallest it could detect`;
+    $('o-note').textContent = risk < 10
+      ? 'Too few at-risk couples to measure that path on its own: this is why the cohort includes the genetics clinic that receives the centre\u2019s at-risk couples, and why the routine and carrier paths carry the comprehension measure.'
+      : 'Enough at-risk couples to report that path separately, with a wide margin. Thresholds are still set with the clinical lead before day 1.';
+  }
+  $('calc').addEventListener('input', update);
+  update();
+})();
+</script>
+
+<h3>Built today, and not yet</h3>
+<div class="cards" style="--n:2">
+  <div class="card"><b>Built (synthetic cases only)</b><p>The programme-wide AI switch, the hold-for-review queue, and counts for teach-back, time to a session and Ask routes. Referrals in valid FHIR R4, checked on a public FHIR server. A real UAE PASS staging sign-in.</p></div>
+  <div class="card"><b>Not yet</b><p>No partner, clinical lead, signed sentence, ethics approval or real user. Models are outside the UAE. The switch has no named sign-in.</p></div>
+</div>
+<div class="callout"><b>Our ask.</b> One premarital centre, the genetics clinic it refers to and a clinical lead, for a 90-day pilot measuring understanding, time to counselling and the questions that need a person.</div>
+</section>
+
 <section class="s" id="team" style="--c:var(--teal)">
-<span class="tag"><b>17</b>Team</span>
+<span class="tag"><b>18</b>Team</span>
 <h2>Four people, one build</h2>
 <p class="lede">Team parallelparadox: three MBZUAI undergraduates living in the UAE and one first-year student in India, aged 18 to 20.</p>
 <div class="team">
@@ -660,7 +762,7 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 </section>
 
 <section class="s" id="ref" style="--c:var(--muted); --cs:var(--sand)">
-<span class="tag"><b>18</b>Reference</span>
+<span class="tag"><b>19</b>Reference</span>
 <h2>Pages, commands, licences</h2>
 <details class="deep"><summary>Every page <span>· /en/… and /ar/…</span></summary><div>
 <dl class="ref">
@@ -703,7 +805,7 @@ AI_EVAL_URL=http://127.0.0.1:3100 pnpm exec vitest run tests/lib/ai-eval.test.ts
   <div class="tg"><span>The product</span><a href="#problem">The problem</a><a href="#try">Try it</a></div>
   <div class="tg"><span>How it works</span><a href="#core">The rules</a><a href="#views">Privacy</a><a href="#audit">The record</a><a href="#rooms">Live rooms</a><a href="#edge">The front door</a><a href="#words">Words</a><a href="#care">Care</a></div>
   <div class="tg"><span>The AI</span><a href="#ai">What it does</a><a href="#eval">How we tested it</a></div>
-  <div class="tg"><span>Evidence and limits</span><a href="#measures">Measuring</a><a href="#dp">Privacy in numbers</a><a href="#data">Data</a><a href="#tests">Tests</a><a href="#limits">Not done</a><a href="#team">Team</a><a href="#ref">Reference</a></div>
+  <div class="tg"><span>Evidence and limits</span><a href="#measures">Measuring</a><a href="#dp">Privacy in numbers</a><a href="#data">Data</a><a href="#tests">Tests</a><a href="#limits">Not done</a><a href="#pilot">Path to a pilot</a><a href="#team">Team</a><a href="#ref">Reference</a></div>
 </nav>
 </div>
 
