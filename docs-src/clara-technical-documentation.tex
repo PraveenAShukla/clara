@@ -94,7 +94,7 @@
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\headrule}{{\color{rule}\hrule width\headwidth height\headrulewidth}}
 \fancyhead[L]{\footnotesize\color{muted}Clara · Technical documentation}
-\fancyhead[R]{\footnotesize\color{muted}Version 1.9 · 19 November 2026}
+\fancyhead[R]{\footnotesize\color{muted}Version 2.0 · 19 November 2026}
 \fancyfoot[L]{\footnotesize\color{muted}Future Health Digital Innovation Challenge · Problem Statement 03 · Team parallelparadox}
 \fancyfoot[R]{\footnotesize\color{muted}Page \thepage\ of \pageref*{LastPage}}
 \fancypagestyle{plain}{}
@@ -149,7 +149,7 @@
 \color{muted}Challenge & Future Health Digital Innovation Challenge 2026, Department of Health Abu Dhabi\\
 \color{muted}Problem statement & 03 · Understanding and Reducing Inherited Disease Risk\\
 \color{muted}Team & parallelparadox\\
-\color{muted}Version & 1.9, 19 November 2026\\
+\color{muted}Version & 2.0, 19 November 2026\\
 \color{muted}Source & branch \code{v1-production-on-main}, commit \code{c0a7c51}\\
 \color{muted}Prototype & \link{\proto/en}{clara.q7m4v2k9orbit.workers.dev}\\
 \color{muted}Project page & \link{https://praveenashukla.github.io/clara/}{praveenashukla.github.io/clara}\\
@@ -182,11 +182,11 @@ sources listed under References.
 \toprl
 Document & Clara technical documentation\\
 \midrule
-Version & 1.9\\
+Version & 2.0\\
 \midrule
-Date & 19 November 2026, late (1.8, 1.7, 1.6, 1.5, 1.4 and 1.3: earlier on 19 November; 1.2 and 1.1: 18 November; 1.0: 15 November 2026)\\
+Date & 19 November 2026, late (1.9, 1.8, 1.7, 1.6, 1.5, 1.4 and 1.3: earlier on 19 November; 1.2 and 1.1: 18 November; 1.0: 15 November 2026)\\
 \midrule
-Source & \code{v1-production-on-main} at commit \code{52a4309}. Changes in 1.9: 2,152 tests; 1,065 fixed sentences; sorting an Ask Clara question asks OpenAI first, then K2; a distress tier beside the crisis rule, with 217 crisis, distress and look-alike probes; an AI persona walkthrough (10 AI personas, not real people) and what it fixed; each spouse's health-record entry holds only their own result; four new privacy answers; fixed answers labelled as drafts instead of ``approved''. These and the test counts are checked at this commit. Changes in 1.8 (checked at commit \code{6840822}): 1,699 tests; 1,018 fixed sentences; the crisis rule hardened (88 crisis test phrasings, the sorter's own crisis flag, an 800 SAKINA line under every ``worried'' answer); no failed replies when the model is slow. Changes in 1.7 (checked at commit \code{c0a7c51}): 1,547 tests; a second held-out set of 60 questions, with its two self-harm misses and the crisis rule that fixes them; person rules for decisions, one carrier and hiding a result; replies within 15 seconds; 1,006 fixed sentences; the common result in one click; the landing page says when AI writes an answer; the pilot's costed 90 days and a cascade-testing measure. Changes in 1.6 (checked at commit \code{36f1f01}): 1,249 tests; Ask Clara shown as a pipeline; the landing FAQ; fonts per language; the container's access gate; the load test; a staff sign-in for the AI switch; prototype stand-ins listed on the Privacy page only. The 1.5 additions (UAE PASS staging sign-in, FHIR R4 referrals, Ask Clara on the landing page, the private check-in, the doctor-ready summary, the sign-off workbench), sentence count, held-out evaluation, UAE standards map and model roles were checked at commit \code{ffb0636}; sections not touched since 1.0 describe behaviour unchanged since commit \code{20608c0}\\
+Source & \code{v1-production-on-main} at commit \code{c06c910}. Changes in 2.0: 2,431 tests (2,134 unit and property, 297 end-to-end); 295 crisis, distress and look-alike probes; per-caller limits that hold across restarts and request body caps; the pilot build (\code{CLARA\_PILOT=1}): a gate that refuses unsigned words, hold mode for every written answer, the AI switch off after a restart; the urgent crisis request; a load test of the deployed site; a draft hazard log; a proposed capacity model and operator model; the second held-out range given as 62--91\%, rounded outward. These and the test counts are checked at this commit. Changes in 1.9 (checked at commit \code{52a4309}): 2,152 tests; 1,065 fixed sentences; sorting an Ask Clara question asks OpenAI first, then K2; a distress tier beside the crisis rule, with 217 crisis, distress and look-alike probes; an AI persona walkthrough (10 AI personas, not real people) and what it fixed; each spouse's health-record entry holds only their own result; four new privacy answers; fixed answers labelled as drafts instead of ``approved''. Changes in 1.8 (checked at commit \code{6840822}): 1,699 tests; 1,018 fixed sentences; the crisis rule hardened (88 crisis test phrasings, the sorter's own crisis flag, an 800 SAKINA line under every ``worried'' answer); no failed replies when the model is slow. Changes in 1.7 (checked at commit \code{c0a7c51}): 1,547 tests; a second held-out set of 60 questions, with its two self-harm misses and the crisis rule that fixes them; person rules for decisions, one carrier and hiding a result; replies within 15 seconds; 1,006 fixed sentences; the common result in one click; the landing page says when AI writes an answer; the pilot's costed 90 days and a cascade-testing measure. Changes in 1.6 (checked at commit \code{36f1f01}): 1,249 tests; Ask Clara shown as a pipeline; the landing FAQ; fonts per language; the container's access gate; the load test; a staff sign-in for the AI switch; prototype stand-ins listed on the Privacy page only. The 1.5 additions (UAE PASS staging sign-in, FHIR R4 referrals, Ask Clara on the landing page, the private check-in, the doctor-ready summary, the sign-off workbench), sentence count, held-out evaluation, UAE standards map and model roles were checked at commit \code{ffb0636}; sections not touched since 1.0 describe behaviour unchanged since commit \code{20608c0}\\
 \midrule
 Authors & Team parallelparadox: Praveen Anilkumar Shukla, Noel Thomas, Alaa Mohamed Elsayed Abdelghany Alam, Pradeep. Based on the technical brief written by Noel Thomas.\\
 \midrule
@@ -256,9 +256,9 @@ Two rules shaped everything:
 \toprl
 \textbf{24 of 30} & questions that need a person reached one, on a second set of 60 new questions written by an AI agent and labelled before any run, run live; not real people. Two self-harm messages got the ordinary ``worried'' answer; a crisis rule now runs first \mbox{(section~\ref{sec:heldout2})}\\
 \midrule
-\textbf{2,152} & automated tests, run on 19 November: 1,857 unit and property (1 skipped, 77 files), 295 end-to-end in English and Arabic, all passing (a few timing-sensitive end-to-end tests pass on re-run)\\
+\textbf{2,431} & automated tests, 19 November: 2,134 unit and property, passing (1 skipped, 83 files), and 297 end-to-end in English and Arabic (a few timing-sensitive end-to-end tests pass on re-run)\\
 \midrule
-\textbf{217} & crisis, distress and look-alike probes, all passing; a crisis rule and a distress tier run before any model, on the phone and the server\\
+\textbf{295} & crisis, distress and look-alike probes, all passing; a crisis rule and a distress tier run before any model, on the phone and the server\\
 \midrule
 \textbf{102} & findings from an AI persona walkthrough on the live site (10 AI personas, not real people), in 17 themes: 12 fixed and deployed, 3 partly, 2 open \mbox{(section~\ref{sec:personas})}\\
 \midrule
@@ -792,6 +792,11 @@ Everything else & Static pages in Arabic and English.\\
   \item \textbf{Access code.} The team pages' access code arrives as \code{?k=}, is swapped for a cookie holding a keyed
         hash of it, and is stripped from the address.
   \item \textbf{Rate limit.} It keeps one visitor from flooding the model; it is a courtesy, not a security boundary.
+        Each caller's pace lives in its own Durable Object, keyed by a daily keyed hash of the address, never the
+        address, so it holds across restarts. A pace that cannot be read lets the call through; a daily count that
+        cannot be read answers by rules, so a fault never passes the 2,000-call daily cap (\file{lib/model-guard.ts}).
+  \item \textbf{Body caps.} Every API route has a body cap, refused with 413 before the body is parsed, on the Worker
+        and the Node server (\file{lib/body-limit.ts}: \code{/api/ai} 64\,KB, room operations 8\,KB).
   \item \textbf{The self-hosted container.} With \code{CLARA\_GATE=1} the Node server enforces the same access gate as the
         Worker, and \code{PUBLIC\_ORIGIN} sets its address for the UAE PASS return (\file{deploy/CONTAINER.md}).
 \end{itemize}
@@ -914,12 +919,15 @@ saying the writer did not want to live, or saw no point to anything, answered wi
 the evening of 19 November, Clara's first rule, the same code on the screen and the server
 (\file{lib/ai/rules-first.ts}), catches not wanting to live, self-harm and hopelessness in English, formal Arabic, Gulf
 Arabic and Arabizi. It gives a crisis reply with DoH Abu Dhabi's 24/7 line 800 SAKINA (800 725462), and 999 or 998, and
-one tap to ask the care team to make contact. No model is asked. The reply's words are drafts, like every sentence;
+one tap to ask the care team to make contact. That tap is filed as an \textbf{urgent} request, apart from an ordinary
+``talk sooner'': first in the specialist console's queue, labelled ``Urgent: crisis reply shown'', a flag with no
+words that never reaches the other spouse, the family doctor or the lab (\file{tests/core/urgent.test.ts}). Nobody is
+yet named to act on it, and nothing alerts staff outside the console. No model is asked. The reply's words are drafts, like every sentence;
 277 unit cases cover the rule (\file{tests/lib/ask-crisis.test.ts}). Later that night the rule was hardened: the two
 phrasings an independent judge found missed are now caught. Since the AI persona walkthrough (section~\ref{sec:personas}),
 a broader \textbf{distress tier} also runs before any model, on the phone and the server: whatever answer a distressed
 message gets, it always adds 800 SAKINA and a talk-sooner button, even when the AI has timed out
-(\file{tests/lib/distress.test.ts}). 217 probes (107 crisis, 27 distress, 83 look-alikes that must keep their ordinary
+(\file{tests/lib/distress.test.ts}). 295 probes (157 crisis, 27 distress, 111 look-alikes that must keep their ordinary
 route) in English, formal Arabic, Gulf Arabic and Arabizi all pass (\file{eval/crisis/probes.json}); an AI agent wrote
 them, not people in crisis.
 The AI sorter can also flag a crisis, which can only add the crisis reply, never remove a person, and every ``worried''
@@ -1094,9 +1102,9 @@ nothing in Clara was changed for the measurement (\file{eval/heldout2/REPORT.md}
 \toprl
 \thead{Measure} & \thead{Result}\\
 \midrule
-\textbf{Need a person, and reached one} & \textbf{24 of 30} (Wilson 95\%: 63--90\%)\\
-Need a person, got an approved answer and no person & 6 of 30, 2 of them critical\\
-General or medical questions given an approved answer & 18 of 30\\
+\textbf{Need a person, and reached one} & \textbf{24 of 30} (Wilson 95\%: 62--91\%)\\
+Need a person, got a fixed answer and no person & 6 of 30, 2 of them critical\\
+General or medical questions given a fixed answer & 18 of 30\\
 Time from question to reply & median 1.5 s, slowest 14.9 s\\
 \bottomrule
 \end{xltabular}}
@@ -1104,7 +1112,7 @@ Time from question to reply & median 1.5 s, slowest 14.9 s\\
 For comparison, the first set (below) got 12 of 22 when its questions were new. \textbf{The two critical misses} were
 messages saying the writer did not want to live after the result (in Arabizi), and that there was no point to anything
 (in English). Both got the ordinary ``worried'' answer, with no urgent help and no person. The other four were three
-decisions about another child or the wedding and a request to hide a result from a spouse, each answered with approved
+decisions about another child or the wedding and a request to hide a result from a spouse, each answered with fixed
 words and no person. Two questions about only one carrier got the both-carriers ``1 in 4'' answer, which is wrong for
 one carrier.
 
@@ -1124,7 +1132,7 @@ three runs (the report gives the rule used).
 
 To test Ask Clara on questions it was not built from, a separate AI agent wrote 60 new questions (25 English, 20
 Arabic in formal and Gulf forms, 15 code-switched or Arabizi) and labelled each one's expected route before it opened
-Clara's matching rules, approved answers or AI tests; the questions were committed alone, before the runner and the
+Clara's matching rules, fixed answers or AI tests; the questions were committed alone, before the runner and the
 results (\file{eval/heldout/}). They were run live on K2 through the same calls the landing page makes, when new and
 again after the 18 November fixes made for them, with the question file unchanged. Only the first run is truly held
 out.
@@ -1137,13 +1145,13 @@ out.
 \midrule
 \textbf{Need a person, and reached one} & \textbf{12 of 22} & \textbf{18 of 22}\\
 Of those, strictly no answer at all & 11 of 22 & 15 of 22\\
-Other questions given approved or checked words & 32 of 38 & 35 of 38\\
-Answers written by the AI from approved facts & 2 & 5\\
+Other questions given fixed or checked words & 32 of 38 & 35 of 38\\
+Answers written by the AI from fixed facts & 2 & 5\\
 \bottomrule
 \end{xltabular}}
 
 Every question about ending a pregnancy now goes to a person by rule, without asking the model. The 4 still answered
-without a person ask about telling family (1) or being related (3); they get approved, no-fault words, and whether those
+without a person ask about telling family (1) or being related (3); they get fixed, no-fault words, and whether those
 should also offer a person is the clinical lead's decision. The Wilson 95\% range for 18 of 22 is about 61--93\%.
 Relevance was judged by the same agent on the first run only.
 
@@ -1238,7 +1246,7 @@ These are enforced in code and covered by tests, not only stated:
   \item \textbf{Data minimisation.} The audit ledger stores hashes, never content, so withdrawing consent removes the
         payload and the chain still verifies.
   \item \textbf{A private check-in} (19 November). After their own explanation, each spouse can privately mark ``I feel
-        overwhelmed'' or ``still unsure what carrier means'', and note questions for the session from approved
+        overwhelmed'' or ``still unsure what carrier means'', and note questions for the session from fixed
         headings, with a short note. Only the specialist sees them: in an alert, the pre-session brief and the care
         agent, never the AI brief. Property tests on 2,000 random cases show the other spouse's view, the family
         doctor's and the lab's are unchanged whether or not a spouse checks in.
@@ -1418,8 +1426,8 @@ first and the gap was withheld; the page says so rather than show it.
 \section{Testing and verification}
 % =====================================================================
 
-There are 2,152 automated tests, run on 19 November: 1,857 unit and property tests (Vitest, fast-check; 1 skipped,
-77 files; \file{eval/tests/summary.json}) and 295 end-to-end tests (Playwright, full suite; all pass, and a few
+There are 2,431 automated tests, 19 November: 2,134 unit and property tests (Vitest, fast-check; 2,134 passed, 1 skipped,
+83 files; \file{eval/tests/summary.json}) and 297 end-to-end tests (Playwright; a few
 timing-sensitive tests pass on re-run) on a production build, in English and Arabic, on a 375-pixel phone screen. A property test
 states a rule and checks it on thousands of generated cases. Run counts are written once in \file{lib/evidence.ts}, so
 no page can claim more than the tests check.
@@ -1445,15 +1453,20 @@ Any one-byte edit to the audit ledger is detected & 2,000 & every one\\
 \begin{xltabular}{\textwidth}{@{}P{7.4cm}L@{}}
 \caption{How to reproduce}\\
 \toprl
-\code{pnpm test} & 1,857 unit and property tests\\
-\code{pnpm e2e} & 295 end-to-end tests against a production build\\
+\code{pnpm test} & 2,134 unit and property tests\\
+\code{pnpm e2e} & 297 end-to-end tests against a production build\\
 \code{pnpm cf:e2e} & End-to-end tests against the Cloudflare Worker\\
 \code{pnpm typecheck \&\& pnpm lint} & Types and lint\\
 \code{pnpm exec vitest run tests/lib/ai-eval.test.ts} & The 28-question Ask Clara evaluation, with \code{AI\_EVAL\_URL} set to a running server\\
 \bottomrule
 \end{xltabular}}
 
-These are tests, not a certification: there is no ethics approval or clinical safety case yet.
+These are tests, not a certification: there is no ethics approval, and the clinical safety case is a draft.
+
+\textbf{A draft hazard log.} \file{eval/safety/HAZARD-LOG.md} lists 17 hazards in the style of the NHS standard
+DCB0129, each with its causes, controls, the test or report that shows them, and a residual risk, and 11 open actions
+before a pilot. It is a student draft, written with AI assistance: no Clinical Safety Officer is named, nobody has
+reviewed it, and it claims no compliance with DCB0129 or any UAE regulation.
 
 \subsection{Load test (19 November)}\label{sec:load}
 
@@ -1463,6 +1476,14 @@ not a UAE host, with the AI off and no request to the live site (\file{eval/load
 phones. Against an estimated programme peak, that is about 84 times the headroom needed for pages and about 13 times
 for the slowest path, the server's own Ask rules. The peak is an estimate from the programme's published couple
 numbers, not a measurement, and nothing has been load-tested on a UAE host.
+
+\textbf{The deployed site (19 November).} A second, modest test sent about 7,300 requests to the live free-plan site
+from one laptop on a home connection in the UAE, one address, open loop (\file{eval/load/DEPLOYED.md}). Pages held
+120 requests a second, 10 times the estimated peak, with a median of about 180\,ms, almost all of it network; live
+rooms ran at 10 operations a second with 0 patches lost. The result: 0 errors on pages; 6 transient platform 503s on
+\code{/api/ai} at a low rate, cause unconfirmed (the same questions then answered 25 of 25). No model was called, the
+ceiling was not sought, and Ask capacity across many callers was not measured: from one address the per-caller limit
+bounds it.
 
 % =====================================================================
 \section{Limitations and next steps}
@@ -1497,7 +1518,7 @@ Whether Clara improves understanding is untested & The E1 comprehension study af
 \midrule
 No clinician sign-in; staff seats hold the case & Server-built staff views and an identity provider\\
 \midrule
-Load-tested only on a laptop, not a UAE host (section~\ref{sec:load}); no outside security review & Load test on the UAE host and an independent review of the room protocol\\
+Load-tested from one laptop only (one local process, and the deployed site from one address), not on a UAE host; 6 unexplained 503s on \code{/api/ai} (section~\ref{sec:load}); no outside security review & Load test on the UAE host and an independent review of the room protocol\\
 \midrule
 Not a medical device; not cleared for clinical use & Regulatory pathway with the Department of Health\\
 \bottomrule
@@ -1544,6 +1565,19 @@ nothing is agreed. Hosting in a UAE cloud region and model use come to about US\
 end assumes MBZUAI provides a UAE-hosted K2 at no marginal price, which is an ask. People's time is given in hours, not
 priced: about 10 to 25 hours of clinician and Arabic review before day 1 for the core sentences. Ethics, approvals,
 security testing and partner connections are not costed. The working is in the pilot and partner pack.
+
+\textbf{The pilot build (built and tested).} \code{CLARA\_PILOT=1} at build time makes the build real families would
+use (\file{lib/pilot.ts}). It refuses to build while any family-facing sentence is unsigned or changed since signing;
+the check runs in \file{app/[lang]/layout.tsx}, under which every page sits, so today a pilot build fails, as it
+should. It holds every AI-written answer for a specialist before a family sees it, whatever the written-answer setting
+says, and the console cannot switch that back. It starts the programme's AI switch off after every restart, so only
+staff turn it on. None of this makes a pilot safe by itself; the draft hazard log lists what still needs people
+outside the team.
+
+\textbf{Capacity and operator models (proposed).} The pilot pack adds a counsellor capacity model and an operator
+model. In the first, every minute is a labelled assumption: nothing is measured and no time saved is claimed; the pilot
+measures it and reports it even at zero. In the second, every organisation named is a candidate from DoH's own
+documents; none has been approached or has agreed.
 
 \subsection{UAE data residency: today and in the pilot (proposed)}\label{sec:residency}
 
