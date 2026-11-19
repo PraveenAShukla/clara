@@ -94,7 +94,7 @@
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\headrule}{{\color{rule}\hrule width\headwidth height\headrulewidth}}
 \fancyhead[L]{\footnotesize\color{muted}Clara · Technical documentation}
-\fancyhead[R]{\footnotesize\color{muted}Version 1.4 · 19 November 2026}
+\fancyhead[R]{\footnotesize\color{muted}Version 1.5 · 19 November 2026}
 \fancyfoot[L]{\footnotesize\color{muted}Future Health Digital Innovation Challenge · Problem Statement 03 · Team parallelparadox}
 \fancyfoot[R]{\footnotesize\color{muted}Page \thepage\ of \pageref*{LastPage}}
 \fancypagestyle{plain}{}
@@ -149,8 +149,8 @@
 \color{muted}Challenge & Future Health Digital Innovation Challenge 2026, Department of Health Abu Dhabi\\
 \color{muted}Problem statement & 03 · Understanding and Reducing Inherited Disease Risk\\
 \color{muted}Team & parallelparadox\\
-\color{muted}Version & 1.4, 19 November 2026\\
-\color{muted}Source & branch \code{v1-production-on-main}, commit \code{8b2bb18} (the deployed build)\\
+\color{muted}Version & 1.5, 19 November 2026\\
+\color{muted}Source & branch \code{v1-production-on-main}, commit \code{96a0581}\\
 \color{muted}Prototype & \link{\proto/en}{clara.q7m4v2k9orbit.workers.dev}\\
 \color{muted}Project page & \link{https://praveenashukla.github.io/clara/}{praveenashukla.github.io/clara}\\
 \end{tabular}
@@ -158,7 +158,7 @@
 \vfill
 \begin{note}[colback=white,colframe=rule,boxrule=0.6pt]
 \textbf{Status: research prototype.} Every couple, genome, lab report and clinician in Clara is synthetic; no personal
-data has been used. UAE PASS, M42 and Malaffi are simulated, and labelled ``Simulated'' on every screen. Clara is not a medical device and is not
+data has been used. M42, the Malaffi connection and UAE PASS signing are simulated, and labelled ``Simulated'' on every screen; one test page signs in with UAE PASS's real staging environment. Clara is not a medical device and is not
 affiliated with or endorsed by the Department of Health, M42, MBZUAI, G42 or Microsoft.
 \end{note}
 \end{titlepage}
@@ -182,11 +182,11 @@ sources listed under References.
 \toprl
 Document & Clara technical documentation\\
 \midrule
-Version & 1.4\\
+Version & 1.5\\
 \midrule
-Date & 19 November 2026 (1.3: earlier on 19 November; 1.2 and 1.1: 18 November; 1.0: 15 November 2026)\\
+Date & 19 November 2026 (1.4 and 1.3: earlier on 19 November; 1.2 and 1.1: 18 November; 1.0: 15 November 2026)\\
 \midrule
-Source & \code{v1-production-on-main} at commit \code{8b2bb18}, the build deployed at \code{clara.q7m4v2k9orbit.workers.dev}. Tests, sentence count, held-out evaluation, UAE standards map, model roles and the 19 November changes all checked at this commit; sections not touched since 1.0 describe behaviour unchanged since commit \code{20608c0}\\
+Source & \code{v1-production-on-main} at commit \code{ffb0636}. The 1.5 additions (UAE PASS staging sign-in, FHIR R4 referrals, Ask Clara on the landing page, the private check-in, the doctor-ready summary, the sign-off workbench) and the test counts are checked at this commit. Sentence count, held-out evaluation, UAE standards map, model roles and the earlier 19 November changes were checked at commit \code{ffb0636}; sections not touched since 1.0 describe behaviour unchanged since commit \code{20608c0}\\
 \midrule
 Authors & Team parallelparadox: Praveen Anilkumar Shukla, Noel Thomas, Alaa Mohamed Elsayed Abdelghany Alam, Pradeep. Based on the technical brief written by Noel Thomas.\\
 \midrule
@@ -214,7 +214,7 @@ Teach-back & A short check in which a spouse explains their result in their own 
 \midrule
 Audit ledger & A hash-chained record of who received what kind of information.\\
 \midrule
-Simulated & A stand-in for a real system (UAE PASS, M42, Malaffi, the calendar), labelled ``Simulated'' on screen in every build.\\
+Simulated & A stand-in for a real system (the M42 lab report, the Malaffi connection, the counsellor calendar, UAE PASS signing and the phones' UAE PASS), labelled ``Simulated'' on screen in every build.\\
 \bottomrule
 \end{xltabular}}
 
@@ -252,11 +252,13 @@ Two rules shaped everything:
 
 {
 \begin{xltabular}{\textwidth}{@{}P{2.6cm}L@{}}
-\caption{Clara in figures (commit \code{8b2bb18}, 19 November 2026)}\\
+\caption{Clara in figures (19 November 2026)}\\
 \toprl
 \textbf{18 of 22} & questions that need a person reached one after fixes made for those questions (12 of 22 when the questions were new), on 60 questions written by a separate AI agent before it saw Clara's rules, run live on K2; not real people (section~\ref{sec:heldout})\\
 \midrule
-\textbf{1,053} & automated tests, all run and passing on 19 November: 805 unit and property (1 skipped), 248 end-to-end in English and Arabic\\
+\textbf{1,138} & automated tests, all run and passing on 19 November: 870 unit and property, 268 end-to-end in English and Arabic\\
+\midrule
+\textbf{5 of 5} & referral kinds sent as FHIR R4 \code{ServiceRequest}s to a public FHIR server: 0 validation errors, stored, read back unchanged and deleted (section~\ref{sec:connect})\\
 \midrule
 \textbf{0} & disclosures between spouses across 2,000 random cases\\
 \midrule
@@ -344,7 +346,7 @@ Genome Programme, the lab and the health-information exchange), not beside them.
 \midrule
 4. Privacy-preserving family workflows & Explicit consent, one projection per role, a hash-chained audit ledger, item-by-item sharing with the partner and relatives. & \code{/en/safeguards}\\
 \midrule
-5. Safe linkage to services & Referrals as minimised FHIR \code{ServiceRequest}s, tracked from sent to closed, with the pregnancy 48-hour check. & Console, referrals\\
+5. Safe linkage to services & Referrals as minimised FHIR R4 \code{ServiceRequest}s, valid on a public FHIR server's validator, tracked from sent to closed, with the pregnancy 48-hour check. & Console, referrals; \code{/en/evidence\#fhir}\\
 \midrule
 6. Measurable comprehension and access & Programme measures for understanding, booking, time to session and referral, split by language and sex; never a choice. & \code{/en/programme}\\
 \bottomrule
@@ -505,7 +507,7 @@ staff seats do hold the case on the device; see section 4.5.)
 
   % external
   \node[ai,text width=2.4cm,right=6mm of ai] (k2) {\textbf{K2 Think Horizon}\\ MBZUAI, first;\\ \mbox{OpenAI} (US)\\ if K2 fails\\ {\footnotesize strict JSON}};
-  \node[mock,text width=2.4cm,right=6mm of ro] (mk) {\textbf{Simulated}\\ UAE PASS · M42\\ Malaffi (FHIR)\\ calendar};
+  \node[mock,text width=2.4cm,right=6mm of ro] (mk) {\textbf{Simulated}\\ M42 · calendar\\ Malaffi link\\ UAE PASS signing};
 
   \draw[wire,<->] (clients.east) -- (wk.west);
   \draw[wire,->] (wk.east) -- ++(5mm,0) |- (st.west);
@@ -516,7 +518,7 @@ staff seats do hold the case on the device; see section 4.5.)
   \draw[wire,<->] (ai) -- (k2);
   \draw[wire,dashed,<->] (ro) -- (mk);
 \end{tikzpicture}
-\caption{Components of the hosted system. Solid lines are built; the dashed line goes to services labelled ``Simulated''.}
+\caption{Components of the hosted system. Solid lines are built; the dashed line goes to services labelled ``Simulated''. Not drawn: the \code{/uaepass} test page, which calls UAE PASS's real staging environment.}
 \end{figure}
 
 \subsection{Layers}
@@ -795,6 +797,12 @@ below) are composed from atoms and labelled as AI-written. Each atom records whe
 hash of the exact signed text, so an edit after signing shows up. Today all 940 are drafts awaiting a clinician and an Emirati
 Arabic reviewer.
 
+\textbf{Sign-off workbench (demo, 19 November).} The console shows how signing will work
+(\code{/en/console\#signoff}, \file{lib/signoff-demo.ts}). Two reviewer roles approve a draft sentence. Each approval
+binds the SHA-256 of the exact English and Arabic text, and a one-character edit flips it to ``changed since signing''
+through the same \code{atomState} the library uses. It is a demonstration held in the browser tab only: the library
+stays 0 of 940 signed.
+
 Arabic was designed alongside English: IBM Plex Sans Arabic next to IBM Plex Sans, Markazi Text for headings, its own
 spacing and a right-to-left layout. Every chance is written in words and drawn as a picture. When a spouse's
 specialist is a woman, every sentence that names the specialist reads in the feminine; the partner is ``your life
@@ -806,7 +814,10 @@ provider (``your specialist refers you''). Consent and the family letter name th
 USO/178/2024 requires to take the genetic test: Emirati nationals, children of Emirati mothers, and a marriage where
 either spouse is not an Emirati national. After a result, a spouse can write a letter for relatives that stays on their
 phone; Clara never contacts a relative. A one-page summary, before and after the test, is one click from the landing
-page (\code{/en/summary/noura-saeed}).
+page (\code{/en/summary/noura-saeed}). Since the afternoon of 19 November it opens on a finished synthetic case, played
+through the real case events: the clinician's copy (result, chance per pregnancy, session, what to go over again, the
+referral with its date, what consent keeps out) and each spouse's copy at their own reading level. Property tests check
+that each spouse's copy is the same whatever the other spouse does alone.
 
 \begin{note}
 \textbf{One real atom.} \code{ics.summary} = ``Appointment''. It is the only text in a spouse's calendar entry, so a
@@ -906,6 +917,14 @@ decide: the approved words stay, with a person beside them, on the model and key
 reproductive choice (options, IVF with embryo testing, testing in pregnancy, a pregnancy now) always comes with an offer
 of a person. Asking whether to go on with a pregnancy, even in words that are not termination words, goes to a person
 by rule. Pregnancy content shows only for married couples, checked by a property test over all engaged couples.
+
+\textbf{Ask Clara on the landing page (19 November).} Seven one-tap hard questions run the real path: a worry in Gulf
+Arabic, Arabizi, cost, faith, a choice about children, a medical detail and an attempt to steer the AI
+(\file{components/landing/try-ask.tsx}). Every reply shows five layers in order, and the one that stopped it: input
+cleaning, Clara's rules, the AI topic sorter, the word and meaning checks, and a person (\file{lib/ai/trace.ts}). A
+compound question keeps every part: for example IVF and whether it is allowed here, or a sibling's risk. A part that a
+person must answer ends in the counsellor card, with ``add it to your questions'', so there is no dead end. A question
+about a pregnancy now never gets pre-pregnancy options.
 
 \textbf{How this answer was made.} Under every answer, a trace shows what Clara understood and how the answer was made:
 a fixed rule, keywords, an approved answer found by the model, or a short answer written from approved facts and the
@@ -1084,6 +1103,13 @@ These are enforced in code and covered by tests, not only stated:
         pregnancy.
   \item \textbf{Data minimisation.} The audit ledger stores hashes, never content, so withdrawing consent removes the
         payload and the chain still verifies.
+  \item \textbf{A private check-in} (19 November). After their own explanation, each spouse can privately mark ``I feel
+        overwhelmed'' or ``still unsure what carrier means'', and note questions for the session from approved
+        headings, with a short note. Only the specialist sees them: in an alert, the pre-session brief and the care
+        agent, never the AI brief. Property tests on 2,000 random cases show the other spouse's view, the family
+        doctor's and the lab's are unchanged whether or not a spouse checks in.
+  \item \textbf{UAE PASS staging sign-in keeps nothing but the level.} The \code{/uaepass} page keeps only the account
+        level (SOP1, SOP2 or SOP3); no name, ID or token is stored or logged (\file{lib/uaepass/core.ts}).
 \end{itemize}
 
 \subsection{Security controls}
@@ -1125,8 +1151,9 @@ Pilot (proposed) & Hosted in the UAE, with models hosted in the UAE; the Departm
 \end{xltabular}}
 
 No special hardware is needed: everything runs in an ordinary browser. Clara explains and connects; it does not
-measure, diagnose or treat. UAE PASS, M42 and Malaffi appear by name only, each labelled ``Simulated'', in Clara's own
-design, never a real logo.
+measure, diagnose or treat. M42, Malaffi and UAE PASS signing appear by name only, each labelled ``Simulated'', in
+Clara's own design, never a real logo. The one real connection is the \code{/uaepass} test page, on UAE PASS staging
+(section~\ref{sec:connect}).
 
 % =====================================================================
 \section{Care pathway and referrals}
@@ -1146,8 +1173,8 @@ time-stamps every step.
 \end{figure}
 
 \begin{itemize}
-  \item \textbf{The referral} is a FHIR \code{ServiceRequest} (\file{core/referral.ts}), sent through Malaffi, which
-        is simulated today. It carries no gene, no answers and nothing about relatives, and each spouse consents to what
+  \item \textbf{The referral} is a valid FHIR R4 \code{ServiceRequest} (\file{core/referral.ts}, \file{core/fhir.ts}),
+        sent through Malaffi, which is simulated today. It carries no gene, no answers and nothing about relatives, and each spouse consents to what
         is sent.
   \item \textbf{Services}: counselling follow-up, confirmatory testing, PGT-M with IVF, prenatal diagnosis, and urgent
         fetal medicine in pregnancy.
@@ -1157,6 +1184,24 @@ time-stamps every step.
         sent, appointment.
   \item \textbf{Questions about cost, cover or faith} go to a person.
 \end{itemize}
+
+\subsection{Connections to national services (19 November)}\label{sec:connect}
+
+\textbf{FHIR R4 referrals, checked on a real server.} \file{core/fhir.ts} builds each referral as a FHIR R4
+\code{ServiceRequest} that carries what the referral carries and nothing more: no gene, no answers, nothing about
+relatives, the couple as a pseudonym, and a synthetic tag. \file{eval/fhir/roundtrip.run.ts} sent all five kinds to the
+public HAPI FHIR R4 server. Each passed \code{\$validate} with 0 errors and 2 warnings (the server does not know Clara's
+own code lists), was stored (201), read back unchanged, and deleted (then 410). The run is recorded in
+\file{content/fhir-run.json} and shown on \code{/en/evidence\#fhir}. Malaffi itself stays simulated: it has no public
+test environment, and only DoH-licensed facilities connect.
+
+\textbf{A real UAE PASS staging sign-in.} \code{/en/uaepass} signs in with UAE PASS's staging environment
+(\file{lib/uaepass/core.ts}): an OpenID Connect authorisation code flow with PKCE, using the public proof-of-concept
+client UAE PASS publishes (\code{sandbox\_stage}), with the token exchange on the server. Clara keeps only the account
+level (SOP1, SOP2 or SOP3); nothing is stored or logged. It was tested end to end on 19 November 2026 with a real UAE
+PASS staging account (result: verified, SOP1). A failed sign-in names the step that failed, never a token or anything
+personal. The phones keep a simulated UAE PASS, so nobody needs an account to try Clara, and UAE PASS signing of the
+declaration is still simulated. Production needs the operator's own UAE PASS onboarding.
 
 % =====================================================================
 \section{Measurement and differential privacy}
@@ -1234,8 +1279,8 @@ first and the gap was withheld; the page says so rather than show it.
 \section{Testing and verification}
 % =====================================================================
 
-There are 1,053 automated tests, all run and passing on 19 November at commit \code{8b2bb18}, the deployed one: 805 unit and property
-tests (Vitest, fast-check; 1 skipped; 59 files) and 248 end-to-end tests (Playwright, full suite) on a production build, in English and Arabic, on a 375-pixel phone screen. A property test
+There are 1,138 automated tests, all run and passing on 19 November at commit \code{ffb0636}: 870 unit and property
+tests (Vitest, fast-check) and 268 end-to-end tests (Playwright, full suite) on a production build, in English and Arabic, on a 375-pixel phone screen. A property test
 states a rule and checks it on thousands of generated cases. Run counts are written once in \file{lib/evidence.ts}, so
 no page can claim more than the tests check.
 
@@ -1250,6 +1295,7 @@ Nothing reaches a phone while a result is held & 2,000 & 0 disclosures\\
 A spouse never receives the other's answers, questions, picks, consents or carrier findings & 2,000 & 0 disclosures\\
 X-linked: his phone shows nothing from her result until she shares & 2,000 & 0 disclosures\\
 The family doctor never sees a gene, an at-risk kind, an answer or a sharing choice & 2,000 & 0 disclosures\\
+A private check-in leaves the other spouse's, the doctor's and the lab's views unchanged & 2,000 & unchanged\\
 Any one-byte edit to the audit ledger is detected & 2,000 & every one\\
 \bottomrule
 \end{xltabular}}
@@ -1258,8 +1304,8 @@ Any one-byte edit to the audit ledger is detected & 2,000 & every one\\
 \begin{xltabular}{\textwidth}{@{}P{7.4cm}L@{}}
 \caption{How to reproduce}\\
 \toprl
-\code{pnpm test} & 805 unit and property tests\\
-\code{pnpm e2e} & 248 end-to-end tests against a production build\\
+\code{pnpm test} & 870 unit and property tests\\
+\code{pnpm e2e} & 268 end-to-end tests against a production build\\
 \code{pnpm cf:e2e} & End-to-end tests against the Cloudflare Worker\\
 \code{pnpm typecheck \&\& pnpm lint} & Types and lint\\
 \code{pnpm exec vitest run tests/lib/ai-eval.test.ts} & The 28-question Ask Clara evaluation, with \code{AI\_EVAL\_URL} set to a running server\\
@@ -1281,7 +1327,7 @@ What a reviewer should weigh: everything below is known and stated on screen in 
 \toprl
 \thead{Limitation} & \thead{Next step}\\
 \midrule
-Synthetic data and simulated partners only & Connect UAE PASS, M42 and Malaffi in a pilot, after a data protection impact assessment\\
+Synthetic data only; M42, the Malaffi connection and UAE PASS signing simulated; the UAE PASS sign-in runs on staging only & Connect M42 and Malaffi, and the operator's own UAE PASS onboarding, in a pilot, after a data protection impact assessment\\
 \midrule
 All 940 sentences and the condition cards unsigned; AI-written Ask answers unreviewed & Review and signing by a licensed clinical lead (not yet confirmed) and an Emirati Arabic reviewer\\
 \midrule
@@ -1464,6 +1510,8 @@ Every page exists in English (\code{/en/…}) and Arabic (\code{/ar/…}) at \li
 \link{\proto/en/rehearsal}{\code{/en/rehearsal}} & Counsellor practice\\
 \link{\proto/en/evidence}{\code{/en/evidence}}, \link{\proto/en/safeguards}{\code{/en/safeguards}} & Claims mapped to tests; privacy checks in your browser\\
 \link{\proto/en/privacy}{\code{/en/privacy}} & Privacy notice\\
+\link{\proto/en/summary/noura-saeed}{\code{/en/summary/noura-saeed}} & Doctor-ready summary of a finished synthetic case\\
+\link{\proto/en/uaepass}{\code{/en/uaepass}} & UAE PASS sign-in on UAE PASS staging (needs a staging account)\\
 \bottomrule
 \end{xltabular}}
 

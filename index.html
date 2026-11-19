@@ -280,7 +280,7 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
   </div>
 </div>
 <div class="stats">
-  <div class="stat"><b>1,053</b><span>automated tests, all run and passing on 19 Nov (805 unit and property, 248 end-to-end)</span></div>
+  <div class="stat"><b>1,138</b><span>automated tests, all run and passing on 19 Nov (870 unit and property, 268 end-to-end)</span></div>
   <div class="stat"><b>0</b><span>leaks between spouses in 2,000 random cases</span></div>
   <div class="stat"><b>18/22</b><span>AI-written questions that need a person reached one, live on K2, after fixes made for them (12/22 when new)</span></div>
   <div class="stat"><b>2,000</b><span>random edits to the audit record, every one caught</span></div>
@@ -614,12 +614,12 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
   <div class="card"><b>Today</b><p>Every couple, genome, lab report and clinician is invented (licences start <code>SYN-</code>). Rooms delete themselves within 12 hours. A model sees one typed question or a lab report’s text, never a name: K2 first, reached through AWS in Singapore, and OpenAI in the US if K2 fails.</p></div>
   <div class="card"><b>Pilot (proposed)</b><p>Hosted in the UAE, models hosted in the UAE, the Department of Health and the centre as controller, under Federal Law No. 2 of 2019 and DoH policy, after a data protection impact assessment.</p></div>
 </div>
-<p style="margin-top:14px">No hardware: everything runs in an ordinary browser. Clara explains and connects; it does not measure, diagnose or treat. M42 and Malaffi appear by name only, each labelled “Simulated”. UAE PASS is simulated on the phones too, and a real sign-in with UAE PASS&rsquo;s own staging environment works at <a href="https://clara.q7m4v2k9orbit.workers.dev/en/uaepass">/uaepass</a>; Clara keeps nothing from it.</p>
+<p style="margin-top:14px">No hardware: everything runs in an ordinary browser. Clara explains and connects; it does not measure, diagnose or treat. M42 and Malaffi appear by name only, each labelled “Simulated”. UAE PASS is simulated on the phones too, and a real sign-in with UAE PASS&rsquo;s own staging environment works at <a href="https://clara.q7m4v2k9orbit.workers.dev/en/uaepass">/uaepass</a>, tested end to end on 19 November 2026 with a staging account; Clara keeps only the account level.</p>
 </section>
 
 <section class="s" id="tests" style="--c:var(--teal)">
 <span class="tag"><b>15</b>Tests</span>
-<h2>1,053 automated tests, most of them on random cases</h2>
+<h2>1,138 automated tests, most of them on random cases</h2>
 <p class="lede">A property test states a rule and checks it on thousands of generated cases. Run counts are written once in <code>lib/evidence.ts</code>, so no page can claim more than the tests check.</p>
 <div class="tablewrap"><table>
 <thead><tr><th>Property</th><th class="r">Random runs</th><th>Result</th></tr></thead>
@@ -631,7 +631,7 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 <tr><td>The family doctor never sees a gene, an at-risk kind, an answer or a sharing choice</td><td class="r">2,000</td><td>0 disclosures</td></tr>
 <tr><td>Any one-byte edit to the audit record is detected</td><td class="r">2,000</td><td>every one</td></tr>
 </tbody></table></div>
-<p>805 unit and property tests (Vitest, fast-check; 805 passed and 1 skipped, 59 files) and 248 end-to-end tests (Playwright, full suite; 248 passed), all run on 19 November at the deployed build, on a production build, in English and Arabic, on a 375-pixel phone screen. These are tests, not a certification: there is no ethics approval or clinical safety case yet.</p>
+<p>870 unit and property tests (Vitest, fast-check; 870 passed and 1 skipped, 63 files) and 268 end-to-end tests (Playwright, full suite; 268 passed), all run on 19 November at the deployed build, on a production build, in English and Arabic, on a 375-pixel phone screen. These are tests, not a certification: there is no ethics approval or clinical safety case yet.</p>
 </section>
 
 <section class="s" id="limits" style="--c:var(--fail); --cs:var(--failsoft)">
@@ -670,7 +670,7 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 <li><b>Ethics approval</b> for the comprehension study, with a data protection impact assessment.</li>
 <li><b>UAE hosting</b> for the model and for Clara’s pages, as DoH requires (Responsible AI Standard 3.1.4.5.1; ADHICS V2 CS 1.2(2)). Each model endpoint is one setting.</li>
 <li><b>A licensed operator and DoH app approval</b> (Digital Products Governance 3.2.4.1).</li>
-<li><b>Test links replace the simulated ones:</b> M42 results and Malaffi referrals (the referral is already valid FHIR R4), then UAE PASS sign-in with the operator&rsquo;s own client (it already works against UAE PASS staging).</li>
+<li><b>Test links replace the simulated ones:</b> M42 results and Malaffi referrals (the referral is already valid FHIR R4), then UAE PASS sign-in with the operator&rsquo;s own client (it already works end to end against UAE PASS staging, tested 19 November 2026).</li>
 </ol>
 <div class="cards">
   <div class="card"><b>Set-up, about 60 days</b><p>Sign the words, file ethics, connect in test, move hosting to the UAE. A planning assumption.</p></div>
@@ -763,7 +763,7 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 
 <h3>Built today, and not yet</h3>
 <div class="cards" style="--n:2">
-  <div class="card"><b>Built (synthetic cases only)</b><p>The programme-wide AI switch, the hold-for-review queue, and counts for teach-back, time to a session and Ask routes. Referrals in valid FHIR R4, checked on a public FHIR server. A real UAE PASS staging sign-in.</p></div>
+  <div class="card"><b>Built (synthetic cases only)</b><p>The programme-wide AI switch, the hold-for-review queue, and counts for teach-back, time to a session and Ask routes. Referrals in valid FHIR R4, checked on a public FHIR server. A real UAE PASS staging sign-in, tested end to end with a staging account.</p></div>
   <div class="card"><b>Not yet</b><p>No partner, clinical lead, signed sentence, ethics approval or real user. Models are outside the UAE. The switch has no named sign-in.</p></div>
 </div>
 <div class="callout"><b>Our ask.</b> One premarital centre, the genetics clinic it refers to and a clinical lead, for a 90-day pilot measuring understanding, time to counselling and the questions that need a person.</div>
@@ -802,8 +802,8 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 pnpm dev --port 3100 -H 127.0.0.1     <span class="c"># http://127.0.0.1:3100/en</span>
 docker compose up                     <span class="c"># one container: http://127.0.0.1:3000/en</span>
 pnpm cf:dev                           <span class="c"># Cloudflare version with live rooms: :8787</span>
-pnpm test                             <span class="c"># 805 unit and property tests</span>
-pnpm e2e                              <span class="c"># 248 end-to-end tests</span>
+pnpm test                             <span class="c"># 870 unit and property tests</span>
+pnpm e2e                              <span class="c"># 268 end-to-end tests</span>
 pnpm typecheck &amp;&amp; pnpm lint
 AI_EVAL_URL=http://127.0.0.1:3100 pnpm exec vitest run tests/lib/ai-eval.test.ts   <span class="c"># the 28 questions</span></code></pre>
 <p>To connect a model, set <code>MODEL_BASE_URL</code>, <code>MODEL_NAME</code>, <code>MODEL_API_KEY</code>, <code>MODEL_REASONING_EFFORT</code> (and the same with <code>FALLBACK_</code>, used for any task only if the first model fails or its reply fails the checks) in <code>.env.local</code> or as Cloudflare secrets. Any OpenAI-compatible endpoint works. <code>MODEL_OFF=1</code> switches AI off.</p>
@@ -829,7 +829,7 @@ AI_EVAL_URL=http://127.0.0.1:3100 pnpm exec vitest run tests/lib/ai-eval.test.ts
 </nav>
 </div>
 
-<footer class="gut">Clara · team parallelparadox · Future Health Digital Innovation Challenge, Problem Statement 03 · brief by Noel Thomas. <a href="Clara-Technical-Documentation.pdf">PDF version</a>. Figures come from the repository’s README, tests and saved eval runs at commit 8b2bb18, 19 November 2026 (the deployed build). The request animation and the noise simulator are sketches of the logic; the hash chain, the four questions and the test chart use real code behaviour and saved results.</footer>
+<footer class="gut">Clara · team parallelparadox · Future Health Digital Innovation Challenge, Problem Statement 03 · brief by Noel Thomas. <a href="Clara-Technical-Documentation.pdf">PDF version</a>. Figures come from the repository’s README, tests and saved eval runs at commit ffb0636, 19 November 2026 (the deployed build). The request animation and the noise simulator are sketches of the logic; the hash chain, the four questions and the test chart use real code behaviour and saved results.</footer>
 
 <script>
 (function(){
