@@ -94,7 +94,7 @@
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\headrule}{{\color{rule}\hrule width\headwidth height\headrulewidth}}
 \fancyhead[L]{\footnotesize\color{muted}Clara · Technical documentation}
-\fancyhead[R]{\footnotesize\color{muted}Version 2.0 · 19 November 2026}
+\fancyhead[R]{\footnotesize\color{muted}Version 2.1 · 20 November 2026}
 \fancyfoot[L]{\footnotesize\color{muted}Future Health Digital Innovation Challenge · Problem Statement 03 · Team parallelparadox}
 \fancyfoot[R]{\footnotesize\color{muted}Page \thepage\ of \pageref*{LastPage}}
 \fancypagestyle{plain}{}
@@ -149,8 +149,8 @@
 \color{muted}Challenge & Future Health Digital Innovation Challenge 2026, Department of Health Abu Dhabi\\
 \color{muted}Problem statement & 03 · Understanding and Reducing Inherited Disease Risk\\
 \color{muted}Team & parallelparadox\\
-\color{muted}Version & 2.0, 19 November 2026\\
-\color{muted}Source & branch \code{v1-production-on-main}, commit \code{c0a7c51}\\
+\color{muted}Version & 2.1, 20 November 2026\\
+\color{muted}Source & branch \code{v1-production-on-main}, commit \code{09d21a8}\\
 \color{muted}Prototype & \link{\proto/en}{clara.q7m4v2k9orbit.workers.dev}\\
 \color{muted}Project page & \link{https://praveenashukla.github.io/clara/}{praveenashukla.github.io/clara}\\
 \end{tabular}
@@ -182,11 +182,11 @@ sources listed under References.
 \toprl
 Document & Clara technical documentation\\
 \midrule
-Version & 2.0\\
+Version & 2.1\\
 \midrule
-Date & 19 November 2026, late (1.9, 1.8, 1.7, 1.6, 1.5, 1.4 and 1.3: earlier on 19 November; 1.2 and 1.1: 18 November; 1.0: 15 November 2026)\\
+Date & 20 November 2026 (2.0: late on 19 November; 1.9, 1.8, 1.7, 1.6, 1.5, 1.4 and 1.3: earlier on 19 November; 1.2 and 1.1: 18 November; 1.0: 15 November 2026)\\
 \midrule
-Source & \code{v1-production-on-main} at commit \code{c06c910}. Changes in 2.0: 2,431 tests (2,134 unit and property, 297 end-to-end); 295 crisis, distress and look-alike probes; per-caller limits that hold across restarts and request body caps; the pilot build (\code{CLARA\_PILOT=1}): a gate that refuses unsigned words, hold mode for every written answer, the AI switch off after a restart; the urgent crisis request; a load test of the deployed site; a draft hazard log; a proposed capacity model and operator model; the second held-out range given as 62--91\%, rounded outward. These and the test counts are checked at this commit. Changes in 1.9 (checked at commit \code{52a4309}): 2,152 tests; 1,065 fixed sentences; sorting an Ask Clara question asks OpenAI first, then K2; a distress tier beside the crisis rule, with 217 crisis, distress and look-alike probes; an AI persona walkthrough (10 AI personas, not real people) and what it fixed; each spouse's health-record entry holds only their own result; four new privacy answers; fixed answers labelled as drafts instead of ``approved''. Changes in 1.8 (checked at commit \code{6840822}): 1,699 tests; 1,018 fixed sentences; the crisis rule hardened (88 crisis test phrasings, the sorter's own crisis flag, an 800 SAKINA line under every ``worried'' answer); no failed replies when the model is slow. Changes in 1.7 (checked at commit \code{c0a7c51}): 1,547 tests; a second held-out set of 60 questions, with its two self-harm misses and the crisis rule that fixes them; person rules for decisions, one carrier and hiding a result; replies within 15 seconds; 1,006 fixed sentences; the common result in one click; the landing page says when AI writes an answer; the pilot's costed 90 days and a cascade-testing measure. Changes in 1.6 (checked at commit \code{36f1f01}): 1,249 tests; Ask Clara shown as a pipeline; the landing FAQ; fonts per language; the container's access gate; the load test; a staff sign-in for the AI switch; prototype stand-ins listed on the Privacy page only. The 1.5 additions (UAE PASS staging sign-in, FHIR R4 referrals, Ask Clara on the landing page, the private check-in, the doctor-ready summary, the sign-off workbench), sentence count, held-out evaluation, UAE standards map and model roles were checked at commit \code{ffb0636}; sections not touched since 1.0 describe behaviour unchanged since commit \code{20608c0}\\
+Source & \code{v1-production-on-main} at commit \code{09d21a8} (code as at \code{b8c9eab}). Changes in 2.1: 2,879 tests (2,575 unit and property, 304 end-to-end, all 304 passing first time in one full run); 393 crisis, distress and look-alike probes; crisis checks before the cost, faith and family person rules, with burden, warning, ``too many at once'' and denial probes; a carrier-health question gets the carrier answer; a reply to a question typed in the other language can be shown in that language with one tap; 1,067 fixed sentences; every screen that said ``approved'' for unsigned text says ``Clara's fixed'' answers, words or facts; the demo Shortcuts button no longer covers text; deployed on 20 November with live crisis probes. These and the test counts are checked at this commit. Changes in 2.0 (checked at commit \code{c06c910}): 2,431 tests (2,134 unit and property, 297 end-to-end); 295 crisis, distress and look-alike probes; per-caller limits that hold across restarts and request body caps; the pilot build (\code{CLARA\_PILOT=1}): a gate that refuses unsigned words, hold mode for every written answer, the AI switch off after a restart; the urgent crisis request; a load test of the deployed site; a draft hazard log; a proposed capacity model and operator model; the second held-out range given as 62--91\%, rounded outward. Changes in 1.9 (checked at commit \code{52a4309}): 2,152 tests; 1,065 fixed sentences; sorting an Ask Clara question asks OpenAI first, then K2; a distress tier beside the crisis rule, with 217 crisis, distress and look-alike probes; an AI persona walkthrough (10 AI personas, not real people) and what it fixed; each spouse's health-record entry holds only their own result; four new privacy answers; fixed answers labelled as drafts instead of ``approved''. Changes in 1.8 (checked at commit \code{6840822}): 1,699 tests; 1,018 fixed sentences; the crisis rule hardened (88 crisis test phrasings, the sorter's own crisis flag, an 800 SAKINA line under every ``worried'' answer); no failed replies when the model is slow. Changes in 1.7 (checked at commit \code{c0a7c51}): 1,547 tests; a second held-out set of 60 questions, with its two self-harm misses and the crisis rule that fixes them; person rules for decisions, one carrier and hiding a result; replies within 15 seconds; 1,006 fixed sentences; the common result in one click; the landing page says when AI writes an answer; the pilot's costed 90 days and a cascade-testing measure. Changes in 1.6 (checked at commit \code{36f1f01}): 1,249 tests; Ask Clara shown as a pipeline; the landing FAQ; fonts per language; the container's access gate; the load test; a staff sign-in for the AI switch; prototype stand-ins listed on the Privacy page only. The 1.5 additions (UAE PASS staging sign-in, FHIR R4 referrals, Ask Clara on the landing page, the private check-in, the doctor-ready summary, the sign-off workbench), sentence count, held-out evaluation, UAE standards map and model roles were checked at commit \code{ffb0636}; sections not touched since 1.0 describe behaviour unchanged since commit \code{20608c0}\\
 \midrule
 Authors & Team parallelparadox: Praveen Anilkumar Shukla, Noel Thomas, Alaa Mohamed Elsayed Abdelghany Alam, Pradeep. Based on the technical brief written by Noel Thomas.\\
 \midrule
@@ -252,15 +252,15 @@ Two rules shaped everything:
 
 {
 \begin{xltabular}{\textwidth}{@{}P{2.6cm}L@{}}
-\caption{Clara in figures (19 November 2026)}\\
+\caption{Clara in figures (20 November 2026)}\\
 \toprl
 \textbf{24 of 30} & questions that need a person reached one, on a second set of 60 new questions written by an AI agent and labelled before any run, run live; not real people. Two self-harm messages got the ordinary ``worried'' answer; a crisis rule now runs first \mbox{(section~\ref{sec:heldout2})}\\
 \midrule
-\textbf{2,431} & automated tests, 19 November: 2,134 unit and property, passing (1 skipped, 83 files), and 297 end-to-end in English and Arabic (a few timing-sensitive end-to-end tests pass on re-run)\\
+\textbf{2,879} & automated tests, 20 November: 2,575 unit and property, passing (1 skipped, 86 files), and 304 end-to-end in English and Arabic, all passing first time in one full run\\
 \midrule
-\textbf{295} & crisis, distress and look-alike probes, all passing; a crisis rule and a distress tier run before any model, on the phone and the server\\
+\textbf{393} & crisis, distress and look-alike probes, all passing; a crisis rule and a distress tier run before any model and before the cost, faith and family person rules, on the phone and the server\\
 \midrule
-\textbf{102} & findings from an AI persona walkthrough on the live site (10 AI personas, not real people), in 17 themes: 12 fixed and deployed, 3 partly, 2 open \mbox{(section~\ref{sec:personas})}\\
+\textbf{102} & findings from an AI persona walkthrough on the live site (10 AI personas, not real people), in 17 themes: 12 fixed and deployed that evening, 3 partly, 2 open; since 20 November 13 fixed and 1 open \mbox{(section~\ref{sec:personas})}\\
 \midrule
 \textbf{5 of 5} & referral kinds sent as FHIR R4 \code{ServiceRequest}s to a public FHIR server: 0 validation errors, stored, read back unchanged and deleted \mbox{(section~\ref{sec:connect})}\\
 \midrule
@@ -272,7 +272,7 @@ Two rules shaped everything:
 \midrule
 \textbf{28 of 32} & points of Statement 03 built and tested; the other 4 wait on people or partners \mbox{(section~\ref{sec:req})}\\
 \midrule
-\textbf{0 of 1,065} & fixed sentences signed so far (948 that families read in the app, 117 study texts); all are drafts awaiting a clinician and an Emirati Arabic reviewer\\
+\textbf{0 of 1,067} & fixed sentences signed so far (950 that families read in the app, 117 study texts); all are drafts awaiting a clinician and an Emirati Arabic reviewer\\
 \midrule
 \textbf{9 of 28} & clauses of DoH Abu Dhabi's own standards built today; 17 partly, 2 not yet (32 UAE clauses in all: 10 built, 19 partly, 3 not yet)\\
 \bottomrule
@@ -803,18 +803,21 @@ Everything else & Static pages in Arabic and English.\\
 
 \subsection{Word library}
 
-Every fixed sentence a family reads comes from a library of 1,065 sentences (``atoms''; 948 that families read in the app, including the feminine Arabic forms used when the specialist is a woman, and 117 for the E1 study: 99 session texts and 18 form texts), each in English and formal
+Every fixed sentence a family reads comes from a library of 1,067 sentences (``atoms''; 950 that families read in the app, including the feminine Arabic forms used when the specialist is a woman, and 117 for the E1 study: 99 session texts and 18 form texts), each in English and formal
 Arabic, versioned and hashed. A model never writes or changes an atom; Ask Clara's written answers (see the section on Ask Clara
 below) are composed from atoms and labelled as AI-written. Each atom records whether it is a draft or signed, and the
-hash of the exact signed text, so an edit after signing shows up. Today all 1,065 are drafts awaiting a clinician and an Emirati
+hash of the exact signed text, so an edit after signing shows up. Today all 1,067 are drafts awaiting a clinician and an Emirati
 Arabic reviewer.
 
 \textbf{Sign-off workbench (demo, 19 November).} The console shows how signing will work
 (\code{/en/console\#signoff}, \file{lib/signoff-demo.ts}). Two reviewer roles approve a draft sentence. Each approval
 binds the SHA-256 of the exact English and Arabic text, and a one-character edit flips it to ``changed since signing''
 through the same \code{atomState} the library uses. It is a demonstration held in the browser tab only: the library
-stays 0 of 1,065 signed. Since 19 November a fixed answer in Ask Clara is labelled ``Clara's fixed answer, a draft not
-yet signed by a clinician'' instead of ``approved''.
+stays 0 of 1,067 signed. Since 19 November a fixed answer in Ask Clara is labelled ``Clara's fixed answer, a draft not
+yet signed by a clinician'' instead of ``approved''. Since 20 November every screen that said ``approved answers'',
+``approved words'' or ``approved facts'' for unsigned text (evidence, console, FAQ and safeguards among them) says
+``Clara's fixed answers'', words or facts, drafts until a clinician signs them. Staff sign-off labels, where a reviewer
+really approves, are unchanged.
 
 Arabic was designed alongside English: IBM Plex Sans Arabic next to IBM Plex Sans, Markazi Text for headings, its own
 spacing and a right-to-left layout. Every chance is written in words and drawn as a picture. When a spouse's
@@ -927,14 +930,26 @@ yet named to act on it, and nothing alerts staff outside the console. No model i
 phrasings an independent judge found missed are now caught. Since the AI persona walkthrough (section~\ref{sec:personas}),
 a broader \textbf{distress tier} also runs before any model, on the phone and the server: whatever answer a distressed
 message gets, it always adds 800 SAKINA and a talk-sooner button, even when the AI has timed out
-(\file{tests/lib/distress.test.ts}). 295 probes (157 crisis, 27 distress, 111 look-alikes that must keep their ordinary
-route) in English, formal Arabic, Gulf Arabic and Arabizi all pass (\file{eval/crisis/probes.json}); an AI agent wrote
-them, not people in crisis.
+(\file{tests/lib/distress.test.ts}). Since 20 November the crisis check runs before the cost, faith and family person
+rules, so a crisis inside a cost or faith question (``is IVF halal? i don't want to live anymore'') still gets the crisis
+reply; a severe signal overrides those rules, and a separate crisis check still runs when a rule has decided the message
+shows distress (\file{tests/lib/crisis-order.test.ts}, 137 cases). New probe families cover feeling a burden
+(``everyone would be better off without me''), warning behaviour (giving things away, saying goodbye), ``too many at
+once'', and denials (``I'm not suicidal, just scared''), which count as distress, not a crisis. 393 probes (210 crisis,
+42 distress, 141 look-alikes that must keep their ordinary route; 295 on 19 November) in English, formal Arabic, Gulf
+Arabic and Arabizi all pass (\file{eval/crisis/probes.json}); an AI agent wrote them, not people in crisis. On the
+deployed site (20 November), five live crisis probes, in English, Arabizi and formal Arabic, got the crisis reply from
+the rules in about 0.2 to 1.5 seconds, and the denial got the worried answer with the distress support.
 The AI sorter can also flag a crisis, which can only add the crisis reply, never remove a person, and every ``worried''
 answer carries a quiet 800 SAKINA line. The same change makes a decision question (another
 child, cancelling the wedding, IVF or not) always keep a person beside any answer, sends a question about only one
 carrier to a clinician instead of the both-carriers answer, and adds a person when a spouse asks to hide a result from
-the other.
+the other. Since 20 November ``will being a carrier affect my health?'' gets the carrier answer.
+
+\textbf{An answer in the other language (20 November).} When a question is typed in Arabizi or Arabic on the English
+page, or in English on the Arabic page, the reply offers ``Show this answer in Arabic'' (or ``in English''): one tap
+shows the same fixed words in the other language, with no model call (\file{lib/answer-lang.ts}). An AI-written answer
+keeps the language it was written in.
 
 \textbf{Reply time (19 November).} A question Clara's fixed rules decide is answered at once on the screen; the request
 is still sent on, so the server decides it again by its own rules and the live monitor counts it. Model sorting waits
@@ -1067,7 +1082,7 @@ student, an engaged couple on two phones, and a screen-reader user (\file{eval/p
 \midrule
 Findings, before merging duplicates & 102 (2 blocker, 39 major, 43 minor, 18 polish)\\
 Themes & 17 (2 blocker)\\
-\textbf{Themes fixed and deployed the same evening} & \textbf{12}; 3 partly; 2 open\\
+\textbf{Themes fixed and deployed the same evening} & \textbf{12}; 3 partly; 2 open (since 20 November: 13 fixed, 1 open)\\
 Could explain their result in one sentence & 10 of 10\\
 Clearly knew their next step & 5 of 10 (2 mostly, 3 partly)\\
 \bottomrule
@@ -1082,7 +1097,8 @@ property tests in \file{tests/core/record.test.ts}): no data had leaked, but the
 medically wrong sentence about anaemia; reaching a person; one rule for relatives, in the same words everywhere; reading
 levels and text size; and the ``approved'' labels on unsigned text. \textbf{Partly fixed:} Arabic gender and wording,
 the clinician summary's per-spouse detail, and faith answers (the fatwa authority is not named until its number is
-confirmed). \textbf{Open:} where cousin content sits, and the floating demo ``Shortcuts'' button covering text.
+confirmed). \textbf{Open:} where cousin content sits. The floating demo ``Shortcuts'' button that covered text was fixed on 20
+November: it now docks in the phone's top bar.
 
 \begin{caution}
 \textbf{Read with care.} These were AI personas, not real people. The walkthrough finds usability, wording and safety
@@ -1426,9 +1442,9 @@ first and the gap was withheld; the page says so rather than show it.
 \section{Testing and verification}
 % =====================================================================
 
-There are 2,431 automated tests, 19 November: 2,134 unit and property tests (Vitest, fast-check; 2,134 passed, 1 skipped,
-83 files; \file{eval/tests/summary.json}) and 297 end-to-end tests (Playwright; a few
-timing-sensitive tests pass on re-run) on a production build, in English and Arabic, on a 375-pixel phone screen. A property test
+There are 2,879 automated tests, 20 November: 2,575 unit and property tests (Vitest, fast-check; 2,575 passed, 1 skipped,
+86 files; \file{eval/tests/summary.json}) and 304 end-to-end tests (Playwright; all 304 passed first time in one full
+run on 20 November, though a few timing-sensitive tests have needed a re-run before) on a production build, in English and Arabic, on a 375-pixel phone screen. A property test
 states a rule and checks it on thousands of generated cases. Run counts are written once in \file{lib/evidence.ts}, so
 no page can claim more than the tests check.
 
@@ -1453,8 +1469,8 @@ Any one-byte edit to the audit ledger is detected & 2,000 & every one\\
 \begin{xltabular}{\textwidth}{@{}P{7.4cm}L@{}}
 \caption{How to reproduce}\\
 \toprl
-\code{pnpm test} & 2,134 unit and property tests\\
-\code{pnpm e2e} & 297 end-to-end tests against a production build\\
+\code{pnpm test} & 2,575 unit and property tests\\
+\code{pnpm e2e} & 304 end-to-end tests against a production build\\
 \code{pnpm cf:e2e} & End-to-end tests against the Cloudflare Worker\\
 \code{pnpm typecheck \&\& pnpm lint} & Types and lint\\
 \code{pnpm exec vitest run tests/lib/ai-eval.test.ts} & The 28-question Ask Clara evaluation, with \code{AI\_EVAL\_URL} set to a running server\\
@@ -1500,7 +1516,7 @@ What a reviewer should weigh: everything below is known and stated in the protot
 \midrule
 Synthetic data only; the M42 lab report, the Malaffi connection, the counsellor calendar and UAE PASS on the phones and for signing are prototype stand-ins; the UAE PASS sign-in runs on staging only & Connect M42 and Malaffi, and the operator's own UAE PASS onboarding, in a pilot, after a data protection impact assessment\\
 \midrule
-All 1,065 sentences (the crisis reply included) and the condition cards unsigned; AI-written Ask answers unreviewed & Review and signing by a licensed clinical lead (not yet confirmed) and an Emirati Arabic reviewer\\
+All 1,067 sentences (the crisis reply included) and the condition cards unsigned; AI-written Ask answers unreviewed & Review and signing by a licensed clinical lead (not yet confirmed) and an Emirati Arabic reviewer\\
 \midrule
 Neither model is UAE-hosted (K2 via AWS Singapore; OpenAI in the US), so ICT Law Art.~13 and Responsible AI 3.1.4.5.1 are gaps & A UAE-hosted K2 endpoint and a UAE-hosted backup or none (one setting each), or the K2-Think 32B fine-tune on GPUs in the UAE\\
 \midrule
