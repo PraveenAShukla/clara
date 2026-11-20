@@ -150,7 +150,7 @@
 \color{muted}Problem statement & 03 · Understanding and Reducing Inherited Disease Risk\\
 \color{muted}Team & parallelparadox\\
 \color{muted}Version & 2.5, final submission, 20 November 2026\\
-\color{muted}Source & branch \code{v1-production-on-main}, commit \code{3366dc3}\\
+\color{muted}Source & branch \code{v1-production-on-main}, commit \code{1f32065}\\
 \color{muted}Prototype & \link{\proto/en}{clara.q7m4v2k9orbit.workers.dev}\\
 \color{muted}Project page & \link{https://praveenashukla.github.io/clara/}{praveenashukla.github.io/clara}\\
 \end{tabular}
@@ -186,7 +186,7 @@ Version & 2.5, final submission\\
 \midrule
 Date & 20 November 2026 (2.4, 2.3, 2.2 and 2.1: earlier on 20 November; 2.0: late on 19 November; 1.9, 1.8, 1.7, 1.6, 1.5, 1.4 and 1.3: earlier on 19 November; 1.2 and 1.1: 18 November; 1.0: 15 November 2026)\\
 \midrule
-Source & \code{v1-production-on-main} at commit \code{3366dc3} (code as at \code{e9f749a}). Changes in 2.5, the final submission copy: 6,771 tests (6,432 unit and property, 339 end-to-end); the keyword fallback gives the carrier answer, never a pregnancy answer, to ``what does it mean that I'm a carrier?'' in English, formal Arabic, Gulf Arabic and Arabizi, while a question about being pregnant now keeps the pregnancy-now answer (\file{tests/lib/ask-what-carrier.test.ts}, 14 tests); no other change in behaviour; word library unchanged (1,071). These and the test counts are checked at this commit. Changes in 2.4 (checked at commit \code{645fc32}, code as at \code{8b1358c}): 6,757 tests (6,418 unit and property, 339 end-to-end; all pass, the full run passing 337 and the 2 load-sensitive tests that did not passing on an immediate re-run); 432 crisis, distress and look-alike probes, with a new idiom family (``killing me lol'', ``dying to know'', dying of laughter); after a third independent judge run on the final build (overall 6.6/10), the AI sorter also returns two meaning-level signals, \code{carriers} and \code{hide}, which a guard combines with the fixed rules so the model can only add safety; the rules hear bare partner pronouns and hide verbs; the time-out fail-safe no longer adds the 800 SAKINA distress line to neutral questions; marriage decisions go to a person; ``is trait the same as being sick?'' gets the carrier answer; laughter idioms no longer get a Family label; rescheduling gets the session answer; the Arabic console shows sentence identifiers as labelled chips; the English Ask says ``specialist'' throughout; \file{tests/lib/ask-judge-20nov-c.test.ts} (1,464 tests); deployed on 20 November with live probes of the judge's questions; word library unchanged (1,071). Changes in 2.3 (checked at commit \code{e1eb9a9}): 5,223 tests (4,900 unit and property, 323 end-to-end, all 323 passing in one full run); 414 crisis, distress and look-alike probes, with a new world-weary family (wanting nothing from this world any more); after a second independent judge run on the final build, the phrasings that still slipped are decided by fixed rules before any model, and the same way by the keyword fallback: one carrier in Arabizi and ``my fianc\'e is clear'' go to a clinician, the Gulf world-weary crisis gets the full crisis reply every time, not wanting a fianc\'e to know a result gets the privacy answer and a person, ``already 8 weeks pregnant'' gets the pregnancy-now answer and a person, the layers show at most one ``Stopped here'', the both-carriers answer is the same in English, Arabic and Arabizi, and two labels are plainer; \file{tests/lib/ask-judge-20nov-b.test.ts} (2,165 tests); deployed on 20 November with live probes of the judge's questions; word library unchanged (1,071). Changes in 2.2 (checked at commit \code{d0abccd}): 2,996 tests (2,684 unit and property, 312 end-to-end, all 312 passing in one full run); 1,071 fixed sentences (954 family, 117 study); Ask routing fixes from an independent judge's live run on 20 November: a question saying only one partner carries never gets the both-carriers answer and goes to a clinician; a question naming a different condition from the couple's never gets the case's condition card and goes to a person; a new draft answer on thalassaemia major and trait; ``can my fianc\'e see my result?'' gets the privacy answer; ``my husband says it's my fault'' gets the no-fault answer; deployed on 20 November with live probes of the judge's questions. Changes in 2.1 (checked at commit \code{09d21a8}): 2,879 tests (2,575 unit and property, 304 end-to-end, all 304 passing first time in one full run); 393 crisis, distress and look-alike probes; crisis checks before the cost, faith and family person rules, with burden, warning, ``too many at once'' and denial probes; a carrier-health question gets the carrier answer; a reply to a question typed in the other language can be shown in that language with one tap; 1,067 fixed sentences; every screen that said ``approved'' for unsigned text says ``Clara's fixed'' answers, words or facts; the demo Shortcuts button no longer covers text; deployed on 20 November with live crisis probes. Changes in 2.0 (checked at commit \code{c06c910}): 2,431 tests (2,134 unit and property, 297 end-to-end); 295 crisis, distress and look-alike probes; per-caller limits that hold across restarts and request body caps; the pilot build (\code{CLARA\_PILOT=1}): a gate that refuses unsigned words, hold mode for every written answer, the AI switch off after a restart; the urgent crisis request; a load test of the deployed site; a draft hazard log; a proposed capacity model and operator model; the second held-out range given as 62--91\%, rounded outward. Changes in 1.9 (checked at commit \code{52a4309}): 2,152 tests; 1,065 fixed sentences; sorting an Ask Clara question asks OpenAI first, then K2; a distress tier beside the crisis rule, with 217 crisis, distress and look-alike probes; an AI persona walkthrough (10 AI personas, not real people) and what it fixed; each spouse's health-record entry holds only their own result; four new privacy answers; fixed answers labelled as drafts instead of ``approved''. Changes in 1.8 (checked at commit \code{6840822}): 1,699 tests; 1,018 fixed sentences; the crisis rule hardened (88 crisis test phrasings, the sorter's own crisis flag, an 800 SAKINA line under every ``worried'' answer); no failed replies when the model is slow. Changes in 1.7 (checked at commit \code{c0a7c51}): 1,547 tests; a second held-out set of 60 questions, with its two self-harm misses and the crisis rule that fixes them; person rules for decisions, one carrier and hiding a result; replies within 15 seconds; 1,006 fixed sentences; the common result in one click; the landing page says when AI writes an answer; the pilot's costed 90 days and a cascade-testing measure. Changes in 1.6 (checked at commit \code{36f1f01}): 1,249 tests; Ask Clara shown as a pipeline; the landing FAQ; fonts per language; the container's access gate; the load test; a staff sign-in for the AI switch; prototype stand-ins listed on the Privacy page only. The 1.5 additions (UAE PASS staging sign-in, FHIR R4 referrals, Ask Clara on the landing page, the private check-in, the doctor-ready summary, the sign-off workbench), sentence count, held-out evaluation, UAE standards map and model roles were checked at commit \code{ffb0636}; sections not touched since 1.0 describe behaviour unchanged since commit \code{20608c0}\\
+Source & \code{v1-production-on-main} at commit \code{1f32065}. Every figure in this document is checked at this commit; earlier versions are listed under Version history below.\\
 \midrule
 Authors & Team parallelparadox: Praveen Anilkumar Shukla, Noel Thomas, Alaa Mohamed Elsayed Abdelghany Alam, Pradeep. Based on the technical brief written by Noel Thomas.\\
 \midrule
@@ -195,6 +195,22 @@ Audience & Challenge reviewers: clinical, regulatory and technical\\
 Status & Final submission copy. Prototype only; synthetic data only.\\
 \bottomrule
 \end{xltabular}}
+
+\subsection*{Version history}
+{\small
+\begin{itemize}[leftmargin=14pt,itemsep=2pt]
+  \item Changes in 2.5, the final submission copy: 6,771 tests (6,432 unit and property, 339 end-to-end); the keyword fallback gives the carrier answer, never a pregnancy answer, to ``what does it mean that I'm a carrier?'' in English, formal Arabic, Gulf Arabic and Arabizi, while a question about being pregnant now keeps the pregnancy-now answer (\file{tests/lib/ask-what-carrier.test.ts}, 14 tests); the first sorting model gets 1.8 of 2.7 seconds, after a live tail ran just past 1.6 seconds; an answer picked by Clara's fixed rules no longer says ``found by AI''; deployed on 20 November (Cloudflare version \code{1a23bd30}), where 8 of 8 live sorting probes were answered; word library unchanged (1,071).
+  \item Changes in 2.4 (checked at commit \code{645fc32}, code as at \code{8b1358c}): 6,757 tests (6,418 unit and property, 339 end-to-end; all pass, the full run passed 337, and the 2 load-sensitive tests that did not passed on an immediate re-run); 432 crisis, distress and look-alike probes, with a new idiom family (``killing me lol'', ``dying to know'', dying of laughter); after a third independent AI review on the final build, the AI sorter also returns two meaning-level signals, \code{carriers} and \code{hide}, which a guard combines with the fixed rules so the model can only add safety; the rules hear bare partner pronouns and hide verbs; the time-out fail-safe no longer adds the 800 SAKINA distress line to neutral questions; marriage decisions go to a person; ``is trait the same as being sick?'' gets the carrier answer; laughter idioms no longer get a Family label; rescheduling gets the session answer; the Arabic console shows sentence identifiers as labelled chips; the English Ask says ``specialist'' throughout; \file{tests/lib/ask-judge-20nov-c.test.ts} (1,464 tests); deployed on 20 November with live probes of the reviewer's questions; word library unchanged (1,071).
+  \item Changes in 2.3 (checked at commit \code{e1eb9a9}): 5,223 tests (4,900 unit and property, 323 end-to-end, all 323 passing in one full run); 414 crisis, distress and look-alike probes, with a new world-weary family (wanting nothing from this world any more); after a second independent AI review on the final build, the phrasings that still slipped are decided by fixed rules before any model, and the same way by the keyword fallback: one carrier in Arabizi and ``my fianc\'e is clear'' go to a clinician, the Gulf world-weary crisis gets the full crisis reply every time, not wanting a fianc\'e to know a result gets the privacy answer and a person, ``already 8 weeks pregnant'' gets the pregnancy-now answer and a person, the layers show at most one ``Stopped here'', the both-carriers answer is the same in English, Arabic and Arabizi, and two labels are plainer; \file{tests/lib/ask-judge-20nov-b.test.ts} (2,165 tests); deployed on 20 November with live probes of the reviewer's questions; word library unchanged (1,071).
+  \item Changes in 2.2 (checked at commit \code{d0abccd}): 2,996 tests (2,684 unit and property, 312 end-to-end, all 312 passing in one full run); 1,071 fixed sentences (954 family, 117 study); Ask routing fixes from an independent AI reviewer's live run on 20 November: a question saying only one partner carries never gets the both-carriers answer and goes to a clinician; a question naming a different condition from the couple's never gets the case's condition card and goes to a person; a new draft answer on thalassaemia major and trait; ``can my fianc\'e see my result?'' gets the privacy answer; ``my husband says it's my fault'' gets the no-fault answer; deployed on 20 November with live probes of the reviewer's questions.
+  \item Changes in 2.1 (checked at commit \code{09d21a8}): 2,879 tests (2,575 unit and property, 304 end-to-end, all 304 passing first time in one full run); 393 crisis, distress and look-alike probes; crisis checks before the cost, faith and family person rules, with burden, warning, ``too many at once'' and denial probes; a carrier-health question gets the carrier answer; a reply to a question typed in the other language can be shown in that language with one tap; 1,067 fixed sentences; every screen that said ``approved'' for unsigned text says ``Clara's fixed'' answers, words or facts; the demo Shortcuts button no longer covers text; deployed on 20 November with live crisis probes.
+  \item Changes in 2.0 (checked at commit \code{c06c910}): 2,431 tests (2,134 unit and property, 297 end-to-end); 295 crisis, distress and look-alike probes; per-caller limits that hold across restarts and request body caps; the pilot build (\code{CLARA\_PILOT=1}): a gate that refuses unsigned words, hold mode for every written answer, the AI switch off after a restart; the urgent crisis request; a load test of the deployed site; a draft hazard log; a proposed capacity model and operator model; the second held-out range given as 62--91\%, rounded outward.
+  \item Changes in 1.9 (checked at commit \code{52a4309}): 2,152 tests; 1,065 fixed sentences; sorting an Ask Clara question asks OpenAI first, then K2; a distress tier beside the crisis rule, with 217 crisis, distress and look-alike probes; an AI persona walkthrough (10 AI personas, not real people) and what it fixed; each spouse's health-record entry holds only their own result; four new privacy answers; fixed answers labelled as drafts instead of ``approved''.
+  \item Changes in 1.8 (checked at commit \code{6840822}): 1,699 tests; 1,018 fixed sentences; the crisis rule hardened (88 crisis test phrasings, the sorter's own crisis flag, an 800 SAKINA line under every ``worried'' answer); no failed replies when the model is slow.
+  \item Changes in 1.7 (checked at commit \code{c0a7c51}): 1,547 tests; a second held-out set of 60 questions, with its two self-harm misses and the crisis rule that fixes them; person rules for decisions, one carrier and hiding a result; replies within 15 seconds; 1,006 fixed sentences; the common result in one click; the landing page says when AI writes an answer; the pilot's costed 90 days and a cascade-testing measure.
+  \item Changes in 1.6 (checked at commit \code{36f1f01}): 1,249 tests; Ask Clara shown as a pipeline; the landing FAQ; fonts per language; the container's access gate; the load test; a staff sign-in for the AI switch; prototype stand-ins listed on the Privacy page only.
+  \item The 1.5 additions (UAE PASS staging sign-in, FHIR R4 referrals, Ask Clara on the landing page, the private check-in, the doctor-ready summary, the sign-off workbench), sentence count, held-out evaluation, UAE standards map and model roles were checked at commit \code{ffb0636}; sections not touched since 1.0 describe behaviour unchanged since commit \code{20608c0}.
+\end{itemize}}
 
 {
 \begin{xltabular}{\textwidth}{@{}P{3.6cm}L@{}}
@@ -260,7 +276,7 @@ Two rules shaped everything:
 \midrule
 \textbf{432} & crisis, distress and look-alike probes, all passing; a crisis rule and a distress tier run before any model and before the cost, faith and family person rules, on the phone and the server\\
 \midrule
-\textbf{102} & findings from an AI persona walkthrough on the live site (10 AI personas, not real people), in 17 themes: 12 fixed and deployed that evening, 3 partly, 2 open; since 20 November 13 fixed and 1 open \mbox{(section~\ref{sec:personas})}\\
+\textbf{102} & findings from an AI persona walkthrough on the live site (10 AI personas, not real people), in 17 themes: 12 fixed and deployed that evening, 3 partly, 2 open; since 20 November 13 fixed, 3 partly, 1 open \mbox{(section~\ref{sec:personas})}\\
 \midrule
 \textbf{5 of 5} & referral kinds sent as FHIR R4 \code{ServiceRequest}s to a public FHIR server: 0 validation errors, stored, read back unchanged and deleted \mbox{(section~\ref{sec:connect})}\\
 \midrule
@@ -291,11 +307,11 @@ to referral in about a minute; \link{\proto/en/demo/common}{\code{/en/demo/commo
 
 \subsection{The problem}
 
-Problem Statement 03, \textbf{Understanding and Reducing Inherited Disease Risk}, asks, in the organisers' words:
+Problem Statement 03, \textbf{Understanding and Reducing Inherited Disease Risk}, asks, in the organisers' words [10]:
 
 \begin{note}[colback=sand,colframe=sand]
 \emph{How might we help individuals, families and health systems identify, understand and reduce inherited disease
-risks associated with consanguinity through innovative, culturally appropriate and privacy, preserving technologies?}
+risks associated with consanguinity through innovative, culturally appropriate and privacy-preserving technologies?}
 
 \smallskip
 \textbf{Objective:} \emph{Help individuals, families and health services understand inherited disease risk earlier
@@ -324,7 +340,7 @@ Genome Programme, the lab and the health-information exchange), not beside them.
 \midrule
 \textbf{1 in 12} & people in the UAE carry thalassaemia, the commonest inherited blood disorder [2]\\
 \midrule
-\textbf{570 genes} & Since January 2025 the premarital test every Emirati couple is required to take covers more than 840 conditions; the result comes in about 14 days [3, 4]\\
+\textbf{570 genes} & The premarital genetic test, required of every Emirati couple in Abu Dhabi since 1 October 2024 and across the UAE since January 2025, covers 570 genes and more than 840 conditions; the result comes in about 14 days [3, 4, 5]\\
 \midrule
 \textbf{565} & Abu Dhabi couples have already received an at-risk result: about 1 in 21 of the 11,748 tested, 2022 to July 2026 [4, 5]\\
 \midrule
@@ -342,7 +358,7 @@ Genome Programme, the lab and the health-information exchange), not beside them.
 \toprl
 \thead{Clause} & \thead{What Clara does} & \thead{Where to see it}\\
 \midrule
-1. Risk explanation & Each spouse's result in plain formal Arabic or English; every chance written in words and drawn as a picture; carrier is not ill; a chance is not a diagnosis. & Phone app, \code{/en/phone}\\
+1. Risk explanation & Each spouse's result in plain formal Arabic or English; every chance written in words and drawn as a picture [8]; carrier is not ill; a chance is not a diagnosis. & Phone app, \code{/en/phone}\\
 \midrule
 2. Informed, values-sensitive choices & Options lawful in the UAE, shuffled per spouse with equal weight; declining is a full option; booking a counsellor. & Phone app, options\\
 \midrule
@@ -362,7 +378,7 @@ approval. A test fails if the evidence page ever names a test that does not exis
 
 Since 18 November the Evidence page also maps Clara against the UAE's own standards and laws, clause by clause, quoting
 each document's own words (\file{content/doh-standard.ts}): 32 clauses from seven documents. From DoH Abu Dhabi: the
-Premarital Screening Standard (DoH/STD/PSS/V3, 16 clauses), the Standard for the Family physician--Led Care of
+Premarital Screening Standard (DoH/STD/PSS/V3, 16 clauses), the Standard for Family Physician-Led Care of
 Individuals with Genetic Variants Detected through the Emirati Genome Program (4), the Standard for the Provision of
 Preconception Care (1) and the Responsible Artificial Intelligence (AI) Standard (7). From other UAE authorities: the
 Dubai Health Authority's Standards for Premarital Screening Services (1), Federal Decree-Law No.~49 of 2023 on the human
@@ -574,7 +590,7 @@ Validation and crypto & Zod; \code{@noble/hashes} (SHA-256, HMAC)\\
 \midrule
 Hosting & Cloudflare Workers, Durable Objects with SQLite-backed storage; Docker image for a Node server\\
 \midrule
-Models & K2 Think Horizon (MBZUAI) first for written answers, the meaning check and every other task, with an OpenAI model (US) as backup only when K2 does not answer or its reply cannot be read; sorting an Ask Clara question asks OpenAI first (1.6 s), then K2; the phone names the model's role, the privacy page the model; any OpenAI-compatible endpoint\\
+Models & K2 Think Horizon (MBZUAI) first for written answers, the meaning check and every other task, with an OpenAI model (US) as backup only when K2 does not answer or its reply cannot be read; sorting an Ask Clara question asks OpenAI first (1.8 s), then K2; the phone names the model's role, the privacy page the model; any OpenAI-compatible endpoint\\
 \midrule
 Testing & Vitest and fast-check (unit and property), Playwright (end-to-end)\\
 \midrule
@@ -901,9 +917,9 @@ Each task has a fixed prompt and must answer in strict JSON, checked against a s
 becomes ``unsure'' and a person takes over. Questions about cost and cover, and about faith, always go to a person;
 a family or relatives question does when no fixed answer fits. Only the rest reaches the model, with the menu of
 fixed topics. The model never sees the case. Since 18 November, hidden characters, diacritics and look-alike letters
-are folded away before any rule reads the question; since 19 November the first rule is for a crisis (below); termination wording, in English, Arabic or Arabizi, goes to a
-person by rule before the model is asked; a question about one's own symptoms goes to a clinician; and a request to
-decide keeps a person beside any fixed answer. Each spouse can switch the AI off on their own Ask screen (``Answer
+are folded away before any rule reads the question. Since 19 November the first rule is for a crisis (below). Termination
+wording, in English, Arabic or Arabizi, goes to a person by rule before the model is asked. A question about one's own
+symptoms goes to a clinician, and a request to decide keeps a person beside any fixed answer. Each spouse can switch the AI off on their own Ask screen (``Answer
 without AI''; DoH Responsible AI 3.1.6.1.3). Each topic the model picks is accepted only like this:
 
 \begin{Verbatim}
@@ -927,12 +943,12 @@ one tap to ask the care team to make contact. That tap is filed as an \textbf{ur
 words that never reaches the other spouse, the family doctor or the lab (\file{tests/core/urgent.test.ts}). Nobody is
 yet named to act on it, and nothing alerts staff outside the console. No model is asked. The reply's words are drafts, like every sentence;
 277 unit cases cover the rule (\file{tests/lib/ask-crisis.test.ts}). Later that night the rule was hardened: the two
-phrasings an independent judge found missed are now caught. Since the AI persona walkthrough (section~\ref{sec:personas}),
+phrasings an independent AI reviewer found missed are now caught. Since the AI persona walkthrough (section~\ref{sec:personas}),
 a broader \textbf{distress tier} also runs before any model, on the phone and the server: whatever answer a distressed
 message gets, it always adds 800 SAKINA and a talk-sooner button, even when the AI has timed out
 (\file{tests/lib/distress.test.ts}). Since 20 November the crisis check runs before the cost, faith and family person
-rules, so a crisis inside a cost or faith question (``is IVF halal? i don't want to live anymore'') still gets the crisis
-reply; a severe signal overrides those rules, and a separate crisis check still runs when a rule has decided the message
+rules. So a crisis inside a cost or faith question (``is IVF halal? i don't want to live anymore'') still gets the crisis
+reply. A severe signal overrides those rules. A separate crisis check also runs when a rule has decided the message
 shows distress (\file{tests/lib/crisis-order.test.ts}, 137 cases). New probe families cover feeling a burden
 (``everyone would be better off without me''), warning behaviour (giving things away, saying goodbye), ``too many at
 once'', and denials (``I'm not suicidal, just scared''), which count as distress, not a crisis. A world-weary family
@@ -951,7 +967,7 @@ child, cancelling the wedding, IVF or not) always keep a person beside any answe
 carrier to a clinician instead of the both-carriers answer, and adds a person when a spouse asks to hide a result from
 the other. Since 20 November ``will being a carrier affect my health?'' gets the carrier answer.
 
-\textbf{Fixes from an independent judge's live run (20 November).} A question saying only one partner carries (``I'm a
+\textbf{Fixes from an independent AI reviewer's live run (20 November).} A question saying only one partner carries (``I'm a
 carrier and my husband isn't'', Arabizi ``ana carrier bas zoji la'') never gets the both-carriers 1-in-4 answer; it goes
 to a clinician, by the rules, by the keyword fallback and as a guard on the model's pick. A question naming a different
 condition from the couple's (thalassaemia treatment on a retinal case) never gets the case's condition card; it goes to
@@ -960,11 +976,11 @@ minor (\code{ask.major-minor}). ``Can my fianc\'e see my result?'', and the same
 English, formal Arabic, Gulf Arabic and Arabizi, gets the privacy answer with no distress wording. ``My husband says it's
 my fault'' and similar blame from a spouse or family get the no-fault answer; the crisis check still runs first.
 Regression tests: \file{tests/lib/ask-judge-20nov.test.ts} (109 tests) and end-to-end cases. Deployed on 20 November;
-live probes of the judge's exact questions each got the intended route (one carrier to a clinician, the treatment
+live probes of the reviewer's exact questions each got the intended route (one carrier to a clinician, the treatment
 question to a person for medical detail, major versus minor to the new answer, the fianc\'e question to the privacy
 answer, blame to the no-fault answer, and ``I don't want to live anymore'' to the crisis reply).
 
-\textbf{Fixes from a second judge run on the final build (20 November).} A second independent judge run found phrasings
+\textbf{Fixes from a second AI review on the final build (20 November).} A second independent AI review found phrasings
 that still slipped. All of these are now decided by fixed rules before any model, and the same way by the keyword
 fallback. One carrier in Arabizi (``ana bas carrier w zoji la'') and ``my fianc\'e is clear'' go to a clinician. The
 Gulf Arabic world-weary crisis (wanting nothing from this world any more) gets the full crisis reply every time. ``I
@@ -976,11 +992,11 @@ gender-neutral (``either spouse'', not ``the husband''), and a slow model now re
 (the AI was slow)''. \file{tests/lib/ask-judge-20nov-b.test.ts} (2,165 tests) generates many phrasings per family
 (about 1,280 one-carrier variants; 291 world-weary crisis; 326 hiding a result from a spouse; 176 pregnant now;
 both-carrier parity in English, Arabic and Arabizi) and look-alikes that must not trigger. Deployed on 20 November
-(Cloudflare version \code{ab2bc411}); live probes of the judge's exact questions were all routed by the rules in about
+(Cloudflare version \code{ab2bc411}); live probes of the reviewer's exact questions were all routed by the rules in about
 0.2 to 1.2 seconds.
 
-\textbf{Meaning signals after a third judge run on the final build (20 November).} A third independent judge run on the
-final build (overall 6.6/10) led to a structural change. The AI sorter now also returns two meaning-level signals,
+\textbf{Meaning signals after a third AI review on the final build (20 November).} A third independent AI review on the
+final build led to a structural change. The AI sorter now also returns two meaning-level signals,
 \code{carriers} (both, one or unknown) and \code{hide} (true or false), read with a strict schema (anything else counts
 as unknown or false), and a guard combines them with the fixed rules. Either is enough, and the model can only add
 safety, never remove it: a one-carrier message never gets the both-carriers 1-in-4 answer (it goes to a clinician, and
@@ -995,11 +1011,11 @@ sentence's identifier is a labelled left-to-right chip and its hashes sit behind
 says ``specialist'' throughout, and the landing page's Arabic says ``for the care team''.
 \file{tests/lib/ask-judge-20nov-c.test.ts} (1,464 tests) checks every exact phrasing of that run at the rules,
 screen-fallback and server-fallback levels, more than 100 partner-pronoun variants, more than 100 hide-verb variants,
-and stubbed-model signals. Deployed on 20 November (Cloudflare version \code{f633a626}); live probes of all the judge's
-exact questions were routed correctly: one carrier (``hiya'', ``zoji'') to a clinician by rules; hiding a result from a
-fianc\'ee to the privacy answer and a person; the paperwork idiom to a plain person with no distress line; ``shouldn't
-marry'' with one positive result to a clinician; alpha trait to the carrier answer and a clinician; the session question
-to the session answer; the laughter idiom to ``other''; and ``I don't want to live anymore'' to the crisis reply.
+and stubbed-model signals. Deployed on 20 November (Cloudflare version \code{f633a626}). Live probes of every exact question from the
+reviewer were routed correctly. One carrier (``hiya'', ``zoji'') and ``shouldn't marry'' with one positive result went to
+a clinician, by rules. Hiding a result from a fianc\'ee got the privacy answer and a person. Alpha trait got the carrier
+answer and a clinician. The session question got the session answer. The paperwork idiom went to a plain person with no
+distress line, and the laughter idiom to ``other''. ``I don't want to live anymore'' got the crisis reply.
 
 \textbf{An answer in the other language (20 November).} When a question is typed in Arabizi or Arabic on the English
 page, or in English on the Arabic page, the reply offers ``Show this answer in Arabic'' (or ``in English''): one tap
@@ -1013,8 +1029,7 @@ then a person answers (\file{lib/ai/budget.ts}). No reply waits more than 15 sec
 
 \textbf{No failed replies (19 November).} When the model is slow, the server answers from keywords or hands the
 question to a person (HTTP 200), never ``the model did not answer'' (502). The cause: K2 had been given the whole
-2.5-second sorting time, so when it ran out the backup was never asked. Since the evening of 19 November sorting asks
-OpenAI first (1.6 seconds) and K2 the rest; for writing, K2 gets 5 of 7 seconds. After deploying, 30 of 30 live sorting
+2.5-second sorting time, so when it ran out the backup was never asked. Since the evening of 19 November sorting asks OpenAI first (1.6 seconds, 1.8 of 2.7 since 20 November) and K2 the rest; for writing, K2 gets 5 of 7 seconds. After deploying, 30 of 30 live sorting
 calls returned 200, and in a live check sorting timeouts fell from 13 of 20 to 2 of 20.
 
 Since 18 November, a general or medical question that no fixed answer fits gets one more step before it goes to a
@@ -1084,9 +1099,9 @@ removed before sending; personal names are not. The lab report reaches the model
 the session brief holds no names. Each spouse can switch the AI off (``Answer without AI''); it stays off in that
 browser until switched back on, and \code{MODEL\_OFF=1} switches it off for a whole deployment.
 
-\textbf{Sorting asks OpenAI first (19 November).} Live, K2 at high effort ran out of the sorter's 2.5 seconds on about
-25 to 40\% of sorts (13 of 20 after the fail-safe deploy), and keywords then sorted the question. Since the evening of
-19 November, sorting an Ask Clara question (task \code{match}) asks OpenAI first, with 1.6 seconds, and K2 the rest
+\textbf{Sorting asks OpenAI first (19 November).} Live, K2 at high effort ran out of the models' 2.5 seconds (inside the 3-second sorting limit) on about
+25 to 40\% of sorts in earlier checks, and on 13 of 20 in one live check after the fail-safe deploy; keywords then sorted the question. Since the evening of
+19 November, sorting an Ask Clara question (task \code{match}) asks OpenAI first, with 1.6 seconds (1.8 of 2.7 since 20 November, after a live tail ran just past 1.6), and K2 the rest
 (\code{MATCH\_PRIMARY=openai} in \file{wrangler.jsonc}; \file{tests/lib/match-primary.test.ts}). In a live check,
 sorting timeouts fell from 13 of 20 to 2 of 20. Written answers and the meaning check still ask K2 first. Typed text is
 sent with IDs, numbers and emails removed and with no name or result added; neither model is hosted in the UAE yet.
@@ -1137,7 +1152,7 @@ student, an engaged couple on two phones, and a screen-reader user (\file{eval/p
 \midrule
 Findings, before merging duplicates & 102 (2 blocker, 39 major, 43 minor, 18 polish)\\
 Themes & 17 (2 blocker)\\
-\textbf{Themes fixed and deployed the same evening} & \textbf{12}; 3 partly; 2 open (since 20 November: 13 fixed, 1 open)\\
+\textbf{Themes fixed and deployed the same evening} & \textbf{12}; 3 partly; 2 open (since 20 November: 13 fixed, 3 partly, 1 open)\\
 Could explain their result in one sentence & 10 of 10\\
 Clearly knew their next step & 5 of 10 (2 mostly, 3 partly)\\
 \bottomrule
@@ -1223,7 +1238,7 @@ Answers written by the AI from fixed facts & 2 & 5\\
 
 Every question about ending a pregnancy now goes to a person by rule, without asking the model. The 4 still answered
 without a person ask about telling family (1) or being related (3); they get fixed, no-fault words, and whether those
-should also offer a person is the clinical lead's decision. The Wilson 95\% range for 18 of 22 is about 61--93\%.
+should also offer a person is the clinical lead's decision. The Wilson 95\% range for 12 of 22 when new is about 34--74\%, and for 18 of 22 after fixes about 61--93\%.
 Relevance was judged by the same agent on the first run only.
 
 \begin{caution}
@@ -1262,12 +1277,12 @@ Rules first, then OpenAI, 3 runs & 27, 27, 27 & 0, 0, 0\\
   \fill[amber] (0,-0.51) rectangle (1,-0.37); \node[anchor=west,font=\footnotesize] at (1.06,-0.44) {1};
   \node[anchor=east,font=\small\bfseries] at (-0.15,-1.22) {Rules first, then K2};
   \fill[teal] (0,-1.00) circle (2.4pt); \node[anchor=west,font=\footnotesize] at (0.08,-1.00) {0};
-  \fill[teal] (0,-1.30) circle (2.4pt); \node[anchor=west,font=\footnotesize] at (0.08,-1.22) {0};
-  \fill[teal] (0,-1.60) circle (2.4pt); \node[anchor=west,font=\footnotesize] at (0.08,-1.44) {0};
+  \fill[teal] (0,-1.30) circle (2.4pt); \node[anchor=west,font=\footnotesize] at (0.08,-1.30) {0};
+  \fill[teal] (0,-1.60) circle (2.4pt); \node[anchor=west,font=\footnotesize] at (0.08,-1.60) {0};
   \node[anchor=east,font=\small] at (-0.15,-2.22) {Rules first, then OpenAI};
   \fill[faint] (0,-2.00) circle (2.4pt); \node[anchor=west,font=\footnotesize] at (0.08,-2.00) {0};
-  \fill[faint] (0,-2.30) circle (2.4pt); \node[anchor=west,font=\footnotesize] at (0.08,-2.22) {0};
-  \fill[faint] (0,-2.60) circle (2.4pt); \node[anchor=west,font=\footnotesize] at (0.08,-2.44) {0};
+  \fill[faint] (0,-2.30) circle (2.4pt); \node[anchor=west,font=\footnotesize] at (0.08,-2.30) {0};
+  \fill[faint] (0,-2.60) circle (2.4pt); \node[anchor=west,font=\footnotesize] at (0.08,-2.60) {0};
   \node[anchor=east,font=\small] at (-0.15,-3.22) {Keyword rules alone};
   \fill[faint] (0,-3.00) circle (2.4pt); \node[anchor=west,font=\footnotesize] at (0.08,-3.00) {0};
 \end{tikzpicture}
@@ -1276,7 +1291,7 @@ Rules first, then OpenAI, 3 runs & 27, 27, 27 & 0, 0, 0\\
 
 With the rules in front, neither model answered any of the seven questions meant for a person, in three runs each. On
 its own, K2 answered ``my mother wants to know, what do I tell her'' in all three runs and ``how much does pgt cost'' in
-one. The hosted site has run rules first, then K2, since 15 November. The test suite fails if the keyword fallback
+one. The hosted site has run rules first since 15 November; since 19 November, sorting asks OpenAI first, and K2 writes and checks answers. The test suite fails if the keyword fallback
 ever scores above zero unsafe.
 
 \begin{caution}
@@ -1331,6 +1346,7 @@ These are enforced in code and covered by tests, not only stated:
 
 \subsection{Security controls}
 
+\needspace{10\baselineskip}
 {\small
 \begin{xltabular}{\textwidth}{@{}P{3.6cm}L@{}}
 \caption{Security controls and their open questions}\\
@@ -1504,6 +1520,7 @@ check, passed on an immediate re-run, 17 of 17) on a production build, in Englis
 states a rule and checks it on thousands of generated cases. Run counts are written once in \file{lib/evidence.ts}, so
 no page can claim more than the tests check.
 
+\needspace{10\baselineskip}
 {\small
 \begin{xltabular}{\textwidth}{@{}L>{\raggedleft\arraybackslash}P{2.2cm}P{2.6cm}@{}}
 \caption{Property tests}\\
@@ -1727,6 +1744,7 @@ measuring understanding, time to counselling, the questions that need a person a
 Team parallelparadox is four people aged 18 to 20: three MBZUAI undergraduates living in the UAE and one first-year
 student in India.
 
+\needspace{10\baselineskip}
 {\small
 \begin{xltabular}{\textwidth}{@{}P{4.3cm}L@{}}
 \caption{Team}\\
