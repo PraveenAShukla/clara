@@ -64,6 +64,9 @@ a:hover{text-decoration-color:var(--ink)}
 .cta a:hover{background:var(--sand2)}
 .cta a.primary{background:var(--ink); color:var(--paper)}
 .cta a.primary:hover{background:var(--teal)}
+.demo-video{margin:18px 0 26px; scroll-margin-top:84px}
+.demo-video video{display:block; width:100%; aspect-ratio:16/9; height:auto; background:var(--sand); border:1px solid var(--rule); border-radius:12px}
+.demo-video figcaption{font:400 14px/1.5 var(--sans); color:var(--muted); margin-top:8px}
 .cta svg{width:16px; height:16px}
 .skip{position:absolute; left:-9999px; top:8px; z-index:9; background:var(--ink); color:var(--paper); padding:10px 14px; border-radius:8px; font:500 14px var(--sans)}
 .skip:focus{left:16px}
@@ -258,6 +261,7 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
     <p class="dek">A private explanation of a premarital genetic result for each spouse, in Arabic or English, and a route to care. Here is the machinery underneath, and how to check it yourself.</p>
     <div class="cta">
       <a class="primary" href="https://clara.q7m4v2k9orbit.workers.dev/en">Open the prototype <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="#video">Watch the 3-minute video <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5v9l7-4.5z" fill="currentColor"/></svg></a>
       <a href="https://clara.q7m4v2k9orbit.workers.dev/en/evidence">Check the evidence</a>
       <a href="Clara-Technical-Documentation.pdf" download>Download the PDF <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v9M4 7l4 4 4-4M3 14h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
@@ -290,7 +294,7 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
 </div>
 
 <div class="gut"><nav class="mtoc" aria-label="Contents">
-  <div class="tg"><span>The product</span><a href="#problem">The problem</a><a href="#try">Try it</a></div>
+  <div class="tg"><span>The product</span><a href="#problem">The problem</a><a href="#try">Try it</a><a href="#video">Video</a></div>
   <div class="tg"><span>How it works</span><a href="#core">The rules</a><a href="#views">Privacy</a><a href="#audit">The record</a><a href="#rooms">Live rooms</a><a href="#edge">The front door</a><a href="#words">Words</a><a href="#care">Care</a></div>
   <div class="tg"><span>The AI</span><a href="#ai">What it does</a><a href="#eval">How we tested it</a></div>
   <div class="tg"><span>Evidence and limits</span><a href="#measures">Measuring</a><a href="#dp">Privacy in numbers</a><a href="#data">Data</a><a href="#tests">Tests</a><a href="#limits">Not done</a><a href="#pilot">Path to a pilot</a><a href="#team">Team</a><a href="#ref">Reference</a></div>
@@ -314,6 +318,12 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
 <span class="tag"><b>02</b>Try it</span>
 <h2>No account, no code: open it and press start</h2>
 <p class="lede">Everything below can be checked on the live prototype at <a href="https://clara.q7m4v2k9orbit.workers.dev">clara.q7m4v2k9orbit.workers.dev</a>.</p>
+<figure class="demo-video" id="video">
+  <video controls preload="none" playsinline poster="video/poster.jpg" aria-label="Clara demo video, 3 minutes, narrated in English">
+    <source src="video/clara-demo.mp4" type="video/mp4">
+  </video>
+  <figcaption>Every key feature in 3 minutes, narrated in English, with synthetic couples. Also on the prototype at <a href="https://clara.q7m4v2k9orbit.workers.dev/en/video">/en/video</a>, or <a href="video/clara-demo.mp4" download>download the MP4</a> (23 MB).</figcaption>
+</figure>
 <div class="cards">
   <div class="card"><b>Guided demo</b><p>One couple from consent to referral in about a minute. Noura reads Arabic, Saeed English. <code>/en/demo</code>. Or see a common result, a couple who both carry beta thalassaemia, in one click: <code>/en/demo/common</code></p></div>
   <div class="card"><b>Live room</b><p>Start a room on a laptop, scan each seat’s QR code with a real phone, and release the result. <code>/en/live</code></p></div>
@@ -854,7 +864,7 @@ AI_EVAL_URL=http://127.0.0.1:3100 pnpm exec vitest run tests/lib/ai-eval.test.ts
 </article>
 
 <nav class="toc" aria-label="Contents">
-  <div class="tg"><span>The product</span><a href="#problem">The problem</a><a href="#try">Try it</a></div>
+  <div class="tg"><span>The product</span><a href="#problem">The problem</a><a href="#try">Try it</a><a href="#video">Video</a></div>
   <div class="tg"><span>How it works</span><a href="#core">The rules</a><a href="#views">Privacy</a><a href="#audit">The record</a><a href="#rooms">Live rooms</a><a href="#edge">The front door</a><a href="#words">Words</a><a href="#care">Care</a></div>
   <div class="tg"><span>The AI</span><a href="#ai">What it does</a><a href="#eval">How we tested it</a></div>
   <div class="tg"><span>Evidence and limits</span><a href="#measures">Measuring</a><a href="#dp">Privacy in numbers</a><a href="#data">Data</a><a href="#tests">Tests</a><a href="#limits">Not done</a><a href="#pilot">Path to a pilot</a><a href="#team">Team</a><a href="#ref">Reference</a></div>

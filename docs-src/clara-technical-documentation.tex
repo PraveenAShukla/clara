@@ -153,6 +153,7 @@
 \color{muted}Source & branch \code{v1-production-on-main}, commit \code{1f32065}\\
 \color{muted}Prototype & \link{\proto/en}{clara.q7m4v2k9orbit.workers.dev}\\
 \color{muted}Project page & \link{https://praveenashukla.github.io/clara/}{praveenashukla.github.io/clara}\\
+\color{muted}Demo video & \link{\proto/en/video}{clara.q7m4v2k9orbit.workers.dev/en/video}, 3 minutes\\
 \end{tabular}
 
 \vfill
@@ -199,7 +200,7 @@ Status & Final submission copy. Prototype only; synthetic data only.\\
 \subsection*{Version history}
 {\small
 \begin{itemize}[leftmargin=14pt,itemsep=2pt]
-  \item Changes in 2.5, the final submission copy: 6,771 tests (6,432 unit and property, 339 end-to-end); the keyword fallback gives the carrier answer, never a pregnancy answer, to ``what does it mean that I'm a carrier?'' in English, formal Arabic, Gulf Arabic and Arabizi, while a question about being pregnant now keeps the pregnancy-now answer (\file{tests/lib/ask-what-carrier.test.ts}, 14 tests); the first sorting model gets 1.8 of 2.7 seconds, after a live tail ran just past 1.6 seconds; an answer picked by Clara's fixed rules no longer says ``found by AI''; deployed on 20 November (Cloudflare version \code{1a23bd30}), where 8 of 8 live sorting probes were answered; word library unchanged (1,071).
+  \item Changes in 2.5, the final submission copy: 6,771 tests (6,432 unit and property, 339 end-to-end); the keyword fallback gives the carrier answer, never a pregnancy answer, to ``what does it mean that I'm a carrier?'' in English, formal Arabic, Gulf Arabic and Arabizi, while a question about being pregnant now keeps the pregnancy-now answer (\file{tests/lib/ask-what-carrier.test.ts}, 14 tests); the first sorting model gets 1.8 of 2.7 seconds, after a live tail ran just past 1.6 seconds; an answer picked by Clara's fixed rules no longer says ``found by AI''; deployed on 20 November (Cloudflare version \code{1a23bd30}), where 8 of 8 live sorting probes were answered; word library unchanged (1,071); a 3-minute narrated demo video of every key feature, linked on the title page and in Appendix A.
   \item Changes in 2.4 (checked at commit \code{645fc32}, code as at \code{8b1358c}): 6,757 tests (6,418 unit and property, 339 end-to-end; all pass, the full run passed 337, and the 2 load-sensitive tests that did not passed on an immediate re-run); 432 crisis, distress and look-alike probes, with a new idiom family (``killing me lol'', ``dying to know'', dying of laughter); after a third independent AI review on the final build, the AI sorter also returns two meaning-level signals, \code{carriers} and \code{hide}, which a guard combines with the fixed rules so the model can only add safety; the rules hear bare partner pronouns and hide verbs; the time-out fail-safe no longer adds the 800 SAKINA distress line to neutral questions; marriage decisions go to a person; ``is trait the same as being sick?'' gets the carrier answer; laughter idioms no longer get a Family label; rescheduling gets the session answer; the Arabic console shows sentence identifiers as labelled chips; the English Ask says ``specialist'' throughout; \file{tests/lib/ask-judge-20nov-c.test.ts} (1,464 tests); deployed on 20 November with live probes of the reviewer's questions; word library unchanged (1,071).
   \item Changes in 2.3 (checked at commit \code{e1eb9a9}): 5,223 tests (4,900 unit and property, 323 end-to-end, all 323 passing in one full run); 414 crisis, distress and look-alike probes, with a new world-weary family (wanting nothing from this world any more); after a second independent AI review on the final build, the phrasings that still slipped are decided by fixed rules before any model, and the same way by the keyword fallback: one carrier in Arabizi and ``my fianc\'e is clear'' go to a clinician, the Gulf world-weary crisis gets the full crisis reply every time, not wanting a fianc\'e to know a result gets the privacy answer and a person, ``already 8 weeks pregnant'' gets the pregnancy-now answer and a person, the layers show at most one ``Stopped here'', the both-carriers answer is the same in English, Arabic and Arabizi, and two labels are plainer; \file{tests/lib/ask-judge-20nov-b.test.ts} (2,165 tests); deployed on 20 November with live probes of the reviewer's questions; word library unchanged (1,071).
   \item Changes in 2.2 (checked at commit \code{d0abccd}): 2,996 tests (2,684 unit and property, 312 end-to-end, all 312 passing in one full run); 1,071 fixed sentences (954 family, 117 study); Ask routing fixes from an independent AI reviewer's live run on 20 November: a question saying only one partner carries never gets the both-carriers answer and goes to a clinician; a question naming a different condition from the couple's never gets the case's condition card and goes to a person; a new draft answer on thalassaemia major and trait; ``can my fianc\'e see my result?'' gets the privacy answer; ``my husband says it's my fault'' gets the no-fault answer; deployed on 20 November with live probes of the reviewer's questions.
@@ -297,7 +298,7 @@ Two rules shaped everything:
 \begin{note}
 \textbf{Try it.} The prototype needs no account. \link{\proto/en/demo}{\code{/en/demo}} follows one couple from consent
 to referral in about a minute; \link{\proto/en/demo/common}{\code{/en/demo/common}} opens a common result, a couple who both carry beta thalassaemia, in one click. \link{\proto/en/live}{\code{/en/live}} runs one case across real phones.
-\link{\proto/en/evidence}{\code{/en/evidence}} maps every clause to a screen and a test.
+\link{\proto/en/evidence}{\code{/en/evidence}} maps every clause to a screen and a test. To watch instead, \link{\proto/en/video}{\code{/en/video}} plays a 3-minute narrated video of every key feature.
 \end{note}
 
 % =====================================================================
@@ -1791,6 +1792,7 @@ Every page exists in English (\code{/en/…}) and Arabic (\code{/ar/…}) at \li
 \toprl
 \link{\proto/en/demo}{\code{/en/demo}} & Guided demo, consent to referral\\
 \link{\proto/en/demo/common}{\code{/en/demo/common}} & The guided demo on a common result: both carry beta thalassaemia\\
+\link{\proto/en/video}{\code{/en/video}} & The 3-minute narrated demo video; the file itself is at \link{https://praveenashukla.github.io/clara/video/clara-demo.mp4}{praveenashukla.github.io/clara/video/clara-demo.mp4}\\
 \link{\proto/en/phone}{\code{/en/phone}} & Spouse app; pick a couple and a spouse\\
 \link{\proto/en/console}{\code{/en/console}} & Genetics specialist console\\
 \code{/en/doctor}, \code{/en/lab}, \code{/en/programme} & Family doctor, lab desk, programme office\\
