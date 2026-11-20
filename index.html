@@ -280,7 +280,7 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
   </div>
 </div>
 <div class="stats">
-  <div class="stat"><b>6,757</b><span>automated tests on 20 Nov: 6,418 unit and property, passing, and 339 end-to-end</span></div>
+  <div class="stat"><b>6,771</b><span>automated tests on 20 Nov: 6,432 unit and property, passing, and 339 end-to-end</span></div>
   <div class="stat"><b>0</b><span>leaks between spouses in 2,000 random cases</span></div>
   <div class="stat"><b>24/30</b><span>new AI-written questions that need a person reached one, live, before any fix (two self-harm misses, since fixed)</span></div>
   <div class="stat"><b>2,000</b><span>random edits to the audit record, every one caught</span></div>
@@ -644,7 +644,7 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 
 <section class="s" id="tests" style="--c:var(--teal)">
 <span class="tag"><b>15</b>Tests</span>
-<h2>6,757 automated tests, most of them on random cases</h2>
+<h2>6,771 automated tests, most of them on random cases</h2>
 <p class="lede">A property test states a rule and checks it on thousands of generated cases. Run counts are written once in <code>lib/evidence.ts</code>, so no page can claim more than the tests check.</p>
 <div class="tablewrap"><table>
 <thead><tr><th>Property</th><th class="r">Random runs</th><th>Result</th></tr></thead>
@@ -657,7 +657,7 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 <tr><td>A spouse’s health-record entry holds only their own result, with their own consent</td><td class="r">property test</td><td>never the other’s</td></tr>
 <tr><td>Any one-byte edit to the audit record is detected</td><td class="r">2,000</td><td>every one</td></tr>
 </tbody></table></div>
-<p>6,418 unit and property tests (Vitest, fast-check; 6,418 passed and 1 skipped, 89 files, 20 November) and 339 end-to-end tests (Playwright, on a production build, in English and Arabic, on a 375-pixel phone screen). All pass: the full run on 20 November passed 337, and the 2 load-sensitive tests that did not (the common result in Arabic, and the Arabic dark-mode accessibility check of the layers) passed on an immediate re-run (17 of 17). These are tests, not a certification: there is no ethics approval, and the clinical safety case is a draft (below).</p>
+<p>6,432 unit and property tests (Vitest, fast-check; 6,432 passed and 1 skipped, 90 files, 20 November) and 339 end-to-end tests (Playwright, on a production build, in English and Arabic, on a 375-pixel phone screen). All pass: the full run on 20 November passed 337, and the 2 load-sensitive tests that did not (the common result in Arabic, and the Arabic dark-mode accessibility check of the layers) passed on an immediate re-run (17 of 17). These are tests, not a certification: there is no ethics approval, and the clinical safety case is a draft (below).</p>
 <p><b>A draft hazard log.</b> <code>eval/safety/HAZARD-LOG.md</code> lists 17 hazards in the style of the NHS standard DCB0129, each with its controls, the test or report that shows them, and a residual risk. It is a student draft: no Clinical Safety Officer is named and nobody has reviewed it, and it claims no compliance with any standard.</p>
 </section>
 
@@ -834,7 +834,7 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 pnpm dev --port 3100 -H 127.0.0.1     <span class="c"># http://127.0.0.1:3100/en</span>
 docker compose up                     <span class="c"># one container: http://127.0.0.1:3000/en</span>
 pnpm cf:dev                           <span class="c"># Cloudflare version with live rooms: :8787</span>
-pnpm test                             <span class="c"># 6,418 unit and property tests</span>
+pnpm test                             <span class="c"># 6,432 unit and property tests</span>
 pnpm e2e                              <span class="c"># 339 end-to-end tests</span>
 pnpm typecheck &amp;&amp; pnpm lint
 AI_EVAL_URL=http://127.0.0.1:3100 pnpm exec vitest run tests/lib/ai-eval.test.ts   <span class="c"># the 28 questions</span></code></pre>
