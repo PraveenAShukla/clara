@@ -351,7 +351,7 @@ Genome Programme, the lab and the health-information exchange), not beside them.
 
 {\small
 \begin{xltabular}{\textwidth}{@{}P{2.4cm}L@{}}
-\caption{Why it matters now (sources in the References)}\\
+\caption{The problem in numbers (sources in the References)}\\
 \toprl
 \textbf{1 in 2} & Emirati marriages were between relatives in a 1997 national survey; their children were more often ill [1]\\
 \midrule
@@ -423,7 +423,7 @@ Art.~13 is a gap because K2 is reached through Singapore.
   \item \textbf{Each seat sees only its own view.} The other spouse's private answers never reach a device.
   \item \textbf{Arabic is designed as an equal}, with its own type, spacing and right-to-left layout, not as a
         translation.
-  \item \textbf{Honest by construction.} Anything synthetic, unsigned or unbuilt says so. No screen carries a ``simulated'' label; the Privacy page lists every prototype stand-in in one place.
+  \item \textbf{Every stand-in is labelled.} Anything synthetic, unsigned or unbuilt says so; the Privacy page lists every prototype stand-in in one place.
 \end{enumerate}
 
 % =====================================================================
@@ -452,7 +452,7 @@ Counsellors & Rehearsal & AI-played synthetic couples & Practise giving a hard r
 \bottomrule
 \end{xltabular}}
 
-\subsection{The journey of one case}
+\subsection{One case, start to finish}
 
 The steps below follow one synthetic couple, Noura and Saeed, whose result is at risk.
 
@@ -1067,7 +1067,7 @@ reproductive choice (options, IVF with embryo testing, testing in pregnancy, a p
 of a person. Asking whether to go on with a pregnancy, even in words that are not termination words, goes to a person
 by rule. Pregnancy content shows only for married couples, checked by a property test over all engaged couples.
 
-\textbf{Ask Clara on the landing page (19 November).} The page says plainly that some answers are written by AI: only
+\textbf{Ask Clara on the landing page (19 November).} The page says that some answers are written by AI: only
 for general or medical questions, checked, and labelled. Seven one-tap hard questions run the real path: a worry in Gulf
 Arabic, Arabizi, cost, faith, a choice about children, a medical detail and an attempt to steer the AI
 (\file{components/landing/try-ask.tsx}). The question and the seven cards sit on one side and the reply on the other.
@@ -1187,10 +1187,8 @@ the clinician summary's per-spouse detail, and faith answers (the fatwa authorit
 confirmed). \textbf{Open:} where cousin content sits. The floating demo ``Shortcuts'' button that covered text was fixed on 20
 November: it now docks in the phone's top bar.
 
-\begin{caution}
-\textbf{Read with care.} These were AI personas, not real people. The walkthrough finds usability, wording and safety
+\noindent Limitation: These were AI personas, not real people. The walkthrough finds usability, wording and safety
 problems; it is not evidence that real families understand Clara or benefit from it. That needs real Emirati users.
-\end{caution}
 
 \subsection{Usability study (in progress)}\label{sec:usability}
 
@@ -1258,12 +1256,10 @@ one carrier.
 keeps a person, one-carrier questions go to a clinician, and hiding a result adds a person. Replaying the model's
 recorded picks for these 30 questions through the fixed rules, 30 of 30 now reach a person.
 
-\begin{caution}
-\textbf{Read with care.} 30 of 30 is a development figure, not a held-out one: the fixes were made for these very
+\noindent Limitation: 30 of 30 is a development figure, not a held-out one: the fixes were made for these very
 questions, and a new set is needed to measure them. The questions were written by an AI agent, not by real people; the
 same agent set the labels and judged relevance, and the live site was unstable during the runs, so the scored set mixes
 three runs (the report gives the rule used).
-\end{caution}
 
 \subsection{First held-out set (now a development set)}
 \label{sec:heldout}
@@ -1293,11 +1289,9 @@ without a person ask about telling family (1) or being related (3); they get fix
 should also offer a person is the clinical lead's decision. The Wilson 95\% range for 12 of 22 when new is about 34--74\%, and for 18 of 22 after fixes about 61--93\%.
 Relevance was judged by the same agent on the first run only.
 
-\begin{caution}
-\textbf{Read with care.} The questions were written by an AI agent, not by real people, and its Gulf dialect and typos
+\noindent Limitation: The questions were written by an AI agent, not by real people, and its Gulf dialect and typos
 are an imitation. No real user has tried Clara yet. The next test is 60 questions typed by Emirati people outside the
 team, run the same way.
-\end{caution}
 
 \subsection{Evaluation on the in-house set}
 
@@ -1346,10 +1340,8 @@ its own, K2 answered ``my mother wants to know, what do I tell her'' in all thre
 one. The hosted site has run rules first since 15 November; since 19 November, sorting asks OpenAI first, and K2 writes and checks answers. The test suite fails if the keyword fallback
 ever scores above zero unsafe.
 
-\begin{caution}
-\textbf{Read with care.} The rules were built using these same 28 questions, which is why the held-out result above
+\noindent Limitation: The rules were built using these same 28 questions, which is why the held-out result above
 comes first.
-\end{caution}
 
 \subsection{Fine-tuning}\label{sec:finetune}
 
