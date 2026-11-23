@@ -261,7 +261,7 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
   <div>
     <p class="eyebrow">Future Health Digital Innovation Challenge · Problem Statement 03</p>
     <h1>How Clara is <span>built</span></h1>
-    <p class="dek">A private explanation of a premarital genetic result for each spouse, in Arabic or English, and a route to care. Here is the machinery underneath, and how to check it yourself.</p>
+    <p class="dek">A private explanation of a premarital genetic result for each spouse, in Arabic or English, and a route to care. This page shows how it works and how to check it.</p>
     <div class="cta">
       <a class="primary" href="https://clara.q7m4v2k9orbit.workers.dev/en">Open the prototype <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <a href="#video">Watch the 3-minute video <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5v9l7-4.5z" fill="currentColor"/></svg></a>
@@ -308,7 +308,7 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
 
 <section class="s" id="problem" style="--c:var(--teal); --cs:var(--tealsoft)">
 <span class="tag"><b>01</b>The problem</span>
-<h2>One result, two people, and a chance to understand</h2>
+<h2>The problem</h2>
 <p class="lede">Abu Dhabi’s premarital screening now includes a genetic test. The result is about both spouses at once, and it is easy to misread.</p>
 <div class="cards">
   <div class="card"><b>About two people</b><p>Whoever hears it first is left explaining it to the other.</p></div>
@@ -320,7 +320,7 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
 
 <section class="s" id="try" style="--c:var(--teal); --cs:var(--tealsoft)">
 <span class="tag"><b>02</b>Try it</span>
-<h2>No account, no code: open it and press start</h2>
+<h2>Try the prototype</h2>
 <p class="lede">Everything below can be checked on the live prototype at <a href="https://clara.q7m4v2k9orbit.workers.dev">clara.q7m4v2k9orbit.workers.dev</a>.</p>
 <figure class="demo-video" id="video">
   <video controls preload="none" playsinline poster="video/poster.jpg" aria-label="Clara demo video, 3 minutes, narrated in English">
@@ -340,7 +340,7 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
 
 <section class="s" id="core">
 <span class="tag"><b>03</b>The rules</span>
-<h2>One small library decides every step</h2>
+<h2>The rules engine</h2>
 <p class="lede">A folder called <code>core/</code> decides what may happen next, who may see what, and what is recorded. Same input, same output, no network and no clock, so we can test it on thousands of random cases.</p>
 <div class="fig anim" id="phase-fig">
   <div class="fig-title">The five phases of a case</div>
@@ -390,7 +390,7 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
 
 <section class="s" id="views" style="--c:var(--teal); --cs:var(--tealsoft)">
 <span class="tag"><b>04</b>Privacy</span>
-<h2>Each screen is built for one reader</h2>
+<h2>One screen per reader</h2>
 <p class="lede">Each role’s view is built from the case one field at a time. For a spouse it is built on the server, so what Noura may not see never reaches her phone at all.</p>
 <div class="fig">
   <div class="fig-title">What each device receives</div>
@@ -408,7 +408,7 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
 
 <section class="s" id="audit" style="--c:var(--teal); --cs:var(--tealsoft)">
 <span class="tag"><b>05</b>The record</span>
-<h2>Who saw what, without storing what</h2>
+<h2>The audit record</h2>
 <p class="lede">Every time information about a spouse moves, the record adds an entry holding a fingerprint (SHA-256 hash) of what moved, never the content. Each entry also holds the previous entry’s fingerprint, so any edit breaks the chain.</p>
 <div class="fig">
   <div class="fig-title">Editing the record</div>
@@ -439,7 +439,7 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
 
 <section class="s" id="rooms" style="--c:var(--teal); --cs:var(--tealsoft)">
 <span class="tag"><b>06</b>Live rooms</span>
-<h2>Five devices, one case, and no seat-swapping</h2>
+<h2>Live rooms</h2>
 <p class="lede">A live room puts Noura’s case on every device at once. Each request carries a signed seat token, so Saeed’s phone cannot act as the specialist.</p>
 <div class="fig anim" id="room-fig">
   <div class="fig-title">Anatomy of a seat token</div>
@@ -469,7 +469,7 @@ if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
 
 <section class="s" id="edge">
 <span class="tag"><b>07</b>The front door</span>
-<h2>One Worker in front of everything</h2>
+<h2>Hosting and access</h2>
 <p class="lede">On the hosted site, Next.js exports every page as static files and a small hand-written Cloudflare Worker routes the rest.</p>
 <div class="fig">
   <div class="fig-title">Where a request goes</div>
@@ -518,7 +518,7 @@ if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
 
 <section class="s" id="ai" style="--c:var(--violet); --cs:var(--violetsoft)">
 <span class="tag"><b>10</b>The AI</span>
-<h2>Models point to fixed answers, and write only short, checked, labelled ones</h2>
+<h2>How the AI answers</h2>
 <p class="lede">Nothing so far needs a model. Models help with ten narrow jobs, every answer is checked, and anything doubtful goes to a person. Sorting a question asks OpenAI first, then K2; written answers, the meaning check and every other task go to K2, MBZUAI’s model, first, and to an OpenAI model in the US only as backup. Under each answer, “How this answer was made” shows the route and names the role (“the main AI model”, “the backup AI model”); the privacy page names the models.</p>
 <div class="cards" style="--n:4">
   <div class="card"><b>Ask Clara</b><p>picks fixed answers · writes a short, checked one only when none fits a general or medical question</p></div>
@@ -563,7 +563,7 @@ if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
 <tr><td>Time from question to reply</td><td class="r">median 1.5 s, slowest 14.9 s</td></tr>
 </tbody></table></div>
 <div class="callout"><b>What went wrong:</b> two messages saying the writer did not want to live, or saw no point to anything after the result (one in English, one in Arabizi), got the ordinary “worried” answer, with no urgent help and no person. Three decisions about another child or the wedding, and one request to hide a result from a spouse, got fixed words with no person. Two questions about only one carrier got the both-carriers “1 in 4” answer. <b>Fixed and deployed the same evening:</b> the crisis rule now runs first, every decision keeps a person, one-carrier questions go to a clinician and hiding a result adds a person. Replaying the model’s recorded picks through the fixed rules, 30 of 30 now reach a person. That is a development figure, not a held-out one: the fixes were made for these questions. The report is in <code>eval/heldout2/REPORT.md</code>.</div>
-<h3>An AI persona walkthrough: AI personas, not real users</h3>
+<h3>Walkthrough with 10 AI personas</h3>
 <p>Also on 19 November, ten AI agents each role-played one persona on the live site, mostly at phone size: an Al Ain bride who reads Arabic only, a sceptical engineer, a groom’s mother, a reader with low reading confidence on a small phone, an Arabizi typist, an anxious and self-blaming user, a religious user, a medical student, an engaged couple on two phones, and a screen-reader user.</p>
 <div class="tablewrap"><table>
 <thead><tr><th>AI persona walkthrough, live, 19 November (10 AI personas, not real people)</th><th class="r">Result</th></tr></thead>
@@ -604,7 +604,7 @@ if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
 
 <section class="s" id="measures" style="--c:var(--teal); --cs:var(--tealsoft)">
 <span class="tag"><b>12</b>Measuring</span>
-<h2>Count understanding and care, never choices</h2>
+<h2>What we measure</h2>
 <p class="lede">The programme office sees four stages across all couples, split by reading language and by sex.</p>
 <div class="stages4">
   <div class="card"><b>Understood</b><p>comprehension check right first time (the primary measure)</p></div>
@@ -636,7 +636,7 @@ if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
 
 <section class="s" id="dp" style="--c:var(--teal)">
 <span class="tag"><b>13</b>Privacy in numbers</span>
-<h2>Noise that hides any one couple</h2>
+<h2>Privacy in programme figures</h2>
 <p class="lede">Publish a count, publish it again after one couple joins, and the difference is that couple. So programme figures get calibrated random noise: differential privacy, merged on 15 November, audited on 18 November and now covered by 45 release tests and 5 key-store tests.</p>
 <div class="fig">
   <div class="fig-title">Releasing one count many times</div>
@@ -662,7 +662,7 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 
 <section class="s" id="data" style="--c:var(--amber); --cs:var(--ambersoft)">
 <span class="tag"><b>14</b>Data</span>
-<h2>Synthetic today, UAE-hosted before anything real</h2>
+<h2>Data and hosting</h2>
 <div class="cards" style="--n:2">
   <div class="card"><b>Today</b><p>Every couple, genome, lab report and clinician is invented (licences start <code>SYN-</code>). Rooms delete themselves within 12 hours. A model sees one typed question or a lab report’s text, never a name: written answers go to K2 first, reached through AWS in Singapore, and OpenAI in the US if K2 fails; sorting a question asks OpenAI first, then K2.</p></div>
   <div class="card"><b>Pilot (proposed)</b><p>Hosted in the UAE, models hosted in the UAE, the Department of Health and the centre as controller, under Federal Law No. 2 of 2019 and DoH policy, after a data protection impact assessment.</p></div>
@@ -819,18 +819,18 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 })();
 </script>
 
-<h3>Built today, and not yet</h3>
+<h3>Built and not yet built</h3>
 <div class="cards" style="--n:2">
   <div class="card"><b>Built (synthetic cases only)</b><p>The programme-wide AI switch, the hold-for-review queue, and counts for teach-back, time to a session and Ask routes. Referrals in valid FHIR R4, checked on a public FHIR server. A real UAE PASS staging sign-in, tested end to end with a staging account.</p></div>
   <div class="card"><b>Not yet</b><p>No partner, clinical lead, signed sentence, ethics approval or real user. Models are outside the UAE. The switch&rsquo;s staff sign-in works on UAE PASS staging only.</p></div>
 </div>
-<div class="callout"><b>Our ask.</b> One premarital centre, the genetics clinic it refers to and a clinical lead, for a 90-day pilot measuring understanding, time to counselling and the questions that need a person.</div>
-<div class="callout"><b>The one thing we need on day 1.</b> A named, licensed clinical geneticist who reviews and signs the core result sentences (what each result means, the chance per pregnancy, the options), with an Emirati Arabic reviewer. Everything else waits behind that signature, and nothing reaches a real family before it. Second, from M42 and Malaffi: their test environments, so the prototype lab report and referral connection become real messages; the referral is already valid FHIR R4.</div>
+<div class="callout"><b>What we are asking for.</b> One premarital centre, the genetics clinic it refers to and a clinical lead, for a 90-day pilot measuring understanding, time to counselling and the questions that need a person.</div>
+<div class="callout"><b>Needed on day 1.</b> A named, licensed clinical geneticist who reviews and signs the core result sentences (what each result means, the chance per pregnancy, the options), with an Emirati Arabic reviewer. Everything else waits behind that signature, and nothing reaches a real family before it. Second, from M42 and Malaffi: their test environments, so the prototype lab report and referral connection become real messages; the referral is already valid FHIR R4.</div>
 </section>
 
 <section class="s" id="team" style="--c:var(--teal)">
 <span class="tag"><b>18</b>Team</span>
-<h2>Four people, one build</h2>
+<h2>Team</h2>
 <p class="lede">Team parallelparadox: three MBZUAI undergraduates living in the UAE and one first-year student in India, aged 18 to 20.</p>
 <div class="team">
   <div class="person"><small>Lead AI engineer</small><b>Praveen Anilkumar Shukla</b><i>Team lead, MBZUAI undergraduate</i><p>Conceived Clara and built its core: the case engine, private role views, bilingual app and rules-first AI. Leads the K2-Think 32B fine-tune.</p></div>
