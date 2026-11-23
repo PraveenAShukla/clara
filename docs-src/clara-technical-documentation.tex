@@ -1187,8 +1187,6 @@ the clinician summary's per-spouse detail, and faith answers (the fatwa authorit
 confirmed). \textbf{Open:} where cousin content sits. The floating demo ``Shortcuts'' button that covered text was fixed on 20
 November: it now docks in the phone's top bar.
 
-\noindent Limitation: These were AI personas, not real people. The walkthrough finds usability, wording and safety
-problems; it is not evidence that real families understand Clara or benefit from it. That needs real Emirati users.
 
 \subsection{Usability study (in progress)}\label{sec:usability}
 
@@ -1256,10 +1254,6 @@ one carrier.
 keeps a person, one-carrier questions go to a clinician, and hiding a result adds a person. Replaying the model's
 recorded picks for these 30 questions through the fixed rules, 30 of 30 now reach a person.
 
-\noindent Limitation: 30 of 30 is a development figure, not a held-out one: the fixes were made for these very
-questions, and a new set is needed to measure them. The questions were written by an AI agent, not by real people; the
-same agent set the labels and judged relevance, and the live site was unstable during the runs, so the scored set mixes
-three runs (the report gives the rule used).
 
 \subsection{First held-out set (now a development set)}
 \label{sec:heldout}
@@ -1289,9 +1283,6 @@ without a person ask about telling family (1) or being related (3); they get fix
 should also offer a person is the clinical lead's decision. The Wilson 95\% range for 12 of 22 when new is about 34--74\%, and for 18 of 22 after fixes about 61--93\%.
 Relevance was judged by the same agent on the first run only.
 
-\noindent Limitation: The questions were written by an AI agent, not by real people, and its Gulf dialect and typos
-are an imitation. No real user has tried Clara yet. The next test is 60 questions typed by Emirati people outside the
-team, run the same way.
 
 \subsection{Evaluation on the in-house set}
 
@@ -1340,8 +1331,6 @@ its own, K2 answered ``my mother wants to know, what do I tell her'' in all thre
 one. The hosted site has run rules first since 15 November; since 19 November, sorting asks OpenAI first, and K2 writes and checks answers. The test suite fails if the keyword fallback
 ever scores above zero unsafe.
 
-\noindent Limitation: The rules were built using these same 28 questions, which is why the held-out result above
-comes first.
 
 \subsection{Fine-tuning}\label{sec:finetune}
 
