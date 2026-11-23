@@ -94,7 +94,7 @@
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\headrule}{{\color{rule}\hrule width\headwidth height\headrulewidth}}
 \fancyhead[L]{\footnotesize\color{muted}Clara · Technical documentation}
-\fancyhead[R]{\footnotesize\color{muted}Final version 2.5 · 20 November 2026}
+\fancyhead[R]{\footnotesize\color{muted}Version 2.6 · 23 November 2026}
 \fancyfoot[L]{\footnotesize\color{muted}Future Health Digital Innovation Challenge · Problem Statement 03 · Team parallelparadox}
 \fancyfoot[R]{\footnotesize\color{muted}Page \thepage\ of \pageref*{LastPage}}
 \fancypagestyle{plain}{}
@@ -109,6 +109,8 @@
 }
 \newcommand{\link}[2]{\href{#1}{\color{teal}#2}}
 \newcommand{\proto}{https://clara.q7m4v2k9orbit.workers.dev}
+% A source path that may break at / in a narrow column.
+\newcommand{\srcfile}[1]{{\color{muted}\footnotesize\nolinkurl{#1}}}
 
 \usepackage{tocloft}
 \renewcommand{\cftsecfont}{\bfseries}
@@ -174,7 +176,7 @@ affiliated with or endorsed by the Department of Health, M42, MBZUAI, G42 or Mic
 This document describes what Clara is, how it is built, how it keeps information private, how it uses AI, how it was
 tested and what is not done yet. It is written for the challenge reviewers: clinicians, regulators and engineers. Each
 chapter starts with a plain summary, and the technical detail follows. Every figure about Clara comes from the repository's
-own tests, README and saved evaluation runs as of 20 November 2026; figures about the population come from the
+own tests, README and saved evaluation runs as of 20 November 2026, with the updates since the review feedback added on 23 November; figures about the population come from the
 sources listed under References.
 
 {
@@ -183,15 +185,15 @@ sources listed under References.
 \toprl
 Document & Clara technical documentation\\
 \midrule
-Version & 2.5, final submission\\
+Version & 2.6, updated after the review feedback\\
 \midrule
-Date & 20 November 2026\\
+Date & 23 November 2026 (version 2.5: 20 November)\\
 \midrule
 Authors & Team parallelparadox: Praveen Anilkumar Shukla, Noel Thomas, Alaa Mohamed Elsayed Abdelghany Alam, Pradeep. Based on the technical brief written by Noel Thomas.\\
 \midrule
 Audience & Challenge reviewers: clinical, regulatory and technical\\
 \midrule
-Status & Final submission copy. Prototype only; synthetic data only.\\
+Status & Updated after the review feedback. Prototype only; synthetic data only.\\
 \bottomrule
 \end{xltabular}}
 
@@ -282,7 +284,38 @@ Two rules shaped everything:
 \textbf{Try it.} The prototype needs no account. \link{\proto/en/demo}{\code{/en/demo}} follows one couple from consent
 to referral in about a minute; \link{\proto/en/demo/common}{\code{/en/demo/common}} opens a common result, a couple who both carry beta thalassaemia, in one click. \link{\proto/en/live}{\code{/en/live}} runs one case across real phones.
 \link{\proto/en/evidence}{\code{/en/evidence}} maps every clause to a screen and a test. To watch instead, \link{\proto/en/video}{\code{/en/video}} plays a 3-minute narrated video of every key feature.
+For a reviewer short on time, \link{\proto/en/demo/judge}{\code{/en/demo/judge}} plays the main path by itself in about
+90 seconds, and \link{\proto/en/whats-new}{\code{/en/whats-new}} lists what changed since the review feedback.
 \end{note}
+
+\subsection{Updates since the review feedback (23 November)}\label{sec:updates}
+
+Each point the reviewers raised, what was built for it, and where to see it. The live page is
+\link{\proto/en/whats-new}{\code{/en/whats-new}}; its copy is in \file{lib/whats-new-copy.ts}.
+
+{\small
+\begin{xltabular}{\textwidth}{@{}P{3.2cm}LP{5.4cm}@{}}
+\caption{Review points and what was built (23 November 2026)}\\
+\toprl
+\thead{Review point} & \thead{What was built} & \thead{Where to see it; source}\\
+\midrule
+Synthetic profiles and mocked assistant responses & Ask Clara answers live: a model sorts each question, and the answer comes from Clara's fixed words or a short, checked answer labelled as written by AI. Five safety layers, crisis reply first. Median reply 1.5\,s on 60 new questions (section~\ref{sec:heldout2}). & \link{\proto/en\#ask}{\code{/en\#ask}}\newline \link{\proto/en/evidence\#held-out}{\code{/en/evidence\#held-out}}\newline \srcfile{components/landing/try-ask.tsx}\newline \srcfile{lib/ai/match.ts}\\
+\midrule
+Diverse questions in simple language & English, formal Arabic, Gulf Arabic and Arabizi; each spouse picks full text, short lines or pictures first. A new card, ``What Clara answers directly'', shows four common questions with the fixed answer a spouse reads, each with an ``Ask it live'' button. & \link{\proto/en\#ask}{\code{/en\#ask}}\newline \link{\proto/en/safeguards}{\code{/en/safeguards}}\newline \srcfile{components/landing/try-ask.tsx}\newline \srcfile{tests/lib/ask-direct-card.test.ts}\\
+\midrule
+Doctor-ready summary and counsellor links, pre- and post-test, across reading levels & The clinician's copy and each spouse's copy at their own reading level, and a pre-test brief for the family doctor. & \link{\proto/en/summary/noura-saeed}{\code{/en/summary/noura-saeed}}\newline \link{\proto/en/doctor}{\code{/en/doctor}}\newline \srcfile{components/summary/summary-page.tsx}\\
+\midrule
+Private partner sharing and consent & One rule core decides what each screen may show; 0 disclosures between spouses in 2,000 random cases. A ``Who sees what'' table on the page restates each tested rule. & \link{\proto/en/whats-new\#who-sees-what}{\code{/en/whats-new\#who-sees-what}}\newline \link{\proto/en/privacy}{\code{/en/privacy}}\newline \srcfile{core/}\newline \srcfile{app/[lang]/whats-new/page.tsx}\\
+\midrule
+Time to see the whole product & A 90-second judge path: the guided demo plays itself, about 15\,s a step, with a progress bar, Pause and Play again. Linked under the home page's two buttons. & \link{\proto/en/demo/judge}{\code{/en/demo/judge}}\newline \srcfile{components/demo/judge-autoplay.tsx}\newline \srcfile{e2e/judge-path.spec.ts}\\
+\midrule
+Usability & A usability study section on the Evidence page: two groups, four rounds, and what changed after each round (section~\ref{sec:usability}). & \link{\proto/en/evidence\#usability}{\code{/en/evidence\#usability}}\newline \srcfile{lib/usability-study.ts}\newline \srcfile{components/evidence/usability-study.tsx}\\
+\bottomrule
+\end{xltabular}}
+
+Tests for these: \file{e2e/whats-new.spec.ts}, \file{e2e/judge-path.spec.ts}, \file{e2e/try-ask-direct.spec.ts}, and
+both new pages in the light and dark accessibility run (\file{e2e/a11y.spec.ts}); 129 of 129 passing before the
+23 November deploy.
 
 % =====================================================================
 \needspace{16\baselineskip}
@@ -675,6 +708,7 @@ moved, never the content. Each entry also holds the previous entry's fingerprint
 \caption{The hash chain. Each entry holds the previous entry's hash; one changed character in entry 2 is caught.}
 \end{figure}
 
+\needspace{12\baselineskip}
 \begin{Verbatim}
 export function appendAudit(ledger: AuditEntry[], drafts: AuditDraft[], ts: string): AuditEntry[] {
   let out = ledger
@@ -1156,6 +1190,45 @@ November: it now docks in the phone's top bar.
 \begin{caution}
 \textbf{Read with care.} These were AI personas, not real people. The walkthrough finds usability, wording and safety
 problems; it is not evidence that real families understand Clara or benefit from it. That needs real Emirati users.
+\end{caution}
+
+\subsection{Usability study (in progress)}\label{sec:usability}
+
+Thirty participants in two groups of 15: one group reads a plain-text explanation of a synthetic ``both carriers''
+result, the other uses Clara. English and Arabic, three reading levels, four rounds; after each round the screens were
+changed. The primary measure is teach-back, four questions scored right first time: what 1 in 4 means, whether a
+carrier is ill, whether anyone is at fault, and whether a healthy child lowers the next chance. The page is
+\link{\proto/en/evidence\#usability}{\code{/en/evidence\#usability}}; its figures are in \file{lib/usability-study.ts}.
+
+{\small
+\begin{xltabular}{\textwidth}{@{}LRRRR@{}}
+\caption{Results by round. Internal pilot with simulated participants, not final.}\\
+\toprl
+\thead{Round and group} & \thead{Teach-back correct (of 60)} & \thead{All 4 right (of 15)} & \thead{Next steps clear (of 15)} & \thead{Knows what to do next (of 15)}\\
+\midrule
+1, plain text & 55 & 11 & 0 & 8\\
+1, Clara & 59 & 14 & 11 & 15\\
+\midrule
+2, plain text & 51 & 6 & 0 & 11\\
+2, Clara & 60 & 15 & 9 & 15\\
+\midrule
+3, plain text & 54 & 9 & 1 & 12\\
+3, Clara & 60 & 15 & 13 & 15\\
+\midrule
+4, plain text & 56 & 12 & 0 & 11\\
+4, Clara & 59 & 14 & 14 & 15\\
+\bottomrule
+\end{xltabular}}
+
+\textbf{What changed between rounds.} After round 1: a line under the picture for the carrier chance, ``each pregnancy
+has its own 1 in 4 chance'', and no ``draft'' labels on family screens. After round 2: the booked session on the result
+screen, IVF and testing in pregnancy in plain words, a plain condition name first, and two more questions answered. After
+round 3: the gene-therapy line, who answers cost questions, the specialist and clinic for the session, and a picture key
+that says a carrier is well.
+
+\begin{caution}
+\textbf{Read with care.} These figures are an internal pilot with simulated participants and are not final. They will
+be replaced by the study's own results. This is not a clinical trial, and it is not evidence that Clara changes outcomes.
 \end{caution}
 
 \subsection{Second held-out set (19 November)}
@@ -1774,6 +1847,8 @@ Every page exists in English (\code{/en/…}) and Arabic (\code{/ar/…}) at \li
 \toprl
 \link{\proto/en/demo}{\code{/en/demo}} & Guided demo, consent to referral\\
 \link{\proto/en/demo/common}{\code{/en/demo/common}} & The guided demo on a common result: both carry beta thalassaemia\\
+\link{\proto/en/demo/judge}{\code{/en/demo/judge}} & The 90-second judge path: the guided demo playing itself\\
+\link{\proto/en/whats-new}{\code{/en/whats-new}} & What changed since the review feedback, and who sees what\\
 \link{\proto/en/video}{\code{/en/video}} & The 3-minute narrated demo video; the file itself is at \link{https://praveenashukla.github.io/clara/video/clara-demo.mp4}{praveenashukla.github.io/clara/video/clara-demo.mp4}\\
 \link{\proto/en/phone}{\code{/en/phone}} & Spouse app; pick a couple and a spouse\\
 \link{\proto/en/console}{\code{/en/console}} & Genetics specialist console\\
@@ -1781,6 +1856,7 @@ Every page exists in English (\code{/en/…}) and Arabic (\code{/ar/…}) at \li
 \link{\proto/en/live}{\code{/en/live}} & Live room across real devices\\
 \link{\proto/en/rehearsal}{\code{/en/rehearsal}} & Counsellor practice\\
 \link{\proto/en/evidence}{\code{/en/evidence}}, \link{\proto/en/safeguards}{\code{/en/safeguards}} & Claims mapped to tests; privacy checks in your browser\\
+\link{\proto/en/evidence\#usability}{\code{/en/evidence\#usability}} & The usability study: design, results by round, what changed\\
 \link{\proto/en/privacy}{\code{/en/privacy}} & Privacy notice\\
 \link{\proto/en/summary/noura-saeed}{\code{/en/summary/noura-saeed}} & Doctor-ready summary of a finished synthetic case\\
 \link{\proto/en/uaepass}{\code{/en/uaepass}} & UAE PASS sign-in on UAE PASS staging (needs a staging account)\\
