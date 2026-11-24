@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="How Clara is built: a private explanation of a premarital genetic result for each spouse, in Arabic or English, with a route to care. Architecture, safety, AI evaluation and limits.">
-<meta property="og:title" content="How Clara is built">
+<meta property="og:title" content="Clara: every premarital genetic result, understood by both spouses">
 <meta property="og:description" content="How Clara is built: a private explanation of a premarital genetic result for each spouse, in Arabic or English, with a route to care. Architecture, safety, AI evaluation and limits.">
 <meta property="og:type" content="article">
-<title>Clara: how it is built</title>
+<title>Clara: every premarital genetic result, understood by both spouses</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#fbf8f3" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#121110" media="(prefers-color-scheme: dark)">
@@ -149,6 +149,7 @@ th{font-weight:600; border-bottom-color:var(--ink)}
 td.r,th.r{text-align:right; white-space:nowrap}
 #tests td:last-child{white-space:nowrap}
 tr.ours td{font-weight:600}
+@media (max-width:640px){table.stack{min-width:0} table.stack thead{display:none} table.stack tr{display:block; padding:10px 0; border-bottom:1px solid var(--rule)} table.stack td{display:block; border:0; padding:2px 0}}
 .eq{font:14px/1.75 var(--mono); background:var(--codebg); color:var(--codefg); border:1px solid var(--rule); border-radius:6px; padding:12px 16px; overflow-x:auto; white-space:pre; margin:12px 0 16px}
 .callout{background:var(--ambersoft); border-left:2px solid var(--amber); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:15.5px}
 .callout b{color:var(--amber)}
@@ -259,13 +260,14 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
 <div class="gut">
 <div class="head">
   <div>
-    <p class="eyebrow">Future Health Digital Innovation Challenge · Problem Statement 03</p>
-    <h1>How Clara is <span>built</span></h1>
-    <p class="dek">A private explanation of a premarital genetic result for each spouse, in Arabic or English, and a route to care. This page shows how it works and how to check it.</p>
+    <p class="eyebrow">Future Health Digital Innovation Challenge · Problem Statement 03 · How it is built</p>
+    <h1 style="font-size:clamp(34px,5vw,54px)">Clara: every premarital genetic result, <span>understood by both spouses</span></h1>
+    <p class="dek">Abu Dhabi now requires a genetic test of every Emirati couple before marriage. Clara explains the result privately to each spouse, in Arabic or English, and takes them to a genetics specialist when they need one.</p>
     <div class="cta">
       <a class="primary" href="https://clara.q7m4v2k9orbit.workers.dev/en">Open the prototype <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      <a href="#video">Watch the 3-minute video <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5v9l7-4.5z" fill="currentColor"/></svg></a>
-      <a href="https://clara.q7m4v2k9orbit.workers.dev/en/evidence">Check the evidence</a>
+      <a href="https://clara.q7m4v2k9orbit.workers.dev/en/demo/judge">90-second judge path <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5v9l7-4.5z" fill="currentColor"/></svg></a>
+      <a href="#video">3-minute video <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5v9l7-4.5z" fill="currentColor"/></svg></a>
+      <a href="https://clara.q7m4v2k9orbit.workers.dev/en/whats-new">What's new</a>
       <a href="Clara-Technical-Documentation.pdf" download>Technical documentation (PDF) <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v9M4 7l4 4 4-4M3 14h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <a href="Clara-Deck.pdf" download>Deck (PDF) <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v9M4 7l4 4 4-4M3 14h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
@@ -288,28 +290,71 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
   </div>
 </div>
 <div class="stats">
-  <div class="stat"><b>6,771</b><span>automated tests on 20 Nov: 6,432 unit and property and 339 end-to-end, all passing</span></div>
+  <div class="stat"><b>4.8%</b><span>of 11,748 couples tested in Abu Dhabi, 2022 to July 2026, had an at-risk result (565 couples)</span></div>
+  <div class="stat"><b>~10</b><span>genetic counsellors in the whole UAE in 2023</span></div>
   <div class="stat"><b>0</b><span>leaks between spouses in 2,000 random cases</span></div>
-  <div class="stat"><b>24/30</b><span>new AI-written questions that need a person reached one, live, before any fix (two self-harm misses, since fixed)</span></div>
-  <div class="stat"><b>2,000</b><span>random edits to the audit record, every one caught</span></div>
-  <div class="stat"><b>0/1,071</b><span>fixed sentences signed so far; all are drafts</span></div>
+  <div class="stat"><b>24/30</b><span>new questions that need a person reached one, live, before any fix (two self-harm misses, since fixed)</span></div>
+  <div class="stat"><b>6,771</b><span>automated tests on 20 Nov: 6,432 unit and property and 339 end-to-end, all passing</span></div>
   <div class="stat"><b>28/32</b><span>points of Statement 03 built and tested</span></div>
 </div>
+<p class="byline" style="text-align:center">Sources: Gulf News, October 2026 (couples tested); <i>Human Genomics</i>, 2025 (counsellors); test figures from the repository, 20 November 2026.</p>
 </div>
 
 <div class="gut"><nav class="mtoc" aria-label="Contents">
-  <div class="tg"><span>The product</span><a href="#problem">The problem</a><a href="#try">Try it</a><a href="#video">Video</a></div>
-  <div class="tg"><span>How it works</span><a href="#core">The rules</a><a href="#views">Privacy</a><a href="#audit">The record</a><a href="#rooms">Live rooms</a><a href="#edge">The front door</a><a href="#words">Words</a><a href="#care">Care</a></div>
-  <div class="tg"><span>The AI</span><a href="#ai">What it does</a><a href="#eval">How we tested it</a></div>
-  <div class="tg"><span>Evidence and limits</span><a href="#measures">Measuring</a><a href="#dp">Privacy in numbers</a><a href="#data">Data</a><a href="#tests">Tests</a><a href="#limits">Not done</a><a href="#pilot">Path to a pilot</a><a href="#team">Team</a><a href="#ref">Reference</a></div>
+  <div class="tg"><span>Start here</span><a href="#judges">For judges</a><a href="#updates">Since the review</a><a href="#problem">The problem</a><a href="#try">Try it</a><a href="#video">Video</a></div>
+  <div class="tg"><span>Care and the AI</span><a href="#care">Care</a><a href="#ai">The AI</a><a href="#eval">Testing the AI</a><a href="#words">Words</a><a href="#usability">Usability study</a></div>
+  <div class="tg"><span>How it is built</span><a href="#core">The rules</a><a href="#views">Privacy</a><a href="#audit">The record</a><a href="#rooms">Live rooms</a><a href="#edge">The front door</a></div>
+  <div class="tg"><span>Evidence and pilot</span><a href="#measures">Measuring</a><a href="#dp">Privacy in numbers</a><a href="#data">Data</a><a href="#tests">Tests</a><a href="#pilot">Path to a pilot</a><a href="#commercial">Who pays</a><a href="#limits">Not done</a><a href="#team">Team</a><a href="#ref">Reference</a></div>
 </nav></div>
 <div class="wrap gut">
 <article>
 
+<section class="s" id="judges" style="--c:var(--teal); --cs:var(--tealsoft)">
+<span class="tag">For judges</span>
+<h2>Where to check each judging criterion</h2>
+<div class="tablewrap"><table class="stack">
+<thead><tr><th>Criterion</th><th>Our strongest evidence</th><th>Where to check</th></tr></thead>
+<tbody>
+<tr><td><b>1. Health impact and clinical relevance</b></td><td>A genetic test is now required of every Emirati couple; Clara is built so each spouse understands their result and reaches care, and the pilot measures it.</td><td><a href="#problem">The problem</a> · <a href="#care">Care</a> · <a href="#usability">Usability study</a></td></tr>
+<tr><td><b>2. Technical depth and architecture</b></td><td>One tested rule core, one view per seat, a hash-chained record, FHIR R4 referrals and real UAE PASS sign-in.</td><td><a href="#core">Rules engine</a> · <a href="#views">Screens</a> · <a href="#audit">Record</a> · <a href="#rooms">Live rooms</a></td></tr>
+<tr><td><b>3. Working solution and demo quality</b></td><td>Every role live in Arabic and English from one link, with no login; a 90-second judge path that plays by itself; a 3-minute narrated video.</td><td><a href="https://clara.q7m4v2k9orbit.workers.dev/en/demo/judge">Judge path</a> · <a href="#video">Video</a> · <a href="https://clara.q7m4v2k9orbit.workers.dev/en">Prototype</a></td></tr>
+<tr><td><b>4. Responsible AI, safety and governance</b></td><td>Five layers on every reply, a crisis reply before any AI, a draft hazard log (17 hazards), a pilot build that refuses unsigned words, and AI switches.</td><td><a href="#ai">The AI</a> · <a href="#eval">AI testing</a> · <a href="https://clara.q7m4v2k9orbit.workers.dev/en/safeguards">Safeguards</a></td></tr>
+<tr><td><b>5. Scalability and deployment readiness</b></td><td>The live site held 120 requests a second (10 times the estimated peak) with 0 page errors; durable rate limits; a UAE residency plan.</td><td><a href="#edge">Hosting</a> · <a href="#data">Data and hosting</a> · <a href="#tests">Tests</a></td></tr>
+<tr><td><b>6. Commercial viability and path to pilot</b></td><td>One centre for 90 days, a day-1 ask, a costed pilot, and an operator model; no new test or visit for families.</td><td><a href="#pilot">Path to a pilot</a></td></tr>
+</tbody></table></div>
+<p>Every claim can be checked on the live prototype at <a href="https://clara.q7m4v2k9orbit.workers.dev/en/evidence">/en/evidence</a> and <a href="https://clara.q7m4v2k9orbit.workers.dev/en/safeguards">/en/safeguards</a>.</p>
+</section>
+
+<section class="s" id="updates" style="--c:var(--teal); --cs:var(--tealsoft)">
+<span class="tag">Since the review</span>
+<h2>Updated since the review feedback</h2>
+<div class="tablewrap"><table class="stack">
+<thead><tr><th>What changed</th><th>Detail</th><th>Where to see it</th></tr></thead>
+<tbody>
+<tr><td><b>Live answers</b></td><td>Ask Clara answers live in English, formal Arabic, Gulf Arabic and Arabizi. Every answer is Clara's fixed wording or a short, checked answer labelled as AI-written. Median reply 1.5 s.</td><td><a href="https://clara.q7m4v2k9orbit.workers.dev/en#ask">Ask Clara</a></td></tr>
+<tr><td><b>Doctor-ready summary</b></td><td>The clinician's copy, a plain copy for each spouse, and a pre-test brief for the family doctor.</td><td><a href="https://clara.q7m4v2k9orbit.workers.dev/en/summary/noura-saeed">Summary</a></td></tr>
+<tr><td><b>Who sees what</b></td><td>A table of what each person can see. Automated tests check every line; 2,000 random cases found 0 disclosures between spouses.</td><td><a href="https://clara.q7m4v2k9orbit.workers.dev/en/whats-new#who-sees-what">Who sees what</a></td></tr>
+<tr><td><b>Usability study</b></td><td>30 participants in two groups of 15, over four rounds, under way. The rounds so far are an internal pilot with simulated participants, not final.</td><td><a href="#usability">Results by round</a></td></tr>
+<tr><td><b>Fine-tune</b></td><td>Training of our K2-Think 32B fine-tune (LoRA) is complete and evaluations are running. It replaces the current model only with 0 unsafe answers and at least 24 of 28 right.</td><td><a href="#eval">AI testing</a></td></tr>
+</tbody></table></div>
+<p>All changes, with links: <a href="https://clara.q7m4v2k9orbit.workers.dev/en/whats-new">/en/whats-new</a>.</p>
+</section>
+
 <section class="s" id="problem" style="--c:var(--teal); --cs:var(--tealsoft)">
 <span class="tag"><b>01</b>The problem</span>
-<h2>The problem</h2>
+<h2>1 in 21 tested couples had an at-risk result, and the UAE had about 10 genetic counsellors</h2>
 <p class="lede">Abu Dhabi’s premarital screening now includes a genetic test. The result is about both spouses at once, and it is easy to misread.</p>
+<div class="tablewrap"><table class="stack">
+<thead><tr><th>Figure</th><th>What it means</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td><b>565 of 11,748</b></td><td>Abu Dhabi couples tested from 2022 to July 2026 who received an at-risk result, about 1 in 21.</td><td>Gulf News, October 2026</td></tr>
+<tr><td><b>570 genes</b></td><td>The premarital genetic test covers 570 genes and more than 840 conditions. It is required of every Emirati couple in Abu Dhabi since 1 October 2024 and across the UAE since January 2025; the result comes in about 14 days.</td><td>DoH Abu Dhabi, September 2024; WAM, December 2024</td></tr>
+<tr><td><b>1 in 12</b></td><td>People in the UAE who carry thalassaemia, the commonest inherited blood disorder.</td><td>Ministry of Health and Prevention (carrier rate 8.5%)</td></tr>
+<tr><td><b>About 10</b></td><td>Genetic counsellors in the whole UAE in 2023.</td><td><i>Human Genomics</i>, 2025</td></tr>
+<tr><td><b>1 in 4 doctors</b></td><td>Of 60 UAE physicians surveyed, 1 in 4 were trained in premarital genetic screening.</td><td>Rahma and Allam, 2025</td></tr>
+<tr><td><b>1 in 8 attendees</b></td><td>Of 255 clinic attendees, 1 in 8 knew the UAE&rsquo;s commonest inherited blood disorder.</td><td>Almeleh et al., 2026</td></tr>
+</tbody></table></div>
+<p>And each result is about two people at once:</p>
 <div class="cards">
   <div class="card"><b>About two people</b><p>Whoever hears it first is left explaining it to the other.</p></div>
   <div class="card"><b>“Carrier” is not “ill”</b><p>A carrier is usually healthy. It matters when both carry a change in the same gene.</p></div>
@@ -320,10 +365,10 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
 
 <section class="s" id="try" style="--c:var(--teal); --cs:var(--tealsoft)">
 <span class="tag"><b>02</b>Try it</span>
-<h2>Try the prototype</h2>
+<h2>Every role, live in Arabic and English, from one link</h2>
 <p class="lede">Everything below can be checked on the live prototype at <a href="https://clara.q7m4v2k9orbit.workers.dev">clara.q7m4v2k9orbit.workers.dev</a>.</p>
 <figure class="demo-video" id="video">
-  <video controls preload="none" playsinline poster="video/poster.jpg" aria-label="Clara demo video, 3 minutes, narrated in English">
+  <video controls preload="metadata" playsinline poster="video/poster.jpg" aria-label="Clara demo video, 3 minutes, narrated in English">
     <source src="video/clara-demo.mp4" type="video/mp4">
   </video>
   <figcaption>Every key feature in 3 minutes, narrated in English, with synthetic couples. Also on the prototype at <a href="https://clara.q7m4v2k9orbit.workers.dev/en/video">/en/video</a>, or <a href="video/clara-demo.mp4" download>download the MP4</a> (23 MB).</figcaption>
@@ -338,170 +383,8 @@ details.deep > summary::before{border-color:var(--faint); color:var(--muted)}
 </div></details>
 </section>
 
-<section class="s" id="core">
-<span class="tag"><b>03</b>The rules</span>
-<h2>The rules engine</h2>
-<p class="lede">A folder called <code>core/</code> decides what may happen next, who may see what, and what is recorded. Same input, same output, no network and no clock, so we can test it on thousands of random cases.</p>
-<div class="fig anim" id="phase-fig">
-  <div class="fig-title">The five phases of a case</div>
-  <div class="fig-sub">The dot follows an at-risk result. Only the specialist can move it from held to released.</div>
-  <svg viewBox="0 0 700 200" role="img" aria-label="State diagram: awaiting-result leads to resample, explained-by-doctor, or held; held leads to released.">
-    <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--faint)"/></marker></defs>
-    <g fill="none" stroke="var(--faint)" stroke-width="2" marker-end="url(#ah)">
-      <path d="M190 70 H282"/><path d="M420 70 H512"/><path d="M120 92 V140"/><path d="M175 90 Q240 150 300 152"/>
-    </g>
-    <g font-family="var(--mono)" font-size="13">
-      <rect x="40" y="48" width="150" height="44" rx="12" fill="var(--card)" stroke="var(--sand2)" stroke-width="1.5"/><text x="115" y="75" text-anchor="middle" fill="var(--ink)">awaiting-result</text>
-      <rect x="285" y="48" width="135" height="44" rx="12" fill="var(--ambersoft)" stroke="var(--amber)" stroke-width="1.5"/><text x="352" y="75" text-anchor="middle" fill="var(--amber)">held</text>
-      <rect x="515" y="48" width="145" height="44" rx="12" fill="var(--teal)"/><text x="587" y="75" text-anchor="middle" fill="var(--paper)">released</text>
-      <rect x="55" y="142" width="130" height="40" rx="12" fill="var(--card)" stroke="var(--sand2)" stroke-width="1.5"/><text x="120" y="167" text-anchor="middle" fill="var(--muted)">resample</text>
-      <rect x="302" y="132" width="200" height="40" rx="12" fill="var(--card)" stroke="var(--sand2)" stroke-width="1.5"/><text x="402" y="157" text-anchor="middle" fill="var(--muted)">explained-by-doctor</text>
-    </g>
-    <text x="468" y="40" text-anchor="middle" class="lbl">specialist only</text>
-    <circle r="8" fill="var(--noura)"><animateMotion dur="5s" repeatCount="indefinite" keyPoints="0;0;0.502;0.502;1;1" keyTimes="0;0.15;0.4;0.6;0.85;1" calcMode="linear" path="M115 70 H352 H587"/></circle>
-  </svg>
-</div>
-<details class="deep"><summary>Engineering detail <span>· event sourcing, applyOp, result kinds</span></summary><div>
-<p>Clara is a Next.js app. The hosted copy runs on Cloudflare Workers and the same code runs as a Node server in Docker. Nothing in <code>core/</code> imports from the rest of the app, which also means a hospital system could reuse the rules without our web framework.</p>
-<p>A case is a list of events (“lab reported”, “specialist released”, “Noura agreed to share”); the current state is what you get by replaying it, a pattern called event sourcing. History is only ever added to. There is one way in:</p>
-<pre><code>export function applyOp(couple: Couple, doc: CaseDoc, op: DocOp, now: Date): CaseDoc {
-  switch (op.op) {
-    case "event": {
-      <span class="c">// A device never stamps its own time: whoever applies the event does.</span>
-      return appendEvents(couple, doc, [untimed(op.event)], now)
-    }
-    ...</code></pre>
-<p class="file">core/case-doc.ts, line 89</p>
-<p>An operation that is out of order, repeated, or from a role that may not send it returns the case unchanged rather than throwing, so a retry on bad Wi-Fi does no harm. The server stamps every event with its own time, so timings cannot be back-dated from a device.</p>
-<p>A result is one of five kinds: <code>no-shared-change</code>, <code>at-risk-recessive</code>, <code>at-risk-x-linked</code>, <code>needs-specialist</code> (always explained by a genetics professional) and <code>resample</code>. The phases are in <code>core/types.ts</code> (lines 82–87); <code>step</code> in <code>core/machine.ts</code> allows release only from <code>held</code>, only by the specialist, only once a session exists (line 103). Some steps are fixed rules; consent, release and the choice about relatives are people’s decisions. No step is decided by a model.</p>
-<div class="tablewrap"><table>
-<thead><tr><th>Part</th><th>Where</th><th>Job</th></tr></thead>
-<tbody>
-<tr><td>Case rules</td><td><code>core/machine.ts</code>, <code>core/case-doc.ts</code></td><td>Every change is one checked step</td></tr>
-<tr><td>Role views</td><td><code>core/view.ts</code></td><td>One view per role, built field by field</td></tr>
-<tr><td>Audit record</td><td><code>core/audit.ts</code>, <code>core/hash.ts</code></td><td>Hash chain of who saw what kind of thing</td></tr>
-<tr><td>Programme figures</td><td><code>core/programme.ts</code>, <code>core/release.ts</code></td><td>Measures, released with differential privacy</td></tr>
-<tr><td>Live rooms</td><td><code>lib/room/</code>, <code>cloudflare/rooms.ts</code></td><td>One case on several devices</td></tr>
-<tr><td>Word library</td><td><code>content/</code></td><td>1,071 fixed sentences, English and formal Arabic (954 that families read in the app, 117 study texts)</td></tr>
-<tr><td>AI gateway</td><td><code>lib/ai/</code></td><td>Ten narrow tasks, checked answers</td></tr>
-</tbody></table></div>
-</div></details>
-</section>
-
-<section class="s" id="views" style="--c:var(--teal); --cs:var(--tealsoft)">
-<span class="tag"><b>04</b>Privacy</span>
-<h2>One screen per reader</h2>
-<p class="lede">Each role’s view is built from the case one field at a time. For a spouse it is built on the server, so what Noura may not see never reaches her phone at all.</p>
-<div class="fig">
-  <div class="fig-title">What each device receives</div>
-  <div class="fig-sub">It cycles through the seats on its own; pick one to stop. Struck-through rows are never built into that seat’s view.</div>
-  <div class="controls"><span id="seat-pills" role="group" aria-label="Seat" style="display:contents"></span><span class="auto" id="seat-auto">autoplay</span></div>
-  <div class="view" id="view-list" aria-live="polite"></div>
-  <div class="cap">These are the views each screen shows. In a live room, only the spouse seats receive nothing but their view; staff seats hold the case and build theirs on the device. A spouse’s carrier findings reach the other spouse only if they choose to share them (<code>partnerCarrier</code>, <code>carrierShared</code> in <code>PartnerView</code>). Gene names appear only in the specialist’s panes, which are not shown here. For an X-linked result the result is the woman’s own: she sees it first, with a line on her own health and a metabolic referral, and decides when, or whether, her partner learns it; until then he sees a neutral line. The property test in <code>tests/core/view.test.ts</code> builds 2,000 random cases and fails if any view holds a field its role may not see.</div>
-</div>
-<p><b>A private check-in, and questions for the session.</b> After reading their own explanation, each spouse can privately mark “I feel overwhelmed” or that they are still unsure what a carrier is, and pick the questions they want covered in the session. Only the specialist sees these marks and questions; each phone holds only its own. Property tests in <code>tests/core/view.test.ts</code> check that the other spouse’s phone, the family doctor’s view and the lab’s view are byte-identical whether or not a spouse does this. <a href="https://clara.q7m4v2k9orbit.workers.dev/en/phone">Try it on the spouse app</a>.</p>
-<details class="deep"><summary>Engineering detail <span>· where views are built, staff seats</span></summary><div>
-<p>The functions are <code>partnerView</code>, <code>doctorView</code>, <code>labView</code> and <code>specialistView</code> in <code>core/view.ts</code>. A field the role may not see is never copied into the view; it is not hidden with CSS.</p>
-<p>Staff seats work differently in the prototype. In a live room the specialist, family doctor and lab seats receive the case and build their view on the device (<code>shownTo</code> in <code>lib/room/room-core.ts</code>). Their screens show only their own view, but the data is on the device. That is acceptable for synthetic cases; a real deployment would build staff views on the server and add clinician sign-in, which the prototype does not have.</p>
-</div></details>
-</section>
-
-<section class="s" id="audit" style="--c:var(--teal); --cs:var(--tealsoft)">
-<span class="tag"><b>05</b>The record</span>
-<h2>The audit record</h2>
-<p class="lede">Every time information about a spouse moves, the record adds an entry holding a fingerprint (SHA-256 hash) of what moved, never the content. Each entry also holds the previous entry’s fingerprint, so any edit breaks the chain.</p>
-<div class="fig">
-  <div class="fig-title">Editing the record</div>
-  <div class="fig-sub">On a loop: change one character in entry 2, then try to cover it up by re-sealing entry 2. Press any button to take over.</div>
-  <div class="controls">
-    <button class="btn" id="ch-edit" type="button">Change entry 2</button>
-    <button class="btn" id="ch-reseal" type="button">Re-seal entry 2</button>
-    <button class="btn" id="ch-reset" type="button">Reset</button>
-    <span class="auto" id="ch-auto">autoplay</span>
-  </div>
-  <div class="chain" id="chain"></div>
-  <div class="verdict" id="ch-verdict" aria-live="polite"></div>
-  <div class="cap">Hashes are shortened to 12 characters for display. In <code>tests/core/audit.test.ts</code> the same check runs on 2,000 random one-byte edits, and every one is caught.</div>
-</div>
-<details class="deep"><summary>Engineering detail <span>· appendAudit, canonical JSON</span></summary><div>
-<pre><code>export function appendAudit(ledger: AuditEntry[], drafts: AuditDraft[], ts: string): AuditEntry[] {
-  let out = ledger
-  for (const d of drafts) {
-    const prev = out.at(-1)
-    out = [...out, sealed({ ...d, seq: (prev?.seq ?? 0) + 1, ts, prevHash: prev?.hash ?? GENESIS })]
-  }
-  return out
-}</code></pre>
-<p class="file">core/audit.ts, lines 35–42; <code>verifyChain</code> below it recomputes every hash</p>
-<p>Hashes are taken over canonical JSON (keys sorted), so equal data always gives an equal hash. Because the record holds fingerprints only, a spouse can withdraw consent, the content is deleted, and the record still verifies. Each phone builds “who has seen what about you” from the entries about that spouse alone.</p>
-</div></details>
-</section>
-
-<section class="s" id="rooms" style="--c:var(--teal); --cs:var(--tealsoft)">
-<span class="tag"><b>06</b>Live rooms</span>
-<h2>Live rooms</h2>
-<p class="lede">A live room puts Noura’s case on every device at once. Each request carries a signed seat token, so Saeed’s phone cannot act as the specialist.</p>
-<div class="fig anim" id="room-fig">
-  <div class="fig-title">Anatomy of a seat token</div>
-  <div class="fig-sub">Illustrative value; the format is real.</div>
-  <div class="token"><span style="color:var(--noura)">noura<small>seat</small></span><span style="color:var(--faint)">~</span><span style="color:var(--violet)">9c41e07b2a6f5d38<small>64-bit HMAC-SHA256 of room code + seat, keyed by the room’s host key</small></span></div>
-  <div class="fig-title" style="margin-top:20px">If a reply is lost, the same batch is sent again</div>
-  <div class="bars">
-    <div><i style="--w:6%"></i>400 ms</div><div><i style="--w:12%"></i>800 ms</div><div><i style="--w:25%"></i>1.6 s</div><div><i style="--w:50%"></i>3.2 s</div><div><i style="--w:78%"></i>5 s, the cap</div>
-  </div>
-  <div class="cap">The room remembers each device’s last batch number and answers a repeat without applying it twice.</div>
-</div>
-<details class="deep"><summary>Engineering detail <span>· Durable Object, host key, sync, limits</span></summary><div>
-<p>On the hosted site every room lives inside one Cloudflare Durable Object, a single small server with its own storage, reached by name (<code>getByName("rooms")</code>). Inside it runs the same room handlers as the Node server. Each room is also written to the object’s SQLite-backed storage under <code>room:&lt;code&gt;</code> and read back if Cloudflare clears the object’s memory. A second object, <code>Reviews</code>, holds only the team’s usability check. Rooms are deleted after 3 hours idle or 12 hours at most.</p>
-<pre><code><span class="c">/** The seat's signature: 64 bits of an HMAC over the room and the seat, keyed by the room's host key. */</span>
-export const seatMac = (hostKey: string, code: string, id: string) =>
-  bytesToHex(hmac(sha256, utf8ToBytes(hostKey), utf8ToBytes(`${code}/${id}`))).slice(0, 16)</code></pre>
-<p class="file">lib/room/seats.ts, lines 30–32</p>
-<p>When a room is made, the server creates a random 24-character host key and returns it to the device that made the room, which keeps it in local storage, signs one token per seat for the QR codes, and can end the room. A phone only ever receives its own seat’s token. Verification compares all 16 characters without stopping early, so timing leaks nothing. Cutting the signature to 64 bits seems reasonable to us for a room that lasts at most 12 hours, but it is one thing an outside security review should check.</p>
-<p>Staff screens apply their own pending operations at once, replaying them over the last confirmed state with the same <code>applyOp</code> the server runs, and drop them if the room refuses. Operations travel in numbered batches of at most 12:</p>
-<pre><code><span class="c">// A retried batch (its reply was lost) is answered again, not applied twice.</span>
-if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
-  return { version: entry.state.version, results: ops.map(() =&gt; "noop"), ...shownTo(entry.state, seat, ids) }</code></pre>
-<p class="file">lib/room/registry.ts, lines 110–112; retry timing in lib/room/room-transport.ts</p>
-<p>Updates arrive as Server-Sent Events with a version number. A device that sees a gap fetches a fresh copy with <code>?since=</code>, falls back to polling if the stream drops, and refreshes when the page returns to the foreground. Room codes are six characters from a 31-symbol alphabet without 0, O, 1, I or L (about 887 million codes). Limits, in <code>lib/room/protocol.ts</code>: 100 rooms, 200 events per room, 12 operations per request, 16 devices per room and 256 in all, 8 KB per request on the Node server.</p>
-</div></details>
-</section>
-
-<section class="s" id="edge">
-<span class="tag"><b>07</b>The front door</span>
-<h2>Hosting and access</h2>
-<p class="lede">On the hosted site, Next.js exports every page as static files and a small hand-written Cloudflare Worker routes the rest.</p>
-<div class="fig">
-  <div class="fig-title">Where a request goes</div>
-  <div class="routes" style="margin-top:10px">
-    <code>/api/ai</code><span>model gateway, 30-request burst per caller, refills 1 every 2 s</span>
-    <code>/api/rooms/…</code><span>the rooms Durable Object</span>
-    <code>/r/&lt;code&gt;/&lt;seat&gt;</code><span>short link from a QR code into a seat</span>
-    <code>/api/review</code><span>team usability check, behind an access code</span>
-    <code>everything else</code><span>static pages, Arabic and English</span>
-  </div>
-</div>
-<details class="deep"><summary>Engineering detail <span>· two builds, logging, access code</span></summary><div>
-<p><code>pnpm cf:build</code> sets <code>CLARA_STATIC=1</code> and Next.js writes static files to <code>out/</code>; <code>wrangler.jsonc</code> runs the Worker first. Without the flag Next builds a standalone Node server, which the Docker image runs (<code>node server.js</code>) with rooms held in memory. Cloudflare’s request logging and metrics are off (<code>observability.enabled: false</code>, <code>send_metrics: false</code>). The team pages’ access code arrives as <code>?k=</code>, is swapped for a cookie holding a keyed hash of it, and is stripped from the address; those pages are also marked not to be indexed. The rate limit keeps one visitor from flooding the model; it is a courtesy, not a security boundary. Each caller&rsquo;s pace lives in its own Durable Object, keyed by a daily keyed hash of the address, so it holds across restarts; a pace that cannot be read lets the call through, and a daily count that cannot be read answers by rules, so a fault never passes the 2,000-call daily cap. Every API route has a body cap, refused with 413 before the body is parsed (<code>/api/ai</code> 64 KB, room operations 8 KB; <code>lib/body-limit.ts</code>). The self-hosted container enforces the same access gate when <code>CLARA_GATE=1</code> is set, and uses <code>PUBLIC_ORIGIN</code> as its address for the UAE PASS return (<code>deploy/CONTAINER.md</code>).</p>
-</div></details>
-</section>
-
-<section class="s" id="words" style="--c:var(--amber); --cs:var(--ambersoft)">
-<span class="tag"><b>08</b>Words</span>
-<h2>Every fixed sentence a family reads is written by people, to be signed by clinicians</h2>
-<p class="lede">1,071 fixed sentences, each in English and formal Arabic, versioned and hashed: 954 that families read in the app (including the feminine forms used when the specialist is a woman) and 117 study texts. A model never writes one of these; the only model-written words a family can see are Ask Clara’s short, checked answers, labelled as such. Today all 1,071 are drafts awaiting a clinician and an Emirati Arabic reviewer, and Ask Clara labels each one “Clara’s fixed answer, a draft not yet signed by a clinician”, not “approved”. Family-facing screens say “Clara’s fixed answer”, never “approved”; only staff sign-off labels, where a reviewer really approves, say approved.</p>
-<div class="fig">
-  <div class="fig-title">One real sentence from the library</div>
-  <div class="atom" style="margin-top:10px"><div class="en">Appointment</div><div class="arw">موعد</div><small><span>id ics.summary</span><span class="pill">draft</span><span>the only text in a spouse’s calendar entry, so a glance at the calendar gives nothing away</span></small></div>
-</div>
-<p><b>See how signing will work.</b> The <a href="https://clara.q7m4v2k9orbit.workers.dev/en/console#signoff">sign-off workbench</a> on the specialist console is a demo with two reviewer roles: a clinical geneticist and an Emirati Arabic reviewer. Each approval binds the SHA-256 hash of the exact English and Arabic text. Change one character and the sentence reads “changed since signing” and needs both reviewers again. The demo works on copies in your browser tab; the real library stays at 0 of 1,071 signed. A real signature needs a named, licensed clinician’s sign-in, which the prototype does not have yet.</p>
-<details class="deep"><summary>Engineering detail <span>· signing, Arabic design</span></summary><div>
-<p>Each sentence (“atom”) records whether it is a draft or signed, and the hash of the exact signed text, so an edit after signing shows up. Arabic was designed alongside English: IBM Plex Sans Arabic next to IBM Plex Sans, Markazi Text for headings, its own spacing and a right-to-left layout. Every chance is written in words and drawn as a picture.</p>
-</div></details>
-</section>
-
 <section class="s" id="care" style="--c:var(--teal)">
-<span class="tag"><b>09</b>Care</span>
+<span class="tag"><b>03</b>Care</span>
 <h2>From understanding to an appointment</h2>
 <p class="lede">Lawful options shown unranked and shuffled, a referral that carries only what the receiver needs, and every step time-stamped.</p>
 <div class="fig">
@@ -517,9 +400,9 @@ if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
 </section>
 
 <section class="s" id="ai" style="--c:var(--violet); --cs:var(--violetsoft)">
-<span class="tag"><b>10</b>The AI</span>
+<span class="tag"><b>04</b>The AI</span>
 <h2>How the AI answers</h2>
-<p class="lede">Nothing so far needs a model. Models help with ten narrow jobs, every answer is checked, and anything doubtful goes to a person. Sorting a question asks OpenAI first, then K2; written answers, the meaning check and every other task go to K2, MBZUAI’s model, first, and to an OpenAI model in the US only as backup. Under each answer, “How this answer was made” shows the route and names the role (“the main AI model”, “the backup AI model”); the privacy page names the models.</p>
+<p class="lede">Nothing in the case rules needs a model. Models help with ten narrow jobs, every answer is checked, and anything doubtful goes to a person. Sorting a question asks OpenAI first, then K2; written answers, the meaning check and every other task go to K2, MBZUAI’s model, first, and to an OpenAI model in the US only as backup. Under each answer, “How this answer was made” shows the route and names the role (“the main AI model”, “the backup AI model”); the privacy page names the models.</p>
 <div class="cards" style="--n:4">
   <div class="card"><b>Ask Clara</b><p>picks fixed answers · writes a short, checked one only when none fits a general or medical question</p></div>
   <div class="card"><b>Comprehension</b><p>reads a spouse’s own words · never shows the partner</p></div>
@@ -551,7 +434,7 @@ if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
 </section>
 
 <section class="s" id="eval" style="--c:var(--violet); --cs:var(--violetsoft)">
-<span class="tag"><b>11</b>Testing the AI</span>
+<span class="tag"><b>05</b>Testing the AI</span>
 <h2>On 60 new AI-written questions, 24 of 30 that need a person reached one; two self-harm misses are now fixed</h2>
 <p class="lede">On 19 November an AI agent wrote a second set of 60 questions, in English, formal Arabic, Gulf Arabic and Arabizi, and labelled each one’s expected route before any run. We put them through the live site and changed nothing in Clara for the measurement.</p>
 <div class="tablewrap"><table>
@@ -602,21 +485,23 @@ if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
 </div></details>
 </section>
 
-<section class="s" id="measures" style="--c:var(--teal); --cs:var(--tealsoft)">
-<span class="tag"><b>12</b>Measuring</span>
-<h2>What we measure</h2>
-<p class="lede">The programme office sees four stages across all couples, split by reading language and by sex.</p>
-<div class="stages4">
-  <div class="card"><b>Understood</b><p>comprehension check right first time (the primary measure)</p></div>
-  <div class="card"><b>Booked</b><p>offered, booked, held, missed; never chased</p></div>
-  <div class="card"><b>Seen in time</b><p>days to a session; 48 hours in pregnancy</p></div>
-  <div class="card"><b>Referred</b><p>sent to closed, time-stamped</p></div>
+<section class="s" id="words" style="--c:var(--amber); --cs:var(--ambersoft)">
+<span class="tag"><b>06</b>Words</span>
+<h2>Every fixed sentence a family reads is written by people, to be signed by clinicians</h2>
+<p class="lede">1,071 fixed sentences, each in English and formal Arabic, versioned and hashed: 954 that families read in the app (including the feminine forms used when the specialist is a woman) and 117 study texts. A model never writes one of these; the only model-written words a family can see are Ask Clara’s short, checked answers, labelled as such. Today all 1,071 are drafts awaiting a clinician and an Emirati Arabic reviewer, and Ask Clara labels each one “Clara’s fixed answer, a draft not yet signed by a clinician”, not “approved”. Family-facing screens say “Clara’s fixed answer”, never “approved”; only staff sign-off labels, where a reviewer really approves, say approved.</p>
+<div class="fig">
+  <div class="fig-title">One real sentence from the library</div>
+  <div class="atom" style="margin-top:10px"><div class="en">Appointment</div><div class="arw">موعد</div><small><span>id ics.summary</span><span class="pill">draft</span><span>the only text in a spouse’s calendar entry, so a glance at the calendar gives nothing away</span></small></div>
 </div>
-<div class="never"><span>whether a marriage goes ahead</span><span>a pregnancy</span><span>which option a couple chose</span></div>
-<details class="deep"><summary>Engineering detail <span>· equity gap, pilot outcomes</span></summary><div>
-<p>Stages are computed in <code>core/programme.ts</code>; a test fails if any measure reads a choice. The largest gap between groups is reported in percentage points. There is no literacy split because Clara never asks how well someone reads. Proposed pilot outcomes, none measured yet: informed choice (MMIC), decisional conflict (SURE), distress on a short validated anxiety scale, counsellor letters to relatives, and counsellor minutes per case.</p>
+<p><b>See how signing will work.</b> The <a href="https://clara.q7m4v2k9orbit.workers.dev/en/console#signoff">sign-off workbench</a> on the specialist console is a demo with two reviewer roles: a clinical geneticist and an Emirati Arabic reviewer. Each approval binds the SHA-256 hash of the exact English and Arabic text. Change one character and the sentence reads “changed since signing” and needs both reviewers again. The demo works on copies in your browser tab; the real library stays at 0 of 1,071 signed. A real signature needs a named, licensed clinician’s sign-in, which the prototype does not have yet.</p>
+<details class="deep"><summary>Engineering detail <span>· signing, Arabic design</span></summary><div>
+<p>Each sentence (“atom”) records whether it is a draft or signed, and the hash of the exact signed text, so an edit after signing shows up. Arabic was designed alongside English: IBM Plex Sans Arabic next to IBM Plex Sans, Markazi Text for headings, its own spacing and a right-to-left layout. Every chance is written in words and drawn as a picture.</p>
 </div></details>
-<h3 id="usability" style="margin-top:28px">Usability study: 30 participants, two groups, four rounds</h3>
+</section>
+
+<section class="s" id="usability" style="--c:var(--teal); --cs:var(--tealsoft)">
+<span class="tag"><b>07</b>Usability study</span>
+<h2>30 participants, two groups of 15, four rounds, under way</h2>
 <p>One group of 15 reads a plain-text explanation of a synthetic “both carriers” result; the other 15 use Clara. English and Arabic, three reading levels, four rounds, and the screens are changed after each round. The main measure is teach-back: four questions scored right first time (what 1 in 4 means, whether a carrier is ill, whether anyone is at fault, whether a healthy child lowers the next chance). See it on the prototype: <a href="https://clara.q7m4v2k9orbit.workers.dev/en/evidence#usability">/en/evidence#usability</a>.</p>
 <div class="tablewrap"><table>
 <thead><tr><th style="white-space:nowrap">Round, group</th><th class="r">Teach-back right (of 60)</th><th class="r">All 4 right (of 15)</th><th class="r">Next steps clear (of 15)</th><th class="r">Knows next step (of 15)</th></tr></thead>
@@ -634,9 +519,173 @@ if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
 <p><b>What changed between rounds.</b> After round 1: a line under the picture for the carrier chance, “each pregnancy has its own 1 in 4 chance”, and no “draft” labels on family screens. After round 2: the booked session on the result screen, IVF and testing in pregnancy in plain words, a plain condition name first, and two more questions answered. After round 3: the gene-therapy line, who answers cost questions, the specialist and clinic for the session, and a picture key that says a carrier is well.</p>
 </section>
 
+<section class="s" id="core">
+<span class="tag"><b>08</b>The rules</span>
+<h2>Every change to a case is one checked step in one rules core</h2>
+<p class="lede">A folder called <code>core/</code> decides what may happen next, who may see what, and what is recorded. Same input, same output, no network and no clock, so we can test it on thousands of random cases.</p>
+<div class="fig anim" id="phase-fig">
+  <div class="fig-title">The five phases of a case</div>
+  <div class="fig-sub">The dot follows an at-risk result. Only the specialist can move it from held to released.</div>
+  <svg viewBox="0 0 700 200" role="img" aria-label="State diagram: awaiting-result leads to resample, explained-by-doctor, or held; held leads to released.">
+    <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--faint)"/></marker></defs>
+    <g fill="none" stroke="var(--faint)" stroke-width="2" marker-end="url(#ah)">
+      <path d="M190 70 H282"/><path d="M420 70 H512"/><path d="M120 92 V140"/><path d="M175 90 Q240 150 300 152"/>
+    </g>
+    <g font-family="var(--mono)" font-size="13">
+      <rect x="40" y="48" width="150" height="44" rx="12" fill="var(--card)" stroke="var(--sand2)" stroke-width="1.5"/><text x="115" y="75" text-anchor="middle" fill="var(--ink)">awaiting-result</text>
+      <rect x="285" y="48" width="135" height="44" rx="12" fill="var(--ambersoft)" stroke="var(--amber)" stroke-width="1.5"/><text x="352" y="75" text-anchor="middle" fill="var(--amber)">held</text>
+      <rect x="515" y="48" width="145" height="44" rx="12" fill="var(--teal)"/><text x="587" y="75" text-anchor="middle" fill="var(--paper)">released</text>
+      <rect x="55" y="142" width="130" height="40" rx="12" fill="var(--card)" stroke="var(--sand2)" stroke-width="1.5"/><text x="120" y="167" text-anchor="middle" fill="var(--muted)">resample</text>
+      <rect x="302" y="132" width="200" height="40" rx="12" fill="var(--card)" stroke="var(--sand2)" stroke-width="1.5"/><text x="402" y="157" text-anchor="middle" fill="var(--muted)">explained-by-doctor</text>
+    </g>
+    <text x="468" y="40" text-anchor="middle" class="lbl">specialist only</text>
+    <circle r="8" fill="var(--noura)"><animateMotion dur="5s" repeatCount="indefinite" keyPoints="0;0;0.502;0.502;1;1" keyTimes="0;0.15;0.4;0.6;0.85;1" calcMode="linear" path="M115 70 H352 H587"/></circle>
+  </svg>
+</div>
+<details class="deep"><summary>Engineering detail <span>· event sourcing, applyOp, result kinds</span></summary><div>
+<p>Clara is a Next.js app. The hosted copy runs on Cloudflare Workers and the same code runs as a Node server in Docker. Nothing in <code>core/</code> imports from the rest of the app, which also means a hospital system could reuse the rules without our web framework.</p>
+<p>A case is a list of events (“lab reported”, “specialist released”, “Noura agreed to share”); the current state is what you get by replaying it, a pattern called event sourcing. History is only ever added to. There is one way in:</p>
+<pre><code>export function applyOp(couple: Couple, doc: CaseDoc, op: DocOp, now: Date): CaseDoc {
+  switch (op.op) {
+    case "event": {
+      <span class="c">// A device never stamps its own time: whoever applies the event does.</span>
+      return appendEvents(couple, doc, [untimed(op.event)], now)
+    }
+    ...</code></pre>
+<p class="file">core/case-doc.ts, line 89</p>
+<p>An operation that is out of order, repeated, or from a role that may not send it returns the case unchanged rather than throwing, so a retry on bad Wi-Fi does no harm. The server stamps every event with its own time, so timings cannot be back-dated from a device.</p>
+<p>A result is one of five kinds: <code>no-shared-change</code>, <code>at-risk-recessive</code>, <code>at-risk-x-linked</code>, <code>needs-specialist</code> (always explained by a genetics professional) and <code>resample</code>. The phases are in <code>core/types.ts</code> (lines 82–87); <code>step</code> in <code>core/machine.ts</code> allows release only from <code>held</code>, only by the specialist, only once a session exists (line 103). Some steps are fixed rules; consent, release and the choice about relatives are people’s decisions. No step is decided by a model.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Part</th><th>Where</th><th>Job</th></tr></thead>
+<tbody>
+<tr><td>Case rules</td><td><code>core/machine.ts</code>, <code>core/case-doc.ts</code></td><td>Every change is one checked step</td></tr>
+<tr><td>Role views</td><td><code>core/view.ts</code></td><td>One view per role, built field by field</td></tr>
+<tr><td>Audit record</td><td><code>core/audit.ts</code>, <code>core/hash.ts</code></td><td>Hash chain of who saw what kind of thing</td></tr>
+<tr><td>Programme figures</td><td><code>core/programme.ts</code>, <code>core/release.ts</code></td><td>Measures, released with differential privacy</td></tr>
+<tr><td>Live rooms</td><td><code>lib/room/</code>, <code>cloudflare/rooms.ts</code></td><td>One case on several devices</td></tr>
+<tr><td>Word library</td><td><code>content/</code></td><td>1,071 fixed sentences, English and formal Arabic (954 that families read in the app, 117 study texts)</td></tr>
+<tr><td>AI gateway</td><td><code>lib/ai/</code></td><td>Ten narrow tasks, checked answers</td></tr>
+</tbody></table></div>
+</div></details>
+</section>
+
+<section class="s" id="views" style="--c:var(--teal); --cs:var(--tealsoft)">
+<span class="tag"><b>09</b>Privacy</span>
+<h2>One screen per reader</h2>
+<p class="lede">Each role’s view is built from the case one field at a time. For a spouse it is built on the server, so what Noura may not see never reaches her phone at all.</p>
+<div class="fig">
+  <div class="fig-title">What each device receives</div>
+  <div class="fig-sub">It cycles through the seats on its own; pick one to stop. Struck-through rows are never built into that seat’s view.</div>
+  <div class="controls"><span id="seat-pills" role="group" aria-label="Seat" style="display:contents"></span><span class="auto" id="seat-auto">autoplay</span></div>
+  <div class="view" id="view-list" aria-live="polite"></div>
+  <div class="cap">These are the views each screen shows. In a live room, only the spouse seats receive nothing but their view; staff seats hold the case and build theirs on the device. A spouse’s carrier findings reach the other spouse only if they choose to share them (<code>partnerCarrier</code>, <code>carrierShared</code> in <code>PartnerView</code>). Gene names appear only in the specialist’s panes, which are not shown here. For an X-linked result the result is the woman’s own: she sees it first, with a line on her own health and a metabolic referral, and decides when, or whether, her partner learns it; until then he sees a neutral line. The property test in <code>tests/core/view.test.ts</code> builds 2,000 random cases and fails if any view holds a field its role may not see.</div>
+</div>
+<p><b>A private check-in, and questions for the session.</b> After reading their own explanation, each spouse can privately mark “I feel overwhelmed” or that they are still unsure what a carrier is, and pick the questions they want covered in the session. Only the specialist sees these marks and questions; each phone holds only its own. Property tests in <code>tests/core/view.test.ts</code> check that the other spouse’s phone, the family doctor’s view and the lab’s view are byte-identical whether or not a spouse does this. <a href="https://clara.q7m4v2k9orbit.workers.dev/en/phone">Try it on the spouse app</a>.</p>
+<details class="deep"><summary>Engineering detail <span>· where views are built, staff seats</span></summary><div>
+<p>The functions are <code>partnerView</code>, <code>doctorView</code>, <code>labView</code> and <code>specialistView</code> in <code>core/view.ts</code>. A field the role may not see is never copied into the view; it is not hidden with CSS.</p>
+<p>Staff seats work differently in the prototype. In a live room the specialist, family doctor and lab seats receive the case and build their view on the device (<code>shownTo</code> in <code>lib/room/room-core.ts</code>). Their screens show only their own view, but the data is on the device. That is acceptable for synthetic cases; a real deployment would build staff views on the server and add clinician sign-in, which the prototype does not have.</p>
+</div></details>
+</section>
+
+<section class="s" id="audit" style="--c:var(--teal); --cs:var(--tealsoft)">
+<span class="tag"><b>10</b>The record</span>
+<h2>Any one-byte edit to the audit record is caught</h2>
+<p class="lede">Every time information about a spouse moves, the record adds an entry holding a fingerprint (SHA-256 hash) of what moved, never the content. Each entry also holds the previous entry’s fingerprint, so any edit breaks the chain.</p>
+<div class="fig">
+  <div class="fig-title">Editing the record</div>
+  <div class="fig-sub">On a loop: change one character in entry 2, then try to cover it up by re-sealing entry 2. Press any button to take over.</div>
+  <div class="controls">
+    <button class="btn" id="ch-edit" type="button">Change entry 2</button>
+    <button class="btn" id="ch-reseal" type="button">Re-seal entry 2</button>
+    <button class="btn" id="ch-reset" type="button">Reset</button>
+    <span class="auto" id="ch-auto">autoplay</span>
+  </div>
+  <div class="chain" id="chain"></div>
+  <div class="verdict" id="ch-verdict" aria-live="polite"></div>
+  <div class="cap">Hashes are shortened to 12 characters for display. In <code>tests/core/audit.test.ts</code> the same check runs on 2,000 random one-byte edits, and every one is caught.</div>
+</div>
+<details class="deep"><summary>Engineering detail <span>· appendAudit, canonical JSON</span></summary><div>
+<pre><code>export function appendAudit(ledger: AuditEntry[], drafts: AuditDraft[], ts: string): AuditEntry[] {
+  let out = ledger
+  for (const d of drafts) {
+    const prev = out.at(-1)
+    out = [...out, sealed({ ...d, seq: (prev?.seq ?? 0) + 1, ts, prevHash: prev?.hash ?? GENESIS })]
+  }
+  return out
+}</code></pre>
+<p class="file">core/audit.ts, lines 35–42; <code>verifyChain</code> below it recomputes every hash</p>
+<p>Hashes are taken over canonical JSON (keys sorted), so equal data always gives an equal hash. Because the record holds fingerprints only, a spouse can withdraw consent, the content is deleted, and the record still verifies. Each phone builds “who has seen what about you” from the entries about that spouse alone.</p>
+</div></details>
+</section>
+
+<section class="s" id="rooms" style="--c:var(--teal); --cs:var(--tealsoft)">
+<span class="tag"><b>11</b>Live rooms</span>
+<h2>One case on every device at once, each with its own signed seat</h2>
+<p class="lede">A live room puts Noura’s case on every device at once. Each request carries a signed seat token, so Saeed’s phone cannot act as the specialist.</p>
+<div class="fig anim" id="room-fig">
+  <div class="fig-title">Anatomy of a seat token</div>
+  <div class="fig-sub">Illustrative value; the format is real.</div>
+  <div class="token"><span style="color:var(--noura)">noura<small>seat</small></span><span style="color:var(--faint)">~</span><span style="color:var(--violet)">9c41e07b2a6f5d38<small>64-bit HMAC-SHA256 of room code + seat, keyed by the room’s host key</small></span></div>
+  <div class="fig-title" style="margin-top:20px">If a reply is lost, the same batch is sent again</div>
+  <div class="bars">
+    <div><i style="--w:6%"></i>400 ms</div><div><i style="--w:12%"></i>800 ms</div><div><i style="--w:25%"></i>1.6 s</div><div><i style="--w:50%"></i>3.2 s</div><div><i style="--w:78%"></i>5 s, the cap</div>
+  </div>
+  <div class="cap">The room remembers each device’s last batch number and answers a repeat without applying it twice.</div>
+</div>
+<details class="deep"><summary>Engineering detail <span>· Durable Object, host key, sync, limits</span></summary><div>
+<p>On the hosted site every room lives inside one Cloudflare Durable Object, a single small server with its own storage, reached by name (<code>getByName("rooms")</code>). Inside it runs the same room handlers as the Node server. Each room is also written to the object’s SQLite-backed storage under <code>room:&lt;code&gt;</code> and read back if Cloudflare clears the object’s memory. A second object, <code>Reviews</code>, holds only the team’s usability check. Rooms are deleted after 3 hours idle or 12 hours at most.</p>
+<pre><code><span class="c">/** The seat's signature: 64 bits of an HMAC over the room and the seat, keyed by the room's host key. */</span>
+export const seatMac = (hostKey: string, code: string, id: string) =>
+  bytesToHex(hmac(sha256, utf8ToBytes(hostKey), utf8ToBytes(`${code}/${id}`))).slice(0, 16)</code></pre>
+<p class="file">lib/room/seats.ts, lines 30–32</p>
+<p>When a room is made, the server creates a random 24-character host key and returns it to the device that made the room, which keeps it in local storage, signs one token per seat for the QR codes, and can end the room. A phone only ever receives its own seat’s token. Verification compares all 16 characters without stopping early, so timing leaks nothing. Cutting the signature to 64 bits seems reasonable to us for a room that lasts at most 12 hours, but it is one thing an outside security review should check.</p>
+<p>Staff screens apply their own pending operations at once, replaying them over the last confirmed state with the same <code>applyOp</code> the server runs, and drop them if the room refuses. Operations travel in numbered batches of at most 12:</p>
+<pre><code><span class="c">// A retried batch (its reply was lost) is answered again, not applied twice.</span>
+if (batch &lt;= (entry.lastBatch.get(client) ?? -1))
+  return { version: entry.state.version, results: ops.map(() =&gt; "noop"), ...shownTo(entry.state, seat, ids) }</code></pre>
+<p class="file">lib/room/registry.ts, lines 110–112; retry timing in lib/room/room-transport.ts</p>
+<p>Updates arrive as Server-Sent Events with a version number. A device that sees a gap fetches a fresh copy with <code>?since=</code>, falls back to polling if the stream drops, and refreshes when the page returns to the foreground. Room codes are six characters from a 31-symbol alphabet without 0, O, 1, I or L (about 887 million codes). Limits, in <code>lib/room/protocol.ts</code>: 100 rooms, 200 events per room, 12 operations per request, 16 devices per room and 256 in all, 8 KB per request on the Node server.</p>
+</div></details>
+</section>
+
+<section class="s" id="edge">
+<span class="tag"><b>12</b>The front door</span>
+<h2>Hosting and access</h2>
+<p class="lede">On the hosted site, Next.js exports every page as static files and a small hand-written Cloudflare Worker routes the rest.</p>
+<div class="fig">
+  <div class="fig-title">Where a request goes</div>
+  <div class="routes" style="margin-top:10px">
+    <code>/api/ai</code><span>model gateway, 30-request burst per caller, refills 1 every 2 s</span>
+    <code>/api/rooms/…</code><span>the rooms Durable Object</span>
+    <code>/r/&lt;code&gt;/&lt;seat&gt;</code><span>short link from a QR code into a seat</span>
+    <code>/api/review</code><span>team usability check, behind an access code</span>
+    <code>everything else</code><span>static pages, Arabic and English</span>
+  </div>
+</div>
+<details class="deep"><summary>Engineering detail <span>· two builds, logging, access code</span></summary><div>
+<p><code>pnpm cf:build</code> sets <code>CLARA_STATIC=1</code> and Next.js writes static files to <code>out/</code>; <code>wrangler.jsonc</code> runs the Worker first. Without the flag Next builds a standalone Node server, which the Docker image runs (<code>node server.js</code>) with rooms held in memory. Cloudflare’s request logging and metrics are off (<code>observability.enabled: false</code>, <code>send_metrics: false</code>). The team pages’ access code arrives as <code>?k=</code>, is swapped for a cookie holding a keyed hash of it, and is stripped from the address; those pages are also marked not to be indexed. The rate limit keeps one visitor from flooding the model; it is a courtesy, not a security boundary. Each caller&rsquo;s pace lives in its own Durable Object, keyed by a daily keyed hash of the address, so it holds across restarts; a pace that cannot be read lets the call through, and a daily count that cannot be read answers by rules, so a fault never passes the 2,000-call daily cap. Every API route has a body cap, refused with 413 before the body is parsed (<code>/api/ai</code> 64 KB, room operations 8 KB; <code>lib/body-limit.ts</code>). The self-hosted container enforces the same access gate when <code>CLARA_GATE=1</code> is set, and uses <code>PUBLIC_ORIGIN</code> as its address for the UAE PASS return (<code>deploy/CONTAINER.md</code>).</p>
+</div></details>
+</section>
+
+<section class="s" id="measures" style="--c:var(--teal); --cs:var(--tealsoft)">
+<span class="tag"><b>13</b>Measuring</span>
+<h2>Four stages, split by language and by sex, and never a choice</h2>
+<p class="lede">The programme office sees four stages across all couples, split by reading language and by sex.</p>
+<div class="stages4">
+  <div class="card"><b>Understood</b><p>comprehension check right first time (the primary measure)</p></div>
+  <div class="card"><b>Booked</b><p>offered, booked, held, missed; never chased</p></div>
+  <div class="card"><b>Seen in time</b><p>days to a session; 48 hours in pregnancy</p></div>
+  <div class="card"><b>Referred</b><p>sent to closed, time-stamped</p></div>
+</div>
+<div class="never"><span>whether a marriage goes ahead</span><span>a pregnancy</span><span>which option a couple chose</span></div>
+<details class="deep"><summary>Engineering detail <span>· equity gap, pilot outcomes</span></summary><div>
+<p>Stages are computed in <code>core/programme.ts</code>; a test fails if any measure reads a choice. The largest gap between groups is reported in percentage points. There is no literacy split because Clara never asks how well someone reads. Proposed pilot outcomes, none measured yet: informed choice (MMIC), decisional conflict (SURE), distress on a short validated anxiety scale, counsellor letters to relatives, and counsellor minutes per case.</p>
+</div></details>
+</section>
+
 <section class="s" id="dp" style="--c:var(--teal)">
-<span class="tag"><b>13</b>Privacy in numbers</span>
-<h2>Privacy in programme figures</h2>
+<span class="tag"><b>14</b>Privacy in numbers</span>
+<h2>Programme figures carry calibrated noise, to protect each couple</h2>
 <p class="lede">Publish a count, publish it again after one couple joins, and the difference is that couple. So programme figures get calibrated random noise: differential privacy, merged on 15 November, audited on 18 November and now covered by 45 release tests and 5 key-store tests.</p>
 <div class="fig">
   <div class="fig-title">Releasing one count many times</div>
@@ -661,8 +710,8 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 </section>
 
 <section class="s" id="data" style="--c:var(--amber); --cs:var(--ambersoft)">
-<span class="tag"><b>14</b>Data</span>
-<h2>Data and hosting</h2>
+<span class="tag"><b>15</b>Data</span>
+<h2>Every couple and clinician is invented today; a pilot moves to UAE hosting</h2>
 <div class="cards" style="--n:2">
   <div class="card"><b>Today</b><p>Every couple, genome, lab report and clinician is invented (licences start <code>SYN-</code>). Rooms delete themselves within 12 hours. A model sees one typed question or a lab report’s text, never a name: written answers go to K2 first, reached through AWS in Singapore, and OpenAI in the US if K2 fails; sorting a question asks OpenAI first, then K2.</p></div>
   <div class="card"><b>Pilot (proposed)</b><p>Hosted in the UAE, models hosted in the UAE, the Department of Health and the centre as controller, under Federal Law No. 2 of 2019 and DoH policy, after a data protection impact assessment.</p></div>
@@ -671,7 +720,7 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 </section>
 
 <section class="s" id="tests" style="--c:var(--teal)">
-<span class="tag"><b>15</b>Tests</span>
+<span class="tag"><b>16</b>Tests</span>
 <h2>6,771 automated tests, most of them on random cases</h2>
 <p class="lede">A property test states a rule and checks it on thousands of generated cases. Run counts are written once in <code>lib/evidence.ts</code>, so no page can claim more than the tests check.</p>
 <div class="tablewrap"><table>
@@ -687,20 +736,6 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 </tbody></table></div>
 <p>6,432 unit and property tests (Vitest, fast-check; 6,432 passed and 1 skipped, 90 files, 20 November) and 339 end-to-end tests (Playwright, on a production build, in English and Arabic, on a 375-pixel phone screen). 337 of 339 passed in the full run on 20 November; the 2 load-sensitive tests that did not (the common result in Arabic, and the Arabic dark-mode accessibility check of the layers) passed on an immediate re-run (17 of 17). These are tests, not a certification: there is no ethics approval, and the clinical safety case is a draft (below).</p>
 <p><b>A draft hazard log.</b> <code>eval/safety/HAZARD-LOG.md</code> lists 17 hazards in the style of the NHS standard DCB0129, each with its controls, the test or report that shows them, and a residual risk. It is a student draft: no Clinical Safety Officer is named and nobody has reviewed it, and it claims no compliance with any standard.</p>
-</section>
-
-<section class="s" id="limits" style="--c:var(--fail); --cs:var(--failsoft)">
-<span class="tag"><b>16</b>Not done</span>
-<h2>What a reviewer should weigh</h2>
-<ul>
-<li>Synthetic data and prototype stand-ins for partner services only; all 1,071 fixed sentences (the crisis reply included), the condition cards and every AI-written answer unsigned; no clinical co-lead confirmed; thresholds not agreed with the Department of Health.</li>
-<li>Neither model is UAE-hosted: K2 is reached through AWS in Singapore and the backup is OpenAI in the US, so ICT Law Art. 13 and Responsible AI 3.1.4.5.1 are gaps until both are moved.</li>
-<li>The held-out questions were written by an AI agent, not real people, and no real user has tried Clara. On the second set, 6 of 30 questions that need a person got no person, 2 of them self-harm messages; the fixes for them are measured only on those same questions so far. On the first set, 4 of 22 still get fixed words only. The fine-tune’s training is done and its evaluations are running; no results yet.</li>
-<li>Whether Clara improves understanding is untested until the study runs after ethics approval; effect sizes will be reported even if null. The 30-person usability study is in progress; its figures so far are an internal pilot with simulated participants, not final. The 19 November walkthrough used 10 AI personas, not real users.</li>
-<li>No Malaffi conformance test, patient record, identity provider or clinician sign-in; staff seats in a room hold the case.</li>
-<li>Two load tests, neither on a UAE host. On a laptop, one server process served pages at about 1,000 requests a second and live rooms at about 1,550 operations a second with 0 lost, 13–84 times the headroom over an estimated programme peak. Against the deployed free site, from one laptop and one address, pages held 120 requests a second (10 times the estimated peak): 0 errors on pages; 6 transient platform 503s on <code>/api/ai</code> at a low rate, cause unconfirmed; no model was called, and Ask capacity across many callers was not measured (<code>eval/load/DEPLOYED.md</code>). No outside security review of the room protocol.</li>
-<li>Not a medical device; not cleared for clinical use.</li>
-</ul>
 </section>
 
 <section class="s" id="pilot" style="--c:var(--amber); --cs:var(--ambersoft)">
@@ -828,9 +863,36 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 <div class="callout"><b>Needed on day 1.</b> A named, licensed clinical geneticist who reviews and signs the core result sentences (what each result means, the chance per pregnancy, the options), with an Emirati Arabic reviewer. Everything else waits behind that signature, and nothing reaches a real family before it. Second, from M42 and Malaffi: their test environments, so the prototype lab report and referral connection become real messages; the referral is already valid FHIR R4.</div>
 </section>
 
+<section class="s" id="commercial" style="--c:var(--amber); --cs:var(--ambersoft)">
+<span class="tag"><b>18</b>Who pays</span>
+<h2>Run by a licensed operator inside the programme, free to families (proposed)</h2>
+<p class="lede">Clara is not sold to families and is never a stand-alone app. It is proposed as part of the premarital programme&rsquo;s own service, hosted by a licensed operator. Nothing here is agreed with any organisation.</p>
+<dl class="ref">
+  <dt>Who uses it</dt><dd>Couples at the premarital screening centre, the genetics specialist, the family doctor, the lab desk and the programme office.</dd>
+  <dt>Who would run it</dt><dd>A licensed operator that hosts Clara in the UAE for the programme, as the law requires (Federal Decree-Law 49 of 2023, Art. 28(1)). A candidate role; nobody has been approached.</dd>
+  <dt>Who would pay</dt><dd>The programme, as part of its service. Families pay nothing and need no new test or visit.</dd>
+  <dt>One centre for 90 days</dt><dd>Hosting in the UAE US$63&ndash;221 and model use US$0&ndash;3,388: about US$60 to US$3,600 in priced lines, from public list prices, not quotes. The low end assumes MBZUAI provides a UAE-hosted K2 at no marginal price, which is an ask. Review time is counted in hours, not priced. <a href="#pilot">The full plan</a>.</dd>
+  <dt>How it grows</dt><dd>Centre by centre. One reviewed word library serves every centre.</dd>
+</dl>
+</section>
+
+<section class="s" id="limits" style="--c:var(--fail); --cs:var(--failsoft)">
+<span class="tag"><b>19</b>Not done</span>
+<h2>What a reviewer should weigh</h2>
+<ul>
+<li>Synthetic data and prototype stand-ins for partner services only; all 1,071 fixed sentences (the crisis reply included), the condition cards and every AI-written answer unsigned; no clinical co-lead confirmed; thresholds not agreed with the Department of Health.</li>
+<li>Neither model is UAE-hosted: K2 is reached through AWS in Singapore and the backup is OpenAI in the US, so ICT Law Art. 13 and Responsible AI 3.1.4.5.1 are gaps until both are moved.</li>
+<li>The held-out questions were written by an AI agent, not real people, and no real user has tried Clara. On the second set, 6 of 30 questions that need a person got no person, 2 of them self-harm messages; the fixes for them are measured only on those same questions so far. On the first set, 4 of 22 still get fixed words only. The fine-tune’s training is done and its evaluations are running; no results yet.</li>
+<li>Whether Clara improves understanding is untested until the study runs after ethics approval; effect sizes will be reported even if null. The 30-person usability study is in progress; its figures so far are an internal pilot with simulated participants, not final. The 19 November walkthrough used 10 AI personas, not real users.</li>
+<li>No Malaffi conformance test, patient record, identity provider or clinician sign-in; staff seats in a room hold the case.</li>
+<li>Two load tests, neither on a UAE host. On a laptop, one server process served pages at about 1,000 requests a second and live rooms at about 1,550 operations a second with 0 lost, 13–84 times the headroom over an estimated programme peak. Against the deployed free site, from one laptop and one address, pages held 120 requests a second (10 times the estimated peak): 0 errors on pages; 6 transient platform 503s on <code>/api/ai</code> at a low rate, cause unconfirmed; no model was called, and Ask capacity across many callers was not measured (<code>eval/load/DEPLOYED.md</code>). No outside security review of the room protocol.</li>
+<li>Not a medical device; not cleared for clinical use.</li>
+</ul>
+</section>
+
 <section class="s" id="team" style="--c:var(--teal)">
-<span class="tag"><b>18</b>Team</span>
-<h2>Team</h2>
+<span class="tag"><b>20</b>Team</span>
+<h2>parallelparadox: four students, three of them at MBZUAI</h2>
 <p class="lede">Team parallelparadox: three MBZUAI undergraduates living in the UAE and one first-year student in India, aged 18 to 20.</p>
 <div class="team">
   <div class="person"><small>Lead AI engineer</small><b>Praveen Anilkumar Shukla</b><i>Team lead, MBZUAI undergraduate</i><p>Conceived Clara and built its core: the case engine, private role views, bilingual app and rules-first AI. Leads the K2-Think 32B fine-tune.</p></div>
@@ -841,7 +903,7 @@ budget         costs add up within a release; at ε = 5 every later figure is wi
 </section>
 
 <section class="s" id="ref" style="--c:var(--muted); --cs:var(--sand)">
-<span class="tag"><b>19</b>Reference</span>
+<span class="tag"><b>21</b>Reference</span>
 <h2>Pages, commands, licences</h2>
 <details class="deep"><summary>Every page <span>· /en/… and /ar/…</span></summary><div>
 <dl class="ref">
@@ -882,10 +944,10 @@ AI_EVAL_URL=http://127.0.0.1:3100 pnpm exec vitest run tests/lib/ai-eval.test.ts
 </article>
 
 <nav class="toc" aria-label="Contents">
-  <div class="tg"><span>The product</span><a href="#problem">The problem</a><a href="#try">Try it</a><a href="#video">Video</a></div>
-  <div class="tg"><span>How it works</span><a href="#core">The rules</a><a href="#views">Privacy</a><a href="#audit">The record</a><a href="#rooms">Live rooms</a><a href="#edge">The front door</a><a href="#words">Words</a><a href="#care">Care</a></div>
-  <div class="tg"><span>The AI</span><a href="#ai">What it does</a><a href="#eval">How we tested it</a></div>
-  <div class="tg"><span>Evidence and limits</span><a href="#measures">Measuring</a><a href="#dp">Privacy in numbers</a><a href="#data">Data</a><a href="#tests">Tests</a><a href="#limits">Not done</a><a href="#pilot">Path to a pilot</a><a href="#team">Team</a><a href="#ref">Reference</a></div>
+  <div class="tg"><span>Start here</span><a href="#judges">For judges</a><a href="#updates">Since the review</a><a href="#problem">The problem</a><a href="#try">Try it</a><a href="#video">Video</a></div>
+  <div class="tg"><span>Care and the AI</span><a href="#care">Care</a><a href="#ai">The AI</a><a href="#eval">Testing the AI</a><a href="#words">Words</a><a href="#usability">Usability study</a></div>
+  <div class="tg"><span>How it is built</span><a href="#core">The rules</a><a href="#views">Privacy</a><a href="#audit">The record</a><a href="#rooms">Live rooms</a><a href="#edge">The front door</a></div>
+  <div class="tg"><span>Evidence and pilot</span><a href="#measures">Measuring</a><a href="#dp">Privacy in numbers</a><a href="#data">Data</a><a href="#tests">Tests</a><a href="#pilot">Path to a pilot</a><a href="#commercial">Who pays</a><a href="#limits">Not done</a><a href="#team">Team</a><a href="#ref">Reference</a></div>
 </nav>
 </div>
 
