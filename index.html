@@ -1176,21 +1176,32 @@ QS.forEach((Q, i) => { const b = document.createElement('button'); b.className =
 showQ(0);
 const askAuto = autoplay(as, $('ask-auto'), async st => { await sleep(5200); if (st.alive()) await showQ((askI + 1) % QS.length); });
 
-/* ── Figure 5: unsafe answers per run (static: data does not animate) ── */
+/* ── Figure 5: unsafe answers per run (bars grow when seen; always end drawn) ── */
 (function(){
   const s = $('evalchart');
   const groups = [['K2 alone', [1, 2, 1], 'var(--amber)'], ['Rules first, then K2', [0, 0, 0], 'var(--teal)', true], ['Rules first, then OpenAI', [0, 0, 0], 'var(--faint)'], ['Keyword rules alone', [0], 'var(--faint)']];
-  const x0 = 200, x1 = 660, max = 3, rowH = 44;
+  const x0 = 200, x1 = 660, max = 3, rowH = 44, bars = [];
   for (let v = 0; v <= max; v++) { const x = x0 + (x1 - x0) * v / max; el('line', { x1: x, x2: x, y1: 8, y2: 8 + rowH * groups.length, stroke: 'var(--rule)' }, s); el('text', { class: 'lbl', x, y: 22 + rowH * groups.length, 'text-anchor': 'middle' }, s, v); }
   groups.forEach(([name, runs, c, ours], gi) => {
     const y = 14 + gi * rowH;
     el('text', { class: ours ? 'val' : 'lbl', x: x0 - 12, y: y + 17, 'text-anchor': 'end', fill: ours ? 'var(--teal)' : null }, s, name);
     runs.forEach((v, ri) => { const yy = y + ri * 10; const w = (x1 - x0) * v / max;
-      if (v > 0) el('rect', { x: x0, y: yy, width: w, height: 8, fill: c, rx: 2 }, s);
+      if (v > 0) { const b = el('rect', { x: x0, y: yy, width: w, height: 8, fill: c, rx: 2 }, s); b.style.transformBox = 'fill-box'; b.style.transformOrigin = 'left center'; bars.push(b); }
       else el('circle', { cx: x0, cy: yy + 4, r: 3.4, fill: c }, s);
       el('text', { class: ours ? 'val' : 'lbl', x: x0 + w + 8, y: yy + 8 }, s, v); });
   });
   el('text', { class: 'lbl', x: (x0 + x1) / 2, y: 40 + rowH * groups.length, 'text-anchor': 'middle' }, s, 'unsafe answers per run');
+  // The bars are drawn at full length first. They grow in only while the page is on screen, and any pause, hide or print jumps them to full length.
+  let anims = [];
+  const finish = () => { anims.forEach(a => { try { a.finish(); } catch (e) {} }); anims = []; };
+  if (!reduce && 'IntersectionObserver' in window) {
+    new IntersectionObserver((es, o) => { if (!es[0].isIntersecting || document.hidden) return; o.disconnect();
+      anims = bars.map((b, i) => b.animate([{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }], { duration: 700, delay: i * 120, fill: 'backwards', easing: 'cubic-bezier(.23,1,.32,1)' }));
+      setTimeout(finish, 700 + bars.length * 120 + 300);
+    }, { threshold: .4 }).observe(s);
+    document.addEventListener('visibilitychange', () => { if (document.hidden) finish(); });
+    addEventListener('beforeprint', finish);
+  }
 })();
 
 /* ── Figure 6: releasing one count many times ── */
